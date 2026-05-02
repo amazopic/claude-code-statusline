@@ -155,6 +155,10 @@ function setLocale(code) {
   // refresh specimen labels
   showSpecimen(currentSpecimen);
   showToast(`✓ ${supportedLocales.find(l => l.code === code).native}`);
+  // Analytics: track language switches as custom events
+  if (typeof gtag === 'function') {
+    gtag('event', 'language_change', { locale: code });
+  }
 }
 
 // ═════════════════════════════════════════════════════════════════════

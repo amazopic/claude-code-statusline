@@ -80,9 +80,11 @@ docs/
   Mono from Google Fonts. To self-host, download from
   [Fontshare](https://www.fontshare.com/) and [Vercel](https://vercel.com/font),
   drop into `assets/fonts/`, and update the `<link>` tags in `index.html`.
-- **No analytics** — keep it that way for SEO/perf.
-- **Lighthouse target:** 100 / 100 / 100 / 100. The page is HTML + ~12 KB
-  CSS + ~10 KB JS — no framework, no analytics, no telemetry.
+- **Analytics:** Google Analytics 4 only (measurement id `G-GN8ZDLTY1D`),
+  loaded `async` so it doesn't block render. Tracks pageviews +
+  `language_change` events. No other telemetry.
+- **Lighthouse target:** 100 / 100 / 100 / 100. HTML + ~12 KB CSS + ~10 KB JS
+  + GA4 (~50 KB, deferred). No framework, no other trackers.
 - **AI-friendly:** JSON-LD for SoftwareApplication, FAQPage, HowTo. Plus
   `llms.txt` and `llms-full.txt` accessible at site root.
 - **Reduced-motion:** all animations honor `prefers-reduced-motion`.

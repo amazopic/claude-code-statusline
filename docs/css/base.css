@@ -136,7 +136,7 @@ section {
   position: relative;
 }
 
-/* Editorial dingbat between sections */
+/* Editorial dingbat between sections (legacy, kept for compatibility) */
 .dingbat {
   display: flex;
   justify-content: center;
@@ -149,6 +149,66 @@ section {
   letter-spacing: 1.5em;
   text-indent: 1.5em;
 }
+
+/* Section divider with embedded GitHub CTA. Replaces all dingbats. */
+.section-divider {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: clamp(0.85rem, 2.5vw, 1.75rem);
+  padding-block: clamp(2rem, 4vw, 3rem);
+  background: var(--paper);
+  flex-wrap: wrap;
+}
+.section-divider__ornament {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 200;
+  font-size: clamp(1.5rem, 2.5vw, 2.25rem);
+  color: var(--sub-2);
+  line-height: 1;
+  user-select: none;
+}
+.section-divider__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  letter-spacing: var(--tr-wider);
+  text-transform: uppercase;
+  color: var(--sub);
+  border-bottom: 1px solid var(--rule);
+  padding-block: 0.45em;
+  text-decoration: none;
+  transition: color var(--dur-fast) var(--easing-out),
+              border-color var(--dur-fast) var(--easing-out),
+              transform var(--dur-fast) var(--easing-out);
+}
+.section-divider__link:hover {
+  color: var(--phosphor-d);
+  border-bottom-color: var(--phosphor-d);
+  transform: translateY(-1px);
+}
+.section-divider__link .ext {
+  color: var(--phosphor-d);
+  margin-left: 0.1em;
+}
+
+/* Inverted variant — for dark sections (Numbers) where bg = ink */
+.section-divider--inv {
+  background: var(--ink);
+}
+.section-divider--inv .section-divider__ornament { color: var(--sub-2); }
+.section-divider--inv .section-divider__link {
+  color: var(--paper);
+  border-bottom-color: rgba(245,242,234,0.25);
+}
+.section-divider--inv .section-divider__link:hover {
+  color: var(--phosphor);
+  border-bottom-color: var(--phosphor);
+}
+.section-divider--inv .section-divider__link .ext { color: var(--phosphor); }
 
 /* ─── Print-friendly fallback (graceful) ─── */
 @media print {
