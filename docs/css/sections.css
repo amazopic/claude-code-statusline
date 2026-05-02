@@ -57,6 +57,30 @@
   font-weight: 500;
 }
 
+/* ─── GitHub badge in hero meta bar ─── */
+.hero-meta__github {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  letter-spacing: var(--tr-wide);
+  text-transform: uppercase;
+  color: var(--ink);
+  background: var(--paper);
+  border: 1px solid var(--ink);
+  padding: 0.5rem 0.75rem;
+  transition: background var(--dur-fast) var(--easing-out),
+              color var(--dur-fast) var(--easing-out),
+              transform var(--dur-fast) var(--easing-out);
+}
+.hero-meta__github:hover {
+  background: var(--ink);
+  color: var(--phosphor);
+  transform: translate(-1px, -1px);
+  box-shadow: 2px 2px 0 var(--phosphor);
+}
+
 /* ─── Language switcher ─── */
 .lang-switcher {
   position: relative;
@@ -359,6 +383,17 @@
   background: var(--ink);
   color: var(--paper);
   border-color: var(--ink);
+}
+.btn--github {
+  background: var(--paper);
+  color: var(--ink);
+  border-color: var(--ink);
+}
+.btn--github:hover {
+  background: var(--ink);
+  color: var(--phosphor);
+  border-color: var(--ink);
+  box-shadow: 4px 4px 0 var(--phosphor);
 }
 .btn .arrow {
   transition: transform var(--dur-fast) var(--easing-out);
@@ -991,6 +1026,22 @@
 .specimen__usage--slash code .slash {
   color: var(--phosphor);
   font-weight: 600;
+}
+.specimen__usage--source {
+  background: transparent;
+  border: 1px dashed var(--rule);
+  text-decoration: none;
+  transition: border-color var(--dur-fast) var(--easing-out),
+              background var(--dur-fast) var(--easing-out);
+}
+.specimen__usage--source:hover {
+  border-color: var(--ink);
+  background: var(--paper-3);
+}
+.specimen__usage--source code { color: var(--ink); }
+.specimen__usage--source .ext {
+  color: var(--phosphor-d);
+  margin-left: 0.25em;
 }
 
 /* Specimen pagination dots — sits between the two arrows */

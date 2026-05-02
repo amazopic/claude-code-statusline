@@ -12,6 +12,13 @@ document.documentElement.classList.add('has-cursor');
 const $  = (sel, root = document) => root.querySelector(sel);
 const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
 
+const REPO_URL = 'https://github.com/amazopic/claude-code-statusline';
+const REPO_BLOB = `${REPO_URL}/blob/main`;
+// English uses README.md; everyone else uses README.<lang>.md
+const readmeUrl = (locale) =>
+  locale === 'en' ? `${REPO_BLOB}/README.md` : `${REPO_BLOB}/README.${locale}.md`;
+const exampleUrl = (themeId) => `${REPO_BLOB}/examples/statusline-${themeId}.sh`;
+
 // ═════════════════════════════════════════════════════════════════════
 //  Locale state
 // ═════════════════════════════════════════════════════════════════════
@@ -54,6 +61,8 @@ function applyTranslations() {
   });
   // <html lang="">
   document.documentElement.lang = currentLocale;
+  // README links — point to the language-appropriate README on GitHub
+  $$('[data-readme-link]').forEach(a => a.setAttribute('href', readmeUrl(currentLocale)));
   // <title>
   document.title = t('meta.title');
   // <meta description>
@@ -287,6 +296,10 @@ async function showSpecimen(idx) {
           <span class="specimen__usage-label">${t('specimens.in_claude')}</span>
           <code><span class="slash">/statusline</span> ${theme.id}</code>
         </div>
+        <a class="specimen__usage specimen__usage--source" href="${exampleUrl(theme.id)}" target="_blank" rel="noopener">
+          <span class="specimen__usage-label">${t('specimens.source')}</span>
+          <code>examples/statusline-${theme.id}.sh <span class="ext">↗</span></code>
+        </a>
       </div>
     </div>
     <div class="specimen__center">
