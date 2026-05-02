@@ -1,0 +1,38 @@
+# Claude Code Status Line
+
+> A bash-based replacement for Claude Code's default status line. Shows context window usage, session cost in USD, rate-limit warnings, git branch with dirty/ahead/behind, time-on-task, model name with 1M-context indicator, and a configurable bar — all in one colorful line. Ships with 40 ready-made themes (anime, cyberpunk, hacker, weather, fire, ocean, coffee, music, game, pirate, christmas, retro, space, cat, love, rainbow, zen, plus practical: minimal, developer, time-tracker) and an 18-block library to compose your own. Also includes an all-in-one CLI configurator and a `/statusline` Claude Code slash command.
+
+Author: Yevgeniy Achin <amazopic@gmail.com>
+License: Source-Available — reuse only with prior written permission of the author.
+Languages: English plus 10 translations (Russian, French, German, Ukrainian, Slovenian, Italian, Spanish, Chinese, Japanese, Korean).
+
+## Documentation
+
+- [README](README.md): Overview, install, all themes, build-your-own guide.
+- [BLOCKS.md](BLOCKS.md): Library of 18 named blocks (model, context, context-bar, cost, folder, git, git-branch, tokens-msg, tokens-session, limits, thinking, time-active, time-wall, turns, host, cups, level, mood-icon) and a 3-step recipe for composing a custom status line.
+- [LICENSE](LICENSE): Source-Available License (reuse-by-permission).
+- [examples/README.md](examples/README.md): Index of 40 ready-made variants (20 themes × detailed + compact).
+- [screenshots/README.md](screenshots/README.md): Pre-rendered ANSI previews of every variant; preview commands.
+- [commands/statusline.md](commands/statusline.md): Template Claude Code slash command — drop into `~/.claude/commands/`.
+
+## Code
+
+- [statusline.sh](statusline.sh): Main reference implementation — fully featured single-file status line. Uses bash + jq.
+- [statusline-bundle.sh](statusline-bundle.sh): All-in-one bundle (40 themes + 18 blocks + CLI configurator) in 914 lines. Same file is both the renderer (called by Claude Code with JSON on stdin) and the configurator (called with arguments: `use`, `custom`, `list`, `preview`, `show`, `reset`).
+- [examples/statusline-*.sh](examples/): 20 standalone detailed themes.
+- [examples/statusline-*-compact.sh](examples/): 20 standalone compact themes (model · context · branch only).
+
+## Quick install
+
+```bash
+git clone https://github.com/amazopic/REPO.git
+cp REPO/statusline-bundle.sh ~/.claude/statusline.sh
+chmod +x ~/.claude/statusline.sh
+~/.claude/statusline.sh use cyberpunk
+```
+
+Then point Claude Code's `~/.claude/settings.json` `statusLine.command` at `~/.claude/statusline.sh` and restart.
+
+## Topics
+
+claude-code, claude-code-statusline, statusline, status-bar, terminal-prompt, anthropic-claude, ai-coding, developer-tools, bash-script, terminal-customization, prompt-customization, claude-4, opus-4, sonnet-4, dotfiles, terminal-dashboard, context-window-monitor, token-counter, rate-limit-monitor.

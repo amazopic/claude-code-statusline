@@ -1,0 +1,20 @@
+User-agent: *
+Allow: /
+
+# AI / LLM crawlers — explicit allowance + index hint
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+Sitemap: https://amazopic.github.io/claude-code-statusline/sitemap.xml

@@ -1,0 +1,540 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#0E0E10" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#F5F2EA" media="(prefers-color-scheme: light)" />
+    <meta name="color-scheme" content="light dark" />
+
+    <!-- Primary SEO -->
+    <title>Claude Code Status Line — Limit control · 40 themes · CLI</title>
+    <meta name="description" content="Drop-in replacement for the Claude Code default status line. Track 5h/7d rate limits in real time, watch context fill, see session cost — never blow past the window. 40 themes, 18 blocks, /statusline slash command." />
+    <meta name="author" content="Yevgeniy Achin" />
+    <meta name="keywords" content="claude code, claude code statusline, status bar, terminal prompt, anthropic, claude 4, opus 4, sonnet, dotfiles, context window, rate limit, 5h limit, 7d limit, token counter, bash" />
+    <link rel="canonical" href="https://amazopic.github.io/claude-code-statusline/" />
+
+    <!-- hreflang alternates: same URL, alternate language indication -->
+    <link rel="alternate" hreflang="x-default" href="https://amazopic.github.io/claude-code-statusline/" />
+    <link rel="alternate" hreflang="en" href="https://amazopic.github.io/claude-code-statusline/?lang=en" />
+    <link rel="alternate" hreflang="ru" href="https://amazopic.github.io/claude-code-statusline/?lang=ru" />
+    <link rel="alternate" hreflang="fr" href="https://amazopic.github.io/claude-code-statusline/?lang=fr" />
+    <link rel="alternate" hreflang="de" href="https://amazopic.github.io/claude-code-statusline/?lang=de" />
+    <link rel="alternate" hreflang="uk" href="https://amazopic.github.io/claude-code-statusline/?lang=uk" />
+    <link rel="alternate" hreflang="sl" href="https://amazopic.github.io/claude-code-statusline/?lang=sl" />
+    <link rel="alternate" hreflang="it" href="https://amazopic.github.io/claude-code-statusline/?lang=it" />
+    <link rel="alternate" hreflang="es" href="https://amazopic.github.io/claude-code-statusline/?lang=es" />
+    <link rel="alternate" hreflang="zh" href="https://amazopic.github.io/claude-code-statusline/?lang=zh" />
+    <link rel="alternate" hreflang="ja" href="https://amazopic.github.io/claude-code-statusline/?lang=ja" />
+    <link rel="alternate" hreflang="ko" href="https://amazopic.github.io/claude-code-statusline/?lang=ko" />
+
+    <!-- OpenGraph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Claude Code Status Line — Limit control · 40 themes · CLI" />
+    <meta property="og:description" content="Real-time 5h/7d rate-limit meters. Live context bar. Session cost. Git, time, model — all in one bash line. 40 themes + CLI configurator." />
+    <meta property="og:url" content="https://amazopic.github.io/claude-code-statusline/" />
+    <meta property="og:site_name" content="Claude Code Status Line" />
+    <meta property="og:image" content="https://amazopic.github.io/claude-code-statusline/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Claude Code Status Line — limit control + 40 themes" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale:alternate" content="ru_RU" />
+    <meta property="og:locale:alternate" content="fr_FR" />
+    <meta property="og:locale:alternate" content="de_DE" />
+    <meta property="og:locale:alternate" content="uk_UA" />
+    <meta property="og:locale:alternate" content="sl_SI" />
+    <meta property="og:locale:alternate" content="it_IT" />
+    <meta property="og:locale:alternate" content="es_ES" />
+    <meta property="og:locale:alternate" content="zh_CN" />
+    <meta property="og:locale:alternate" content="ja_JP" />
+    <meta property="og:locale:alternate" content="ko_KR" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Claude Code Status Line — Limit control · 40 themes · CLI" />
+    <meta name="twitter:description" content="Live 5h/7d rate-limit meters in your Claude Code status line. 40 themes + 18 blocks + CLI configurator." />
+    <meta name="twitter:image" content="https://amazopic.github.io/claude-code-statusline/og-image.png" />
+
+    <!-- AI / LLM crawler hints -->
+    <link rel="alternate" type="text/plain" href="/claude-code-statusline/llms.txt" title="llms.txt — AI crawler index" />
+    <link rel="alternate" type="text/plain" href="/claude-code-statusline/llms-full.txt" title="llms-full.txt — AI ingestion corpus" />
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+
+    <!-- Preconnect to font CDNs -->
+    <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Fonts -->
+    <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=editorial-new@200,300,400,500,700,800&f[]=neue-montreal@400,500,700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@300;400;500;600&display=swap" />
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/tokens.css" />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/sections.css" />
+
+    <!-- JSON-LD: SoftwareApplication -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Claude Code Status Line",
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "macOS, Linux, Windows (WSL/Git Bash)",
+      "description": "Drop-in replacement for the Claude Code default status line with real-time 5h/7d rate-limit warnings, 40 themes, 18 configurable blocks, a CLI configurator, and a /statusline slash command.",
+      "softwareVersion": "1.0.0",
+      "author": { "@type": "Person", "name": "Yevgeniy Achin", "email": "amazopic@gmail.com" },
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "license": "Source-Available (Reuse-by-Permission)",
+      "softwareRequirements": "bash 4+, jq",
+      "url": "https://amazopic.github.io/claude-code-statusline/",
+      "downloadUrl": "https://github.com/amazopic/claude-code-statusline",
+      "inLanguage": ["en", "ru", "fr", "de", "uk", "sl", "it", "es", "zh", "ja", "ko"],
+      "featureList": [
+        "Live 5-hour and 7-day rate-limit meters with ⚠️ alert above 50%",
+        "Context window % with 1.25% precision progress bar",
+        "Session cost in USD",
+        "Git branch, dirty, ahead/behind",
+        "Active vs wall human-hours tracking",
+        "40 themes (20 detailed + 20 compact)",
+        "18 named, composable blocks",
+        "Built-in CLI configurator",
+        "/statusline slash command"
+      ]
+    }
+    </script>
+
+    <!-- JSON-LD: FAQPage -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "Why is the 5h / 7d limit display the headline feature?", "acceptedAnswer": { "@type": "Answer", "text": "Because it's the #1 thing users complain about after buying a Claude plan: the default Claude Code status line gives you zero visibility into your 5-hour and 7-day rate limits. You only find out you hit them when Claude refuses to respond mid-task. This script reads limits data from the live JSON, renders both meters in real time, and triggers a visual alert when you cross 50% — so you can plan your session before you crash into the wall." }},
+        { "@type": "Question", "name": "What is Claude Code Status Line?", "acceptedAnswer": { "@type": "Answer", "text": "A bash-based replacement for the default status line in Claude Code (Anthropic's CLI). Turns the bottom-of-screen line into a real dashboard: model, context %, progress bar, session cost, 5h/7d rate limits, git status, time-on-task, and more." }},
+        { "@type": "Question", "name": "Does it support the 1M context window models?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. The script detects [1m] in the model id and 1M in the display name and adjusts the bar's denominator to 1,000,000 tokens." }},
+        { "@type": "Question", "name": "Will it slow down Claude Code?", "acceptedAnswer": { "@type": "Answer", "text": "No. Each render runs once per status redraw. Typical render is under 50 ms even with the time-tracker enabled." }},
+        { "@type": "Question", "name": "Is it free? Can I use it commercially?", "acceptedAnswer": { "@type": "Answer", "text": "Personal local use is free under the Source-Available License. Any reuse, redistribution, fork, or inclusion in another project requires prior written permission from the author Yevgeniy Achin (amazopic@gmail.com)." }}
+      ]
+    }
+    </script>
+
+    <!-- JSON-LD: HowTo -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "Install Claude Code Status Line",
+      "description": "Install the bundled status line script and configure Claude Code to use it.",
+      "totalTime": "PT1M",
+      "tool": [{ "@type": "HowToTool", "name": "git" }, { "@type": "HowToTool", "name": "bash" }, { "@type": "HowToTool", "name": "jq" }],
+      "step": [
+        { "@type": "HowToStep", "name": "Clone", "text": "git clone https://github.com/amazopic/claude-code-statusline.git" },
+        { "@type": "HowToStep", "name": "Copy script", "text": "cp claude-code-statusline/statusline-bundle.sh ~/.claude/statusline.sh && chmod +x ~/.claude/statusline.sh" },
+        { "@type": "HowToStep", "name": "Pick a theme", "text": "~/.claude/statusline.sh use cyberpunk" },
+        { "@type": "HowToStep", "name": "Register in settings.json", "text": "Add { \"statusLine\": { \"type\": \"command\", \"command\": \"/Users/<you>/.claude/statusline.sh\" } } to ~/.claude/settings.json" },
+        { "@type": "HowToStep", "name": "Restart", "text": "Restart Claude Code or run /config reload." }
+      ]
+    }
+    </script>
+  </head>
+  <body>
+    <main>
+
+      <!-- ═══════════════════════════════════════════════════════════════
+           01 · FRONT MATTER (hero) — limits as headline
+           ═══════════════════════════════════════════════════════════════ -->
+      <section class="s-hero" aria-labelledby="hero-title">
+        <div class="wrap">
+          <header class="hero-meta">
+            <span class="hero-meta__brand" data-i18n="hero.brand">Claude Code · Status Line</span>
+            <div class="hero-meta__right">
+              <span class="hero-meta__issue" data-i18n="hero.issue">Issue 01 · 11 languages · 40 specimens</span>
+              <div class="lang-switcher" data-lang-switcher>
+                <button class="lang-switcher__toggle" type="button" aria-haspopup="listbox" aria-expanded="false">
+                  <span class="lang-switcher__label" data-i18n="lang.label">Language</span>
+                  <span class="lang-switcher__current" data-current-lang>EN</span>
+                  <span class="lang-switcher__chev" aria-hidden="true">▾</span>
+                </button>
+                <ul class="lang-switcher__menu" role="listbox" data-lang-menu hidden></ul>
+              </div>
+            </div>
+          </header>
+
+          <h1 id="hero-title" class="hero-nameplate" aria-label="Status·Line — a catalog of terminal status lines">
+            <span class="word">Status</span><span class="midpoint" aria-hidden="true"></span><span class="word">Line</span>
+            <span class="hero-nameplate__sup" data-i18n="hero.nameplate.sup">A catalog of terminal status lines for Claude Code</span>
+          </h1>
+
+          <div class="hero-grid">
+            <!-- LEFT: the headline limit-control message -->
+            <div class="hero-pitch">
+              <span class="hero-pitch__badge" data-i18n="hero.limits.badge">★ NEW · The #1 reason people install this</span>
+              <h2 class="hero-pitch__title" data-i18n-html="hero.limits.title">
+                Limit control.<br/>Maximum productivity.<br/><em>Zero surprises.</em>
+              </h2>
+              <p class="hero-pitch__body" data-i18n-html="hero.limits.body">
+                Bought a Pro plan and now you keep hitting the 5-hour or 7-day cap mid-task? The default status line never warns you. <strong>This one does.</strong> Live 5h / 7d meters, ⚠️ alert above 50 %, baked into every theme.
+              </p>
+
+              <!-- Limit visualization -->
+              <div class="hero-limits" role="region" aria-label="Live 5h and 7d limit meters">
+                <div class="hero-limits__row" data-limit-row>
+                  <span class="hero-limits__label" data-i18n="hero.limits.label5h">5-hour limit</span>
+                  <div class="hero-limits__meter">
+                    <span class="hero-limits__fill" data-fill="5h" style="--w: 0%"></span>
+                  </div>
+                  <span class="hero-limits__pct" data-pct="5h">0%</span>
+                </div>
+                <div class="hero-limits__row" data-limit-row>
+                  <span class="hero-limits__label" data-i18n="hero.limits.label7d">7-day limit</span>
+                  <div class="hero-limits__meter">
+                    <span class="hero-limits__fill" data-fill="7d" style="--w: 0%"></span>
+                  </div>
+                  <span class="hero-limits__pct" data-pct="7d">0%</span>
+                </div>
+                <p class="hero-limits__alert" data-i18n="hero.limits.alert">⚠ Visual alert above 50 % — never hit the wall mid-session.</p>
+              </div>
+
+              <div class="hero-cta">
+                <a class="btn" href="#install"><span data-i18n="hero.cta.install">Install in 30s</span> <span class="arrow">→</span></a>
+                <a class="btn btn--ghost" href="#specimens" data-i18n="hero.cta.specimens">See 40 specimens</a>
+              </div>
+            </div>
+
+            <!-- RIGHT: small terminal cycling through themes -->
+            <div class="hero-terminal-wrap">
+              <span class="hero-terminal-wrap__label" data-i18n="hero.terminal.label">Live preview · cycling through 10 themes</span>
+              <div class="terminal" aria-hidden="true">
+                <div class="terminal__line terminal__line--cmd"><span class="text">~/.claude/statusline.sh use cyberpunk</span><span class="terminal__cursor"></span></div>
+                <div class="terminal__statusline mono">Loading…</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════════════════════════════════════════════════════════════
+           02 · EDITOR'S NOTE
+           ═══════════════════════════════════════════════════════════════ -->
+      <section class="s-note" aria-labelledby="note-title">
+        <div class="wrap note-grid">
+          <div>
+            <span class="note__label" id="note-title" data-i18n="note.label">Editor's Note</span>
+          </div>
+          <div class="note__body">
+            <p data-i18n-html="note.body.p1"><span class="dropcap">C</span>laude Code ships with a <strong>sparse</strong> status line. A model name. Maybe a directory. That's it. Meanwhile your context fills up, your <strong>5h and 7d limits tick down</strong>, your session quietly accrues cost — and you find out only when you've blown past the window.</p>
+            <p data-i18n-html="note.body.p2">This project is the dashboard that should have been there. Forty themes. Eighteen composable blocks. One bash file. <strong>Pick something pretty</strong> — or build your own.</p>
+          </div>
+          <aside class="note__margin" data-i18n-html="note.margin">
+            <em>Editorial note —</em> the project is open source under a <em>source-available license</em>: read freely, but reuse requires the author's permission.
+          </aside>
+        </div>
+      </section>
+
+      <div class="dingbat" aria-hidden="true">✶ ✶ ✶</div>
+
+      <!-- ═══════════════════════════════════════════════════════════════
+           03 · NUMBERS — limits front and center
+           ═══════════════════════════════════════════════════════════════ -->
+      <section class="s-numbers" aria-labelledby="numbers-title">
+        <div class="wrap">
+          <h2 id="numbers-title" class="smcp" style="color:var(--sub-2); margin-bottom:3rem;" data-i18n="numbers.title">By the numbers</h2>
+          <div class="numbers-row">
+            <div class="num num--featured">
+              <div class="num__value">2<span class="pct">⚠</span></div>
+              <span class="num__label" data-i18n="numbers.limits">limit warnings (5h + 7d)</span>
+            </div>
+            <div class="num">
+              <div class="num__value">40</div>
+              <span class="num__label" data-i18n="numbers.themes">themes</span>
+            </div>
+            <div class="num">
+              <div class="num__value">18</div>
+              <span class="num__label" data-i18n="numbers.blocks">composable blocks</span>
+            </div>
+            <div class="num">
+              <div class="num__value">1.25<span class="pct">%</span></div>
+              <span class="num__label" data-i18n="numbers.precision">bar precision</span>
+            </div>
+            <div class="num">
+              <div class="num__value">11</div>
+              <span class="num__label" data-i18n="numbers.languages">documented languages</span>
+            </div>
+            <div class="num">
+              <div class="num__value">0</div>
+              <span class="num__label" data-i18n="numbers.deps">runtime deps (just bash + jq)</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════════════════════════════════════════════════════════════
+           04 · CATALOG INDEX
+           ═══════════════════════════════════════════════════════════════ -->
+      <section class="s-catalog" aria-labelledby="catalog-title" id="catalog">
+        <div class="wrap">
+          <span class="catalog__meta" data-i18n="catalog.meta">Contents · 40 specimens</span>
+          <h2 id="catalog-title" class="catalog__title" data-i18n-html="catalog.title">The Catalog<br/><em>in two volumes — detailed &amp; compact</em></h2>
+          <p style="color:var(--sub); max-width:42rem; margin-bottom:2rem; font-size:var(--fs-md);" data-i18n="catalog.intro">Twenty themes, each in two trims. Tap a name to jump to its specimen page.</p>
+          <div class="catalog-list" data-reveal></div>
+        </div>
+      </section>
+
+      <div class="dingbat" aria-hidden="true">✦ ✦ ✦</div>
+
+      <!-- ═══════════════════════════════════════════════════════════════
+           05 · SPECIMENS
+           ═══════════════════════════════════════════════════════════════ -->
+      <section class="s-specimens" aria-labelledby="specimens-title" id="specimens">
+        <div class="wrap">
+          <header class="specimens-header">
+            <h2 id="specimens-title" class="specimens-header__title" data-i18n="specimens.title">Specimens</h2>
+          </header>
+
+          <!-- ═════ Slash-command demo ═════ -->
+          <aside class="claude-demo" aria-labelledby="claude-demo-title">
+            <div class="claude-demo__head">
+              <span class="claude-demo__label" id="claude-demo-title" data-i18n="specimens.try.label">Try it from inside Claude Code</span>
+              <span class="claude-demo__file mono">~/.claude/commands/statusline.md</span>
+            </div>
+            <p class="claude-demo__intro" data-i18n-html="specimens.try.intro">Already in a Claude Code session? Just type <code class="mono">/statusline</code> with arguments — the shipped slash command routes everything to the bundle below.</p>
+            <div class="claude-demo__terminal mono" aria-hidden="true">
+              <div class="claude-demo__line">
+                <span class="who you">you</span>
+                <span class="cmd"><span class="slash">/statusline</span> <span class="arg">cyberpunk</span></span>
+              </div>
+              <div class="claude-demo__line response">
+                <span class="who claude">claude</span>
+                <span class="msg"><span class="dot">⏺</span> Switching theme to <em>"cyberpunk"</em>…<br><span class="ok">✓</span> <span class="path">~/.claude/statusline.conf</span> updated. Next render will use the new theme.</span>
+              </div>
+
+              <div class="claude-demo__sep"></div>
+
+              <div class="claude-demo__line">
+                <span class="who you">you</span>
+                <span class="cmd"><span class="slash">/statusline</span> <span class="arg arg--verb">custom</span> <span class="arg">model</span> <span class="arg">context-bar</span> <span class="arg">limits</span> <span class="arg">cost</span> <span class="arg">git</span></span>
+              </div>
+              <div class="claude-demo__line response">
+                <span class="who claude">claude</span>
+                <span class="msg"><span class="dot">⏺</span> Building custom recipe…<br><span class="ok">✓</span> Active blocks: <span class="hl">model · context-bar · limits · cost · git</span></span>
+              </div>
+
+              <div class="claude-demo__sep"></div>
+
+              <div class="claude-demo__line">
+                <span class="who you">you</span>
+                <span class="cmd"><span class="slash">/statusline</span> <span class="arg arg--verb">list</span></span>
+              </div>
+              <div class="claude-demo__line response">
+                <span class="who claude">claude</span>
+                <span class="msg"><span class="dot">⏺</span> Available themes <span class="dim">(20)</span>:<br><span class="dim">minimal · developer · time · zen · rainbow · anime · love · cat · christmas · hacker</span><br><span class="dim">cyberpunk · space · retro · fire · ocean · weather · coffee · music · game · pirate</span></span>
+              </div>
+            </div>
+            <p class="claude-demo__caption" data-i18n-html="specimens.try.caption">Same script, two modes — <strong>stdin = render</strong>, <strong>args = configure</strong>. Already shipped as <code class="mono">~/.claude/commands/statusline.md</code>.</p>
+          </aside>
+
+          <article class="specimen" aria-live="polite" aria-atomic="true">
+            <p style="color:var(--sub);" data-i18n="ui.loading">Loading specimens…</p>
+          </article>
+
+          <nav class="specimen-nav" aria-label="Specimen navigation">
+            <button class="spec-arrow" id="spec-prev" aria-label="Previous specimen" data-i18n-aria-label="specimens.prev">‹</button>
+            <div class="specimen-pager" role="tablist" aria-label="Specimen pager"></div>
+            <button class="spec-arrow" id="spec-next" aria-label="Next specimen" data-i18n-aria-label="specimens.next">›</button>
+          </nav>
+        </div>
+      </section>
+
+      <!-- ═══════════════════════════════════════════════════════════════
+           06 · COMPARE
+           ═══════════════════════════════════════════════════════════════ -->
+      <section class="s-compare" aria-labelledby="compare-title" id="compare">
+        <div class="wrap">
+          <span class="compare-sub" data-i18n="compare.sub">A side-by-side</span>
+          <h2 id="compare-title" class="compare-title" data-i18n-html="compare.title">vs. the default<br/>status line</h2>
+          <table class="compare-table">
+            <thead>
+              <tr>
+                <th data-i18n="compare.col.feature">Capability</th>
+                <th data-i18n="compare.col.default">Default Claude Code</th>
+                <th data-i18n="compare.col.ours">This project</th>
+              </tr>
+            </thead>
+            <tbody id="compare-body"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <div class="dingbat" aria-hidden="true">◇ ◇ ◇</div>
+
+      <!-- ═══════════════════════════════════════════════════════════════
+           07 · RECIPE (drag-and-drop builder)
+           ═══════════════════════════════════════════════════════════════ -->
+      <section class="s-recipe" aria-labelledby="recipe-title" id="recipe">
+        <div class="wrap">
+          <div class="recipe-grid">
+            <div class="recipe__col">
+              <h3 id="recipe-title" data-i18n-html="recipe.title">Compose<br/>your own</h3>
+              <p class="recipe__intro" data-i18n="recipe.intro">Click blocks to add them to your status line. Watch it render live. Copy the bash and ship.</p>
+              <div class="recipe__palette" role="list" aria-label="Available blocks"></div>
+            </div>
+            <div class="recipe__col recipe__output">
+              <div>
+                <span class="smcp" style="color:var(--sub); display:block; margin-bottom:0.5rem;" data-i18n="recipe.preview">Live preview</span>
+                <div class="recipe__statusline-wrap mono"></div>
+              </div>
+              <div>
+                <span class="smcp" style="color:var(--sub); display:block; margin-bottom:0.5rem;" data-i18n="recipe.your">Your recipe</span>
+                <div class="recipe__line"></div>
+              </div>
+              <div>
+                <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:0.5rem;">
+                  <span class="smcp" style="color:var(--sub);" data-i18n="recipe.bash">Generated bash</span>
+                  <button class="copy-btn" data-copy="#recipe-code" data-i18n="ui.copy">Copy</button>
+                </div>
+                <div class="recipe__code-wrap">
+                  <pre class="recipe__code mono" id="recipe-code"></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════════════════════════════════════════════════════════════
+           08 · INSTALL
+           ═══════════════════════════════════════════════════════════════ -->
+      <section class="s-install" aria-labelledby="install-title" id="install">
+        <div class="wrap">
+          <span class="compare-sub" data-i18n="install.sub">Get going</span>
+          <h2 id="install-title" class="install-title" data-i18n="install.title">Install in 30 seconds</h2>
+          <p style="color:var(--sub); max-width:42rem; font-size:var(--fs-md);" data-i18n="install.intro">A single bundled script does both jobs: it renders your status line when Claude Code calls it, and it acts as a CLI configurator when you call it with arguments.</p>
+
+          <div class="install-grid">
+            <div>
+              <div class="install-step">
+                <div class="install-step__num">01</div>
+                <h3 class="install-step__title" data-i18n-html="install.step1.title">Clone &amp; copy</h3>
+                <p class="install-step__desc" data-i18n-html="install.step1.desc">Drop the bundle into <code class="mono">~/.claude/statusline.sh</code>.</p>
+              </div>
+              <div class="install-step">
+                <div class="install-step__num">02</div>
+                <h3 class="install-step__title" data-i18n="install.step2.title">Pick a theme</h3>
+                <p class="install-step__desc" data-i18n-html="install.step2.desc">Or compose blocks via <code class="mono">custom</code>.</p>
+              </div>
+              <div class="install-step">
+                <div class="install-step__num">03</div>
+                <h3 class="install-step__title" data-i18n="install.step3.title">Wire it up</h3>
+                <p class="install-step__desc" data-i18n-html="install.step3.desc">Tell Claude Code about it in <code class="mono">settings.json</code>, restart.</p>
+              </div>
+            </div>
+
+            <div style="display:flex; flex-direction:column; gap:1.5rem;">
+              <div class="install__code-wrap">
+                <span class="smcp" style="color:var(--sub); display:block; margin-bottom:0.5rem;" data-i18n="install.codelabel.main">macOS / Linux / WSL</span>
+                <button class="copy-btn" data-copy="#install-cmd-1" data-i18n="ui.copy">Copy</button>
+                <pre class="recipe__code mono" id="install-cmd-1"><span class="cmt"># 1 — clone &amp; copy</span>
+git clone https://github.com/amazopic/claude-code-statusline.git
+cp claude-code-statusline/statusline-bundle.sh ~/.claude/statusline.sh
+chmod +x ~/.claude/statusline.sh
+
+<span class="cmt"># 2 — pick a theme</span>
+~/.claude/statusline.sh use cyberpunk
+
+<span class="cmt"># 3 — register in ~/.claude/settings.json</span>
+<span class="cmt"># { "statusLine": { "type": "command",</span>
+<span class="cmt">#   "command": "/Users/&lt;you&gt;/.claude/statusline.sh" } }</span>
+
+<span class="cmt"># 4 — restart Claude Code (or /config reload)</span></pre>
+              </div>
+
+              <div class="install__code-wrap">
+                <span class="smcp" style="color:var(--sub); display:block; margin-bottom:0.5rem;" data-i18n-html="install.codelabel.slash">Optional: <code class="mono">/statusline</code> slash command</span>
+                <button class="copy-btn" data-copy="#install-cmd-2" data-i18n="ui.copy">Copy</button>
+                <pre class="recipe__code mono" id="install-cmd-2">mkdir -p ~/.claude/commands
+cp claude-code-statusline/commands/statusline.md \
+   ~/.claude/commands/statusline.md
+
+<span class="cmt"># inside Claude Code:</span>
+<span class="cmd">/statusline cyberpunk</span>
+<span class="cmd">/statusline custom model context-bar git cost</span>
+<span class="cmd">/statusline list</span></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="dingbat" aria-hidden="true">☞ ☞ ☞</div>
+
+      <!-- ═══════════════════════════════════════════════════════════════
+           09 · FAQ
+           ═══════════════════════════════════════════════════════════════ -->
+      <section class="s-faq" aria-labelledby="faq-title" id="faq">
+        <div class="wrap">
+          <span class="compare-sub" data-i18n-html="faq.sub">Q &amp; A</span>
+          <h2 id="faq-title" class="faq-title" data-i18n-html="faq.title">Frequently<br/>Asked</h2>
+          <div class="faq-list" data-reveal></div>
+        </div>
+      </section>
+
+      <!-- ═══════════════════════════════════════════════════════════════
+           10 · COLOPHON
+           ═══════════════════════════════════════════════════════════════ -->
+      <footer class="s-colophon colophon" aria-labelledby="colophon-title">
+        <div class="wrap">
+          <h2 id="colophon-title" class="display" style="font-size:clamp(2.5rem,6vw,4.5rem); margin-bottom:2.5rem; color:var(--paper);" data-i18n="colo.title">Colophon</h2>
+          <div class="colophon-grid">
+            <div>
+              <h4 data-i18n="colo.h.author">Author</h4>
+              <p>Yevgeniy Achin</p>
+              <p style="margin-top:0.5rem;"><a href="mailto:amazopic@gmail.com">amazopic@gmail.com</a></p>
+            </div>
+            <div>
+              <h4 data-i18n="colo.h.license">License</h4>
+              <p data-i18n="colo.license.body">Source-Available — reuse only with prior written permission.</p>
+              <p style="margin-top:0.5rem;"><a href="https://github.com/amazopic/claude-code-statusline/blob/main/LICENSE" data-i18n="colo.license.read">Read full license →</a></p>
+            </div>
+            <div>
+              <h4 data-i18n="colo.h.set">Set in</h4>
+              <ul>
+                <li>Editorial New <em style="color:var(--sub-2);">(Pangram Pangram)</em></li>
+                <li>Neue Montreal <em style="color:var(--sub-2);">(Pangram Pangram)</em></li>
+                <li>Geist Mono <em style="color:var(--sub-2);">(Vercel)</em></li>
+              </ul>
+            </div>
+            <div>
+              <h4 data-i18n="colo.h.links">Links</h4>
+              <ul>
+                <li><a href="https://github.com/amazopic/claude-code-statusline" data-i18n="colo.links.repo">GitHub repo ↗</a></li>
+                <li><a href="https://github.com/amazopic/claude-code-statusline/blob/main/BLOCKS.md" data-i18n="colo.links.blocks">Blocks library</a></li>
+                <li><a href="https://github.com/amazopic/claude-code-statusline/tree/main/examples" data-i18n="colo.links.examples">All 40 examples</a></li>
+                <li><a href="llms.txt">/llms.txt</a> · <a href="llms-full.txt">/llms-full.txt</a></li>
+                <li><a href="https://claude.com/claude-code" data-i18n="colo.links.cc">Claude Code ↗</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="colophon-meta">
+            <span data-i18n="colo.meta.copyright">© 2026 Yevgeniy Achin · Source-Available</span>
+            <span data-i18n="colo.meta.made">Made for the Claude Code community</span>
+            <span data-i18n="colo.meta.issue">Issue 01 · v1.0.0</span>
+          </div>
+        </div>
+      </footer>
+
+    </main>
+
+    <div class="toast" role="status" aria-live="polite"></div>
+
+    <noscript>
+      <p style="padding:2rem;text-align:center;">This page is enhanced with JavaScript. The full project is documented in the <a href="https://github.com/amazopic/claude-code-statusline">GitHub repository</a>.</p>
+    </noscript>
+
+    <script type="module" src="js/main.js"></script>
+  </body>
+</html>

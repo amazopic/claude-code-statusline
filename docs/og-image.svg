@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#F5F2EA"/>
+      <stop offset="100%" stop-color="#EFEBE0"/>
+    </linearGradient>
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" stitchTiles="stitch"/>
+      <feColorMatrix values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.06 0"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" filter="url(#grain)"/>
+
+  <!-- Issue meta bar -->
+  <line x1="60" y1="80" x2="1140" y2="80" stroke="#0E0E10" stroke-opacity="0.12"/>
+  <text x="60" y="68" font-family="ui-monospace, 'Geist Mono', monospace" font-size="14" fill="#0E0E10" letter-spacing="3">
+    <tspan font-weight="500">CLAUDE CODE</tspan> · STATUS LINE
+  </text>
+  <text x="1140" y="68" font-family="ui-monospace, 'Geist Mono', monospace" font-size="14" fill="#4A4A48" letter-spacing="2" text-anchor="end">
+    ISSUE 01 · 40 SPECIMENS
+  </text>
+
+  <!-- Nameplate -->
+  <text x="60" y="290" font-family="'Editorial New', 'EB Garamond', Georgia, serif" font-style="italic" font-weight="200" font-size="220" fill="#0E0E10" letter-spacing="-12">Status</text>
+  <circle cx="746" cy="265" r="22" fill="#00FF6B"/>
+  <text x="780" y="290" font-family="'Editorial New', 'EB Garamond', Georgia, serif" font-style="italic" font-weight="200" font-size="220" fill="#0E0E10" letter-spacing="-12">Line</text>
+
+  <!-- Tagline -->
+  <text x="60" y="370" font-family="'Editorial New', 'EB Garamond', Georgia, serif" font-style="italic" font-weight="300" font-size="32" fill="#0E0E10">
+    A catalog of terminal status lines for Claude Code.
+  </text>
+
+  <!-- Live terminal preview -->
+  <g transform="translate(60,420)">
+    <rect width="1080" height="140" rx="6" fill="#0E0E10"/>
+    <text x="24" y="36" font-family="ui-monospace, monospace" font-size="11" fill="#4A4A48" letter-spacing="3">● ● ●</text>
+
+    <!-- Status line: cyberpunk -->
+    <text x="24" y="92" font-family="ui-monospace, 'Geist Mono', monospace" font-size="20" fill="#FF00C8">▌▌▌</text>
+    <text x="76" y="92" font-family="ui-monospace, 'Geist Mono', monospace" font-size="20" fill="#00FFFF" font-weight="500">OPUS-4.7-(1M)</text>
+    <text x="296" y="92" font-family="ui-monospace, 'Geist Mono', monospace" font-size="20" fill="#FF00C8">▐▐▐</text>
+    <text x="350" y="92" font-family="ui-monospace, 'Geist Mono', monospace" font-size="20" fill="#FF8AD9">//</text>
+    <text x="380" y="92" font-family="ui-monospace, 'Geist Mono', monospace" font-size="20" fill="#00FFFF">CTX</text>
+    <text x="430" y="92" font-family="ui-monospace, 'Geist Mono', monospace" font-size="20" fill="#FF8AD9">:</text>
+    <text x="442" y="92" font-family="ui-monospace, 'Geist Mono', monospace" font-size="20" fill="#00FFFF" font-weight="500">12%</text>
+    <text x="498" y="92" font-family="ui-monospace, 'Geist Mono', monospace" font-size="20" fill="#FF00C8">▰</text>
+    <text x="518" y="92" font-family="ui-monospace, 'Geist Mono', monospace" font-size="20" fill="#262626">▱▱▱▱▱▱▱▱▱</text>
+    <text x="700" y="92" font-family="ui-monospace, 'Geist Mono', monospace" font-size="20" fill="#FF8AD9">//</text>
+    <text x="730" y="92" font-family="ui-monospace, 'Geist Mono', monospace" font-size="20" fill="#FFFF00">₵RED</text>
+    <text x="800" y="92" font-family="ui-monospace, 'Geist Mono', monospace" font-size="20" fill="#FF8AD9">:</text>
+    <text x="812" y="92" font-family="ui-monospace, 'Geist Mono', monospace" font-size="20" fill="#FFFF00" font-weight="500">0.42</text>
+    <text x="880" y="92" font-family="ui-monospace, 'Geist Mono', monospace" font-size="20" fill="#FF00C8">▐</text>
+    <text x="908" y="92" font-family="ui-monospace, 'Geist Mono', monospace" font-size="20" fill="#00FFFF" font-weight="500">JACK-IN</text>
+
+    <text x="24" y="124" font-family="ui-monospace, monospace" font-size="13" fill="#4A4A48" letter-spacing="2">SPECIMEN №11 — CYBERPUNK</text>
+  </g>
+
+  <!-- Bottom meta -->
+  <line x1="60" y1="600" x2="1140" y2="600" stroke="#0E0E10" stroke-opacity="0.12"/>
+  <text x="60" y="595" font-family="ui-monospace, 'Geist Mono', monospace" font-size="13" fill="#4A4A48" letter-spacing="2">
+    OPEN SOURCE · BASH + jq · 40 THEMES · 18 BLOCKS · /statusline SLASH COMMAND
+  </text>
+  <text x="1140" y="595" font-family="ui-monospace, 'Geist Mono', monospace" font-size="13" fill="#4A4A48" text-anchor="end" letter-spacing="2">
+    BY YEVGENIY ACHIN
+  </text>
+</svg>

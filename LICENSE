@@ -1,0 +1,46 @@
+Source-Available License (Reuse-by-Permission)
+
+Copyright (c) 2026 Yevgeniy Achin
+Contact: amazopic@gmail.com
+
+This source code is made publicly available for the following purposes:
+
+  • reading and study;
+  • personal evaluation on the user's own machine;
+  • reference and learning.
+
+Any of the following actions REQUIRE PRIOR WRITTEN PERMISSION
+from the author (Yevgeniy Achin <amazopic@gmail.com>):
+
+  • copying, mirroring, or redistributing the source code, in whole or in
+    part, on any platform or under any name;
+  • modifying or creating derivative works based on this code;
+  • including this code (or any portion of it) in another project,
+    package, library, plugin, dotfiles repo, or product — whether
+    commercial or non-commercial, free or paid;
+  • selling, sublicensing, relicensing, or transferring the rights;
+  • removing or altering the author attribution, copyright notice, or
+    this license text in any copy you have received permission to make.
+
+Permitted without prior permission:
+
+  • running the published `statusline.sh` (or any of the example scripts)
+    locally on your own computer as your Claude Code status line;
+  • linking to this repository from articles, blog posts, talks, and
+    social posts (please credit the author);
+  • opening issues and submitting pull requests to this project;
+    contributions are accepted only after explicit acceptance by the
+    author and become subject to this same license.
+
+To request reuse permission, contact the author at amazopic@gmail.com
+with: a short description of your intended use, where the code will
+appear, and how the author will be credited. Reasonable requests for
+personal, educational, and non-commercial use are typically granted
+free of charge.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, express
+or implied, including but not limited to the warranties of merchantability,
+fitness for a particular purpose, and noninfringement. In no event shall
+the author be liable for any claim, damages, or other liability arising
+from, out of, or in connection with the software or the use or other
+dealings in the software.

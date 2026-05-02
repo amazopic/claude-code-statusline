@@ -1,0 +1,157 @@
+/* ─────────────────────────────────────────────────────────────────────
+   RESET + BASE
+   ───────────────────────────────────────────────────────────────────── */
+
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; padding: 0; }
+
+html {
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  scroll-behavior: smooth;
+  background: var(--paper);
+  color: var(--ink);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--fs-base);
+  line-height: var(--lh-normal);
+  background: var(--paper);
+  color: var(--ink);
+  min-height: 100dvh;
+  overflow-x: clip;
+  position: relative;
+}
+
+img, svg, video { display: block; max-width: 100%; height: auto; }
+button, input, select, textarea { font: inherit; color: inherit; }
+button { background: none; border: none; cursor: pointer; }
+a { color: inherit; text-decoration: none; }
+
+::selection {
+  background: var(--phosphor);
+  color: var(--ink);
+}
+
+/* Focus rings — accessibility, but understated */
+:focus-visible {
+  outline: 2px solid var(--phosphor);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* ─── Grain texture overlay (subtle film grain over the whole page) ─── */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.5 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: var(--noise-opacity);
+  pointer-events: none;
+  z-index: 999;
+  mix-blend-mode: multiply;
+}
+
+/* ─── Custom cursor (thin crosshair on interactive) ─── */
+.has-cursor button,
+.has-cursor a,
+.has-cursor [data-cursor="cross"] {
+  cursor: crosshair;
+}
+
+/* ─── Container ─── */
+.wrap {
+  width: 100%;
+  max-width: var(--max-w);
+  margin-inline: auto;
+  padding-inline: var(--gutter-x);
+}
+
+/* ─── Editorial type primitives ─── */
+.display {
+  font-family: var(--font-display);
+  font-weight: 300;
+  line-height: var(--lh-tight);
+  letter-spacing: var(--tr-tight);
+  font-style: italic;
+}
+.display-roman {
+  font-family: var(--font-display);
+  font-weight: 300;
+  line-height: var(--lh-tight);
+  letter-spacing: var(--tr-tight);
+}
+.mono {
+  font-family: var(--font-mono);
+  font-weight: 400;
+  font-feature-settings: "ss01", "calt";
+}
+.smcp {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: var(--fs-xs);
+  letter-spacing: var(--tr-wider);
+  text-transform: uppercase;
+}
+.caption {
+  font-family: var(--font-body);
+  font-size: var(--fs-sm);
+  color: var(--sub);
+  line-height: var(--lh-loose);
+}
+
+/* ─── Hairline rule ─── */
+.rule {
+  border: 0;
+  height: 1px;
+  background: var(--rule);
+  width: 100%;
+  margin: 0;
+}
+
+/* ─── Page-load reveal ─── */
+.reveal {
+  opacity: 0;
+  transform: translateY(8px);
+  animation: reveal var(--dur-slow) var(--easing-out) forwards;
+  animation-delay: var(--reveal-delay, 0ms);
+}
+@keyframes reveal {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── Stagger helpers ─── */
+.stagger > * { --reveal-delay: calc(var(--i, 0) * 60ms); }
+
+/* ─── Section spacing ─── */
+section {
+  padding-block: var(--gutter-y);
+  position: relative;
+}
+
+/* Editorial dingbat between sections */
+.dingbat {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: var(--font-display);
+  font-style: italic;
+  color: var(--sub-2);
+  font-size: var(--fs-lg);
+  padding-block: 2rem;
+  letter-spacing: 1.5em;
+  text-indent: 1.5em;
+}
+
+/* ─── Print-friendly fallback (graceful) ─── */
+@media print {
+  body::before { display: none; }
+  section { padding-block: 1rem; page-break-inside: avoid; }
+}

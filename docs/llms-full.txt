@@ -1,0 +1,1105 @@
+# Claude Code Status Line — full project context for AI
+
+This file is intended to be ingested by AI assistants (Perplexity, ChatGPT, Claude.ai, etc.)
+for question-answering about the project. It contains the full README, BLOCKS guide,
+examples index, and license, concatenated in priority order.
+
+Author: Yevgeniy Achin <amazopic@gmail.com>
+License: Source-Available (Reuse-by-Permission)
+
+---
+
+# 🛰️ Claude Code Status Line — 40 themes, configurable blocks, CLI
+
+> Drop-in replacement for the **Claude Code** default status line: live **context window** usage with a smooth progress bar, **session cost** in USD, **5h / 7d rate-limit** warnings, **git branch** with dirty / ahead / behind counts, **time-on-task tracking**, and the active **model name** (with `(1M)` indicator for 1M-context variants) — all in one colorful Bash line. Ships with **40 ready-made themes** (anime, cyberpunk, hacker, retro, weather, fire, ocean, coffee, music, game, pirate, christmas, space, cat, love, rainbow, zen, plus practical: minimal, developer, time-tracker) and an **18-block library** to compose your own. Includes an all-in-one CLI configurator and a `/statusline` slash command for Claude Code.
+
+[![License: Source-Available](https://img.shields.io/badge/license-Source--Available-orange.svg)](LICENSE)
+[![Made for Claude Code](https://img.shields.io/badge/made%20for-Claude%20Code-7c3aed.svg)](https://claude.com/claude-code)
+[![Variants: 40](https://img.shields.io/badge/variants-40-brightgreen.svg)](#-40-ready-made-variants--pick-one-and-go)
+[![Bash + jq](https://img.shields.io/badge/runs%20on-bash%20%2B%20jq-yellow.svg)](#requirements)
+[![Author](https://img.shields.io/badge/author-Yevgeniy%20Achin-blue.svg)](mailto:amazopic@gmail.com)
+
+**Languages:** English · [Русский](README.ru.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Українська](README.uk.md) · [Slovenščina](README.sl.md) · [Italiano](README.it.md) · [Español](README.es.md) · [中文](README.zh.md) · [日本語](README.ja.md) · [한국어](README.ko.md)
+
+```text
+Opus 4.7 (1M) │ 🚀 12% █▌░░░░░░░░ 121.4K/1000K │ 0.42$ │ ↑0.5K ↓1.2K │ project │ ⎇ main │ tokens: 87 K │ 🤖 xhigh
+```
+
+## ⚡ Quick start
+
+The fastest path — bundled all-in-one script with built-in CLI:
+
+```bash
+git clone https://github.com/amazopic/REPO.git claude-code-statusline
+cp claude-code-statusline/statusline-bundle.sh ~/.claude/statusline.sh
+chmod +x ~/.claude/statusline.sh
+~/.claude/statusline.sh use cyberpunk          # or: anime, hacker, minimal, …
+```
+
+Then add to `~/.claude/settings.json`:
+
+```json
+{ "statusLine": { "type": "command",
+  "command": "/Users/<you>/.claude/statusline.sh" } }
+```
+
+Restart Claude Code (or run `/config` reload). Done.
+
+## Why a custom status line / status bar for Claude Code?
+
+Claude Code's default status line is sparse. This drop-in replacement turns the bottom status bar into an **at-a-glance dashboard** for every session:
+
+- 🔋 How much context have I burned? (smooth 1.25% fractional bars)
+- 💰 What is this session costing me?
+- 🚦 How close am I to my rate limits?
+- 🧠 What thinking level / model am I on?
+- 🌿 Which git branch am I on?
+
+All in **one line**, color-coded, with smart icons that signal urgency.
+
+## ✨ Features
+
+- 🪐 **Live context bar** — 10-cell progress bar with sub-cell precision (quadrant or vertical fractional glyphs)
+- 🧠 **Model name** — with `(1M)` indicator for 1M-context variants
+- 💸 **Session cost** in USD, updated every render
+- ⬆️⬇️ **Per-message token counters** (input / output)
+- 🚦 **Rate limits** — 5h / 7d with ⚠️ warning when > 50%
+- 🔄 **API-mode fallback** — when no rate limits are piped, shows total session tokens (`tokens: NNN K`) with thin-space thousand separators
+- 🚀 **Smart status icon** — 🚀 < 40%, 🚗 40–49%, ⚠️ ≥ 50% context fill
+- 🎨 **256-color ANSI** — bright, distinct color per segment
+- 🧩 **Pluggable bar styles** — pick `quadrant` (▖▄▙█) or `vertical` (▏▎▍▌▋▊▉█), or roll your own in 10 lines of bash
+- ⚡ **Lightweight** — pure `bash` + `jq`. No Node, no Python, no daemon, no telemetry
+
+## 🎨 40 ready-made variants — pick one and go
+
+Each theme ships in **two variants**:
+
+- **Detailed** — full feature set (model, context bar, cost, tokens, git, time, mood icon, …)
+- **Compact** — `model · context % + bar · branch` only
+
+| Theme | Detailed | Compact |
+|---|---|---|
+| 🛠 minimal       | [`statusline-minimal.sh`](examples/statusline-minimal.sh) | [`-compact`](examples/statusline-minimal-compact.sh) |
+| 🛠 developer     | [`statusline-developer.sh`](examples/statusline-developer.sh) | [`-compact`](examples/statusline-developer-compact.sh) |
+| 🛠 time *(human-hours)* | [`statusline-time.sh`](examples/statusline-time.sh) | [`-compact`](examples/statusline-time-compact.sh) |
+| 🛠 zen           | [`statusline-zen.sh`](examples/statusline-zen.sh) | [`-compact`](examples/statusline-zen-compact.sh) |
+| 🌈 rainbow       | [`statusline-rainbow.sh`](examples/statusline-rainbow.sh) | [`-compact`](examples/statusline-rainbow-compact.sh) |
+| ✨ anime         | [`statusline-anime.sh`](examples/statusline-anime.sh) | [`-compact`](examples/statusline-anime-compact.sh) |
+| 💖 love          | [`statusline-love.sh`](examples/statusline-love.sh) | [`-compact`](examples/statusline-love-compact.sh) |
+| 🐱 cat           | [`statusline-cat.sh`](examples/statusline-cat.sh) | [`-compact`](examples/statusline-cat-compact.sh) |
+| 🎄 christmas     | [`statusline-christmas.sh`](examples/statusline-christmas.sh) | [`-compact`](examples/statusline-christmas-compact.sh) |
+| 💻 hacker        | [`statusline-hacker.sh`](examples/statusline-hacker.sh) | [`-compact`](examples/statusline-hacker-compact.sh) |
+| 💻 cyberpunk     | [`statusline-cyberpunk.sh`](examples/statusline-cyberpunk.sh) | [`-compact`](examples/statusline-cyberpunk-compact.sh) |
+| 🚀 space         | [`statusline-space.sh`](examples/statusline-space.sh) | [`-compact`](examples/statusline-space-compact.sh) |
+| 🕹 retro         | [`statusline-retro.sh`](examples/statusline-retro.sh) | [`-compact`](examples/statusline-retro-compact.sh) |
+| 🔥 fire          | [`statusline-fire.sh`](examples/statusline-fire.sh) | [`-compact`](examples/statusline-fire-compact.sh) |
+| 🌊 ocean         | [`statusline-ocean.sh`](examples/statusline-ocean.sh) | [`-compact`](examples/statusline-ocean-compact.sh) |
+| ☀ weather       | [`statusline-weather.sh`](examples/statusline-weather.sh) | [`-compact`](examples/statusline-weather-compact.sh) |
+| ☕ coffee        | [`statusline-coffee.sh`](examples/statusline-coffee.sh) | [`-compact`](examples/statusline-coffee-compact.sh) |
+| 🎵 music         | [`statusline-music.sh`](examples/statusline-music.sh) | [`-compact`](examples/statusline-music-compact.sh) |
+| ⚔ game          | [`statusline-game.sh`](examples/statusline-game.sh) | [`-compact`](examples/statusline-game-compact.sh) |
+| 🏴‍☠️ pirate       | [`statusline-pirate.sh`](examples/statusline-pirate.sh) | [`-compact`](examples/statusline-pirate-compact.sh) |
+
+```bash
+cp examples/statusline-cyberpunk-compact.sh ~/.claude/statusline.sh
+chmod +x ~/.claude/statusline.sh
+```
+
+**Browse them all in your terminal first** — every variant has a
+pre-rendered preview in [`screenshots/`](screenshots/):
+
+```bash
+# preview a single one
+cat screenshots/statusline-cyberpunk.ansi
+
+# or browse the whole gallery (40 variants + main)
+for f in screenshots/*.ansi; do
+  printf "\n=== %s ===\n" "$(basename "$f" .ansi)"
+  cat "$f"
+done
+```
+
+See [`examples/README.md`](examples/README.md) for the full table with
+descriptions, and [`screenshots/README.md`](screenshots/README.md) for
+how the previews are generated.
+
+## 🧱 Build your own from blocks
+
+Don't want to use a preset? Compose a custom status line from a library
+of named blocks — `model`, `context-bar`, `cost`, `git`, `tokens-msg`,
+`time-active`, `thinking`, …
+
+See [**BLOCKS.md**](BLOCKS.md) for:
+
+- the **catalog of blocks** (each one is a copy-pasteable bash snippet)
+- the **style packs** (color palettes & separators from `classic`,
+  `compact`, `anime`, `hacker`, `cyberpunk`, `zen`)
+- a **3-step recipe** to build your own line: pick a style → list blocks
+  → paste
+
+```
+┌─────────────────────────────────────────────────────────┐
+│  Step 1 — pick a STYLE pack    (colors, separator)      │
+│  Step 2 — pick the BLOCKS you want   (in order)         │
+│  Step 3 — paste shared HEADER + chosen BLOCKS + FOOTER  │
+└─────────────────────────────────────────────────────────┘
+```
+
+## 📦 All-in-one bundle (`statusline-bundle.sh`)
+
+If you don't want to manage 40+ files, grab the **single bundled
+script** [`statusline-bundle.sh`](statusline-bundle.sh) — it contains
+every theme + every block + a CLI configurator in one file.
+
+```bash
+cp statusline-bundle.sh ~/.claude/statusline.sh
+chmod +x ~/.claude/statusline.sh
+
+~/.claude/statusline.sh use cyberpunk            # switch theme
+~/.claude/statusline.sh use cyberpunk-compact    # use compact variant
+~/.claude/statusline.sh custom model context-bar git cost  # compose from blocks
+~/.claude/statusline.sh list                     # list themes
+~/.claude/statusline.sh list blocks              # list blocks
+~/.claude/statusline.sh preview anime            # preview without saving
+~/.claude/statusline.sh show                     # show current config
+~/.claude/statusline.sh reset                    # reset to default
+```
+
+Configuration is saved to `~/.claude/statusline.conf` and persists
+across restarts. The same file acts as both **the renderer** (when
+called by Claude Code with JSON on stdin) and **the configurator**
+(when you call it with arguments).
+
+### `/statusline` slash command
+
+Drop [`commands/statusline.md`](commands/statusline.md) into
+`~/.claude/commands/` to enable a `/statusline` slash command inside
+Claude Code:
+
+```bash
+mkdir -p ~/.claude/commands
+cp commands/statusline.md ~/.claude/commands/statusline.md
+```
+
+Then in any Claude Code session you can type:
+
+```
+/statusline cyberpunk
+/statusline cyberpunk-compact
+/statusline custom model context-bar git cost
+/statusline list
+/statusline preview anime
+```
+
+Claude will run the bundle CLI for you, report the result, and remind
+you to reload.
+
+### Optional shell alias
+
+```bash
+alias statusline='~/.claude/statusline.sh'
+```
+
+Then `statusline cyberpunk` works from any terminal.
+
+## 🚀 Install
+
+### Manual install (3 steps)
+
+```bash
+git clone https://github.com/amazopic/REPO.git
+cp REPO/statusline.sh ~/.claude/statusline.sh
+chmod +x ~/.claude/statusline.sh
+```
+
+Then add to `~/.claude/settings.json`:
+
+```json
+{
+  "statusLine": {
+    "type": "command",
+    "command": "/Users/<you>/.claude/statusline.sh"
+  }
+}
+```
+
+Restart Claude Code (or run `/config` reload).
+
+### Install via Claude Code agent (with automatic backup)
+
+Want Claude Code to install it safely for you? Paste this prompt:
+
+> "Install the status line from this repo as my Claude Code status line:
+> 1. If `~/.claude/statusline.sh` already exists, back it up to
+>    `~/.claude/statusline.sh.bak.<YYYYMMDD-HHMMSS>` (pick a free `-N`
+>    suffix if a backup with that name already exists).
+> 2. Copy `statusline.sh` from this repo to `~/.claude/statusline.sh` and `chmod +x`.
+> 3. Read `~/.claude/settings.json`. If it has no `statusLine` key, add a
+>    `statusLine` block pointing to the absolute path of the script. If
+>    `statusLine` already exists and points elsewhere, back up
+>    `settings.json` to `.bak.<timestamp>` first.
+> 4. Smoke-test the script:
+>    `echo '{\"model\":{\"display_name\":\"Test\"},\"transcript_path\":\"\"}' | bash ~/.claude/statusline.sh`
+> 5. Tell me to restart Claude Code and report the backups created."
+
+### Requirements
+
+- `bash` 4+ (script uses 0-indexed arrays — **do not run under `zsh`**)
+- `jq` for JSON parsing
+- A 256-color terminal (basically every modern one)
+
+## ⚙️ Configuration
+
+Edit constants near the top of `statusline.sh`:
+
+| Variable / function | What it controls |
+|---|---|
+| `BAR_STYLE` | `"quadrant"` (default, 2.5% step) or `"vertical"` (1.25% step) |
+| `pct_icon()` | Thresholds for 🚀 / 🚗 / ⚠️ icons before the bar |
+| `pct_color()` | Color thresholds for percentage / bar |
+| ANSI color constants | Recolor any segment (`G`, `Y`, `R`, `B`, `C`, `M`, …) |
+
+## 🆚 vs the default Claude Code status line
+
+| Capability | Default | This project |
+|---|---|---|
+| Active **model name** | ✅ | ✅ (with `(1M)` flag for 1M-context variants) |
+| **Context window** % used | ❌ | ✅ live, 1.25 % precision |
+| **Progress bar** for context | ❌ | ✅ (vertical, quadrant, rainbow, sparkline, …) |
+| **Session cost** in USD | ❌ | ✅ updated every render |
+| **Per-message** input/output token counters | ❌ | ✅ |
+| **Total session tokens** (API mode fallback) | ❌ | ✅ |
+| **5h / 7d rate-limit** indicators with ⚠️ at > 50 % | ❌ | ✅ |
+| **Git branch** + dirty + ahead/behind | ❌ | ✅ |
+| **Time-on-task** (active vs wall clock) | ❌ | ✅ |
+| **Thinking / effort level** display | ❌ | ✅ |
+| Themed presets | ❌ | ✅ 20 themes × 2 variants = **40 ready-made** |
+| Compose from named blocks | ❌ | ✅ 18 blocks, see [BLOCKS.md](BLOCKS.md) |
+| Built-in CLI configurator | ❌ | ✅ `statusline-bundle.sh use / custom / list / preview` |
+| Claude Code `/statusline` slash command | ❌ | ✅ optional, see [`commands/`](commands/) |
+| External dependencies | — | `bash` 4+ and `jq` (no Node, no Python, no daemon) |
+| License | — | Source-Available (reuse-by-permission) |
+
+## 💡 Use cases
+
+Concrete scenarios where this project pays for itself:
+
+- **"How much of my 1 M context have I burned?"** — see a live percent + bar before every prompt.
+- **"What is this Claude Code session costing me?"** — running USD total, updated every render.
+- **"Will I hit a rate limit today?"** — 5 h / 7 d indicators with ⚠️ when > 50 %.
+- **"Am I on the right branch?"** — git branch + dirty + ahead/behind in your status line.
+- **"How many actual hours did I spend on this feature?"** — time-on-task tracker (`active` vs `wall`).
+- **"I want my terminal to be fun."** — anime, cyberpunk, hacker, retro, weather, ocean, fire and other themes.
+- **"I want a minimal, ASCII-only status line for screen recordings."** — `zen` theme.
+- **"I want to ship a status line my whole team uses."** — single bundled script + CLI configurator + slash command.
+
+## ❓ FAQ
+
+### What is "Claude Code Status Line"?
+
+A bash-based replacement for the default status line in [Claude Code](https://claude.com/claude-code) (Anthropic's CLI). It turns the bottom-of-screen line into a real dashboard: model, context %, progress bar, session cost, rate limits, git status, time-on-task, and more.
+
+### How is it installed?
+
+Copy `statusline-bundle.sh` to `~/.claude/statusline.sh`, `chmod +x`, then point Claude Code's `~/.claude/settings.json` `statusLine.command` at that path. Full instructions in the [Quick start](#-quick-start) and [Install](#-install) sections.
+
+### Does it support the 1 M context window models?
+
+Yes. The script detects `[1m]` in the model id and `1M` in the display name and adjusts the bar's denominator to 1 000 000 tokens. You'll see `Opus 4.7 (1M) … 12 % █▌░░░░░░░░ 121.4K/1000K`.
+
+### What models does it work with?
+
+Any model Claude Code supports — Opus 4.7, Sonnet 4.6, Haiku 4.5, Opus 4.6, etc. The script reads `model.display_name` and `model.id` from the stdin JSON Claude Code provides; it doesn't hardcode model names.
+
+### Can I customize colors, themes, or add my own?
+
+Yes — three ways:
+
+1. Pick one of the **40 ready-made variants** in [`examples/`](examples/).
+2. Compose your own from **named blocks** — see [BLOCKS.md](BLOCKS.md).
+3. Edit color constants and bar style in `statusline.sh` directly.
+
+### Will it slow down Claude Code?
+
+No. Each render runs once per status redraw, parses the piped JSON with `jq`, optionally `grep`s the latest line of the transcript, and prints. Typical render is ≤ 50 ms even with the time-tracker enabled.
+
+### Does it work without `jq`?
+
+`jq` is required — it parses the JSON Claude Code sends on stdin. Install it via `brew install jq` (macOS), `apt install jq` (Debian/Ubuntu), or `choco install jq` (Windows).
+
+### Does it work on Windows?
+
+Yes, in any environment that runs `bash` 4+ and `jq` — Git Bash, WSL, MSYS2, Cygwin. Pure CMD/PowerShell aren't supported.
+
+### Does it work on Linux / macOS?
+
+Yes on both. macOS uses BSD `date`, Linux uses GNU `date` — the time-tracker handles both transparently.
+
+### Can I use this with the raw Anthropic API instead of Claude Code?
+
+Partially. The status line is designed for Claude Code's stdin JSON format. For raw API usage, the rate-limit indicators auto-fall back to a **total session tokens** display (`tokens: NNN K`).
+
+### Where is the configuration stored?
+
+`~/.claude/statusline.conf` — a tiny shell-sourced file written by the bundle's CLI (`statusline.sh use <theme>` etc.). Persists across restarts.
+
+### How do I revert to the default Claude Code status line?
+
+Either remove the `statusLine` block from `~/.claude/settings.json`, or run `~/.claude/statusline.sh reset` and switch to a `minimal` theme that closely matches the default.
+
+### Is it free? Can I use it commercially?
+
+Personal, local use is free — see the [Source-Available License](LICENSE). Any reuse, redistribution, fork, or inclusion in another project requires **prior written permission** from the author (Yevgeniy Achin · amazopic@gmail.com). Reasonable requests are typically granted.
+
+### How does the "human-hours" tracker work?
+
+The `time` theme reads timestamps from the JSONL transcript and reports two durations: **active** (sum of inter-message gaps shorter than 5 minutes) and **wall** (total span from first to last message). The 5-minute idle threshold is configurable.
+
+## 🏷️ Suggested GitHub topics
+
+When you publish this repo, add these topics to maximize discoverability:
+
+`claude-code` · `claude-code-statusline` · `statusline` · `status-bar` · `terminal-prompt` · `anthropic-claude` · `ai-coding` · `developer-tools` · `bash-script` · `terminal-customization` · `prompt-customization` · `claude-4` · `opus-4` · `sonnet-4` · `dotfiles` · `terminal-dashboard` · `context-window-monitor` · `token-counter` · `rate-limit-monitor`
+
+## 🤝 Contributing
+
+Issues and PRs are welcome — but note the license:
+
+- **Reading, opening issues, submitting PRs**: free.
+- **Forking, copying into another project, redistributing**: requires
+  prior written permission from the author.
+
+To request reuse permission, contact:
+**Yevgeniy Achin** · ✉ [amazopic@gmail.com](mailto:amazopic@gmail.com)
+
+Reasonable requests for personal, educational, and non-commercial use
+are typically granted free of charge.
+
+## 📜 License
+
+[**Source-Available License (Reuse-by-Permission)**](LICENSE)
+
+This project's source is publicly available for reading, study, and
+personal use on your own machine. Any reuse — copying, redistributing,
+modifying, or including in another project — requires **prior written
+permission** from the author (Yevgeniy Achin · amazopic@gmail.com).
+
+This is **not** an OSI-approved open-source license. It is a deliberate
+choice to keep distribution and derivative works under the author's
+control while allowing the community to read, study, and contribute.
+
+## ⭐ Found it useful?
+
+If you spend hours staring at Claude Code, you might as well stare at a beautiful status line. **Give the repo a ⭐** to help others discover it!
+
+---
+
+Made by **Yevgeniy Achin** · ✉ [amazopic@gmail.com](mailto:amazopic@gmail.com) · for the Claude Code community.
+
+---
+
+# Block library and composition guide
+
+# Compose your own status line — block library
+
+This is a catalog of **blocks** (segments) you can mix and match to build
+your own custom Claude Code status line. Pick a style pack, list the
+blocks you want, paste them into a script — done.
+
+> Author: **Yevgeniy Achin** · ✉ amazopic@gmail.com
+> License: **Source-Available** ([LICENSE](LICENSE)) — reuse only with
+> the author's prior permission.
+
+> 💡 **Don't want to assemble blocks by hand?** Use the all-in-one
+> [`statusline-bundle.sh`](statusline-bundle.sh) and run
+> `~/.claude/statusline.sh custom model context-bar git cost` — same
+> blocks, no copy-paste. See the bundle section in the [main
+> README](README.md#-all-in-one-bundle-statusline-bundlesh).
+
+---
+
+## How to compose
+
+```
+┌────────────────┬──────────────────────────────────────────┐
+│ Step 1 — pick a STYLE pack       (colors, separator, vibe)│
+│ Step 2 — pick the BLOCKS you want (in order)              │
+│ Step 3 — paste shared HEADER + chosen BLOCKS + FOOTER     │
+└───────────────────────────────────────────────────────────┘
+```
+
+Every statusline script in this repo follows the same pattern:
+
+```bash
+#!/usr/bin/env bash
+[ STYLE — colors and SEP ]
+[ HEADER — input parsing helpers, shared variables ]
+[ BLOCK 1 ]   →   appends to $line
+[ BLOCK 2 ]   →   appends to $line
+[ BLOCK N ]   →   appends to $line
+[ FOOTER — printf '%s\n' "$line" ]
+```
+
+You can grab the header + footer from any example script (they are
+identical) and only swap the middle.
+
+---
+
+## Step 1 — style packs
+
+Each style pack defines: separator (`SEP`), color palette, and
+optional accent glyphs. Drop the pack near the top of your script.
+
+### `classic` — gold / green / cyan, vertical bar separator
+
+```bash
+G=$'\e[1;38;5;220m';  GD=$'\e[38;5;178m'
+GR=$'\e[1;38;5;46m';  GRD=$'\e[38;5;34m'
+Y=$'\e[1;38;5;226m';  YD=$'\e[38;5;184m'
+R=$'\e[1;38;5;196m';  RU=$'\e[38;5;160m'
+B=$'\e[1;38;5;39m';   C=$'\e[1;38;5;51m';   CD=$'\e[38;5;38m'
+M=$'\e[1;38;5;201m';  W=$'\e[1;38;5;255m'
+D=$'\e[38;5;244m';    RD=$'\e[38;5;131m';   N=$'\e[0m'
+SEP=" ${D}│${N} "
+```
+
+### `compact` — same palette, dot separator
+
+```bash
+# (same colors as classic)
+SEP=" ${D}·${N} "
+```
+
+### `anime` — pink / magenta / violet, 🌸 separator
+
+```bash
+P=$'\e[1;38;5;213m';  PD=$'\e[38;5;218m'
+M=$'\e[1;38;5;201m';  V=$'\e[1;38;5;177m'
+W=$'\e[1;38;5;231m';  D=$'\e[38;5;244m'
+N=$'\e[0m'
+SEP=" 🌸 "
+```
+
+### `hacker` — phosphor green Matrix terminal
+
+```bash
+GR=$'\e[1;38;5;46m';   GRD=$'\e[38;5;28m';  GRDD=$'\e[38;5;22m'
+W=$'\e[1;38;5;255m';   N=$'\e[0m'
+SEP=" ${GRD}::${N} "
+```
+
+### `cyberpunk` — neon pink / cyan / yellow
+
+```bash
+P=$'\e[1;38;5;201m';   PD=$'\e[38;5;163m'
+C=$'\e[1;38;5;51m';    CD=$'\e[38;5;38m'
+Y=$'\e[1;38;5;227m';   W=$'\e[1;38;5;231m'
+D=$'\e[38;5;238m';     N=$'\e[0m'
+SEP=" ${PD}//${N} "
+```
+
+### `zen` — no colors, plain ASCII
+
+```bash
+SEP="  "
+N=""
+```
+
+---
+
+## Step 2 — shared HEADER
+
+Paste this once, near the top of your script (after the style pack).
+Every block below relies on the variables it sets.
+
+```bash
+set -uo pipefail
+input=$(cat)
+j() { jq -r "$1 // empty" 2>/dev/null <<<"$input"; }
+
+model_disp=$(j '.model.display_name')
+model_id=$(j '.model.id')
+model_name="${model_disp:-${model_id:-Claude}}"
+model_name="${model_name// context/}"
+
+cwd=$(j '.workspace.current_dir')
+[[ -z "$cwd" ]] && cwd=$(j '.cwd')
+[[ -z "$cwd" ]] && cwd="$PWD"
+
+cost=$(j '.cost.total_cost_usd'); cost=${cost:-0}
+cost_fmt=$(awk -v c="$cost" 'BEGIN { printf "%.2f", c+0 }')
+
+transcript=$(j '.transcript_path')
+exceeds_200k=$(j '.exceeds_200k_tokens')
+
+if [[ "$model_id" == *"[1m]"* ]] || [[ "$model_disp" == *"1M"* ]] \
+   || [[ "$exceeds_200k" == "true" ]]; then
+  ctx_max=1000000
+else
+  ctx_max=200000
+fi
+
+in_tok=0; out_tok=0; cr=0; cc=0
+if [[ -n "$transcript" && -f "$transcript" ]]; then
+  last=$(grep '"usage"' "$transcript" 2>/dev/null | tail -1)
+  if [[ -n "$last" ]]; then
+    in_tok=$(jq  -r '.message.usage.input_tokens // 0'                <<<"$last" 2>/dev/null || echo 0)
+    out_tok=$(jq -r '.message.usage.output_tokens // 0'               <<<"$last" 2>/dev/null || echo 0)
+    cr=$(jq      -r '.message.usage.cache_read_input_tokens // 0'     <<<"$last" 2>/dev/null || echo 0)
+    cc=$(jq      -r '.message.usage.cache_creation_input_tokens // 0' <<<"$last" 2>/dev/null || echo 0)
+  fi
+fi
+ctx_used=$(( in_tok + cr + cc ))
+ctx_pct=$(awk -v u="$ctx_used" -v m="$ctx_max" 'BEGIN { if (m>0) printf "%d", u*100/m; else print 0 }')
+
+line=""
+```
+
+---
+
+## Step 3 — block catalog
+
+For every block: a one-line description, a copy-paste snippet that
+**appends** to `$line`. The first block in your line should NOT have
+a leading `${SEP}` — drop the leading `${SEP}` on whichever block you
+choose first.
+
+### `model` — model name with `(1M)` indicator
+
+```bash
+line+="${G}${model_name}${N}"
+```
+
+### `context` — icon + percent + bar + tokens
+
+```bash
+# pct icon
+if   (( ctx_pct < 40 )); then ctx_icon="🚀"
+elif (( ctx_pct < 50 )); then ctx_icon="🚗"
+else                          ctx_icon="⚠️"
+fi
+# pct color
+if   (( ctx_pct < 50 )); then cc_=$GR; cd_=$GRD
+elif (( ctx_pct < 70 )); then cc_=$Y;  cd_=$YD
+else                          cc_=$R;  cd_=$RU
+fi
+# bar (8 levels per cell)
+eighths=$(( (ctx_pct * 8 + 5) / 10 ))
+full=$(( eighths / 8 )); part=$(( eighths % 8 ))
+empty=$(( 10 - full - (part > 0 ? 1 : 0) ))
+parts=("" "▏" "▎" "▍" "▌" "▋" "▊" "▉")
+ctx_bar=""
+for (( i=0; i<full; i++ )); do ctx_bar+="█"; done
+(( part > 0 )) && ctx_bar+="${parts[$part]}"
+for (( i=0; i<empty; i++ )); do ctx_bar+="░"; done
+ctx_used_k=$(awk -v v="$ctx_used" 'BEGIN { printf "%.1f", v/1000 }')
+ctx_max_k=$(awk -v v="$ctx_max"  'BEGIN { printf "%d",   v/1000 }')
+line+="${SEP}${ctx_icon} ${cc_}${ctx_pct}${cd_}% ${cc_}${ctx_bar} ${ctx_used_k}${cd_}K${D}/${cc_}${ctx_max_k}${cd_}K${N}"
+```
+
+### `context-pct` — just the percentage
+
+```bash
+line+="${SEP}${GR}${ctx_pct}${GRD}%${N}"
+```
+
+### `context-bar` — just the bar (vertical fractional, 8 levels)
+
+```bash
+eighths=$(( (ctx_pct * 8 + 5) / 10 ))
+full=$(( eighths / 8 )); part=$(( eighths % 8 ))
+empty=$(( 10 - full - (part > 0 ? 1 : 0) ))
+parts=("" "▏" "▎" "▍" "▌" "▋" "▊" "▉")
+ctx_bar=""
+for (( i=0; i<full; i++ )); do ctx_bar+="█"; done
+(( part > 0 )) && ctx_bar+="${parts[$part]}"
+for (( i=0; i<empty; i++ )); do ctx_bar+="░"; done
+line+="${SEP}${GR}${ctx_bar}${N}"
+```
+
+### `context-bar-quadrant` — bar with quadrant glyphs (4 levels = 2.5% step)
+
+```bash
+quarters=$(( (ctx_pct * 4 + 5) / 10 ))
+full=$(( quarters / 4 )); part=$(( quarters % 4 ))
+empty=$(( 10 - full - (part > 0 ? 1 : 0) ))
+parts=("" "▖" "▄" "▙")
+ctx_bar=""
+for (( i=0; i<full; i++ )); do ctx_bar+="█"; done
+(( part > 0 )) && ctx_bar+="${parts[$part]}"
+for (( i=0; i<empty; i++ )); do ctx_bar+="░"; done
+line+="${SEP}${GR}${ctx_bar}${N}"
+```
+
+### `cost` — session cost in USD
+
+```bash
+line+="${SEP}${G}${cost_fmt}${GD}\$${N}"
+```
+
+### `tokens-msg` — last message ↑ output / ↓ input
+
+```bash
+out_k=$(awk -v v="$out_tok"  'BEGIN { printf "%.1f", v/1000 }')
+in_k=$(awk  -v v="$ctx_used" 'BEGIN { printf "%.1f", v/1000 }')
+line+="${SEP}${CD}↑${C}${out_k}${CD}K ${CD}↓${C}${in_k}${CD}K${N}"
+```
+
+### `tokens-session` — total session tokens (API-mode fallback)
+
+```bash
+sess_total=0
+if [[ -n "$transcript" && -f "$transcript" ]]; then
+  sess_total=$(grep '"usage"' "$transcript" 2>/dev/null \
+    | jq -s '[.[] | select(.message.usage) | .message.usage
+             | ((.input_tokens // 0) + (.output_tokens // 0)
+                + (.cache_creation_input_tokens // 0)
+                + (.cache_read_input_tokens // 0))] | add // 0' 2>/dev/null)
+fi
+sess_k=$(( ${sess_total:-0} / 1000 ))
+# thin-space thousand separator
+fmt_thin() {
+  local n=$1 result="" len i; len=${#n}
+  for ((i=0; i<len; i++)); do
+    (( i > 0 && (len-i) % 3 == 0 )) && result+=$'\xe2\x80\x89'
+    result+="${n:$i:1}"
+  done
+  printf '%s' "$result"
+}
+sess_fmt=$(fmt_thin "$sess_k")
+line+="${SEP}${GRD}tokens: ${C}${sess_fmt}${CD}K${N}"
+```
+
+### `folder` — current directory basename
+
+```bash
+folder=$(basename "$cwd")
+line+="${SEP}${B}${folder}${N}"
+```
+
+### `git-branch` — git branch only
+
+```bash
+br=""
+if git -C "$cwd" rev-parse --git-dir >/dev/null 2>&1; then
+  br=$(git -C "$cwd" symbolic-ref --short HEAD 2>/dev/null \
+       || git -C "$cwd" rev-parse --short HEAD 2>/dev/null)
+  line+="${SEP}${B}⎇ ${br}${N}"
+fi
+```
+
+### `git` — branch + dirty count + ahead / behind
+
+```bash
+git_part=""
+if git -C "$cwd" rev-parse --git-dir >/dev/null 2>&1; then
+  br=$(git -C "$cwd" symbolic-ref --short HEAD 2>/dev/null \
+       || git -C "$cwd" rev-parse --short HEAD 2>/dev/null)
+  dirty=$(git -C "$cwd" status --porcelain 2>/dev/null | wc -l | tr -d ' ')
+  ahead=0; behind=0
+  upstream=$(git -C "$cwd" rev-parse --abbrev-ref --symbolic-full-name '@{u}' 2>/dev/null)
+  if [[ -n "$upstream" ]]; then
+    counts=$(git -C "$cwd" rev-list --left-right --count HEAD...@{u} 2>/dev/null)
+    ahead=${counts%%	*}; behind=${counts##*	}
+  fi
+  git_part="${B}⎇ ${br}${N}"
+  (( dirty  > 0 )) && git_part+=" ${Y}✚${dirty}${N}"
+  (( ahead  > 0 )) && git_part+=" ${GR}↑${ahead}${N}"
+  (( behind > 0 )) && git_part+=" ${R}↓${behind}${N}"
+  line+="${SEP}${git_part}"
+fi
+```
+
+### `limits` — 5h / 7d rate limits with ⚠️ at > 50 %
+
+```bash
+lim5h=$(j '.rate_limits.five_hour.used_percentage // .rate_limits.session.percent_used')
+lim7d=$(j '.rate_limits.seven_day.used_percentage // .rate_limits.weekly.percent_used')
+if [[ -n "$lim5h" || -n "$lim7d" ]]; then
+  l5=${lim5h%.*}; l7=${lim7d%.*}
+  w5=""; (( ${l5:-0} > 50 )) && w5="⚠️ "
+  w7=""; (( ${l7:-0} > 50 )) && w7="⚠️ "
+  line+="${SEP}${GRD}5h:${N} ${w5}${GR}${l5:-—}${GRD}%${N} ${GRD}7d:${N} ${w7}${GR}${l7:-—}${GRD}%${N}"
+fi
+```
+
+### `thinking` — effort level (with 🤖)
+
+```bash
+thinking=$(j '.effort.level // .thinking.level // .thinking // .output_style.name')
+[[ -z "$thinking" ]] && thinking="default"
+line+="${SEP}🤖 ${C}${thinking}${N}"
+```
+
+### `time-active` — sum of inter-message gaps < 5 min ("on keyboard")
+
+```bash
+IDLE=300
+to_epoch() { local ts="$1"; [[ -z "$ts" ]] && { echo 0; return; }
+  [[ "$ts" =~ ^[0-9]+$ ]] && { echo "$ts"; return; }
+  local c="${ts%%.*}"; c="${c%Z}"; c="${c//T/ }"
+  date -j -f '%Y-%m-%d %H:%M:%S' "$c" +%s 2>/dev/null \
+    || date -d "$ts" +%s 2>/dev/null || echo 0; }
+fmt_dur() { local s=$1; (( s<0 )) && s=0
+  local h=$((s/3600)) m=$(((s%3600)/60))
+  if (( h>0 )); then printf '%dh%02dm' $h $m
+  elif (( m>0 )); then printf '%dm' $m
+  else printf '%ds' $s; fi; }
+active_s=0; first=0; last=0; turns=0
+if [[ -n "$transcript" && -f "$transcript" ]]; then
+  prev=0
+  while IFS= read -r ts; do
+    [[ -z "$ts" ]] && continue
+    e=$(to_epoch "$ts"); (( e==0 )) && continue
+    (( first==0 )) && first=$e; last=$e
+    if (( prev>0 )); then
+      gap=$(( e - prev ))
+      (( gap > 0 && gap < IDLE )) && active_s=$(( active_s + gap ))
+    fi
+    prev=$e; turns=$(( turns + 1 ))
+  done < <(jq -r '.timestamp // .created_at // .message.created_at // empty' "$transcript" 2>/dev/null)
+fi
+wall_s=$(( last > 0 && first > 0 ? last - first : 0 ))
+line+="${SEP}${C}⏱ active ${fmt_dur $active_s}${N}"
+```
+
+### `time-wall` — total session span (first → last message)
+
+```bash
+# requires the same setup as time-active above
+line+="${SEP}${C}⏱ wall ${fmt_dur $wall_s}${N}"
+```
+
+### `turns` — number of message pairs
+
+```bash
+# requires turn counting from time-active block
+line+="${SEP}${B}${turns}${D} turns${N}"
+```
+
+### `host` — short hostname
+
+```bash
+host=$(hostname -s 2>/dev/null || echo localhost)
+line+="${SEP}${C}${host}${N}"
+```
+
+### `cups` — cost-derived "coffee cup" count
+
+```bash
+cups=$(awk -v c="$cost" 'BEGIN { printf "%d", c*4 }')   # 1 cup ≈ $0.25
+line+="${SEP}☕ ${G}${cups}${N}"
+```
+
+### `level` — RPG-style level from cost
+
+```bash
+level=$(awk -v c="$cost" 'BEGIN { printf "%d", c+1 }')
+line+="${SEP}${M}LV ${level}${N}"
+```
+
+### `mood-icon` — emoji that changes with context %
+
+```bash
+if   (( ctx_pct < 30 )); then mood="☀"
+elif (( ctx_pct < 60 )); then mood="⛅"
+elif (( ctx_pct < 80 )); then mood="🌧"
+else                          mood="⛈"
+fi
+line+="${SEP}${mood}"
+```
+
+---
+
+## Footer
+
+Always end with:
+
+```bash
+printf '%s\n' "$line"
+```
+
+---
+
+## Worked example — build a developer-friendly compact line
+
+Goal: `Opus 4.7 · 12% █▌░░░░░░░░ · ⎇ main ✚3 · 0.42$`
+
+1. Style: `compact` (dot separator)
+2. Blocks (in order): `model`, `context-pct`, `context-bar`, `git`, `cost`
+
+Final script:
+
+```bash
+#!/usr/bin/env bash
+# my-statusline.sh — composed from BLOCKS.md
+# style: compact; blocks: model · context-pct + context-bar · git · cost
+
+set -uo pipefail
+input=$(cat)
+
+# ── style: compact ───────────────────────────────────────────────────
+G=$'\e[1;38;5;220m';  GD=$'\e[38;5;178m'
+GR=$'\e[1;38;5;46m';  GRD=$'\e[38;5;34m'
+Y=$'\e[1;38;5;226m'
+R=$'\e[1;38;5;196m'
+B=$'\e[1;38;5;39m'
+D=$'\e[38;5;244m';    N=$'\e[0m'
+SEP=" ${D}·${N} "
+
+# ── header ───────────────────────────────────────────────────────────
+j() { jq -r "$1 // empty" 2>/dev/null <<<"$input"; }
+model_disp=$(j '.model.display_name'); model_id=$(j '.model.id')
+model_name="${model_disp:-${model_id:-Claude}}"; model_name="${model_name// context/}"
+cwd=$(j '.workspace.current_dir'); [[ -z "$cwd" ]] && cwd="$PWD"
+cost=$(j '.cost.total_cost_usd'); cost=${cost:-0}
+cost_fmt=$(awk -v c="$cost" 'BEGIN { printf "%.2f", c+0 }')
+transcript=$(j '.transcript_path')
+exceeds_200k=$(j '.exceeds_200k_tokens')
+[[ "$model_id" == *"[1m]"* || "$model_disp" == *"1M"* || "$exceeds_200k" == "true" ]] \
+  && ctx_max=1000000 || ctx_max=200000
+in_tok=0; cr=0; cc=0
+if [[ -n "$transcript" && -f "$transcript" ]]; then
+  last=$(grep '"usage"' "$transcript" 2>/dev/null | tail -1)
+  if [[ -n "$last" ]]; then
+    in_tok=$(jq -r '.message.usage.input_tokens // 0'                <<<"$last" 2>/dev/null || echo 0)
+    cr=$(jq     -r '.message.usage.cache_read_input_tokens // 0'     <<<"$last" 2>/dev/null || echo 0)
+    cc=$(jq     -r '.message.usage.cache_creation_input_tokens // 0' <<<"$last" 2>/dev/null || echo 0)
+  fi
+fi
+ctx_used=$(( in_tok + cr + cc ))
+ctx_pct=$(awk -v u="$ctx_used" -v m="$ctx_max" 'BEGIN { if (m>0) printf "%d", u*100/m; else print 0 }')
+
+line=""
+
+# ── block: model ─────────────────────────────────────────────────────
+line+="${G}${model_name}${N}"
+
+# ── block: context-pct + context-bar ─────────────────────────────────
+eighths=$(( (ctx_pct * 8 + 5) / 10 ))
+full=$(( eighths / 8 )); part=$(( eighths % 8 ))
+empty=$(( 10 - full - (part > 0 ? 1 : 0) ))
+parts=("" "▏" "▎" "▍" "▌" "▋" "▊" "▉")
+ctx_bar=""
+for (( i=0; i<full; i++ )); do ctx_bar+="█"; done
+(( part > 0 )) && ctx_bar+="${parts[$part]}"
+for (( i=0; i<empty; i++ )); do ctx_bar+="░"; done
+line+="${SEP}${GR}${ctx_pct}${GRD}% ${GR}${ctx_bar}${N}"
+
+# ── block: git ───────────────────────────────────────────────────────
+if git -C "$cwd" rev-parse --git-dir >/dev/null 2>&1; then
+  br=$(git -C "$cwd" symbolic-ref --short HEAD 2>/dev/null || git -C "$cwd" rev-parse --short HEAD 2>/dev/null)
+  dirty=$(git -C "$cwd" status --porcelain 2>/dev/null | wc -l | tr -d ' ')
+  git_part="${B}⎇ ${br}${N}"
+  (( dirty > 0 )) && git_part+=" ${Y}✚${dirty}${N}"
+  line+="${SEP}${git_part}"
+fi
+
+# ── block: cost ──────────────────────────────────────────────────────
+line+="${SEP}${G}${cost_fmt}${GD}\$${N}"
+
+# ── footer ───────────────────────────────────────────────────────────
+printf '%s\n' "$line"
+```
+
+---
+
+## See also
+
+- [`statusline.sh`](statusline.sh) — full reference implementation
+- [`examples/`](examples/) — 40 ready-made variants (20 detailed + 20 compact)
+- [`screenshots/`](screenshots/) — pre-rendered ANSI previews
+- [`README.md`](README.md) — main project documentation
+
+---
+
+For permission to reuse any of these blocks in another project,
+contact: **amazopic@gmail.com**.
+
+---
+
+# Examples index
+
+# Examples — 40 ready-made status line variants
+
+Each theme ships in **two variants**:
+
+- **Detailed** — full feature set (model, context, cost, tokens, git, time, theme accents, …)
+- **Compact** — minimal three-segment layout: `model · context % + bar · git branch`
+
+Both are **standalone** — copy any one to `~/.claude/statusline.sh`,
+`chmod +x`, and you're done.
+
+> 💡 **One-file alternative**: see [`../statusline-bundle.sh`](../statusline-bundle.sh) —
+> all 40 themes + all blocks + a CLI configurator (`use`, `custom`,
+> `preview`, `list`) in a single script. Pair with [`../commands/statusline.md`](../commands/statusline.md)
+> for a `/statusline` Claude Code slash command.
+
+> Want to see them in your terminal first? Browse [`../screenshots/`](../screenshots/).
+> Want to assemble your own from scratch? See [`../BLOCKS.md`](../BLOCKS.md).
+
+## 🛠 Practical
+
+| Theme | Detailed | Compact |
+|---|---|---|
+| minimal | [`statusline-minimal.sh`](statusline-minimal.sh) | [`statusline-minimal-compact.sh`](statusline-minimal-compact.sh) |
+| developer (git-aware) | [`statusline-developer.sh`](statusline-developer.sh) | [`statusline-developer-compact.sh`](statusline-developer-compact.sh) |
+| **time** (human-hours tracker) | [`statusline-time.sh`](statusline-time.sh) | [`statusline-time-compact.sh`](statusline-time-compact.sh) |
+| zen (mono-ASCII, no emojis) | [`statusline-zen.sh`](statusline-zen.sh) | [`statusline-zen-compact.sh`](statusline-zen-compact.sh) |
+
+## 🎨 Themed
+
+| Theme | Detailed | Compact |
+|---|---|---|
+| rainbow | [`statusline-rainbow.sh`](statusline-rainbow.sh) | [`statusline-rainbow-compact.sh`](statusline-rainbow-compact.sh) |
+| anime ✨🌸 | [`statusline-anime.sh`](statusline-anime.sh) | [`statusline-anime-compact.sh`](statusline-anime-compact.sh) |
+| love 💖 | [`statusline-love.sh`](statusline-love.sh) | [`statusline-love-compact.sh`](statusline-love-compact.sh) |
+| cat 🐱 | [`statusline-cat.sh`](statusline-cat.sh) | [`statusline-cat-compact.sh`](statusline-cat-compact.sh) |
+| christmas 🎄 | [`statusline-christmas.sh`](statusline-christmas.sh) | [`statusline-christmas-compact.sh`](statusline-christmas-compact.sh) |
+
+## 💻 Hacker / Sci-fi
+
+| Theme | Detailed | Compact |
+|---|---|---|
+| hacker (Matrix) | [`statusline-hacker.sh`](statusline-hacker.sh) | [`statusline-hacker-compact.sh`](statusline-hacker-compact.sh) |
+| cyberpunk (neon) | [`statusline-cyberpunk.sh`](statusline-cyberpunk.sh) | [`statusline-cyberpunk-compact.sh`](statusline-cyberpunk-compact.sh) |
+| space 🚀 | [`statusline-space.sh`](statusline-space.sh) | [`statusline-space-compact.sh`](statusline-space-compact.sh) |
+| retro (8-bit) | [`statusline-retro.sh`](statusline-retro.sh) | [`statusline-retro-compact.sh`](statusline-retro-compact.sh) |
+
+## 🌍 Elemental / Mood
+
+| Theme | Detailed | Compact |
+|---|---|---|
+| fire 🔥 | [`statusline-fire.sh`](statusline-fire.sh) | [`statusline-fire-compact.sh`](statusline-fire-compact.sh) |
+| ocean 🌊 | [`statusline-ocean.sh`](statusline-ocean.sh) | [`statusline-ocean-compact.sh`](statusline-ocean-compact.sh) |
+| weather ☀⛅🌧 | [`statusline-weather.sh`](statusline-weather.sh) | [`statusline-weather-compact.sh`](statusline-weather-compact.sh) |
+| coffee ☕ | [`statusline-coffee.sh`](statusline-coffee.sh) | [`statusline-coffee-compact.sh`](statusline-coffee-compact.sh) |
+| music 🎵 | [`statusline-music.sh`](statusline-music.sh) | [`statusline-music-compact.sh`](statusline-music-compact.sh) |
+
+## 🎮 Gamified
+
+| Theme | Detailed | Compact |
+|---|---|---|
+| game (RPG HUD) | [`statusline-game.sh`](statusline-game.sh) | [`statusline-game-compact.sh`](statusline-game-compact.sh) |
+| pirate 🏴‍☠️ | [`statusline-pirate.sh`](statusline-pirate.sh) | [`statusline-pirate-compact.sh`](statusline-pirate-compact.sh) |
+
+## Try one
+
+```bash
+# pick a variant — detailed or compact
+cp examples/statusline-cyberpunk-compact.sh ~/.claude/statusline.sh
+chmod +x ~/.claude/statusline.sh
+```
+
+Then make sure `~/.claude/settings.json` points to it:
+
+```json
+{
+  "statusLine": {
+    "type": "command",
+    "command": "/Users/<you>/.claude/statusline.sh"
+  }
+}
+```
+
+Restart Claude Code (or `/config` reload).
+
+## See them all in your terminal
+
+The `../screenshots/` folder has pre-rendered ANSI captures of every
+variant (40 themes + the main reference). To browse the whole gallery:
+
+```bash
+for f in screenshots/*.ansi; do
+  printf "\n=== %s ===\n" "$(basename "$f" .ansi)"
+  cat "$f"
+done
+```
+
+Each `.ansi` file contains the literal terminal output (with ANSI color
+codes), so `cat` displays it exactly as it would appear in your
+status line.
+
+## Build your own from blocks
+
+Don't see a layout you want? See [`../BLOCKS.md`](../BLOCKS.md) — a
+catalog of 18+ named blocks (model, context-bar, cost, tokens, git,
+time, thinking, …) that you can paste into a script in any order to
+build a custom line.
+
+## About `statusline-time.sh` (human-hours tracker)
+
+Detailed variant computes:
+
+- **Active time** — sum of inter-message intervals **shorter than 5 min**
+  (treats longer gaps as "away from keyboard"). The closest
+  approximation to actual time-on-task.
+- **Wall time** — total span from the first to the last message.
+- **Turns** — number of user/assistant message pairs.
+
+Timestamps are pulled from the JSONL transcript via `jq`, trying
+`.timestamp`, `.created_at`, and `.message.created_at` in that order.
+If none are present, falls back to file `mtime - ctime` for wall time.
+
+The 5-minute idle threshold is configurable — change `IDLE_THRESHOLD`
+near the top of the script.
+
+The compact variant (`statusline-time-compact.sh`) shows just
+`active` time alongside model + context + branch.
+
+---
+
+> Author: **Yevgeniy Achin** · ✉ [amazopic@gmail.com](mailto:amazopic@gmail.com)
+> License: **Source-Available** ([../LICENSE](../LICENSE)) — reuse only
+> with the author's prior permission.
+
+---
+
+# License (full text)
+
+Source-Available License (Reuse-by-Permission)
+
+Copyright (c) 2026 Yevgeniy Achin
+Contact: amazopic@gmail.com
+
+This source code is made publicly available for the following purposes:
+
+  • reading and study;
+  • personal evaluation on the user's own machine;
+  • reference and learning.
+
+Any of the following actions REQUIRE PRIOR WRITTEN PERMISSION
+from the author (Yevgeniy Achin <amazopic@gmail.com>):
+
+  • copying, mirroring, or redistributing the source code, in whole or in
+    part, on any platform or under any name;
+  • modifying or creating derivative works based on this code;
+  • including this code (or any portion of it) in another project,
+    package, library, plugin, dotfiles repo, or product — whether
+    commercial or non-commercial, free or paid;
+  • selling, sublicensing, relicensing, or transferring the rights;
+  • removing or altering the author attribution, copyright notice, or
+    this license text in any copy you have received permission to make.
+
+Permitted without prior permission:
+
+  • running the published `statusline.sh` (or any of the example scripts)
+    locally on your own computer as your Claude Code status line;
+  • linking to this repository from articles, blog posts, talks, and
+    social posts (please credit the author);
+  • opening issues and submitting pull requests to this project;
+    contributions are accepted only after explicit acceptance by the
+    author and become subject to this same license.
+
+To request reuse permission, contact the author at amazopic@gmail.com
+with: a short description of your intended use, where the code will
+appear, and how the author will be credited. Reasonable requests for
+personal, educational, and non-commercial use are typically granted
+free of charge.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, express
+or implied, including but not limited to the warranties of merchantability,
+fitness for a particular purpose, and noninfringement. In no event shall
+the author be liable for any claim, damages, or other liability arising
+from, out of, or in connection with the software or the use or other
+dealings in the software.

@@ -1,0 +1,7 @@
+{"timestamp":"2026-05-02T10:00:00Z","message":{"usage":{"input_tokens":40000,"cache_read_input_tokens":10000,"output_tokens":500}}}
+{"timestamp":"2026-05-02T10:01:30Z","message":{"usage":{"input_tokens":42000,"cache_read_input_tokens":12000,"output_tokens":600}}}
+{"timestamp":"2026-05-02T10:03:15Z","message":{"usage":{"input_tokens":50000,"cache_read_input_tokens":15000,"output_tokens":700}}}
+{"timestamp":"2026-05-02T10:05:00Z","message":{"usage":{"input_tokens":60000,"cache_read_input_tokens":18000,"output_tokens":800}}}
+{"timestamp":"2026-05-02T10:30:00Z","message":{"usage":{"input_tokens":80000,"cache_read_input_tokens":25000,"output_tokens":900}}}
+{"timestamp":"2026-05-02T10:32:30Z","message":{"usage":{"input_tokens":90000,"cache_read_input_tokens":27000,"output_tokens":1000}}}
+{"timestamp":"2026-05-02T10:35:00Z","message":{"usage":{"input_tokens":100000,"cache_read_input_tokens":20000,"output_tokens":1100,"cache_creation_input_tokens":0}}}

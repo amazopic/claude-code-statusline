@@ -1,0 +1,82 @@
+/* ─────────────────────────────────────────────────────────────────────
+   DESIGN TOKENS
+   Editorial Type-Specimen × Live Terminal
+   ───────────────────────────────────────────────────────────────────── */
+
+:root {
+  /* ─── Colors ─── */
+  --ink:        #0E0E10;     /* near-black, primary text */
+  --paper:      #F5F2EA;     /* cream newsprint, primary bg */
+  --paper-2:    #EFEBE0;     /* slightly darker paper for sections */
+  --paper-3:    #E5E0D0;     /* divider lines, subtle bg */
+  --phosphor:   #00FF6B;     /* terminal green, single hot accent */
+  --phosphor-d: #00C054;     /* dim phosphor */
+  --hot:        #FF3B00;     /* alert/highlight, used sparingly */
+  --sub:        #4A4A48;     /* editorial gray, marginalia, captions */
+  --sub-2:      #7A7A78;     /* lighter caption gray */
+  --rule:       rgba(14,14,16,0.12);  /* hairline rules */
+
+  /* Inverted (dark sections) */
+  --ink-inv:    #F5F2EA;
+  --paper-inv:  #0E0E10;
+  --paper-inv-2:#1A1A1C;
+
+  /* ─── Typography ─── */
+  --font-display: "Editorial New", "PP Editorial New", "EB Garamond", "Iowan Old Style", Georgia, serif;
+  --font-body:    "Neue Montreal", "PP Neue Montreal", -apple-system, "Helvetica Neue", system-ui, sans-serif;
+  --font-mono:    "Geist Mono", ui-monospace, "SF Mono", "Menlo", monospace;
+
+  /* Type scale (modular, harmonic) */
+  --fs-xs:   0.6875rem;     /* 11px — small caps, captions */
+  --fs-sm:   0.8125rem;     /* 13px — meta */
+  --fs-base: 1rem;          /* 16px — body */
+  --fs-md:   1.125rem;      /* 18px — body lg */
+  --fs-lg:   1.5rem;        /* 24px — H4 */
+  --fs-xl:   2rem;          /* 32px — H3 */
+  --fs-2xl:  3.5rem;        /* 56px — H2 */
+  --fs-3xl:  6rem;          /* 96px — H1 */
+  --fs-4xl:  9rem;          /* 144px — display */
+  --fs-mega: clamp(8rem, 22vw, 22rem);   /* 128–352px — nameplate, big numbers */
+
+  /* Line heights */
+  --lh-tight:   0.92;
+  --lh-snug:    1.05;
+  --lh-normal:  1.45;
+  --lh-loose:   1.7;
+
+  /* Letter spacing */
+  --tr-tight:    -0.04em;
+  --tr-snug:     -0.02em;
+  --tr-normal:    0;
+  --tr-wide:      0.05em;
+  --tr-wider:     0.12em;
+  --tr-mega:      0.3em;
+
+  /* ─── Layout ─── */
+  --max-w:       96rem;     /* 1536px */
+  --gutter-x:    clamp(1rem, 4vw, 4rem);
+  --gutter-y:    clamp(3rem, 10vw, 10rem);
+  --column-w:    minmax(0, 1fr);
+
+  /* ─── Motion ─── */
+  --easing-out:    cubic-bezier(0.22, 1, 0.36, 1);
+  --easing-in:     cubic-bezier(0.55, 0, 0.78, 0);
+  --easing-inout:  cubic-bezier(0.65, 0, 0.35, 1);
+  --easing-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  --dur-fast:    180ms;
+  --dur-base:    320ms;
+  --dur-slow:    600ms;
+  --dur-vslow:   1200ms;
+
+  /* ─── Effects ─── */
+  --noise-opacity: 0.04;
+  --shadow-card:   0 1px 2px rgba(14,14,16,0.04), 0 8px 24px rgba(14,14,16,0.06);
+  --shadow-deep:   0 20px 60px rgba(14,14,16,0.16), 0 4px 12px rgba(14,14,16,0.08);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-fast: 0ms; --dur-base: 0ms; --dur-slow: 0ms; --dur-vslow: 0ms;
+  }
+}
