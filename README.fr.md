@@ -39,6 +39,8 @@ Le tout en **une seule ligne**, avec code couleur et icônes intelligentes signa
 - 🧩 **Styles de barre enfichables** — `quadrant` (▖▄▙█), `vertical` (▏▎▍▌▋▊▉█), ou créez le vôtre en 10 lignes de bash
 - ⚡ **Léger** — `bash` + `jq` purs. Pas de Node, pas de Python, pas de démon, pas de télémétrie
 
+> 💡 **Astuce — Contrôle du contexte** : plus votre fenêtre de contexte est pleine, **moins** votre conversation avec Claude est efficace — et **plus vite** vos limites 5h / 7j brûlent. Videz ou `/compact` dès que vous dépassez les **60%** pour rester productif.
+
 ## 🚀 Installation
 
 ### ⚡ ou méthode vibe-chill · laissez Claude faire

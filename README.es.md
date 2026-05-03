@@ -39,6 +39,8 @@ Todo en **una sola línea**, con código de colores e iconos inteligentes que in
 - 🧩 **Estilos de barra como plugins** — `quadrant` (▖▄▙█), `vertical` (▏▎▍▌▋▊▉█), o crea el tuyo en 10 líneas de bash
 - ⚡ **Ligero** — `bash` + `jq` puros. Sin Node, sin Python, sin daemon, sin telemetría
 
+> 💡 **Consejo pro — Control del contexto**: cuanto más llena esté tu ventana de contexto, **menos eficaz** será tu conversación con Claude — y **más rápido** se queman tus límites de 5h / 7d. Limpia o `/compact` cuando cruces el **60%** para trabajar eficientemente.
+
 ## 🚀 Instalación
 
 ### Manual (3 pasos)

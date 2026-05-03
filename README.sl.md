@@ -39,6 +39,8 @@ Vse v **eni vrstici**, barvno kodirano, s pametnimi ikonami, ki nakazujejo nujno
 - 🧩 **Vključljivi slogi vrstic** — `quadrant` (▖▄▙█), `vertical` (▏▎▍▌▋▊▉█), ali svoj v 10 vrsticah bash
 - ⚡ **Lahek** — čisti `bash` + `jq`. Brez Node, brez Python, brez demonov, brez telemetrije
 
+> 💡 **Nasvet — Nadzor konteksta**: bolj kot je vaše okno konteksta polno, **manj učinkovit** je vaš pogovor s Claudom — in **hitreje** gorijo vaše 5h-/7d-omejitve. Počistite ali `/compact`, ko prečkate **60%**, da ostanete produktivni.
+
 ## 🚀 Namestitev
 
 ### ⚡ ali vibe-chill metoda · pusti Claudu

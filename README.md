@@ -14,6 +14,8 @@
 Opus 4.7 (1M) │ 🚀 12% █▌░░░░░░░░ 121.4K/1000K │ 0.42$ │ ↑0.5K ↓1.2K │ project │ ⎇ main │ tokens: 87 K │ 🤖 xhigh
 ```
 
+> 💡 **Pro tip — Context control**: The fuller your context window, the **less effective** your conversation with Claude becomes — and the **faster** you burn through your 5h/7d limits. Clear or `/compact` whenever you cross **60%** to keep working efficiently.
+
 ## ⚡ Quick start
 
 The fastest path — bundled all-in-one script with built-in CLI:

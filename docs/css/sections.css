@@ -214,12 +214,22 @@
 
 .hero-grid {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: clamp(1.5rem, 3vw, 2.5rem);
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(1.75rem, 3.5vw, 3rem);
   align-items: start;
 }
 @media (min-width: 1000px) {
-  .hero-grid { grid-template-columns: 7fr 5fr; }
+  .hero-grid { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); }
+}
+.hero-grid > * { min-width: 0; } /* prevent grid items from inflating to content width */
+
+/* Right column wrapper: terminal on top, context-control below */
+.hero-aside {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  width: 100%;
+  min-width: 0;
 }
 
 /* ─── Hero pitch (limits headline) ─── */
@@ -348,6 +358,130 @@
   flex-wrap: wrap;
   margin-top: 1.5rem;
 }
+
+/* ─── Hero CONTEXT-CONTROL panel (right column, under terminal) ─── */
+.hero-context {
+  background: var(--paper);
+  border: 1px solid var(--ink);
+  box-shadow: 6px 6px 0 var(--ink);
+  padding: 1.1rem 1.25rem 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+.hero-context__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  letter-spacing: var(--tr-wider);
+  text-transform: uppercase;
+  color: var(--sub);
+}
+.hero-context__title {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(1.1rem, 1.6vw, 1.4rem);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin: 0;
+}
+.hero-context__body {
+  font-family: var(--font-body);
+  font-size: var(--fs-sm);
+  line-height: 1.45;
+  color: var(--sub);
+}
+.hero-context__body strong { color: var(--ink); font-weight: 500; }
+.hero-context__row {
+  display: grid;
+  grid-template-columns: minmax(6rem, auto) 1fr 3rem;
+  gap: 0.65rem;
+  align-items: center;
+  margin-top: 0.35rem;
+}
+.hero-context__label {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  letter-spacing: var(--tr-wide);
+  text-transform: uppercase;
+  color: var(--sub);
+}
+.hero-context__meter {
+  position: relative;
+  height: 0.85rem;
+  background: var(--paper-3);
+  overflow: hidden;
+}
+/* 60% threshold marker — vertical hairline */
+.hero-context__threshold {
+  position: absolute;
+  top: -2px; bottom: -2px;
+  left: 60%;
+  width: 1px;
+  background: var(--ink);
+  opacity: 0.5;
+  z-index: 2;
+}
+.hero-context__threshold::before {
+  content: "60%";
+  position: absolute;
+  top: -0.95rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  letter-spacing: 0.05em;
+  color: var(--sub);
+  background: var(--paper);
+  padding: 0 0.15rem;
+  white-space: nowrap;
+}
+.hero-context__fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: var(--w, 0%);
+  background: var(--phosphor);
+  transition: width 1.3s var(--easing-out),
+              background var(--dur-base) var(--easing-out);
+  z-index: 1;
+}
+.hero-context__fill[data-state="warn"]     { background: #F59E0B; }   /* amber */
+.hero-context__fill[data-state="critical"] {
+  background: var(--hot);
+  animation: warnPulse 1.3s var(--easing-inout) infinite;
+}
+.hero-context__pct {
+  font-family: var(--font-mono);
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  color: var(--ink);
+}
+.hero-context__pct[data-state="warn"]     { color: #B45309; }
+.hero-context__pct[data-state="critical"] { color: var(--hot); }
+
+.hero-context__status {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  letter-spacing: var(--tr-wide);
+  text-transform: uppercase;
+  color: var(--phosphor-d);
+  padding-top: 0.55rem;
+  margin-top: 0.4rem;
+  border-top: 1px solid var(--rule);
+  transition: color var(--dur-base) var(--easing-out);
+  min-height: 1.5em;
+}
+.hero-context__status[data-state="warn"]     { color: #B45309; }
+.hero-context__status[data-state="critical"] { color: var(--hot); }
 .btn {
   display: inline-flex;
   align-items: center;
@@ -405,6 +539,8 @@
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  width: 100%;
+  min-width: 0;
 }
 .hero-terminal-wrap__label {
   font-family: var(--font-mono);
@@ -414,7 +550,7 @@
   color: var(--sub);
 }
 
-/* Live terminal in hero */
+/* Live terminal in hero — fixed-shape box that doesn't reflow when theme cycles */
 .terminal {
   background: #0E0E10;
   color: #F5F2EA;
@@ -424,12 +560,17 @@
   position: relative;
   border-radius: 6px;
   box-shadow: var(--shadow-deep);
-  min-height: 12rem;
+  /* Fixed dimensions: width fills column, height stays constant regardless of cycled content */
+  width: 100%;
+  min-width: 0;
+  height: 12.5rem;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   gap: 1.25rem;
   overflow: hidden;
+  contain: layout size;  /* hard-isolate so inner content can never push outer dims */
 }
 .terminal::before {
   content: "● ● ●";

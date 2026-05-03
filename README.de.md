@@ -39,6 +39,8 @@ Alles in **einer Zeile**, farbcodiert, mit klugen Icons, die Dringlichkeit signa
 - 🧩 **Steckbare Balken-Stile** — `quadrant` (▖▄▙█), `vertical` (▏▎▍▌▋▊▉█), oder eigener in 10 Zeilen Bash
 - ⚡ **Leichtgewichtig** — nur `bash` + `jq`. Kein Node, kein Python, kein Daemon, keine Telemetrie
 
+> 💡 **Profi-Tipp — Kontextkontrolle**: Je voller Ihr Kontextfenster, desto **weniger effektiv** wird Ihr Gespräch mit Claude — und desto **schneller** verbrennen Ihre 5h-/7d-Limits. Leeren oder `/compact`, sobald Sie **60%** überschreiten, um effizient zu bleiben.
+
 ## 🚀 Installation
 
 ### ⚡ oder vibe-chill Methode · lass Claude machen

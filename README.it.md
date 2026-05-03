@@ -39,6 +39,8 @@ Tutto in **una sola riga**, color-coded, con icone intelligenti che segnalano l'
 - 🧩 **Stili di barra a plugin** — `quadrant` (▖▄▙█), `vertical` (▏▎▍▌▋▊▉█), o crea il tuo in 10 righe di bash
 - ⚡ **Leggero** — puro `bash` + `jq`. Niente Node, niente Python, niente daemon, niente telemetria
 
+> 💡 **Consiglio — Controllo contesto**: più piena è la tua finestra di contesto, **meno efficace** diventa la conversazione con Claude — e **più velocemente** bruciano i tuoi limiti 5h / 7g. Pulisci o `/compact` ogni volta che superi il **60%** per restare efficiente.
+
 ## 🚀 Installazione
 
 ### Manuale (3 passaggi)

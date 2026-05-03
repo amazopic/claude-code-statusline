@@ -225,6 +225,44 @@ function startLimitsAnimation() {
 }
 
 // ═════════════════════════════════════════════════════════════════════
+//  HERO CONTEXT METER — animated fill→warn→critical→compact cycle
+// ═════════════════════════════════════════════════════════════════════
+
+const contextCycle = [
+  { pct: 12, state: 'ok',       msgKey: 'hero.context.tip_healthy' },
+  { pct: 35, state: 'ok',       msgKey: 'hero.context.tip_healthy' },
+  { pct: 52, state: 'ok',       msgKey: 'hero.context.tip_approach' },
+  { pct: 67, state: 'warn',     msgKey: 'hero.context.tip_clear' },
+  { pct: 84, state: 'critical', msgKey: 'hero.context.tip_compact' },
+  { pct: 95, state: 'critical', msgKey: 'hero.context.tip_critical' },
+  { pct: 12, state: 'ok',       msgKey: 'hero.context.tip_compacted' },
+];
+
+function setContext(pct, state, msgKey) {
+  const fill = $('[data-context-fill]');
+  const label = $('[data-context-pct]');
+  const status = $('[data-context-status]');
+  if (!fill || !label || !status) return;
+  fill.style.setProperty('--w', pct + '%');
+  fill.dataset.state = state;
+  label.textContent = pct + '%';
+  label.dataset.state = state;
+  status.dataset.state = state;
+  status.textContent = t(msgKey);
+}
+
+function startContextAnimation() {
+  let i = 0;
+  const step = contextCycle[0];
+  setContext(step.pct, step.state, step.msgKey);
+  setInterval(() => {
+    i = (i + 1) % contextCycle.length;
+    const s = contextCycle[i];
+    setContext(s.pct, s.state, s.msgKey);
+  }, 2400);
+}
+
+// ═════════════════════════════════════════════════════════════════════
 //  HERO TERMINAL — auto-typing terminal that cycles through themes
 // ═════════════════════════════════════════════════════════════════════
 
@@ -589,4 +627,5 @@ document.addEventListener('DOMContentLoaded', async () => {
   await sleep(400);
   runHeroAnimation();
   startLimitsAnimation();
+  startContextAnimation();
 });

@@ -221,12 +221,37 @@
               </div>
             </div>
 
-            <!-- RIGHT: small terminal cycling through themes -->
-            <div class="hero-terminal-wrap">
-              <span class="hero-terminal-wrap__label" data-i18n="hero.terminal.label">Live preview · cycling through 10 themes</span>
-              <div class="terminal" aria-hidden="true">
-                <div class="terminal__line terminal__line--cmd"><span class="text">~/.claude/statusline.sh use cyberpunk</span><span class="terminal__cursor"></span></div>
-                <div class="terminal__statusline mono">Loading…</div>
+            <!-- RIGHT: terminal + context control -->
+            <div class="hero-aside">
+              <div class="hero-terminal-wrap">
+                <span class="hero-terminal-wrap__label" data-i18n="hero.terminal.label">Live preview · cycling through 10 themes</span>
+                <div class="terminal" aria-hidden="true">
+                  <div class="terminal__line terminal__line--cmd"><span class="text">~/.claude/statusline.sh use cyberpunk</span><span class="terminal__cursor"></span></div>
+                  <div class="terminal__statusline mono">Loading…</div>
+                </div>
+              </div>
+
+              <!-- Context control: animated context meter showing fill→compact cycle -->
+              <div class="hero-context" role="region" aria-label="Context window control">
+                <span class="hero-context__eyebrow">
+                  <span aria-hidden="true">◐</span>
+                  <span data-i18n="hero.context.eyebrow">Context Control</span>
+                </span>
+                <h3 class="hero-context__title" data-i18n="hero.context.title">Clear context above 60% — stay sharp.</h3>
+                <p class="hero-context__body" data-i18n-html="hero.context.body">
+                  More context = <strong>slower Claude</strong> + <strong>faster limit burn</strong>.
+                  Compact early, work efficiently.
+                </p>
+
+                <div class="hero-context__row">
+                  <span class="hero-context__label" data-i18n="hero.context.label">Context window</span>
+                  <div class="hero-context__meter">
+                    <span class="hero-context__threshold" aria-hidden="true"></span>
+                    <span class="hero-context__fill" data-context-fill style="--w: 0%"></span>
+                  </div>
+                  <span class="hero-context__pct" data-context-pct>0%</span>
+                </div>
+                <p class="hero-context__status" data-context-status data-state="ok">…</p>
               </div>
             </div>
           </div>
