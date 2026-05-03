@@ -48,7 +48,7 @@ Claude Code의 기본 상태 표시줄은 단조롭습니다. 이 드롭인 교�
 Claude Code가 있는데 왜 터미널을 만져요? 이 한 프롬프트를 Claude Code 세션에 붙여넣으세요 — Claude가 모든 단계를 처리하고 각 명령 전에 물어봅니다.
 
 ```text
-amazopic의 claude-code-statusline을 설치해줘. 먼저 ~/.claude/settings.json을 읽고 — statusLine.command가 기존 파일(예: ~/.claude/status-line.sh 등)을 가리키면, 그 파일에 .bak를 붙여 백업해(기존 .bak는 덮어씀). ~/.claude/statusline.sh도 이미 있으면 같은 방식으로 백업. 그다음 github.com/amazopic/claude-code-statusline을 클론하고, statusline-bundle.sh를 ~/.claude/statusline.sh에 복사한 뒤 실행 가능하게 만들고, commands/statusline.md도 ~/.claude/commands/에 복사. ~/.claude/settings.json을 업데이트해서 statusLine = { type: "command", command: "<~/.claude/statusline.sh의 절대 경로>" }로 만들어줘. 마지막으로 ~/.claude/statusline.sh use developer를 실행해 developer 테마를 테스트하고 Claude Code 재시작하라고 알려줘.
+amazopic의 claude-code-statusline을 설치해줘. 먼저 ~/.claude/settings.json을 읽고 — statusLine.command가 기존 파일(예: ~/.claude/status-line.sh 등)을 가리키면, 그 파일에 .bak를 붙여 백업해(기존 .bak는 덮어씀). ~/.claude/status-line.sh도 이미 있으면 같은 방식으로 백업. 그다음 github.com/amazopic/claude-code-statusline을 클론하고, statusline-bundle.sh를 ~/.claude/status-line.sh에 복사한 뒤 실행 가능하게 만들고, commands/statusline.md도 ~/.claude/commands/에 복사. ~/.claude/settings.json을 업데이트해서 statusLine = { type: "command", command: "<~/.claude/status-line.sh의 절대 경로>" }로 만들어줘. 마지막으로 ~/.claude/status-line.sh use developer를 실행해 developer 테마를 테스트하고 Claude Code 재시작하라고 알려줘.
 ```
 
 > 권한 프롬프트마다 `y`(yes)라고만 답하면 됩니다. 끝.
@@ -58,8 +58,8 @@ amazopic의 claude-code-statusline을 설치해줘. 먼저 ~/.claude/settings.js
 
 ```bash
 git clone https://github.com/amazopic/claude-code-statusline.git
-cp REPO/statusline.sh ~/.claude/statusline.sh
-chmod +x ~/.claude/statusline.sh
+cp REPO/statusline.sh ~/.claude/status-line.sh
+chmod +x ~/.claude/status-line.sh
 ```
 
 그런 다음 `~/.claude/settings.json`에 추가:
@@ -68,7 +68,7 @@ chmod +x ~/.claude/statusline.sh
 {
   "statusLine": {
     "type": "command",
-    "command": "/Users/<당신>/.claude/statusline.sh"
+    "command": "/Users/<당신>/.claude/status-line.sh"
   }
 }
 ```
@@ -80,17 +80,17 @@ Claude Code를 재시작 (또는 `/config` 리로드).
 Claude Code가 안전하게 설치하길 원하시나요? 이 프롬프트를 붙여넣으세요:
 
 > "이 저장소의 상태 표시줄을 내 Claude Code 상태 표시줄로 설치해줘:
-> 1. `~/.claude/statusline.sh`가 이미 존재하면
->    `~/.claude/statusline.sh.bak.<YYYYMMDD-HHMMSS>`로 백업해줘
+> 1. `~/.claude/status-line.sh`가 이미 존재하면
+>    `~/.claude/status-line.sh.bak.<YYYYMMDD-HHMMSS>`로 백업해줘
 >    (그 이름의 백업이 이미 있으면 비어 있는 `-N` 접미사를 사용).
-> 2. 저장소의 `statusline.sh`를 `~/.claude/statusline.sh`로 복사하고
+> 2. 저장소의 `statusline.sh`를 `~/.claude/status-line.sh`로 복사하고
 >    `chmod +x` 실행.
 > 3. `~/.claude/settings.json`을 읽어. `statusLine` 키가 없으면
 >    스크립트의 절대 경로를 가리키는 `statusLine` 블록을 추가.
 >    `statusLine`이 이미 다른 곳을 가리키면, 먼저 `settings.json`을
 >    `.bak.<timestamp>`로 백업.
 > 4. 스모크 테스트:
->    `echo '{\"model\":{\"display_name\":\"Test\"},\"transcript_path\":\"\"}' | bash ~/.claude/statusline.sh`
+>    `echo '{\"model\":{\"display_name\":\"Test\"},\"transcript_path\":\"\"}' | bash ~/.claude/status-line.sh`
 > 5. 나에게 Claude Code 재시작을 알리고 만든 백업을 보고해줘."
 
 ### 요구사항
@@ -224,17 +224,17 @@ Claude Code 커뮤니티를 위해 ❤️로 만들었습니다.
 40+ 파일을 관리하고 싶지 않나요? **단일 번들 스크립트** `statusline-bundle.sh`를 사용하세요 — 모든 테마, 모든 블록, CLI 설정 도구가 하나의 파일에 들어 있습니다.
 
 ```bash
-cp statusline-bundle.sh ~/.claude/statusline.sh
-chmod +x ~/.claude/statusline.sh
+cp statusline-bundle.sh ~/.claude/status-line.sh
+chmod +x ~/.claude/status-line.sh
 
-~/.claude/statusline.sh use cyberpunk            # switch theme
-~/.claude/statusline.sh use cyberpunk-compact    # compact variant
-~/.claude/statusline.sh custom model context-bar git cost
-~/.claude/statusline.sh list                     # list themes
-~/.claude/statusline.sh list blocks              # list blocks
-~/.claude/statusline.sh preview anime            # preview without saving
-~/.claude/statusline.sh show                     # show current
-~/.claude/statusline.sh reset                    # reset to default
+~/.claude/status-line.sh use cyberpunk            # switch theme
+~/.claude/status-line.sh use cyberpunk-compact    # compact variant
+~/.claude/status-line.sh custom model context-bar git cost
+~/.claude/status-line.sh list                     # list themes
+~/.claude/status-line.sh list blocks              # list blocks
+~/.claude/status-line.sh preview anime            # preview without saving
+~/.claude/status-line.sh show                     # show current
+~/.claude/status-line.sh reset                    # reset to default
 ```
 
 설정은 `~/.claude/statusline.conf`에 저장되며 재시작 후에도 유지됩니다. 동일한 파일이 **렌더러**(Claude Code가 stdin으로 JSON을 전달할 때)와 **설정 도구**(인자와 함께 호출할 때) 모두로 작동합니다.
@@ -261,7 +261,7 @@ cp commands/statusline.md ~/.claude/commands/statusline.md
 ### 셸 별칭 (선택)
 
 ```bash
-alias statusline='~/.claude/statusline.sh'
+alias statusline='~/.claude/status-line.sh'
 ```
 
 그러면 `statusline cyberpunk`을 어떤 터미널에서든 사용할 수 있습니다.
@@ -274,16 +274,16 @@ alias statusline='~/.claude/statusline.sh'
 
 ```bash
 git clone https://github.com/amazopic/claude-code-statusline.git claude-code-statusline
-cp claude-code-statusline/statusline-bundle.sh ~/.claude/statusline.sh
-chmod +x ~/.claude/statusline.sh
-~/.claude/statusline.sh use cyberpunk          # 또는: anime, hacker, minimal, …
+cp claude-code-statusline/statusline-bundle.sh ~/.claude/status-line.sh
+chmod +x ~/.claude/status-line.sh
+~/.claude/status-line.sh use cyberpunk          # 또는: anime, hacker, minimal, …
 ```
 
 그런 다음 `~/.claude/settings.json`에 추가:
 
 ```json
 { "statusLine": { "type": "command",
-  "command": "/Users/<당신>/.claude/statusline.sh" } }
+  "command": "/Users/<당신>/.claude/status-line.sh" } }
 ```
 
 Claude Code를 재시작 (또는 `/config` reload). 완료.
@@ -326,7 +326,7 @@ Claude Code를 재시작 (또는 `/config` reload). 완료.
 
 ### 어떻게 설치하나요?
 
-`statusline-bundle.sh`를 `~/.claude/statusline.sh`에 복사하고, `chmod +x`를 실행하고, `~/.claude/settings.json` → `statusLine.command`를 그 경로로 지정합니다.
+`statusline-bundle.sh`를 `~/.claude/status-line.sh`에 복사하고, `chmod +x`를 실행하고, `~/.claude/settings.json` → `statusLine.command`를 그 경로로 지정합니다.
 
 ### 1 M 컨텍스트 모델을 지원하나요?
 
@@ -366,7 +366,7 @@ Claude Code가 지원하는 모든 모델 — Opus 4.7, Sonnet 4.6, Haiku 4.5, O
 
 ### Claude Code 기본 상태 표시줄로 되돌리려면?
 
-`~/.claude/settings.json`에서 `statusLine` 블록을 제거하거나 `~/.claude/statusline.sh reset` 실행.
+`~/.claude/settings.json`에서 `statusLine` 블록을 제거하거나 `~/.claude/status-line.sh reset` 실행.
 
 ## 🏷️ 추천 GitHub topics
 

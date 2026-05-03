@@ -10,7 +10,7 @@ blocks you want, paste them into a script — done.
 
 > 💡 **Don't want to assemble blocks by hand?** Use the all-in-one
 > [`statusline-bundle.sh`](statusline-bundle.sh) and run
-> `~/.claude/statusline.sh custom model context-bar git cost` — same
+> `~/.claude/status-line.sh custom model context-bar git cost` — same
 > blocks, no copy-paste. See the bundle section in the [main
 > README](README.md#-all-in-one-bundle-statusline-bundlesh).
 

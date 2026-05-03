@@ -7,7 +7,7 @@ argument-hint: <theme> | <theme>-compact | custom <block...> | list | preview <t
 # /statusline
 
 The user wants to configure their Claude Code status line via the bundled
-`statusline-bundle.sh` script (installed at `~/.claude/statusline.sh`).
+`statusline-bundle.sh` script (installed at `~/.claude/status-line.sh`).
 
 **User input:** `$ARGUMENTS`
 
@@ -16,10 +16,10 @@ The user wants to configure their Claude Code status line via the bundled
 Run the bundled CLI with the user's arguments and report the result:
 
 ```bash
-~/.claude/statusline.sh $ARGUMENTS
+~/.claude/status-line.sh $ARGUMENTS
 ```
 
-If `$ARGUMENTS` is empty, run `~/.claude/statusline.sh show` to display
+If `$ARGUMENTS` is empty, run `~/.claude/status-line.sh show` to display
 the current configuration.
 
 ## Recognized inputs (`$ARGUMENTS`)

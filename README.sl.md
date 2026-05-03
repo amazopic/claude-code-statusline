@@ -48,7 +48,7 @@ Vse v **eni vrstici**, barvno kodirano, s pametnimi ikonami, ki nakazujejo nujno
 Zakaj sam, ko imaš Claude Code? Prilepi ta en poziv v sejo Claude Code — Claude opravi vsak korak in vpraša pred vsakim ukazom.
 
 ```text
-Namesti claude-code-statusline od amazopic zame. Najprej preberi ~/.claude/settings.json — če je tam statusLine.command, ki kaže na obstoječo datoteko (npr. ~/.claude/status-line.sh ali drugo pot), naredi varnostno kopijo te datoteke z dodatkom .bak (prepiši obstoječo .bak). Tudi če ~/.claude/statusline.sh že obstaja — naredi varnostno kopijo enako. Nato kloniraj github.com/amazopic/claude-code-statusline, kopiraj statusline-bundle.sh v ~/.claude/statusline.sh in ga naredi izvršljivega, kopiraj tudi commands/statusline.md v ~/.claude/commands/. Posodobi ~/.claude/settings.json tako da statusLine = { type: "command", command: "<absolutna pot do ~/.claude/statusline.sh>" }. Na koncu zaženi ~/.claude/statusline.sh use developer za test teme developer in mi reci da ponovno zaženem Claude Code.
+Namesti claude-code-statusline od amazopic zame. Najprej preberi ~/.claude/settings.json — če je tam statusLine.command, ki kaže na obstoječo datoteko (npr. ~/.claude/status-line.sh ali drugo pot), naredi varnostno kopijo te datoteke z dodatkom .bak (prepiši obstoječo .bak). Tudi če ~/.claude/status-line.sh že obstaja — naredi varnostno kopijo enako. Nato kloniraj github.com/amazopic/claude-code-statusline, kopiraj statusline-bundle.sh v ~/.claude/status-line.sh in ga naredi izvršljivega, kopiraj tudi commands/statusline.md v ~/.claude/commands/. Posodobi ~/.claude/settings.json tako da statusLine = { type: "command", command: "<absolutna pot do ~/.claude/status-line.sh>" }. Na koncu zaženi ~/.claude/status-line.sh use developer za test teme developer in mi reci da ponovno zaženem Claude Code.
 ```
 
 > Samo reci `y` (ja) ob vsaki zahtevi za dovoljenje. Končano.
@@ -58,8 +58,8 @@ Namesti claude-code-statusline od amazopic zame. Najprej preberi ~/.claude/setti
 
 ```bash
 git clone https://github.com/amazopic/claude-code-statusline.git
-cp REPO/statusline.sh ~/.claude/statusline.sh
-chmod +x ~/.claude/statusline.sh
+cp REPO/statusline.sh ~/.claude/status-line.sh
+chmod +x ~/.claude/status-line.sh
 ```
 
 Nato dodajte v `~/.claude/settings.json`:
@@ -68,7 +68,7 @@ Nato dodajte v `~/.claude/settings.json`:
 {
   "statusLine": {
     "type": "command",
-    "command": "/Users/<vi>/.claude/statusline.sh"
+    "command": "/Users/<vi>/.claude/status-line.sh"
   }
 }
 ```
@@ -81,16 +81,16 @@ Naj Claude Code namesti namesto vas, varno? Prilepite ta poziv:
 
 > »Namesti statusno vrstico iz tega repozitorija kot mojo aktivno
 > Claude Code statusno vrstico:
-> 1. Če `~/.claude/statusline.sh` že obstaja, ga varnostno kopiraj v
->    `~/.claude/statusline.sh.bak.<YYYYMMDD-HHMMSS>` (uporabi prosto
+> 1. Če `~/.claude/status-line.sh` že obstaja, ga varnostno kopiraj v
+>    `~/.claude/status-line.sh.bak.<YYYYMMDD-HHMMSS>` (uporabi prosto
 >    pripono `-N`, če kopija s tem imenom že obstaja).
-> 2. Kopiraj `statusline.sh` iz repozitorija v `~/.claude/statusline.sh`
+> 2. Kopiraj `statusline.sh` iz repozitorija v `~/.claude/status-line.sh`
 >    in `chmod +x`.
 > 3. Preberi `~/.claude/settings.json`. Če ključa `statusLine` ni,
 >    dodaj blok z absolutno potjo do skripte. Če `statusLine` že kaže
 >    drugam, najprej varnostno kopiraj `settings.json` v `.bak.<timestamp>`.
 > 4. Hitri test:
->    `echo '{\"model\":{\"display_name\":\"Test\"},\"transcript_path\":\"\"}' | bash ~/.claude/statusline.sh`
+>    `echo '{\"model\":{\"display_name\":\"Test\"},\"transcript_path\":\"\"}' | bash ~/.claude/status-line.sh`
 > 5. Reci mi, naj ponovno zaženem Claude Code in poročaj o ustvarjenih
 >    varnostnih kopijah.«
 
@@ -226,17 +226,17 @@ Narejeno z ❤️ za skupnost Claude Code.
 Ne želite upravljati 40+ datotek? Vzemite **eno samo skripto** `statusline-bundle.sh` — vsebuje vse teme, vse bloke in CLI-konfigurator v eni datoteki.
 
 ```bash
-cp statusline-bundle.sh ~/.claude/statusline.sh
-chmod +x ~/.claude/statusline.sh
+cp statusline-bundle.sh ~/.claude/status-line.sh
+chmod +x ~/.claude/status-line.sh
 
-~/.claude/statusline.sh use cyberpunk            # switch theme
-~/.claude/statusline.sh use cyberpunk-compact    # compact variant
-~/.claude/statusline.sh custom model context-bar git cost
-~/.claude/statusline.sh list                     # list themes
-~/.claude/statusline.sh list blocks              # list blocks
-~/.claude/statusline.sh preview anime            # preview without saving
-~/.claude/statusline.sh show                     # show current
-~/.claude/statusline.sh reset                    # reset to default
+~/.claude/status-line.sh use cyberpunk            # switch theme
+~/.claude/status-line.sh use cyberpunk-compact    # compact variant
+~/.claude/status-line.sh custom model context-bar git cost
+~/.claude/status-line.sh list                     # list themes
+~/.claude/status-line.sh list blocks              # list blocks
+~/.claude/status-line.sh preview anime            # preview without saving
+~/.claude/status-line.sh show                     # show current
+~/.claude/status-line.sh reset                    # reset to default
 ```
 
 Konfiguracija je shranjena v `~/.claude/statusline.conf` in preživi ponovne zagone. Ista datoteka deluje kot **upodabljalnik** (ko Claude Code pošlje JSON prek stdin) in kot **konfigurator** (ko jo pokličete z argumenti).
@@ -263,7 +263,7 @@ Nato lahko v katerikoli seji Claude Code vtipkate:
 ### Shell-vzdevek (neobvezno)
 
 ```bash
-alias statusline='~/.claude/statusline.sh'
+alias statusline='~/.claude/status-line.sh'
 ```
 
 Nato `statusline cyberpunk` deluje iz katerega koli terminala.
@@ -276,16 +276,16 @@ Najhitrejša pot — pakirana skripta vse-v-enem z vgrajenim CLI:
 
 ```bash
 git clone https://github.com/amazopic/claude-code-statusline.git claude-code-statusline
-cp claude-code-statusline/statusline-bundle.sh ~/.claude/statusline.sh
-chmod +x ~/.claude/statusline.sh
-~/.claude/statusline.sh use cyberpunk          # ali: anime, hacker, minimal, …
+cp claude-code-statusline/statusline-bundle.sh ~/.claude/status-line.sh
+chmod +x ~/.claude/status-line.sh
+~/.claude/status-line.sh use cyberpunk          # ali: anime, hacker, minimal, …
 ```
 
 Nato dodajte v `~/.claude/settings.json`:
 
 ```json
 { "statusLine": { "type": "command",
-  "command": "/Users/<vi>/.claude/statusline.sh" } }
+  "command": "/Users/<vi>/.claude/status-line.sh" } }
 ```
 
 Ponovno zaženite Claude Code (ali `/config` reload). Končano.
@@ -328,7 +328,7 @@ Bash zamenjava za privzeto statusno vrstico v [Claude Code](https://claude.com/c
 
 ### Kako se namesti?
 
-Kopirajte `statusline-bundle.sh` v `~/.claude/statusline.sh`, naredite `chmod +x`, usmerite `~/.claude/settings.json` → `statusLine.command` na to pot.
+Kopirajte `statusline-bundle.sh` v `~/.claude/status-line.sh`, naredite `chmod +x`, usmerite `~/.claude/settings.json` → `statusLine.command` na to pot.
 
 ### Ali podpira modele z 1 M kontekstom?
 
@@ -368,7 +368,7 @@ Osebna lokalna uporaba je brezplačna (glej [Source-Available License](LICENSE))
 
 ### Kako se vrnem na privzeto statusno vrstico Claude Code?
 
-Odstranite blok `statusLine` iz `~/.claude/settings.json` ali zaženite `~/.claude/statusline.sh reset`.
+Odstranite blok `statusLine` iz `~/.claude/settings.json` ali zaženite `~/.claude/status-line.sh reset`.
 
 ## 🏷️ Priporočeni GitHub topics
 

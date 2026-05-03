@@ -26,12 +26,12 @@ Languages: English plus 10 translations (Russian, French, German, Ukrainian, Slo
 
 ```bash
 git clone https://github.com/amazopic/REPO.git
-cp REPO/statusline-bundle.sh ~/.claude/statusline.sh
-chmod +x ~/.claude/statusline.sh
-~/.claude/statusline.sh use cyberpunk
+cp REPO/statusline-bundle.sh ~/.claude/status-line.sh
+chmod +x ~/.claude/status-line.sh
+~/.claude/status-line.sh use cyberpunk
 ```
 
-Then point Claude Code's `~/.claude/settings.json` `statusLine.command` at `~/.claude/statusline.sh` and restart.
+Then point Claude Code's `~/.claude/settings.json` `statusLine.command` at `~/.claude/status-line.sh` and restart.
 
 ## Topics
 

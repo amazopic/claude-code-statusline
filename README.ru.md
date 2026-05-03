@@ -48,7 +48,7 @@ Opus 4.7 (1M) │ 🚀 12% █▌░░░░░░░░ 121.4K/1000K │ 0.42$
 Зачем самому, когда есть Claude Code? Вставь один промпт в сессию Claude Code — Claude сделает всё пошагово и спросит перед каждой командой.
 
 ```text
-Установи claude-code-statusline от amazopic. Сначала прочитай ~/.claude/settings.json — если в нём есть statusLine.command указывающий на существующий файл (например ~/.claude/status-line.sh или другой путь), сделай резервную копию того файла добавив .bak (перезапиши существующий .bak если был). Также если ~/.claude/statusline.sh уже есть — забекапь его так же. Затем склонируй github.com/amazopic/claude-code-statusline, скопируй statusline-bundle.sh в ~/.claude/statusline.sh и сделай исполняемым, также скопируй commands/statusline.md в ~/.claude/commands/. Обнови ~/.claude/settings.json так чтобы statusLine = { type: "command", command: "<абсолютный путь к ~/.claude/statusline.sh>" }. В конце запусти ~/.claude/statusline.sh use developer для проверки темы developer и попроси меня перезапустить Claude Code.
+Установи claude-code-statusline от amazopic. Сначала прочитай ~/.claude/settings.json — если в нём есть statusLine.command указывающий на существующий файл (например ~/.claude/status-line.sh или другой путь), сделай резервную копию того файла добавив .bak (перезапиши существующий .bak если был). Также если ~/.claude/status-line.sh уже есть — забекапь его так же. Затем склонируй github.com/amazopic/claude-code-statusline, скопируй statusline-bundle.sh в ~/.claude/status-line.sh и сделай исполняемым, также скопируй commands/statusline.md в ~/.claude/commands/. Обнови ~/.claude/settings.json так чтобы statusLine = { type: "command", command: "<абсолютный путь к ~/.claude/status-line.sh>" }. В конце запусти ~/.claude/status-line.sh use developer для проверки темы developer и попроси меня перезапустить Claude Code.
 ```
 
 > Просто говори `y` (yes) на каждый запрос разрешения. Готово.
@@ -58,8 +58,8 @@ Opus 4.7 (1M) │ 🚀 12% █▌░░░░░░░░ 121.4K/1000K │ 0.42$
 
 ```bash
 git clone https://github.com/amazopic/claude-code-statusline.git
-cp REPO/statusline.sh ~/.claude/statusline.sh
-chmod +x ~/.claude/statusline.sh
+cp REPO/statusline.sh ~/.claude/status-line.sh
+chmod +x ~/.claude/status-line.sh
 ```
 
 Затем добавьте в `~/.claude/settings.json`:
@@ -68,7 +68,7 @@ chmod +x ~/.claude/statusline.sh
 {
   "statusLine": {
     "type": "command",
-    "command": "/Users/<вы>/.claude/statusline.sh"
+    "command": "/Users/<вы>/.claude/status-line.sh"
   }
 }
 ```
@@ -80,17 +80,17 @@ chmod +x ~/.claude/statusline.sh
 Хотите, чтобы Claude Code установил всё сам и безопасно? Скопируйте этот промпт:
 
 > «Установи статусную строку из этого репозитория как мою активную статусную строку Claude Code:
-> 1. Если файл `~/.claude/statusline.sh` уже существует — забекапь его в
->    `~/.claude/statusline.sh.bak.<YYYYMMDD-HHMMSS>` (если такой бэкап
+> 1. Если файл `~/.claude/status-line.sh` уже существует — забекапь его в
+>    `~/.claude/status-line.sh.bak.<YYYYMMDD-HHMMSS>` (если такой бэкап
 >    уже есть, используй свободный суффикс `-N`).
-> 2. Скопируй `statusline.sh` из репозитория в `~/.claude/statusline.sh`
+> 2. Скопируй `statusline.sh` из репозитория в `~/.claude/status-line.sh`
 >    и сделай `chmod +x`.
 > 3. Прочитай `~/.claude/settings.json`. Если ключа `statusLine` нет —
 >    добавь блок с абсолютным путём к скрипту. Если `statusLine` уже
 >    указывает на другой файл — сначала забекапь сам `settings.json`
 >    в `.bak.<timestamp>`.
 > 4. Сделай smoke-тест:
->    `echo '{\"model\":{\"display_name\":\"Test\"},\"transcript_path\":\"\"}' | bash ~/.claude/statusline.sh`
+>    `echo '{\"model\":{\"display_name\":\"Test\"},\"transcript_path\":\"\"}' | bash ~/.claude/status-line.sh`
 > 5. Скажи мне перезапустить Claude Code и сообщи, какие бэкапы создал.»
 
 ### Требования
@@ -225,17 +225,17 @@ PR очень приветствуются! Особенно:
 Не хотите возиться с 40+ файлами? Возьмите **один пакетный скрипт** `statusline-bundle.sh` — он содержит все темы, все блоки и CLI-конфигуратор в одном файле.
 
 ```bash
-cp statusline-bundle.sh ~/.claude/statusline.sh
-chmod +x ~/.claude/statusline.sh
+cp statusline-bundle.sh ~/.claude/status-line.sh
+chmod +x ~/.claude/status-line.sh
 
-~/.claude/statusline.sh use cyberpunk            # switch theme
-~/.claude/statusline.sh use cyberpunk-compact    # compact variant
-~/.claude/statusline.sh custom model context-bar git cost
-~/.claude/statusline.sh list                     # list themes
-~/.claude/statusline.sh list blocks              # list blocks
-~/.claude/statusline.sh preview anime            # preview without saving
-~/.claude/statusline.sh show                     # show current
-~/.claude/statusline.sh reset                    # reset to default
+~/.claude/status-line.sh use cyberpunk            # switch theme
+~/.claude/status-line.sh use cyberpunk-compact    # compact variant
+~/.claude/status-line.sh custom model context-bar git cost
+~/.claude/status-line.sh list                     # list themes
+~/.claude/status-line.sh list blocks              # list blocks
+~/.claude/status-line.sh preview anime            # preview without saving
+~/.claude/status-line.sh show                     # show current
+~/.claude/status-line.sh reset                    # reset to default
 ```
 
 Конфиг сохраняется в `~/.claude/statusline.conf` и переживает рестарты. Один и тот же файл работает как **рендерер** (когда Claude Code передаёт ему JSON через stdin) и как **конфигуратор** (когда вы вызываете его с аргументами).
@@ -262,7 +262,7 @@ cp commands/statusline.md ~/.claude/commands/statusline.md
 ### Шелл-алиас (опционально)
 
 ```bash
-alias statusline='~/.claude/statusline.sh'
+alias statusline='~/.claude/status-line.sh'
 ```
 
 Тогда `statusline cyberpunk` будет работать из любого терминала.
@@ -275,16 +275,16 @@ alias statusline='~/.claude/statusline.sh'
 
 ```bash
 git clone https://github.com/amazopic/claude-code-statusline.git claude-code-statusline
-cp claude-code-statusline/statusline-bundle.sh ~/.claude/statusline.sh
-chmod +x ~/.claude/statusline.sh
-~/.claude/statusline.sh use cyberpunk          # или: anime, hacker, minimal, …
+cp claude-code-statusline/statusline-bundle.sh ~/.claude/status-line.sh
+chmod +x ~/.claude/status-line.sh
+~/.claude/status-line.sh use cyberpunk          # или: anime, hacker, minimal, …
 ```
 
 Затем добавьте в `~/.claude/settings.json`:
 
 ```json
 { "statusLine": { "type": "command",
-  "command": "/Users/<вы>/.claude/statusline.sh" } }
+  "command": "/Users/<вы>/.claude/status-line.sh" } }
 ```
 
 Перезапустите Claude Code (или `/config` reload). Готово.
@@ -328,7 +328,7 @@ Bash-замена стандартной статусной строки в [Cla
 
 ### Как установить?
 
-Скопировать `statusline-bundle.sh` в `~/.claude/statusline.sh`, сделать `chmod +x`, прописать путь в `~/.claude/settings.json` → `statusLine.command`. Полные инструкции в разделах [Быстрый старт](#-быстрый-старт) и Установка.
+Скопировать `statusline-bundle.sh` в `~/.claude/status-line.sh`, сделать `chmod +x`, прописать путь в `~/.claude/settings.json` → `statusLine.command`. Полные инструкции в разделах [Быстрый старт](#-быстрый-старт) и Установка.
 
 ### Поддерживает ли 1 M контекст?
 
@@ -368,7 +368,7 @@ Bash-замена стандартной статусной строки в [Cla
 
 ### Как откатиться к стандартной статусной строке Claude Code?
 
-Удалите блок `statusLine` из `~/.claude/settings.json` или выполните `~/.claude/statusline.sh reset`.
+Удалите блок `statusLine` из `~/.claude/settings.json` или выполните `~/.claude/status-line.sh reset`.
 
 ## 🏷️ Рекомендуемые GitHub topics
 

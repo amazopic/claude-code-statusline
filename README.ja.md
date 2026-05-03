@@ -47,8 +47,8 @@ Claude Code 標準のステータスラインは控えめです。このドロ�
 
 ```bash
 git clone https://github.com/amazopic/claude-code-statusline.git
-cp REPO/statusline.sh ~/.claude/statusline.sh
-chmod +x ~/.claude/statusline.sh
+cp REPO/statusline.sh ~/.claude/status-line.sh
+chmod +x ~/.claude/status-line.sh
 ```
 
 次に `~/.claude/settings.json` に追加:
@@ -57,7 +57,7 @@ chmod +x ~/.claude/statusline.sh
 {
   "statusLine": {
     "type": "command",
-    "command": "/Users/<あなた>/.claude/statusline.sh"
+    "command": "/Users/<あなた>/.claude/status-line.sh"
   }
 }
 ```
@@ -69,17 +69,17 @@ Claude Code を再起動(または `/config` reload)。
 Claude Code に安全にインストールしてもらいたい?このプロンプトを貼り付け:
 
 > 「このリポジトリのステータスラインを私の Claude Code ステータスラインとしてインストールして:
-> 1. `~/.claude/statusline.sh` がすでに存在する場合は
->    `~/.claude/statusline.sh.bak.<YYYYMMDD-HHMMSS>` にバックアップ
+> 1. `~/.claude/status-line.sh` がすでに存在する場合は
+>    `~/.claude/status-line.sh.bak.<YYYYMMDD-HHMMSS>` にバックアップ
 >    (同名のバックアップが既にある場合は空いている `-N` サフィックスを使用)。
-> 2. リポジトリの `statusline.sh` を `~/.claude/statusline.sh` にコピーし
+> 2. リポジトリの `statusline.sh` を `~/.claude/status-line.sh` にコピーし
 >    `chmod +x` を実行。
 > 3. `~/.claude/settings.json` を読み込み。`statusLine` キーがなければ、
 >    スクリプトの絶対パスを指す `statusLine` ブロックを追加。
 >    すでに別の場所を指している場合は、まず `settings.json` を
 >    `.bak.<timestamp>` にバックアップ。
 > 4. スモークテスト:
->    `echo '{\"model\":{\"display_name\":\"Test\"},\"transcript_path\":\"\"}' | bash ~/.claude/statusline.sh`
+>    `echo '{\"model\":{\"display_name\":\"Test\"},\"transcript_path\":\"\"}' | bash ~/.claude/status-line.sh`
 > 5. 私に Claude Code の再起動を促し、作成したバックアップを報告。」
 
 ### 必要要件
@@ -213,17 +213,17 @@ Claude Code コミュニティへ ❤️ を込めて。
 40+ ファイルを管理したくない?**単一バンドルスクリプト** `statusline-bundle.sh` を使ってください — 全テーマ、全ブロック、CLI 設定ツールを 1 ファイルに収録。
 
 ```bash
-cp statusline-bundle.sh ~/.claude/statusline.sh
-chmod +x ~/.claude/statusline.sh
+cp statusline-bundle.sh ~/.claude/status-line.sh
+chmod +x ~/.claude/status-line.sh
 
-~/.claude/statusline.sh use cyberpunk            # switch theme
-~/.claude/statusline.sh use cyberpunk-compact    # compact variant
-~/.claude/statusline.sh custom model context-bar git cost
-~/.claude/statusline.sh list                     # list themes
-~/.claude/statusline.sh list blocks              # list blocks
-~/.claude/statusline.sh preview anime            # preview without saving
-~/.claude/statusline.sh show                     # show current
-~/.claude/statusline.sh reset                    # reset to default
+~/.claude/status-line.sh use cyberpunk            # switch theme
+~/.claude/status-line.sh use cyberpunk-compact    # compact variant
+~/.claude/status-line.sh custom model context-bar git cost
+~/.claude/status-line.sh list                     # list themes
+~/.claude/status-line.sh list blocks              # list blocks
+~/.claude/status-line.sh preview anime            # preview without saving
+~/.claude/status-line.sh show                     # show current
+~/.claude/status-line.sh reset                    # reset to default
 ```
 
 設定は `~/.claude/statusline.conf` に保存され、再起動を超えて永続します。同じファイルが**レンダラー**(Claude Code が stdin で JSON を渡すとき)と**設定ツール**(引数付きで呼び出すとき)の両方として機能します。
@@ -250,7 +250,7 @@ cp commands/statusline.md ~/.claude/commands/statusline.md
 ### シェルエイリアス(オプション)
 
 ```bash
-alias statusline='~/.claude/statusline.sh'
+alias statusline='~/.claude/status-line.sh'
 ```
 
 その後、`statusline cyberpunk` は任意のターミナルから動作します。
@@ -263,16 +263,16 @@ alias statusline='~/.claude/statusline.sh'
 
 ```bash
 git clone https://github.com/amazopic/claude-code-statusline.git claude-code-statusline
-cp claude-code-statusline/statusline-bundle.sh ~/.claude/statusline.sh
-chmod +x ~/.claude/statusline.sh
-~/.claude/statusline.sh use cyberpunk          # または: anime, hacker, minimal, …
+cp claude-code-statusline/statusline-bundle.sh ~/.claude/status-line.sh
+chmod +x ~/.claude/status-line.sh
+~/.claude/status-line.sh use cyberpunk          # または: anime, hacker, minimal, …
 ```
 
 次に `~/.claude/settings.json` に追加:
 
 ```json
 { "statusLine": { "type": "command",
-  "command": "/Users/<あなた>/.claude/statusline.sh" } }
+  "command": "/Users/<あなた>/.claude/status-line.sh" } }
 ```
 
 Claude Code を再起動(または `/config` reload)。完了。
@@ -282,7 +282,7 @@ Claude Code を再起動(または `/config` reload)。完了。
 Claude Code があるのに、なぜターミナルを触る？この 1 つのプロンプトを Claude Code セッションに貼り付け — Claude が全ステップを処理し、各コマンド前に確認します。
 
 ```text
-amazopic の claude-code-statusline をインストールして。まず ~/.claude/settings.json を読んで — statusLine.command が既存ファイル（例：~/.claude/status-line.sh など）を指していたら、そのファイルに .bak を追加してバックアップ（既存 .bak は上書き）。~/.claude/statusline.sh が既にあれば同様にバックアップ。次に github.com/amazopic/claude-code-statusline をクローンし、statusline-bundle.sh を ~/.claude/statusline.sh にコピーして実行可能にし、commands/statusline.md も ~/.claude/commands/ にコピー。~/.claude/settings.json を更新して statusLine = { type: "command", command: "<~/.claude/statusline.sh の絶対パス>" } にして。最後に ~/.claude/statusline.sh use developer を実行して developer テーマをテストし、Claude Code を再起動するよう伝えて。
+amazopic の claude-code-statusline をインストールして。まず ~/.claude/settings.json を読んで — statusLine.command が既存ファイル（例：~/.claude/status-line.sh など）を指していたら、そのファイルに .bak を追加してバックアップ（既存 .bak は上書き）。~/.claude/status-line.sh が既にあれば同様にバックアップ。次に github.com/amazopic/claude-code-statusline をクローンし、statusline-bundle.sh を ~/.claude/status-line.sh にコピーして実行可能にし、commands/statusline.md も ~/.claude/commands/ にコピー。~/.claude/settings.json を更新して statusLine = { type: "command", command: "<~/.claude/status-line.sh の絶対パス>" } にして。最後に ~/.claude/status-line.sh use developer を実行して developer テーマをテストし、Claude Code を再起動するよう伝えて。
 ```
 
 > 許可プロンプトには `y`（yes）と答えるだけ。完了。
@@ -326,7 +326,7 @@ amazopic の claude-code-statusline をインストールして。まず ~/.clau
 
 ### インストール方法は?
 
-`statusline-bundle.sh` を `~/.claude/statusline.sh` にコピーし、`chmod +x` を実行、`~/.claude/settings.json` の `statusLine.command` をそのパスに向ける。
+`statusline-bundle.sh` を `~/.claude/status-line.sh` にコピーし、`chmod +x` を実行、`~/.claude/settings.json` の `statusLine.command` をそのパスに向ける。
 
 ### 1 M コンテキストモデルをサポートしていますか?
 
@@ -366,7 +366,7 @@ Claude Code がサポートする任意のモデル — Opus 4.7、Sonnet 4.6、
 
 ### Claude Code のデフォルトステータスラインに戻すには?
 
-`~/.claude/settings.json` から `statusLine` ブロックを削除するか、`~/.claude/statusline.sh reset` を実行。
+`~/.claude/settings.json` から `statusLine` ブロックを削除するか、`~/.claude/status-line.sh reset` を実行。
 
 ## 🏷️ 推奨 GitHub topics
 

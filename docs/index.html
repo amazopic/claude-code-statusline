@@ -143,9 +143,9 @@
       "tool": [{ "@type": "HowToTool", "name": "git" }, { "@type": "HowToTool", "name": "bash" }, { "@type": "HowToTool", "name": "jq" }],
       "step": [
         { "@type": "HowToStep", "name": "Clone", "text": "git clone https://github.com/amazopic/claude-code-statusline.git" },
-        { "@type": "HowToStep", "name": "Copy script", "text": "cp claude-code-statusline/statusline-bundle.sh ~/.claude/statusline.sh && chmod +x ~/.claude/statusline.sh" },
-        { "@type": "HowToStep", "name": "Pick a theme", "text": "~/.claude/statusline.sh use cyberpunk" },
-        { "@type": "HowToStep", "name": "Register in settings.json", "text": "Add { \"statusLine\": { \"type\": \"command\", \"command\": \"/Users/<you>/.claude/statusline.sh\" } } to ~/.claude/settings.json" },
+        { "@type": "HowToStep", "name": "Copy script", "text": "cp claude-code-statusline/statusline-bundle.sh ~/.claude/status-line.sh && chmod +x ~/.claude/status-line.sh" },
+        { "@type": "HowToStep", "name": "Pick a theme", "text": "~/.claude/status-line.sh use cyberpunk" },
+        { "@type": "HowToStep", "name": "Register in settings.json", "text": "Add { \"statusLine\": { \"type\": \"command\", \"command\": \"/Users/<you>/.claude/status-line.sh\" } } to ~/.claude/settings.json" },
         { "@type": "HowToStep", "name": "Restart", "text": "Restart Claude Code or run /config reload." }
       ]
     }
@@ -226,7 +226,7 @@
               <div class="hero-terminal-wrap">
                 <span class="hero-terminal-wrap__label" data-i18n="hero.terminal.label">Live preview · cycling through 10 themes</span>
                 <div class="terminal" aria-hidden="true">
-                  <div class="terminal__line terminal__line--cmd"><span class="text">~/.claude/statusline.sh use cyberpunk</span><span class="terminal__cursor"></span></div>
+                  <div class="terminal__line terminal__line--cmd"><span class="text">~/.claude/status-line.sh use cyberpunk</span><span class="terminal__cursor"></span></div>
                   <div class="terminal__statusline mono">Loading…</div>
                 </div>
               </div>
@@ -289,7 +289,7 @@
               </span>
               <button class="copy-btn copy-btn--vibe" data-copy="#vibe-prompt" data-i18n="ui.copy">Copy</button>
             </div>
-            <pre class="vibe-prompt mono" id="vibe-prompt" data-i18n="vibe.prompt">Install claude-code-statusline by amazopic for me. Clone the repo at github.com/amazopic/claude-code-statusline, back up my current ~/.claude/statusline.sh if any exists, copy statusline-bundle.sh to ~/.claude/statusline.sh and make it executable, also copy commands/statusline.md to ~/.claude/commands/. Then show me what to add to ~/.claude/settings.json so Claude Code wires up the new statusLine. Finally run ~/.claude/statusline.sh use developer to test the developer theme and tell me to restart Claude Code.</pre>
+            <pre class="vibe-prompt mono" id="vibe-prompt" data-i18n="vibe.prompt">Install claude-code-statusline by amazopic for me. Clone the repo at github.com/amazopic/claude-code-statusline, back up my current ~/.claude/status-line.sh if any exists, copy statusline-bundle.sh to ~/.claude/status-line.sh and make it executable, also copy commands/statusline.md to ~/.claude/commands/. Then show me what to add to ~/.claude/settings.json so Claude Code wires up the new statusLine. Finally run ~/.claude/status-line.sh use developer to test the developer theme and tell me to restart Claude Code.</pre>
             <p class="vibe-panel__note" data-i18n-html="vibe.note">↳ Just say <code class="mono">y</code> (yes) at every permission prompt — Claude will run each command one by one.</p>
           </div>
         </div>
@@ -539,7 +539,7 @@
               <div class="install-step">
                 <div class="install-step__num">01</div>
                 <h3 class="install-step__title" data-i18n-html="install.step1.title">Clone &amp; copy</h3>
-                <p class="install-step__desc" data-i18n-html="install.step1.desc">Drop the bundle into <code class="mono">~/.claude/statusline.sh</code>.</p>
+                <p class="install-step__desc" data-i18n-html="install.step1.desc">Drop the bundle into <code class="mono">~/.claude/status-line.sh</code>.</p>
               </div>
               <div class="install-step">
                 <div class="install-step__num">02</div>
@@ -570,7 +570,7 @@
                   </div>
                   <div class="install__claude-line">
                     <span class="who you">you</span>
-                    <span class="msg" id="claude-prompt-1" data-i18n="install.claude.prompt1">Run: git clone https://github.com/amazopic/claude-code-statusline.git claude-code-statusline / cp claude-code-statusline/statusline-bundle.sh ~/.claude/statusline.sh — back up the existing ~/.claude/statusline.sh if there is one.</span>
+                    <span class="msg" id="claude-prompt-1" data-i18n="install.claude.prompt1">Run: git clone https://github.com/amazopic/claude-code-statusline.git claude-code-statusline / cp claude-code-statusline/statusline-bundle.sh ~/.claude/status-line.sh — back up the existing ~/.claude/status-line.sh if there is one.</span>
                   </div>
                 </div>
 
@@ -592,15 +592,15 @@
                 <button class="copy-btn" data-copy="#install-cmd-1" data-i18n="ui.copy">Copy</button>
                 <pre class="recipe__code mono" id="install-cmd-1"><span class="cmt"># 1 — clone &amp; copy</span>
 git clone https://github.com/amazopic/claude-code-statusline.git
-cp claude-code-statusline/statusline-bundle.sh ~/.claude/statusline.sh
-chmod +x ~/.claude/statusline.sh
+cp claude-code-statusline/statusline-bundle.sh ~/.claude/status-line.sh
+chmod +x ~/.claude/status-line.sh
 
 <span class="cmt"># 2 — pick a theme</span>
-~/.claude/statusline.sh use cyberpunk
+~/.claude/status-line.sh use cyberpunk
 
 <span class="cmt"># 3 — register in ~/.claude/settings.json</span>
 <span class="cmt"># { "statusLine": { "type": "command",</span>
-<span class="cmt">#   "command": "/Users/&lt;you&gt;/.claude/statusline.sh" } }</span>
+<span class="cmt">#   "command": "/Users/&lt;you&gt;/.claude/status-line.sh" } }</span>
 
 <span class="cmt"># 4 — restart Claude Code (or /config reload)</span></pre>
               </div>

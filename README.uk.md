@@ -48,7 +48,7 @@ Opus 4.7 (1M) │ 🚀 12% █▌░░░░░░░░ 121.4K/1000K │ 0.42$
 Навіщо самому, коли є Claude Code? Встав один промпт у сесію Claude Code — Claude зробить усе покроково і запитає перед кожною командою.
 
 ```text
-Встанови claude-code-statusline від amazopic. Спочатку прочитай ~/.claude/settings.json — якщо там statusLine.command вказує на існуючий файл (наприклад ~/.claude/status-line.sh або інший шлях), зроби резервну копію того файлу додавши .bak (перезапиши існуючий .bak). Також якщо ~/.claude/statusline.sh вже є — забекап його так само. Потім склонуй github.com/amazopic/claude-code-statusline, скопіюй statusline-bundle.sh у ~/.claude/statusline.sh і зроби виконуваним, також скопіюй commands/statusline.md у ~/.claude/commands/. Онови ~/.claude/settings.json щоб statusLine = { type: "command", command: "<абсолютний шлях до ~/.claude/statusline.sh>" }. Наприкінці запусти ~/.claude/statusline.sh use developer для перевірки теми developer і попроси перезапустити Claude Code.
+Встанови claude-code-statusline від amazopic. Спочатку прочитай ~/.claude/settings.json — якщо там statusLine.command вказує на існуючий файл (наприклад ~/.claude/status-line.sh або інший шлях), зроби резервну копію того файлу додавши .bak (перезапиши існуючий .bak). Також якщо ~/.claude/status-line.sh вже є — забекап його так само. Потім склонуй github.com/amazopic/claude-code-statusline, скопіюй statusline-bundle.sh у ~/.claude/status-line.sh і зроби виконуваним, також скопіюй commands/statusline.md у ~/.claude/commands/. Онови ~/.claude/settings.json щоб statusLine = { type: "command", command: "<абсолютний шлях до ~/.claude/status-line.sh>" }. Наприкінці запусти ~/.claude/status-line.sh use developer для перевірки теми developer і попроси перезапустити Claude Code.
 ```
 
 > Просто кажи `y` (так) на кожен запит дозволу. Готово.
@@ -58,8 +58,8 @@ Opus 4.7 (1M) │ 🚀 12% █▌░░░░░░░░ 121.4K/1000K │ 0.42$
 
 ```bash
 git clone https://github.com/amazopic/claude-code-statusline.git
-cp REPO/statusline.sh ~/.claude/statusline.sh
-chmod +x ~/.claude/statusline.sh
+cp REPO/statusline.sh ~/.claude/status-line.sh
+chmod +x ~/.claude/status-line.sh
 ```
 
 Потім додайте до `~/.claude/settings.json`:
@@ -68,7 +68,7 @@ chmod +x ~/.claude/statusline.sh
 {
   "statusLine": {
     "type": "command",
-    "command": "/Users/<ви>/.claude/statusline.sh"
+    "command": "/Users/<ви>/.claude/status-line.sh"
   }
 }
 ```
@@ -80,17 +80,17 @@ chmod +x ~/.claude/statusline.sh
 Хочете, щоб Claude Code установив усе сам та безпечно? Скопіюйте цей промпт:
 
 > «Установи статусний рядок із цього репозиторію як мій активний:
-> 1. Якщо файл `~/.claude/statusline.sh` вже існує — зроби резервну
->    копію в `~/.claude/statusline.sh.bak.<YYYYMMDD-HHMMSS>` (якщо така
+> 1. Якщо файл `~/.claude/status-line.sh` вже існує — зроби резервну
+>    копію в `~/.claude/status-line.sh.bak.<YYYYMMDD-HHMMSS>` (якщо така
 >    копія вже існує — використовуй вільний суфікс `-N`).
-> 2. Скопіюй `statusline.sh` із репозиторію в `~/.claude/statusline.sh`
+> 2. Скопіюй `statusline.sh` із репозиторію в `~/.claude/status-line.sh`
 >    і зроби `chmod +x`.
 > 3. Прочитай `~/.claude/settings.json`. Якщо ключа `statusLine` немає —
 >    додай блок з абсолютним шляхом до скрипта. Якщо `statusLine` уже
 >    вказує на інший файл — спочатку зроби резервну копію самого
 >    `settings.json` у `.bak.<timestamp>`.
 > 4. Зроби smoke-тест:
->    `echo '{\"model\":{\"display_name\":\"Test\"},\"transcript_path\":\"\"}' | bash ~/.claude/statusline.sh`
+>    `echo '{\"model\":{\"display_name\":\"Test\"},\"transcript_path\":\"\"}' | bash ~/.claude/status-line.sh`
 > 5. Скажи мені перезапустити Claude Code та повідом, які копії створив.»
 
 ### Вимоги
@@ -225,17 +225,17 @@ PR дуже вітаються! Особливо:
 Не хочете працювати з 40+ файлами? Візьміть **один пакетний скрипт** `statusline-bundle.sh` — він містить усі теми, всі блоки та CLI-конфігуратор в одному файлі.
 
 ```bash
-cp statusline-bundle.sh ~/.claude/statusline.sh
-chmod +x ~/.claude/statusline.sh
+cp statusline-bundle.sh ~/.claude/status-line.sh
+chmod +x ~/.claude/status-line.sh
 
-~/.claude/statusline.sh use cyberpunk            # switch theme
-~/.claude/statusline.sh use cyberpunk-compact    # compact variant
-~/.claude/statusline.sh custom model context-bar git cost
-~/.claude/statusline.sh list                     # list themes
-~/.claude/statusline.sh list blocks              # list blocks
-~/.claude/statusline.sh preview anime            # preview without saving
-~/.claude/statusline.sh show                     # show current
-~/.claude/statusline.sh reset                    # reset to default
+~/.claude/status-line.sh use cyberpunk            # switch theme
+~/.claude/status-line.sh use cyberpunk-compact    # compact variant
+~/.claude/status-line.sh custom model context-bar git cost
+~/.claude/status-line.sh list                     # list themes
+~/.claude/status-line.sh list blocks              # list blocks
+~/.claude/status-line.sh preview anime            # preview without saving
+~/.claude/status-line.sh show                     # show current
+~/.claude/status-line.sh reset                    # reset to default
 ```
 
 Конфіг зберігається в `~/.claude/statusline.conf` і переживає рестарти. Той самий файл працює і як **рендерер** (коли Claude Code передає йому JSON через stdin), і як **конфігуратор** (коли ви викликаєте його з аргументами).
@@ -262,7 +262,7 @@ cp commands/statusline.md ~/.claude/commands/statusline.md
 ### Shell-аліас (опціонально)
 
 ```bash
-alias statusline='~/.claude/statusline.sh'
+alias statusline='~/.claude/status-line.sh'
 ```
 
 Тоді `statusline cyberpunk` працюватиме з будь-якого терміналу.
@@ -275,16 +275,16 @@ alias statusline='~/.claude/statusline.sh'
 
 ```bash
 git clone https://github.com/amazopic/claude-code-statusline.git claude-code-statusline
-cp claude-code-statusline/statusline-bundle.sh ~/.claude/statusline.sh
-chmod +x ~/.claude/statusline.sh
-~/.claude/statusline.sh use cyberpunk          # або: anime, hacker, minimal, …
+cp claude-code-statusline/statusline-bundle.sh ~/.claude/status-line.sh
+chmod +x ~/.claude/status-line.sh
+~/.claude/status-line.sh use cyberpunk          # або: anime, hacker, minimal, …
 ```
 
 Потім додайте до `~/.claude/settings.json`:
 
 ```json
 { "statusLine": { "type": "command",
-  "command": "/Users/<ви>/.claude/statusline.sh" } }
+  "command": "/Users/<ви>/.claude/status-line.sh" } }
 ```
 
 Перезапустіть Claude Code (або `/config` reload). Готово.
@@ -328,7 +328,7 @@ Bash-заміна стандартного статусного рядка в [C
 
 ### Як встановити?
 
-Скопіювати `statusline-bundle.sh` у `~/.claude/statusline.sh`, зробити `chmod +x`, прописати шлях у `~/.claude/settings.json` → `statusLine.command`. Повні інструкції в розділах [Швидкий старт](#-швидкий-старт) і Установка.
+Скопіювати `statusline-bundle.sh` у `~/.claude/status-line.sh`, зробити `chmod +x`, прописати шлях у `~/.claude/settings.json` → `statusLine.command`. Повні інструкції в розділах [Швидкий старт](#-швидкий-старт) і Установка.
 
 ### Чи підтримує 1 M контекст?
 
@@ -368,7 +368,7 @@ Bash-заміна стандартного статусного рядка в [C
 
 ### Як повернути стандартний статусний рядок Claude Code?
 
-Видалити блок `statusLine` з `~/.claude/settings.json` або виконати `~/.claude/statusline.sh reset`.
+Видалити блок `statusLine` з `~/.claude/settings.json` або виконати `~/.claude/status-line.sh reset`.
 
 ## 🏷️ Рекомендовані GitHub topics
 

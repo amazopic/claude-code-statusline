@@ -48,7 +48,7 @@ Claude Code 自带的状态栏过于简陋。这个替换方案把它升级为�
 有 Claude Code，何必碰终端？把这一条提示粘到 Claude Code 会话里 — Claude 全程包办，每条命令前都会问你。
 
 ```text
-帮我安装 amazopic 的 claude-code-statusline。先读 ~/.claude/settings.json — 如果其中有 statusLine.command 指向某个已存在的文件（如 ~/.claude/status-line.sh 或其他路径），把那个文件加 .bak 后缀做备份（覆盖已有的 .bak）。如果 ~/.claude/statusline.sh 也已存在，同样备份。然后克隆 github.com/amazopic/claude-code-statusline，把 statusline-bundle.sh 复制到 ~/.claude/statusline.sh 并设为可执行，再把 commands/statusline.md 复制到 ~/.claude/commands/。更新 ~/.claude/settings.json 使 statusLine = { type: "command", command: "<~/.claude/statusline.sh 的绝对路径>" }。最后运行 ~/.claude/statusline.sh use developer 测试 developer 主题，并提醒我重启 Claude Code。
+帮我安装 amazopic 的 claude-code-statusline。先读 ~/.claude/settings.json — 如果其中有 statusLine.command 指向某个已存在的文件（如 ~/.claude/status-line.sh 或其他路径），把那个文件加 .bak 后缀做备份（覆盖已有的 .bak）。如果 ~/.claude/status-line.sh 也已存在，同样备份。然后克隆 github.com/amazopic/claude-code-statusline，把 statusline-bundle.sh 复制到 ~/.claude/status-line.sh 并设为可执行，再把 commands/statusline.md 复制到 ~/.claude/commands/。更新 ~/.claude/settings.json 使 statusLine = { type: "command", command: "<~/.claude/status-line.sh 的绝对路径>" }。最后运行 ~/.claude/status-line.sh use developer 测试 developer 主题，并提醒我重启 Claude Code。
 ```
 
 > 每个权限提示都回 `y`（yes）即可。搞定。
@@ -58,8 +58,8 @@ Claude Code 自带的状态栏过于简陋。这个替换方案把它升级为�
 
 ```bash
 git clone https://github.com/amazopic/claude-code-statusline.git
-cp REPO/statusline.sh ~/.claude/statusline.sh
-chmod +x ~/.claude/statusline.sh
+cp REPO/statusline.sh ~/.claude/status-line.sh
+chmod +x ~/.claude/status-line.sh
 ```
 
 然后在 `~/.claude/settings.json` 中添加:
@@ -68,7 +68,7 @@ chmod +x ~/.claude/statusline.sh
 {
   "statusLine": {
     "type": "command",
-    "command": "/Users/<你>/.claude/statusline.sh"
+    "command": "/Users/<你>/.claude/status-line.sh"
   }
 }
 ```
@@ -80,16 +80,16 @@ chmod +x ~/.claude/statusline.sh
 想让 Claude Code 帮你安全地安装?粘贴这个 prompt:
 
 > "把本仓库中的状态栏安装为我的 Claude Code 状态栏:
-> 1. 如果 `~/.claude/statusline.sh` 已存在,把它备份到
->    `~/.claude/statusline.sh.bak.<YYYYMMDD-HHMMSS>`(若该名称的备份
+> 1. 如果 `~/.claude/status-line.sh` 已存在,把它备份到
+>    `~/.claude/status-line.sh.bak.<YYYYMMDD-HHMMSS>`(若该名称的备份
 >    已存在,使用空闲的 `-N` 后缀)。
-> 2. 把仓库中的 `statusline.sh` 复制到 `~/.claude/statusline.sh` 并
+> 2. 把仓库中的 `statusline.sh` 复制到 `~/.claude/status-line.sh` 并
 >    `chmod +x`。
 > 3. 读取 `~/.claude/settings.json`。如果没有 `statusLine` 键,添加一个
 >    指向脚本绝对路径的 `statusLine` 块。如果 `statusLine` 已指向其他
 >    地方,先把 `settings.json` 备份为 `.bak.<timestamp>`。
 > 4. 冒烟测试:
->    `echo '{\"model\":{\"display_name\":\"Test\"},\"transcript_path\":\"\"}' | bash ~/.claude/statusline.sh`
+>    `echo '{\"model\":{\"display_name\":\"Test\"},\"transcript_path\":\"\"}' | bash ~/.claude/status-line.sh`
 > 5. 提醒我重启 Claude Code,并报告创建的备份文件。"
 
 ### 系统要求
@@ -221,17 +221,17 @@ esac
 不想管理 40+ 个文件?使用**单一打包脚本** `statusline-bundle.sh` — 它在一个文件中包含所有主题、所有块和 CLI 配置器。
 
 ```bash
-cp statusline-bundle.sh ~/.claude/statusline.sh
-chmod +x ~/.claude/statusline.sh
+cp statusline-bundle.sh ~/.claude/status-line.sh
+chmod +x ~/.claude/status-line.sh
 
-~/.claude/statusline.sh use cyberpunk            # switch theme
-~/.claude/statusline.sh use cyberpunk-compact    # compact variant
-~/.claude/statusline.sh custom model context-bar git cost
-~/.claude/statusline.sh list                     # list themes
-~/.claude/statusline.sh list blocks              # list blocks
-~/.claude/statusline.sh preview anime            # preview without saving
-~/.claude/statusline.sh show                     # show current
-~/.claude/statusline.sh reset                    # reset to default
+~/.claude/status-line.sh use cyberpunk            # switch theme
+~/.claude/status-line.sh use cyberpunk-compact    # compact variant
+~/.claude/status-line.sh custom model context-bar git cost
+~/.claude/status-line.sh list                     # list themes
+~/.claude/status-line.sh list blocks              # list blocks
+~/.claude/status-line.sh preview anime            # preview without saving
+~/.claude/status-line.sh show                     # show current
+~/.claude/status-line.sh reset                    # reset to default
 ```
 
 配置保存在 `~/.claude/statusline.conf` 中,跨重启持久化。同一个文件既是**渲染器**(当 Claude Code 通过 stdin 传入 JSON)又是**配置器**(当你带参数调用它)。
@@ -258,7 +258,7 @@ cp commands/statusline.md ~/.claude/commands/statusline.md
 ### Shell 别名(可选)
 
 ```bash
-alias statusline='~/.claude/statusline.sh'
+alias statusline='~/.claude/status-line.sh'
 ```
 
 然后 `statusline cyberpunk` 可以在任何终端中使用。
@@ -271,16 +271,16 @@ alias statusline='~/.claude/statusline.sh'
 
 ```bash
 git clone https://github.com/amazopic/claude-code-statusline.git claude-code-statusline
-cp claude-code-statusline/statusline-bundle.sh ~/.claude/statusline.sh
-chmod +x ~/.claude/statusline.sh
-~/.claude/statusline.sh use cyberpunk          # 或: anime, hacker, minimal, …
+cp claude-code-statusline/statusline-bundle.sh ~/.claude/status-line.sh
+chmod +x ~/.claude/status-line.sh
+~/.claude/status-line.sh use cyberpunk          # 或: anime, hacker, minimal, …
 ```
 
 然后添加到 `~/.claude/settings.json`:
 
 ```json
 { "statusLine": { "type": "command",
-  "command": "/Users/<你>/.claude/statusline.sh" } }
+  "command": "/Users/<你>/.claude/status-line.sh" } }
 ```
 
 重启 Claude Code(或 `/config` reload)。完成。
@@ -323,7 +323,7 @@ chmod +x ~/.claude/statusline.sh
 
 ### 如何安装?
 
-把 `statusline-bundle.sh` 复制到 `~/.claude/statusline.sh`,执行 `chmod +x`,把 `~/.claude/settings.json` → `statusLine.command` 指向该路径。
+把 `statusline-bundle.sh` 复制到 `~/.claude/status-line.sh`,执行 `chmod +x`,把 `~/.claude/settings.json` → `statusLine.command` 指向该路径。
 
 ### 支持 1 M 上下文模型吗?
 
@@ -363,7 +363,7 @@ chmod +x ~/.claude/statusline.sh
 
 ### 如何恢复 Claude Code 默认状态栏?
 
-从 `~/.claude/settings.json` 中删除 `statusLine` 块,或运行 `~/.claude/statusline.sh reset`。
+从 `~/.claude/settings.json` 中删除 `statusLine` 块,或运行 `~/.claude/status-line.sh reset`。
 
 ## 🏷️ 推荐的 GitHub topics
 

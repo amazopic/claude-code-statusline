@@ -11,16 +11,16 @@
 #
 #  ─────────────────────────  INSTALL  ─────────────────────────
 #
-#  1. Copy to ~/.claude/statusline.sh:
-#        cp statusline-bundle.sh ~/.claude/statusline.sh
-#        chmod +x ~/.claude/statusline.sh
+#  1. Copy to ~/.claude/status-line.sh:
+#        cp statusline-bundle.sh ~/.claude/status-line.sh
+#        chmod +x ~/.claude/status-line.sh
 #
 #  2. Register in ~/.claude/settings.json:
 #        { "statusLine": { "type": "command",
-#          "command": "/Users/<you>/.claude/statusline.sh" } }
+#          "command": "/Users/<you>/.claude/status-line.sh" } }
 #
 #  3. Optional shell alias (so 'statusline' works anywhere):
-#        alias statusline='~/.claude/statusline.sh'
+#        alias statusline='~/.claude/status-line.sh'
 #
 #  ─────────────────────────  USAGE  ───────────────────────────
 #
