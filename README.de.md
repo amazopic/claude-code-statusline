@@ -41,6 +41,17 @@ Alles in **einer Zeile**, farbcodiert, mit klugen Icons, die Dringlichkeit signa
 
 ## 🚀 Installation
 
+### ⚡ oder vibe-chill Methode · lass Claude machen
+
+Warum noch Terminal, wenn du Claude Code hast? Fügen Sie diesen einen Prompt in Ihre Claude-Code-Sitzung ein — Claude erledigt jeden Schritt und fragt vor jedem Befehl.
+
+```text
+Installiere claude-code-statusline von amazopic für mich. Klone github.com/amazopic/claude-code-statusline, sichere mein aktuelles ~/.claude/statusline.sh falls vorhanden, kopiere statusline-bundle.sh nach ~/.claude/statusline.sh und mache es ausführbar, kopiere auch commands/statusline.md nach ~/.claude/commands/. Zeige mir dann, was ich zu ~/.claude/settings.json hinzufügen muss, damit Claude Code die neue statusLine erkennt. Führe schließlich ~/.claude/statusline.sh use developer aus, um das developer-Theme zu testen, und sag mir, dass ich Claude Code neu starten soll.
+```
+
+> Sag einfach `y` (ja) bei jeder Berechtigungsanfrage. Fertig.
+
+
 ### Manuell (3 Schritte)
 
 ```bash

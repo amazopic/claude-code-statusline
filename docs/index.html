@@ -242,6 +242,35 @@
       </div>
 
       <!-- ═══════════════════════════════════════════════════════════════
+           01b · VIBE-CHILL INSTALL — let Claude do everything
+           ═══════════════════════════════════════════════════════════════ -->
+      <section class="s-vibe" aria-labelledby="vibe-title" id="vibe">
+        <div class="wrap vibe-grid">
+          <div class="vibe-text">
+            <span class="vibe-eyebrow">
+              <span class="vibe-eyebrow__bolt" aria-hidden="true">⚡</span>
+              <span data-i18n="vibe.eyebrow">Vibe-chill install</span>
+            </span>
+            <h2 id="vibe-title" class="vibe-title" data-i18n-html="vibe.title">Why touch a terminal<br/>when you have <em>Claude Code</em>?</h2>
+            <p class="vibe-intro" data-i18n="vibe.intro">Paste this one prompt into your Claude Code session. Say "y" when it asks for permission. Done.</p>
+            <p class="vibe-bonus" data-i18n-html="vibe.bonus">No git, no jq install dance, no <code class="mono">settings.json</code> hunt — Claude handles every step and asks before each command.</p>
+          </div>
+
+          <div class="vibe-panel">
+            <div class="vibe-panel__head">
+              <span class="vibe-panel__label">
+                <span class="who you">you</span>
+                <span class="vibe-panel__hint" data-i18n="vibe.panel.label">paste in Claude Code:</span>
+              </span>
+              <button class="copy-btn copy-btn--vibe" data-copy="#vibe-prompt" data-i18n="ui.copy">Copy</button>
+            </div>
+            <pre class="vibe-prompt mono" id="vibe-prompt" data-i18n="vibe.prompt">Install claude-code-statusline by amazopic for me. Clone the repo at github.com/amazopic/claude-code-statusline, back up my current ~/.claude/statusline.sh if any exists, copy statusline-bundle.sh to ~/.claude/statusline.sh and make it executable, also copy commands/statusline.md to ~/.claude/commands/. Then show me what to add to ~/.claude/settings.json so Claude Code wires up the new statusLine. Finally run ~/.claude/statusline.sh use developer to test the developer theme and tell me to restart Claude Code.</pre>
+            <p class="vibe-panel__note" data-i18n-html="vibe.note">↳ Just say <code class="mono">y</code> (yes) at every permission prompt — Claude will run each command one by one.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════════════════════════════════════════════════════════════
            02 · EDITOR'S NOTE
            ═══════════════════════════════════════════════════════════════ -->
       <section class="s-note" aria-labelledby="note-title">

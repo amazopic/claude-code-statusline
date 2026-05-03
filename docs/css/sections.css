@@ -465,6 +465,168 @@
   transition: opacity var(--dur-base) var(--easing-out);
 }
 
+/* ─── 01b · VIBE-CHILL install (between hero and editor's note) ─── */
+.s-vibe {
+  background: var(--ink);
+  color: var(--paper);
+  padding-block: clamp(3rem, 6vw, 5rem);
+  position: relative;
+  overflow: hidden;
+}
+.s-vibe::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 80% 20%, rgba(0,255,107,0.10), transparent 50%);
+  pointer-events: none;
+}
+.vibe-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(2rem, 4vw, 3.5rem);
+  position: relative;
+  z-index: 1;
+}
+@media (min-width: 1000px) {
+  .vibe-grid { grid-template-columns: 5fr 7fr; align-items: center; }
+}
+.vibe-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  letter-spacing: var(--tr-wider);
+  text-transform: uppercase;
+  color: var(--phosphor);
+  padding: 0.5rem 0.85rem;
+  background: rgba(0,255,107,0.08);
+  border-left: 3px solid var(--phosphor);
+  margin-bottom: 1.25rem;
+}
+.vibe-eyebrow__bolt {
+  font-size: 1.05em;
+  filter: drop-shadow(0 0 6px rgba(0,255,107,0.7));
+}
+.vibe-title {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 200;
+  font-size: clamp(2rem, 4.5vw, 3.5rem);
+  line-height: 1;
+  letter-spacing: -0.035em;
+  color: var(--paper);
+  margin-bottom: 1.25rem;
+}
+.vibe-title em {
+  color: var(--phosphor);
+  font-style: italic;
+  font-weight: 300;
+}
+.vibe-intro {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 300;
+  font-size: var(--fs-md);
+  line-height: 1.45;
+  color: rgba(245,242,234,0.9);
+  margin-bottom: 0.85rem;
+  max-width: 32rem;
+}
+.vibe-bonus {
+  font-family: var(--font-body);
+  font-size: var(--fs-sm);
+  line-height: 1.55;
+  color: rgba(245,242,234,0.6);
+  max-width: 32rem;
+}
+.vibe-bonus code {
+  font-family: var(--font-mono);
+  background: rgba(245,242,234,0.10);
+  color: var(--phosphor);
+  padding: 0.1em 0.4em;
+}
+
+/* The prompt panel */
+.vibe-panel {
+  background: var(--paper);
+  color: var(--ink);
+  padding: 1.5rem;
+  border-radius: 4px;
+  box-shadow: 12px 12px 0 var(--phosphor);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  position: relative;
+}
+.vibe-panel__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+.vibe-panel__label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.vibe-panel__label .who {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: var(--tr-wide);
+  text-transform: uppercase;
+  padding: 0.18rem 0.45rem;
+  background: var(--ink);
+  color: var(--paper);
+}
+.vibe-panel__hint {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  letter-spacing: var(--tr-wide);
+  text-transform: uppercase;
+  color: var(--sub);
+}
+.copy-btn--vibe {
+  position: static;
+  background: var(--ink);
+  color: var(--paper);
+  border-color: var(--ink);
+}
+.copy-btn--vibe:hover {
+  background: var(--phosphor);
+  color: var(--ink);
+  border-color: var(--phosphor);
+}
+.vibe-prompt {
+  background: transparent;
+  color: var(--ink);
+  font-family: var(--font-mono);
+  font-size: var(--fs-sm);
+  line-height: 1.55;
+  white-space: pre-wrap;
+  word-break: break-word;
+  border: 1px dashed var(--rule);
+  padding: 1rem 1.15rem;
+  margin: 0;
+  max-height: 20rem;
+  overflow-y: auto;
+}
+.vibe-panel__note {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 300;
+  font-size: var(--fs-sm);
+  color: var(--sub);
+  line-height: 1.45;
+}
+.vibe-panel__note code {
+  font-style: normal;
+  background: var(--paper-3);
+  padding: 0.1em 0.4em;
+  color: var(--phosphor-d);
+}
+
 /* ─── 02 · EDITOR'S NOTE ──────────────────────────────────────── */
 .s-note {
   background: var(--paper);

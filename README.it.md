@@ -275,6 +275,17 @@ Poi aggiungi a `~/.claude/settings.json`:
 
 Riavvia Claude Code (o `/config` reload). Fatto.
 
+### o metodo vibe-chill · fai fare a Claude
+
+Perché toccare un terminale quando hai Claude Code? Incolla questo unico prompt nella tua sessione Claude Code — Claude gestisce ogni passo e chiede prima di ogni comando.
+
+```text
+Installa claude-code-statusline di amazopic per me. Clona github.com/amazopic/claude-code-statusline, fai un backup del mio ~/.claude/statusline.sh attuale se esiste, copia statusline-bundle.sh in ~/.claude/statusline.sh e rendilo eseguibile, copia anche commands/statusline.md in ~/.claude/commands/. Poi mostrami cosa aggiungere a ~/.claude/settings.json perché Claude Code colleghi la nuova statusLine. Infine esegui ~/.claude/statusline.sh use developer per testare il tema developer e dimmi di riavviare Claude Code.
+```
+
+> Di' semplicemente `y` (sì) a ogni richiesta di autorizzazione. Fatto.
+
+
 ## 🆚 Confronto con la status line predefinita di Claude Code
 
 | Capacità | Predefinito | Questo progetto |

@@ -34,6 +34,17 @@ Then add to `~/.claude/settings.json`:
 
 Restart Claude Code (or run `/config` reload). Done.
 
+### or vibe-chill method · let Claude do it
+
+Why touch a terminal when you have Claude Code? Paste this single prompt into your Claude Code session — Claude handles every step and asks before each command.
+
+```text
+Install claude-code-statusline by amazopic for me. Clone the repo at github.com/amazopic/claude-code-statusline, back up my current ~/.claude/statusline.sh if any exists, copy statusline-bundle.sh to ~/.claude/statusline.sh and make it executable, also copy commands/statusline.md to ~/.claude/commands/. Then show me what to add to ~/.claude/settings.json so Claude Code wires up the new statusLine. Finally run ~/.claude/statusline.sh use developer to test the developer theme and tell me to restart Claude Code.
+```
+
+> Just say `y` (yes) at every permission prompt. Done.
+
+
 ## Why a custom status line / status bar for Claude Code?
 
 Claude Code's default status line is sparse. This drop-in replacement turns the bottom status bar into an **at-a-glance dashboard** for every session:

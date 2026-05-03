@@ -275,6 +275,17 @@ chmod +x ~/.claude/statusline.sh
 
 Claude Code を再起動(または `/config` reload)。完了。
 
+### または vibe-chill 方式 · Claude に任せる
+
+Claude Code があるのに、なぜターミナルを触る？この 1 つのプロンプトを Claude Code セッションに貼り付け — Claude が全ステップを処理し、各コマンド前に確認します。
+
+```text
+amazopic の claude-code-statusline をインストールして。github.com/amazopic/claude-code-statusline をクローンし、既存の ~/.claude/statusline.sh があればバックアップ、statusline-bundle.sh を ~/.claude/statusline.sh にコピーして実行可能にし、commands/statusline.md も ~/.claude/commands/ にコピー。次に ~/.claude/settings.json に何を追加すれば Claude Code が新しい statusLine を認識するか教えて。最後に ~/.claude/statusline.sh use developer を実行して developer テーマをテストし、Claude Code を再起動するよう伝えて。
+```
+
+> 許可プロンプトには `y`（yes）と答えるだけ。完了。
+
+
 ## 🆚 Claude Code デフォルトのステータスラインとの比較
 
 | 機能 | デフォルト | このプロジェクト |

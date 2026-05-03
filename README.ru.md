@@ -41,6 +41,17 @@ Opus 4.7 (1M) │ 🚀 12% █▌░░░░░░░░ 121.4K/1000K │ 0.42$
 
 ## 🚀 Установка
 
+### ⚡ или vibe-chill метод · пусть Claude сделает сам
+
+Зачем самому, когда есть Claude Code? Вставь один промпт в сессию Claude Code — Claude сделает всё пошагово и спросит перед каждой командой.
+
+```text
+Установи claude-code-statusline от amazopic. Склонируй github.com/amazopic/claude-code-statusline, забекапь текущий ~/.claude/statusline.sh если он есть, скопируй statusline-bundle.sh в ~/.claude/statusline.sh и сделай исполняемым, также скопируй commands/statusline.md в ~/.claude/commands/. Затем покажи что добавить в ~/.claude/settings.json чтобы Claude Code подхватил новый statusLine. В конце запусти ~/.claude/statusline.sh use developer для проверки темы developer и попроси меня перезапустить Claude Code.
+```
+
+> Просто говори `y` (yes) на каждый запрос разрешения. Готово.
+
+
 ### Вручную (3 шага)
 
 ```bash

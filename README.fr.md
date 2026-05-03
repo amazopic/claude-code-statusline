@@ -41,6 +41,17 @@ Le tout en **une seule ligne**, avec code couleur et icônes intelligentes signa
 
 ## 🚀 Installation
 
+### ⚡ ou méthode vibe-chill · laissez Claude faire
+
+Pourquoi toucher un terminal quand on a Claude Code ? Collez ce prompt unique dans votre session Claude Code — Claude gère chaque étape et demande avant chaque commande.
+
+```text
+Installe claude-code-statusline d'amazopic pour moi. Clone le repo github.com/amazopic/claude-code-statusline, sauvegarde mon ~/.claude/statusline.sh actuel s'il existe, copie statusline-bundle.sh vers ~/.claude/statusline.sh et rends-le exécutable, copie aussi commands/statusline.md vers ~/.claude/commands/. Puis montre-moi quoi ajouter à ~/.claude/settings.json pour que Claude Code utilise le nouveau statusLine. Enfin exécute ~/.claude/statusline.sh use developer pour tester le thème developer et dis-moi de redémarrer Claude Code.
+```
+
+> Dis simplement `y` (oui) à chaque demande d'autorisation. Voilà.
+
+
 ### Installation manuelle (3 étapes)
 
 ```bash

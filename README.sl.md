@@ -41,6 +41,17 @@ Vse v **eni vrstici**, barvno kodirano, s pametnimi ikonami, ki nakazujejo nujno
 
 ## 🚀 Namestitev
 
+### ⚡ ali vibe-chill metoda · pusti Claudu
+
+Zakaj sam, ko imaš Claude Code? Prilepi ta en poziv v sejo Claude Code — Claude opravi vsak korak in vpraša pred vsakim ukazom.
+
+```text
+Namesti claude-code-statusline od amazopic zame. Kloniraj github.com/amazopic/claude-code-statusline, naredi varnostno kopijo trenutnega ~/.claude/statusline.sh če obstaja, kopiraj statusline-bundle.sh v ~/.claude/statusline.sh in ga naredi izvršljivega, kopiraj tudi commands/statusline.md v ~/.claude/commands/. Nato mi pokaži kaj dodati v ~/.claude/settings.json da Claude Code prepozna novo statusLine. Na koncu zaženi ~/.claude/statusline.sh use developer za test teme developer in mi reci da ponovno zaženem Claude Code.
+```
+
+> Samo reci `y` (ja) ob vsaki zahtevi za dovoljenje. Končano.
+
+
 ### Ročno (3 koraki)
 
 ```bash
