@@ -728,13 +728,13 @@
   text-transform: uppercase;
   color: var(--sub);
 }
-.copy-btn--vibe {
+.copy-btn.copy-btn--vibe {
   position: static;
   background: var(--ink);
   color: var(--paper);
   border-color: var(--ink);
 }
-.copy-btn--vibe:hover {
+.copy-btn.copy-btn--vibe:hover {
   background: var(--phosphor);
   color: var(--ink);
   border-color: var(--phosphor);
