@@ -500,6 +500,39 @@
             </div>
 
             <div style="display:flex; flex-direction:column; gap:1.5rem;">
+
+              <!-- Easiest path: paste two prompts into Claude Code -->
+              <div class="install__code-wrap install__claude">
+                <span class="install__claude-label">
+                  <span class="install__claude-badge">★</span>
+                  <span data-i18n="install.claude.label">Or in Claude Code — easiest</span>
+                </span>
+                <p class="install__claude-intro" data-i18n="install.claude.intro">Have Claude Code open? Paste these two prompts and you're done — no terminal needed.</p>
+
+                <div class="install__claude-prompt">
+                  <div class="install__claude-head">
+                    <span class="install__claude-step">01</span>
+                    <button class="copy-btn copy-btn--inline" data-copy="#claude-prompt-1" data-i18n="ui.copy">Copy</button>
+                  </div>
+                  <div class="install__claude-line">
+                    <span class="who you">you</span>
+                    <span class="msg" id="claude-prompt-1" data-i18n="install.claude.prompt1">Run: git clone https://github.com/amazopic/claude-code-statusline.git claude-code-statusline / cp claude-code-statusline/statusline-bundle.sh ~/.claude/statusline.sh — back up the existing ~/.claude/statusline.sh if there is one.</span>
+                  </div>
+                </div>
+
+                <div class="install__claude-prompt">
+                  <div class="install__claude-head">
+                    <span class="install__claude-step">02</span>
+                    <span class="install__claude-then" data-i18n="install.claude.prompt2_label">Then test it:</span>
+                    <button class="copy-btn copy-btn--inline" data-copy="#claude-prompt-2" data-i18n="ui.copy">Copy</button>
+                  </div>
+                  <div class="install__claude-line">
+                    <span class="who you">you</span>
+                    <span class="msg msg--cmd" id="claude-prompt-2"><span class="slash">/statusline</span> developer</span>
+                  </div>
+                </div>
+              </div>
+
               <div class="install__code-wrap">
                 <span class="smcp" style="color:var(--sub); display:block; margin-bottom:0.5rem;" data-i18n="install.codelabel.main">macOS / Linux / WSL</span>
                 <button class="copy-btn" data-copy="#install-cmd-1" data-i18n="ui.copy">Copy</button>

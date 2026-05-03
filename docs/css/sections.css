@@ -1361,6 +1361,112 @@
 }
 .install__code-wrap { position: relative; }
 
+/* ─── "Or in Claude Code" install block ─── */
+.install__claude {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 1.5rem 1.5rem 1.75rem;
+  border-radius: 4px;
+  border-left: 4px solid var(--phosphor);
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  position: relative;
+}
+.install__claude-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  letter-spacing: var(--tr-wider);
+  text-transform: uppercase;
+  color: var(--phosphor);
+}
+.install__claude-badge {
+  font-size: 0.85em;
+  color: var(--phosphor);
+}
+.install__claude-intro {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 300;
+  font-size: var(--fs-md);
+  line-height: 1.4;
+  color: rgba(245,242,234,0.85);
+  max-width: 36rem;
+}
+.install__claude-prompt {
+  background: rgba(245,242,234,0.04);
+  border: 1px solid rgba(245,242,234,0.10);
+  padding: 0.85rem 1rem 1rem;
+  border-radius: 4px;
+  position: relative;
+}
+.install__claude-head {
+  display: flex;
+  align-items: baseline;
+  gap: 0.85rem;
+  margin-bottom: 0.6rem;
+}
+.install__claude-step {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 300;
+  font-size: var(--fs-md);
+  color: var(--phosphor);
+  line-height: 1;
+}
+.install__claude-then {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  letter-spacing: var(--tr-wide);
+  text-transform: uppercase;
+  color: var(--sub-2);
+  margin-right: auto;
+}
+.install__claude-prompt .copy-btn {
+  position: static;
+  margin-left: auto;
+}
+.install__claude-line {
+  display: grid;
+  grid-template-columns: 3.5rem 1fr;
+  gap: 0.75rem;
+  align-items: baseline;
+}
+.install__claude-line .who {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: var(--tr-wide);
+  text-transform: uppercase;
+  padding: 0.18rem 0.4rem;
+  text-align: center;
+  align-self: start;
+  background: rgba(245,242,234,0.12);
+  color: var(--paper);
+}
+.install__claude-line .msg {
+  font-family: var(--font-mono);
+  font-size: var(--fs-sm);
+  line-height: 1.55;
+  color: var(--paper);
+  word-break: break-word;
+}
+.install__claude-line .msg--cmd {
+  color: #FFD700;
+  font-size: var(--fs-md);
+}
+.install__claude-line .msg--cmd .slash {
+  color: var(--phosphor);
+  font-weight: 600;
+}
+.copy-btn--inline {
+  position: static;
+  font-size: var(--fs-xs);
+  padding: 0.3rem 0.6rem;
+}
+
 /* ─── 09 · FAQ ──────────────────────────────────────────────────── */
 .s-faq {
   padding-block: clamp(4rem, 10vw, 9rem);
