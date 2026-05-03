@@ -282,7 +282,7 @@ Riavvia Claude Code (o `/config` reload). Fatto.
 Perché toccare un terminale quando hai Claude Code? Incolla questo unico prompt nella tua sessione Claude Code — Claude gestisce ogni passo e chiede prima di ogni comando.
 
 ```text
-Installa claude-code-statusline di amazopic per me. Clona github.com/amazopic/claude-code-statusline, fai un backup del mio ~/.claude/statusline.sh attuale se esiste, copia statusline-bundle.sh in ~/.claude/statusline.sh e rendilo eseguibile, copia anche commands/statusline.md in ~/.claude/commands/. Poi mostrami cosa aggiungere a ~/.claude/settings.json perché Claude Code colleghi la nuova statusLine. Infine esegui ~/.claude/statusline.sh use developer per testare il tema developer e dimmi di riavviare Claude Code.
+Installa claude-code-statusline di amazopic per me. Prima leggi ~/.claude/settings.json — se c'è statusLine.command che punta a un file esistente (es. ~/.claude/status-line.sh o altro percorso), fai un backup di quel file aggiungendo .bak (sovrascrivi qualsiasi .bak esistente). Anche se ~/.claude/statusline.sh esiste già — fanne un backup nello stesso modo. Poi clona github.com/amazopic/claude-code-statusline, copia statusline-bundle.sh in ~/.claude/statusline.sh e rendilo eseguibile, copia anche commands/statusline.md in ~/.claude/commands/. Aggiorna ~/.claude/settings.json così che statusLine = { type: "command", command: "<percorso assoluto a ~/.claude/statusline.sh>" }. Infine esegui ~/.claude/statusline.sh use developer per testare il tema developer e dimmi di riavviare Claude Code.
 ```
 
 > Di' semplicemente `y` (sì) a ogni richiesta di autorizzazione. Fatto.

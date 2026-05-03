@@ -48,7 +48,7 @@ Le tout en **une seule ligne**, avec code couleur et icônes intelligentes signa
 Pourquoi toucher un terminal quand on a Claude Code ? Collez ce prompt unique dans votre session Claude Code — Claude gère chaque étape et demande avant chaque commande.
 
 ```text
-Installe claude-code-statusline d'amazopic pour moi. Clone le repo github.com/amazopic/claude-code-statusline, sauvegarde mon ~/.claude/statusline.sh actuel s'il existe, copie statusline-bundle.sh vers ~/.claude/statusline.sh et rends-le exécutable, copie aussi commands/statusline.md vers ~/.claude/commands/. Puis montre-moi quoi ajouter à ~/.claude/settings.json pour que Claude Code utilise le nouveau statusLine. Enfin exécute ~/.claude/statusline.sh use developer pour tester le thème developer et dis-moi de redémarrer Claude Code.
+Installe claude-code-statusline d'amazopic pour moi. D'abord lis ~/.claude/settings.json — s'il y a statusLine.command pointant vers un fichier existant (ex: ~/.claude/status-line.sh ou autre), sauvegarde ce fichier en ajoutant .bak (écrase tout .bak existant). Aussi si ~/.claude/statusline.sh existe déjà, sauvegarde-le pareillement. Puis clone github.com/amazopic/claude-code-statusline, copie statusline-bundle.sh vers ~/.claude/statusline.sh et rends-le exécutable, copie aussi commands/statusline.md vers ~/.claude/commands/. Mets à jour ~/.claude/settings.json pour que statusLine = { type: "command", command: "<chemin absolu vers ~/.claude/statusline.sh>" }. Enfin exécute ~/.claude/statusline.sh use developer pour tester le thème developer et dis-moi de redémarrer Claude Code.
 ```
 
 > Dis simplement `y` (oui) à chaque demande d'autorisation. Voilà.

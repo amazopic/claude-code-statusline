@@ -48,7 +48,7 @@ Claude Code의 기본 상태 표시줄은 단조롭습니다. 이 드롭인 교�
 Claude Code가 있는데 왜 터미널을 만져요? 이 한 프롬프트를 Claude Code 세션에 붙여넣으세요 — Claude가 모든 단계를 처리하고 각 명령 전에 물어봅니다.
 
 ```text
-amazopic의 claude-code-statusline을 설치해줘. github.com/amazopic/claude-code-statusline을 클론하고, 기존 ~/.claude/statusline.sh가 있으면 백업하고, statusline-bundle.sh를 ~/.claude/statusline.sh에 복사한 뒤 실행 가능하게 만들고, commands/statusline.md도 ~/.claude/commands/에 복사해. 그다음 Claude Code가 새 statusLine을 인식하도록 ~/.claude/settings.json에 무엇을 추가해야 하는지 알려줘. 마지막으로 ~/.claude/statusline.sh use developer를 실행해 developer 테마를 테스트하고 Claude Code 재시작하라고 알려줘.
+amazopic의 claude-code-statusline을 설치해줘. 먼저 ~/.claude/settings.json을 읽고 — statusLine.command가 기존 파일(예: ~/.claude/status-line.sh 등)을 가리키면, 그 파일에 .bak를 붙여 백업해(기존 .bak는 덮어씀). ~/.claude/statusline.sh도 이미 있으면 같은 방식으로 백업. 그다음 github.com/amazopic/claude-code-statusline을 클론하고, statusline-bundle.sh를 ~/.claude/statusline.sh에 복사한 뒤 실행 가능하게 만들고, commands/statusline.md도 ~/.claude/commands/에 복사. ~/.claude/settings.json을 업데이트해서 statusLine = { type: "command", command: "<~/.claude/statusline.sh의 절대 경로>" }로 만들어줘. 마지막으로 ~/.claude/statusline.sh use developer를 실행해 developer 테마를 테스트하고 Claude Code 재시작하라고 알려줘.
 ```
 
 > 권한 프롬프트마다 `y`(yes)라고만 답하면 됩니다. 끝.

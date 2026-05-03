@@ -596,16 +596,43 @@ render_custom() {
 #                       DETAILED THEME RENDERERS
 # ═════════════════════════════════════════════════════════════════════
 
+# Themed limits suffix — used by every render_* function so the 5h/7d
+# meters always appear (even when the theme builds its own line manually).
+# Each theme overrides via _lim_<theme> if it wants a custom palette;
+# otherwise the default green/dim styling matches the bundle's base palette.
+_lim_default() {
+  local l5 l7 w5 w7
+  l5=$(j '.rate_limits.five_hour.used_percentage // .rate_limits.session.percent_used'); l5=${l5%.*}
+  l7=$(j '.rate_limits.seven_day.used_percentage // .rate_limits.weekly.percent_used'); l7=${l7%.*}
+  w5=""; (( ${l5:-0} > 50 )) && w5="⚠️ "
+  w7=""; (( ${l7:-0} > 50 )) && w7="⚠️ "
+  line+="${SEP}${GRD}5h:${N} ${w5}${GR}${l5:-—}${GRD}%${N} ${GRD}7d:${N} ${w7}${GR}${l7:-—}${GRD}%${N}"
+}
+
 render_minimal() {
   local cc=$(pct_color "$ctx_pct") cd=$(pct_color_dim "$ctx_pct")
   line="${G}${model_name}${N}${SEP}${cc}${ctx_pct}${cd}% ${cc}$(bar_vertical "$ctx_pct")${N}${SEP}${G}${cost_fmt}${GD}\$${N}"
+  _lim_default
 }
 
 render_developer() {
+  # Full developer dashboard: model · ctx-icon + % + bar + tokens · cost ·
+  # tokens-msg · folder · git · 5h/7d limits · thinking
   local cc=$(pct_color "$ctx_pct") cd=$(pct_color_dim "$ctx_pct")
-  line="${G}${model_name}${N}${SEP}${cc}${ctx_pct}${cd}% ${cc}$(bar_vertical "$ctx_pct")${N}"
+  local icn
+  if   (( ctx_pct < 40 )); then icn="🚀"
+  elif (( ctx_pct < 50 )); then icn="🚗"
+  elif (( ctx_pct < 70 )); then icn="⚠️"
+  else                          icn="🔥"
+  fi
+  line="${G}${model_name}${N}"
+  line+="${SEP}${icn} ${cc}${ctx_pct}${cd}% ${cc}$(bar_vertical "$ctx_pct") ${ctx_used_k}${cd}K${D}/${cc}${ctx_max_k}${cd}K${N}"
+  line+="${SEP}${G}${cost_fmt}${GD}\$${N}"
+  line+="${SEP}"; block_tokens_msg
+  line+="${SEP}${B}$(basename "$cwd")${N}"
   line+="${SEP}"; if [[ -n "$br" ]]; then block_git; else line+="${RD}no git${N}"; fi
-  line+="${SEP}${G}${cost_fmt}${GD}\$${N}${SEP}${B}$(basename "$cwd")${N}"
+  _lim_default
+  line+="${SEP}"; block_thinking
 }
 
 render_time() {
@@ -614,16 +641,19 @@ render_time() {
   line="${G}${model_name}${N}${SEP}${cc}${ctx_pct}%${N} ${cc}$(bar_vertical "$ctx_pct")${N}"
   line+="${SEP}${C}⏱ ${M}active ${C}$(format_duration "$active_s")${D}/${M}wall ${C}$(format_duration "$wall_s")${N}"
   line+="${SEP}${B}${turns}${D} turns${N}${SEP}${G}${cost_fmt}${GD}\$${N}"
+  _lim_default
 }
 
 render_zen() {
   local name=$(printf '%s' "$model_name" | tr '[:upper:]' '[:lower:]')
   line="${name}  ${ctx_pct}%  $(bar_ascii "$ctx_pct")  \$${cost_fmt}"
   [[ -n "$br" ]] && line+="  ${br}"
+  _lim_default
 }
 
 render_rainbow() {
   line="${G}${model_name}${N} ${D}·${N} 🌈 $(bar_rainbow "$ctx_pct")${D} ${ctx_pct}%${N} ${D}·${N} ${G}${cost_fmt}${GD}\$${N}"
+  _lim_default
 }
 
 render_anime() {
@@ -636,6 +666,7 @@ render_anime() {
   line="${P}✨ ${V}${model_name} ${P}✨${N}"
   line+=" ${M}🌸 ${P}${ctx_pct}${PD}% $(bar_simple "$ctx_pct" "$M" "$PD" "♥" "♡") ${M}🌸${N}"
   line+=" ${V}${cost_fmt}${PD}\$${N} ${P}uwu ${M}${face}${N}"
+  _lim_default
 }
 
 render_love() {
@@ -647,6 +678,7 @@ render_love() {
   fi
   line="💖 ${P}${model_name}${N} ❤ ${PD}love-meter${N} $(bar_simple "$ctx_pct" "$R" "$PD" "▰" "▱") ${R}${ctx_pct}${PD}%${N}"
   line+=" ${D}·${N} ${PD}spent${N} ${R}${cost_fmt}${RU}\$${N} ${PD}on us${N} ${D}·${N} ${heart}"
+  _lim_default
 }
 
 render_cat() {
@@ -661,6 +693,7 @@ render_cat() {
   for (( i=0; i<10-cells;  i++ )); do b+="${D}··"; done
   line="🐱 ${W}${model_name}${N} ${D}·${N} ${O}purrs${N} ${b}${N} ${O}${ctx_pct}%${N}"
   line+=" ${D}·${N} ${P}treats:${N} ${Y}${cost_fmt}\$${N} ${D}·${N} ${mood}"
+  _lim_default
 }
 
 render_christmas() {
@@ -672,6 +705,7 @@ render_christmas() {
   fi
   line="🎄 ${W}${model_name}${N} ${D}·${N} 🎁 $(bar_simple "$ctx_pct" "$R" "$WD" "❅" "❄") ${R}${ctx_pct}%${N}"
   line+=" ${D}·${N} ${GR}gifts:${N} ${G}${cost_fmt}\$${N} ${D}·${N} ${icn}"
+  _lim_default
 }
 
 render_hacker() {
@@ -680,6 +714,7 @@ render_hacker() {
   line+=" ${GRDD}::${N} ${GR}CTX${GRDD}=${GR}${ctx_pct}%${N} $(bar_hacker "$ctx_pct")"
   line+=" ${GRDD}::${N} ${GR}\$${cost_fmt}${N}"
   line+=" ${GRDD}::${N} ${GR}ROOT${GRDD}@${GR}${host}${GRDD}#${N}"
+  _lim_default
 }
 
 render_cyberpunk() {
@@ -688,6 +723,7 @@ render_cyberpunk() {
   line+=" ${MD}//${C}CTX${MD}:${C}${ctx_pct}%${N} $(bar_simple "$ctx_pct" "$M" "$D2" "▰" "▱")"
   line+=" ${MD}//${Y2}₵RED${MD}:${Y2}${cost_fmt}${N}"
   line+=" ${M}▐${N} ${C}JACK-IN${N}"
+  _lim_default
 }
 
 render_space() {
@@ -699,6 +735,7 @@ render_space() {
   fi
   line="🚀 ${W}${model_name}${N} ${D}·${N} ${C}O₂${N} $(bar_simple "$ctx_pct" "$C" "$D2" "▰" "▱") ${C}${ctx_pct}${CD}%${N}"
   line+=" ${D}·${N} ${V2}fuel${N} ${B}${cost_fmt}${CD}\$${N} ${D}·${N} ${mission}"
+  _lim_default
 }
 
 render_retro() {
@@ -707,6 +744,7 @@ render_retro() {
   line="${O}▀▄▀▄${N} ${W}${chrome}${N} ${O}▄▀▄▀${N}"
   line+=" ${R}HP:${hp}${N} $(bar_simple "$hp" "$GR" "$D2" "▰" "▱")"
   line+=" ${B}MP:${ctx_pct}${N} ${O}SCORE:${score}${N}"
+  _lim_default
 }
 
 render_fire() {
@@ -717,6 +755,7 @@ render_fire() {
   else                          intensity="${R}🌋 LAVA${N}"
   fi
   line="🔥 ${W}${model_name}${N} ${D}·${N} ${intensity} $(bar_fire "$ctx_pct") ${R}${ctx_pct}%${N} ${D}·${N} ${DR}ash${N} ${O}${cost_fmt}\$${N}"
+  _lim_default
 }
 
 render_ocean() {
@@ -728,6 +767,7 @@ render_ocean() {
   fi
   line="🌊 ${W}${model_name}${N} ${D}·${N} ${C}tide${N} $(bar_wave "$ctx_pct") ${C}${ctx_pct}${CD}%${N}"
   line+=" ${D}·${N} ${B}${cost_fmt}\$${N} ${D}·${N} ${depth}"
+  _lim_default
 }
 
 render_weather() {
@@ -738,6 +778,7 @@ render_weather() {
   else                          icn="${PR}⛈ STORM — compact soon${N}"
   fi
   line="${W}${model_name}${N} ${D}·${N} ${icn} ${D}·${N} ${ctx_pct}% $(bar_sparks "$ctx_pct") ${D}·${N} ${cost_fmt}\$"
+  _lim_default
 }
 
 render_coffee() {
@@ -745,6 +786,7 @@ render_coffee() {
   local cups=$(awk -v c="$cost" 'BEGIN { printf "%d", c*4 }')
   line="☕ ${W}${model_name}${N} ${D}·${N} ${BG}brew level${N} $(bar_simple "$left" "$BR" "$BRD" "█" "░") ${BR}${left}${BRD}%${N}"
   line+=" ${D}·${N} ${BG}cups:${N} ${BR}${cups}${N} ${D}·${N} ${G}${cost_fmt}${BRD}\$${N}"
+  _lim_default
 }
 
 render_music() {
@@ -756,6 +798,7 @@ render_music() {
   fi
   line="🎵 ${W}${model_name}${N} ${D}·${N} $(bar_notes "$ctx_pct") ${M}${ctx_pct}%${N}"
   line+=" ${D}·${N} ${G}♩ ${cost_fmt}\$${N} ${D}·${N} ${tempo}"
+  _lim_default
 }
 
 render_game() {
@@ -764,6 +807,7 @@ render_game() {
   line="⚔ ${W}${model_name}${N} ${D}·${N} ${R}HP${N} $(bar_simple "$hp" "$R" "$RD2" "█" "░") ${R}${hp}${RD2}/100${N}"
   line+=" ${D}·${N} ${B}MP${N} $(bar_simple "$ctx_pct" "$B" "$BD" "█" "░") ${B}${ctx_pct}${BD}%${N}"
   line+=" ${D}·${N} ${G}gold ${cost_fmt}\$${N} ${D}·${N} ${M}LV ${level}${N}"
+  _lim_default
 }
 
 render_pirate() {
@@ -776,6 +820,7 @@ render_pirate() {
   line="🏴‍☠️ ${W}Cap'n ${G}${model_name}${N} ⚓"
   line+=" ${BR}ye plundered${N} ${G}${ctx_pct}%${N} $(bar_simple "$ctx_pct" "$G" "$BR" "█" "-")"
   line+=" ${D}·${N} ${BR}doubloons:${N} ${G}${cost_fmt}${GD}\$${N} ${D}·${N} ${R}${mood}${N}"
+  _lim_default
 }
 
 # ═════════════════════════════════════════════════════════════════════
@@ -789,19 +834,23 @@ render_compact() {
     minimal|developer|time|rainbow)
       line="${G}${model_name}${N} ${D}·${N} ${GR}${ctx_pct}%${N}"
       [[ -n "$br" ]] && line+=" ${D}·${N} ${B}${br}${N}"
+      _lim_default
       ;;
     zen)
       local name=$(printf '%s' "$model_name" | tr '[:upper:]' '[:lower:]')
       line="${name}  ${ctx_pct}%"
       [[ -n "$br" ]] && line+="  ${br}"
+      _lim_default
       ;;
     anime)
       line="${P}✨ ${V}${model_name}${N} 🌸 ${P}${ctx_pct}${PD}%${N} $(bar_simple "$ctx_pct" "$M" "$PD" "♥" "♡")"
       [[ -n "$br" ]] && line+=" ${M}🌸${N} ${P}${br}${N}"
+      _lim_default
       ;;
     love)
       line="💖 ${P}${model_name}${N} ${D}·${N} $(bar_simple "$ctx_pct" "$R" "$PD" "▰" "▱") ${R}${ctx_pct}${PD}%${N}"
       [[ -n "$br" ]] && line+=" ${D}·${N} 💕 ${R}${br}${N}"
+      _lim_default
       ;;
     cat)
       local b="" i cells=$(( (ctx_pct + 5) / 10 ))
@@ -809,36 +858,44 @@ render_compact() {
       for (( i=0; i<10-cells;  i++ )); do b+="${D}··"; done
       line="🐱 ${W}${model_name}${N} ${D}·${N} ${b}${N} ${O}${ctx_pct}%${N}"
       [[ -n "$br" ]] && line+=" ${D}·${N} ${P}${br}${N}"
+      _lim_default
       ;;
     christmas)
       line="🎄 ${W}${model_name}${N} ${D}·${N} $(bar_simple "$ctx_pct" "$R" "$WD" "❅" "❄") ${R}${ctx_pct}%${N}"
       [[ -n "$br" ]] && line+=" ${D}·${N} ${GR}${br}${N}"
+      _lim_default
       ;;
     hacker)
       line="${GRDD}[${GR}SYS${GRDD}]${N} ${W}${model_name}${N} ${GRDD}::${N} ${GR}${ctx_pct}%${N} $(bar_hacker "$ctx_pct")"
       [[ -n "$br" ]] && line+=" ${GRDD}::${N} ${GR}${br}${N}"
+      _lim_default
       ;;
     cyberpunk)
       local chrome=$(to_chrome "$model_name")
       line="${M}▌${N} ${C}${chrome}${N} ${MD}//${C}CTX${MD}:${C}${ctx_pct}%${N} $(bar_simple "$ctx_pct" "$M" "$D2" "▰" "▱")"
       [[ -n "$br" ]] && line+=" ${MD}//${C}BR${MD}:${C}${br}${N}"
+      _lim_default
       ;;
     space)
       line="🚀 ${W}${model_name}${N} ${D}·${N} ${C}O₂${N} $(bar_simple "$ctx_pct" "$C" "$D2" "▰" "▱") ${C}${ctx_pct}${CD}%${N}"
       [[ -n "$br" ]] && line+=" ${D}·${N} 🌌 ${B}${br}${N}"
+      _lim_default
       ;;
     retro)
       local chrome=$(to_chrome "$model_name")
       line="${O}▀▄${N} ${W}${chrome}${N} $(bar_simple "$ctx_pct" "$GR" "$D2" "▰" "▱") ${B}${ctx_pct}%${N}"
       [[ -n "$br" ]] && line+=" ${O}${br}${N}"
+      _lim_default
       ;;
     fire)
       line="🔥 ${W}${model_name}${N} ${D}·${N} $(bar_fire "$ctx_pct") ${R}${ctx_pct}%${N}"
       [[ -n "$br" ]] && line+=" ${D}·${N} ${O}${br}${N}"
+      _lim_default
       ;;
     ocean)
       line="🌊 ${W}${model_name}${N} ${D}·${N} $(bar_wave "$ctx_pct") ${C}${ctx_pct}${CD}%${N}"
       [[ -n "$br" ]] && line+=" ${D}·${N} ${B}${br}${N}"
+      _lim_default
       ;;
     weather)
       local icn
@@ -849,28 +906,34 @@ render_compact() {
       fi
       line="${icn} ${W}${model_name}${N} ${D}·${N} ${ctx_pct}% $(bar_sparks "$ctx_pct")"
       [[ -n "$br" ]] && line+=" ${D}·${N} ${B}${br}${N}"
+      _lim_default
       ;;
     coffee)
       local left=$(( 100 - ctx_pct ))
       line="☕ ${W}${model_name}${N} ${D}·${N} $(bar_simple "$left" "$BR" "$BRD" "█" "░") ${BR}${left}${BRD}%${N}"
       [[ -n "$br" ]] && line+=" ${D}·${N} ${BR}${br}${N}"
+      _lim_default
       ;;
     music)
       line="🎵 ${W}${model_name}${N} ${D}·${N} $(bar_notes "$ctx_pct") ${M}${ctx_pct}%${N}"
       [[ -n "$br" ]] && line+=" ${D}·${N} ${G}♩ ${br}${N}"
+      _lim_default
       ;;
     game)
       local hp=$(( 100 - ctx_pct ))
       line="⚔ ${W}${model_name}${N} ${D}·${N} ${R}HP:${hp}${N} $(bar_simple "$hp" "$R" "$RD2" "█" "░")"
       [[ -n "$br" ]] && line+=" ${D}·${N} ${B}${br}${N}"
+      _lim_default
       ;;
     pirate)
       line="🏴‍☠️ ${W}${model_name}${N} ${D}·${N} ${G}${ctx_pct}%${N} $(bar_simple "$ctx_pct" "$G" "$BR" "█" "-")"
       [[ -n "$br" ]] && line+=" ${D}·${N} ⚓ ${G}${br}${N}"
+      _lim_default
       ;;
     *)
       line="${G}${model_name}${N} ${D}·${N} ${GR}${ctx_pct}%${N}"
       [[ -n "$br" ]] && line+=" ${D}·${N} ${B}${br}${N}"
+      _lim_default
       ;;
   esac
 }

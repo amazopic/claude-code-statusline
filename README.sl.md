@@ -48,7 +48,7 @@ Vse v **eni vrstici**, barvno kodirano, s pametnimi ikonami, ki nakazujejo nujno
 Zakaj sam, ko imaš Claude Code? Prilepi ta en poziv v sejo Claude Code — Claude opravi vsak korak in vpraša pred vsakim ukazom.
 
 ```text
-Namesti claude-code-statusline od amazopic zame. Kloniraj github.com/amazopic/claude-code-statusline, naredi varnostno kopijo trenutnega ~/.claude/statusline.sh če obstaja, kopiraj statusline-bundle.sh v ~/.claude/statusline.sh in ga naredi izvršljivega, kopiraj tudi commands/statusline.md v ~/.claude/commands/. Nato mi pokaži kaj dodati v ~/.claude/settings.json da Claude Code prepozna novo statusLine. Na koncu zaženi ~/.claude/statusline.sh use developer za test teme developer in mi reci da ponovno zaženem Claude Code.
+Namesti claude-code-statusline od amazopic zame. Najprej preberi ~/.claude/settings.json — če je tam statusLine.command, ki kaže na obstoječo datoteko (npr. ~/.claude/status-line.sh ali drugo pot), naredi varnostno kopijo te datoteke z dodatkom .bak (prepiši obstoječo .bak). Tudi če ~/.claude/statusline.sh že obstaja — naredi varnostno kopijo enako. Nato kloniraj github.com/amazopic/claude-code-statusline, kopiraj statusline-bundle.sh v ~/.claude/statusline.sh in ga naredi izvršljivega, kopiraj tudi commands/statusline.md v ~/.claude/commands/. Posodobi ~/.claude/settings.json tako da statusLine = { type: "command", command: "<absolutna pot do ~/.claude/statusline.sh>" }. Na koncu zaženi ~/.claude/statusline.sh use developer za test teme developer in mi reci da ponovno zaženem Claude Code.
 ```
 
 > Samo reci `y` (ja) ob vsaki zahtevi za dovoljenje. Končano.

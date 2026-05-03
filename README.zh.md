@@ -48,7 +48,7 @@ Claude Code 自带的状态栏过于简陋。这个替换方案把它升级为�
 有 Claude Code，何必碰终端？把这一条提示粘到 Claude Code 会话里 — Claude 全程包办，每条命令前都会问你。
 
 ```text
-帮我安装 amazopic 的 claude-code-statusline。克隆 github.com/amazopic/claude-code-statusline，如果已有 ~/.claude/statusline.sh 请先备份，把 statusline-bundle.sh 复制到 ~/.claude/statusline.sh 并设为可执行，再把 commands/statusline.md 复制到 ~/.claude/commands/。然后告诉我应该在 ~/.claude/settings.json 中加什么，让 Claude Code 连接新的 statusLine。最后运行 ~/.claude/statusline.sh use developer 测试 developer 主题,并提醒我重启 Claude Code。
+帮我安装 amazopic 的 claude-code-statusline。先读 ~/.claude/settings.json — 如果其中有 statusLine.command 指向某个已存在的文件（如 ~/.claude/status-line.sh 或其他路径），把那个文件加 .bak 后缀做备份（覆盖已有的 .bak）。如果 ~/.claude/statusline.sh 也已存在，同样备份。然后克隆 github.com/amazopic/claude-code-statusline，把 statusline-bundle.sh 复制到 ~/.claude/statusline.sh 并设为可执行，再把 commands/statusline.md 复制到 ~/.claude/commands/。更新 ~/.claude/settings.json 使 statusLine = { type: "command", command: "<~/.claude/statusline.sh 的绝对路径>" }。最后运行 ~/.claude/statusline.sh use developer 测试 developer 主题，并提醒我重启 Claude Code。
 ```
 
 > 每个权限提示都回 `y`（yes）即可。搞定。

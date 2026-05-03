@@ -48,7 +48,7 @@ Opus 4.7 (1M) │ 🚀 12% █▌░░░░░░░░ 121.4K/1000K │ 0.42$
 Навіщо самому, коли є Claude Code? Встав один промпт у сесію Claude Code — Claude зробить усе покроково і запитає перед кожною командою.
 
 ```text
-Встанови claude-code-statusline від amazopic. Склонуй github.com/amazopic/claude-code-statusline, зроби резервну копію поточного ~/.claude/statusline.sh якщо такий є, скопіюй statusline-bundle.sh у ~/.claude/statusline.sh і зроби виконуваним, також скопіюй commands/statusline.md у ~/.claude/commands/. Потім покажи що додати у ~/.claude/settings.json щоб Claude Code підхопив новий statusLine. Наприкінці запусти ~/.claude/statusline.sh use developer для перевірки теми developer і попроси перезапустити Claude Code.
+Встанови claude-code-statusline від amazopic. Спочатку прочитай ~/.claude/settings.json — якщо там statusLine.command вказує на існуючий файл (наприклад ~/.claude/status-line.sh або інший шлях), зроби резервну копію того файлу додавши .bak (перезапиши існуючий .bak). Також якщо ~/.claude/statusline.sh вже є — забекап його так само. Потім склонуй github.com/amazopic/claude-code-statusline, скопіюй statusline-bundle.sh у ~/.claude/statusline.sh і зроби виконуваним, також скопіюй commands/statusline.md у ~/.claude/commands/. Онови ~/.claude/settings.json щоб statusLine = { type: "command", command: "<абсолютний шлях до ~/.claude/statusline.sh>" }. Наприкінці запусти ~/.claude/statusline.sh use developer для перевірки теми developer і попроси перезапустити Claude Code.
 ```
 
 > Просто кажи `y` (так) на кожен запит дозволу. Готово.
