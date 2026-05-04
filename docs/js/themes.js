@@ -54,6 +54,7 @@ export const faq = [
   { qKey: 'faq.q.limits',    aKey: 'faq.a.limits' },
   { qKey: 'faq.q.what',      aKey: 'faq.a.what' },
   { qKey: 'faq.q.install',   aKey: 'faq.a.install' },
+  { qKey: 'faq.q.update',    aKey: 'faq.a.update' },
   { qKey: 'faq.q.1m',        aKey: 'faq.a.1m' },
   { qKey: 'faq.q.models',    aKey: 'faq.a.models' },
   { qKey: 'faq.q.customize', aKey: 'faq.a.customize' },
