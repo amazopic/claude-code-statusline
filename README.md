@@ -244,10 +244,23 @@ Want Claude Code to install it safely for you? Paste this prompt:
 >    `echo '{\"model\":{\"display_name\":\"Test\"},\"transcript_path\":\"\"}' | bash ~/.claude/status-line.sh`
 > 5. Tell me to restart Claude Code and report the backups created."
 
+### Updating to the latest version
+
+```bash
+~/.claude/status-line.sh update
+```
+
+Fetches the latest bundle from GitHub, creates a timestamped backup
+(`~/.claude/status-line.sh.bak.<YYYYMMDD-HHMMSS>`), and preserves your
+theme config (`~/.claude/statusline.conf`). Restart Claude Code afterwards.
+
+Check what you have installed: `~/.claude/status-line.sh version`.
+
 ### Requirements
 
 - `bash` 4+ (script uses 0-indexed arrays — **do not run under `zsh`**)
-- `jq` for JSON parsing
+- `jq` for JSON parsing — `apt-get install jq` (Debian/Ubuntu), `brew install jq` (macOS), `dnf install jq` (Fedora)
+- `curl` (only needed for `statusline update`; preinstalled on most systems)
 - A 256-color terminal (basically every modern one)
 
 ## ⚙️ Configuration

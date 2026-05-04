@@ -1,7 +1,7 @@
 ---
 description: Configure your Claude Code status line — pick a theme or compose from blocks
 allowed-tools: Bash
-argument-hint: <theme> | <theme>-compact | custom <block...> | list | preview <theme> | reset
+argument-hint: <theme> | <theme>-compact | custom <block...> | list | preview <theme> | reset | update | version
 ---
 
 # /statusline
@@ -35,6 +35,10 @@ the current configuration.
 - **`preview-all`** — preview every theme.
 - **`show`** — show current config.
 - **`reset`** — reset to default.
+- **`version`** — print the installed version.
+- **`update`** — fetch the latest bundle from GitHub. Creates a timestamped
+  backup (`~/.claude/status-line.sh.bak.<YYYYMMDD-HHMMSS>`) and preserves
+  `~/.claude/statusline.conf`. Requires `curl`.
 
 ## After running
 

@@ -82,6 +82,19 @@ Claude Code に安全にインストールしてもらいたい?このプロン�
 >    `echo '{\"model\":{\"display_name\":\"Test\"},\"transcript_path\":\"\"}' | bash ~/.claude/status-line.sh`
 > 5. 私に Claude Code の再起動を促し、作成したバックアップを報告。」
 
+### 最新バージョンへの更新
+
+```bash
+~/.claude/status-line.sh update
+```
+
+GitHub から最新の bundle を取得し、タイムスタンプ付きバックアップ
+（`~/.claude/status-line.sh.bak.<YYYYMMDD-HHMMSS>`）を作成、テーマ設定
+（`~/.claude/statusline.conf`）を保持します。完了後 Claude Code を再
+起動してください。
+
+インストール済みバージョンの確認: `~/.claude/status-line.sh version`。
+
 ### 必要要件
 
 - `bash` 4+(スクリプトは 0-indexed 配列を使用 — **`zsh` で実行しないこと**)

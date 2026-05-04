@@ -81,6 +81,19 @@ Reinicia Claude Code (o ejecuta `/config` reload).
 >    `echo '{\"model\":{\"display_name\":\"Test\"},\"transcript_path\":\"\"}' | bash ~/.claude/status-line.sh`
 > 5. Pídeme reiniciar Claude Code y reporta los backups creados.»
 
+### Actualizar a la última versión
+
+```bash
+~/.claude/status-line.sh update
+```
+
+Descarga el último bundle desde GitHub, crea una copia de seguridad con
+marca de tiempo (`~/.claude/status-line.sh.bak.<YYYYMMDD-HHMMSS>`) y
+conserva tu configuración de tema (`~/.claude/statusline.conf`).
+Reinicia Claude Code después.
+
+Comprueba la versión instalada: `~/.claude/status-line.sh version`.
+
 ### Requisitos
 
 - `bash` 4+ (el script usa arrays indexados a 0 — **no ejecutar bajo `zsh`**)

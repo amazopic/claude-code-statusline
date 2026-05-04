@@ -35,6 +35,8 @@
 #  statusline preview-all            # preview every theme
 #  statusline show                   # show current config
 #  statusline reset                  # reset to default
+#  statusline version                # print installed version
+#  statusline update                 # fetch latest from GitHub (timestamped backup)
 #
 #  Config is stored at: ~/.claude/statusline.conf
 #
@@ -75,6 +77,11 @@ if ! command -v jq >/dev/null 2>&1; then
 fi
 
 # ─────────────────────────  CONFIG  ───────────────────────────────────
+# Calendar versioning: YYYY.MM.DD — bump on every release. Compared by
+# `statusline update` against the upstream copy on GitHub.
+VERSION="2026.05.04"
+UPSTREAM_URL="https://raw.githubusercontent.com/amazopic/claude-code-statusline/main/statusline-bundle.sh"
+
 CONFIG_FILE="${HOME}/.claude/statusline.conf"
 DEFAULT_THEME="minimal"
 THEME=""
@@ -121,12 +128,16 @@ USAGE
   statusline preview-all            cat-preview every theme
   statusline show                   show current configuration
   statusline reset                  reset to default
+  statusline version                print installed version
+  statusline update                 fetch latest bundle from GitHub
+                                    (timestamped backup, theme config preserved)
 
 EXAMPLES
   statusline use cyberpunk
   statusline use cyberpunk-compact
   statusline custom model context-bar git cost
   statusline preview anime
+  statusline update
 
 Author:  Yevgeniy Achin <amazopic@gmail.com>
 License: Source-Available — reuse only with prior written permission.
@@ -227,6 +238,96 @@ cli_reset() {
   echo "Default theme is now: $DEFAULT_THEME"
 }
 
+cli_version() {
+  echo "claude-code-statusline $VERSION"
+  echo "  installed: $(self_path)"
+  echo "  upstream:  $UPSTREAM_URL"
+}
+
+# Resolve the absolute path of the running script. Follows symlinks so an
+# install at ~/.claude/status-line.sh that's actually a symlink to the cloned
+# repo gets reported as the symlink target where appropriate.
+self_path() {
+  local p="${BASH_SOURCE[0]:-$0}"
+  if command -v readlink >/dev/null 2>&1; then
+    # GNU readlink -f and BSD readlink behave differently; fall back gracefully.
+    local r
+    r=$(readlink -f "$p" 2>/dev/null) || r=""
+    [[ -n "$r" ]] && p="$r"
+  fi
+  printf '%s' "$p"
+}
+
+# Pull the VERSION="..." line out of an arbitrary bundle file.
+extract_version() {
+  local file="$1" v
+  v=$(grep -m1 '^VERSION="' "$file" 2>/dev/null | sed -E 's/^VERSION="([^"]+)".*/\1/')
+  printf '%s' "$v"
+}
+
+cli_update() {
+  local target tmp backup ts new_ver
+  target=$(self_path)
+
+  if [[ ! -w "$target" || ! -w "$(dirname "$target")" ]]; then
+    echo "Cannot write to $target — try with sudo or fix permissions." >&2
+    return 1
+  fi
+
+  if ! command -v curl >/dev/null 2>&1; then
+    echo "curl not found — install it (apt-get install -y curl / brew install curl) and retry." >&2
+    return 1
+  fi
+
+  echo "Current version: $VERSION"
+  echo "Fetching latest from upstream…"
+
+  tmp=$(mktemp "${TMPDIR:-/tmp}/statusline-bundle.XXXXXX") || {
+    echo "mktemp failed" >&2; return 1; }
+
+  if ! curl -fsSL --max-time 30 -o "$tmp" "$UPSTREAM_URL"; then
+    echo "Download failed from $UPSTREAM_URL" >&2
+    rm -f "$tmp"; return 1
+  fi
+
+  # Sanity: must be a non-empty bash script that parses cleanly.
+  if [[ ! -s "$tmp" ]] || ! bash -n "$tmp" 2>/dev/null; then
+    echo "Downloaded file is empty or has syntax errors — refusing to install." >&2
+    rm -f "$tmp"; return 1
+  fi
+
+  new_ver=$(extract_version "$tmp")
+  if [[ -z "$new_ver" ]]; then
+    echo "Could not read VERSION from downloaded bundle — refusing to install." >&2
+    rm -f "$tmp"; return 1
+  fi
+
+  if [[ "$new_ver" == "$VERSION" ]]; then
+    echo "Already up to date ($VERSION)."
+    rm -f "$tmp"; return 0
+  fi
+
+  ts=$(date +%Y%m%d-%H%M%S)
+  backup="${target}.bak.${ts}"
+  if ! cp -p "$target" "$backup"; then
+    echo "Backup to $backup failed — aborting." >&2
+    rm -f "$tmp"; return 1
+  fi
+  echo "Backed up current to: $backup"
+
+  if ! mv "$tmp" "$target"; then
+    echo "Replace failed — restoring from backup." >&2
+    cp -p "$backup" "$target"
+    rm -f "$tmp"
+    return 1
+  fi
+  chmod +x "$target"
+
+  echo "Updated: $VERSION → $new_ver"
+  echo "Theme config preserved: $CONFIG_FILE"
+  echo "Restart Claude Code to pick up the new bundle."
+}
+
 render_with_fixture() {
   local fixture
   fixture='{"model":{"display_name":"Opus 4.7 (1M context)","id":"claude-opus-4-7[1m]"},"workspace":{"current_dir":"'"$PWD"'"},"cost":{"total_cost_usd":0.42},"transcript_path":""}'
@@ -235,14 +336,16 @@ render_with_fixture() {
 
 cli_dispatch() {
   case "${1:-show}" in
-    help|-h|--help) cli_help ;;
-    list)           shift; cli_list "$@" ;;
-    use)            shift; cli_use "$@" ;;
-    custom)         shift; cli_custom "$@" ;;
-    preview)        shift; cli_preview "$@" ;;
-    preview-all)    cli_preview_all ;;
-    show)           cli_show ;;
-    reset)          cli_reset ;;
+    help|-h|--help)        cli_help ;;
+    version|-v|--version)  cli_version ;;
+    update|upgrade)        cli_update ;;
+    list)                  shift; cli_list "$@" ;;
+    use)                   shift; cli_use "$@" ;;
+    custom)                shift; cli_custom "$@" ;;
+    preview)               shift; cli_preview "$@" ;;
+    preview-all)           cli_preview_all ;;
+    show)                  cli_show ;;
+    reset)                 cli_reset ;;
     *)
       if is_known_theme "$1"; then
         cli_use "$1"

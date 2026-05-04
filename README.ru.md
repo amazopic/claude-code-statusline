@@ -93,6 +93,19 @@ chmod +x ~/.claude/status-line.sh
 >    `echo '{\"model\":{\"display_name\":\"Test\"},\"transcript_path\":\"\"}' | bash ~/.claude/status-line.sh`
 > 5. Скажи мне перезапустить Claude Code и сообщи, какие бэкапы создал.»
 
+### Обновление до последней версии
+
+```bash
+~/.claude/status-line.sh update
+```
+
+Скачивает последнюю версию bundle с GitHub, делает резервную копию с
+меткой времени (`~/.claude/status-line.sh.bak.<YYYYMMDD-HHMMSS>`) и
+сохраняет вашу настройку темы (`~/.claude/statusline.conf`). После
+обновления перезапустите Claude Code.
+
+Узнать установленную версию: `~/.claude/status-line.sh version`.
+
 ### Требования
 
 - `bash` 4+ (используются 0-индексные массивы — **не запускайте под `zsh`**)

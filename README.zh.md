@@ -92,6 +92,18 @@ chmod +x ~/.claude/status-line.sh
 >    `echo '{\"model\":{\"display_name\":\"Test\"},\"transcript_path\":\"\"}' | bash ~/.claude/status-line.sh`
 > 5. 提醒我重启 Claude Code,并报告创建的备份文件。"
 
+### 更新到最新版本
+
+```bash
+~/.claude/status-line.sh update
+```
+
+从 GitHub 拉取最新 bundle，创建带时间戳的备份
+（`~/.claude/status-line.sh.bak.<YYYYMMDD-HHMMSS>`），并保留你的主题
+配置（`~/.claude/statusline.conf`）。完成后重启 Claude Code。
+
+查看已安装版本：`~/.claude/status-line.sh version`。
+
 ### 系统要求
 
 - `bash` 4+(脚本使用 0-索引数组 —— **不要在 `zsh` 下运行**)

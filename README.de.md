@@ -93,6 +93,19 @@ Claude Code soll es sicher für dich installieren? Diesen Prompt einfügen:
 >    `echo '{\"model\":{\"display_name\":\"Test\"},\"transcript_path\":\"\"}' | bash ~/.claude/status-line.sh`
 > 5. Sag mir, ich soll Claude Code neu starten und nenne die erstellten Backups."
 
+### Auf neueste Version aktualisieren
+
+```bash
+~/.claude/status-line.sh update
+```
+
+Lädt das neueste Bundle von GitHub, legt ein Backup mit Zeitstempel an
+(`~/.claude/status-line.sh.bak.<YYYYMMDD-HHMMSS>`) und behält deine
+Theme-Konfiguration (`~/.claude/statusline.conf`). Danach Claude Code
+neu starten.
+
+Installierte Version anzeigen: `~/.claude/status-line.sh version`.
+
 ### Voraussetzungen
 
 - `bash` 4+ (das Skript nutzt 0-indizierte Arrays — **nicht unter `zsh` ausführen**)

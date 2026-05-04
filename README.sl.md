@@ -94,6 +94,19 @@ Naj Claude Code namesti namesto vas, varno? Prilepite ta poziv:
 > 5. Reci mi, naj ponovno zaženem Claude Code in poročaj o ustvarjenih
 >    varnostnih kopijah.«
 
+### Posodobitev na najnovejšo različico
+
+```bash
+~/.claude/status-line.sh update
+```
+
+Prenese najnovejši bundle z GitHub, ustvari varnostno kopijo s časovnim
+žigom (`~/.claude/status-line.sh.bak.<YYYYMMDD-HHMMSS>`) in ohrani vašo
+konfiguracijo teme (`~/.claude/statusline.conf`). Nato znova zaženite
+Claude Code.
+
+Preverite nameščeno različico: `~/.claude/status-line.sh version`.
+
 ### Zahteve
 
 - `bash` 4+ (skripta uporablja 0-indeksirana polja — **ne zaganjaj pod `zsh`**)

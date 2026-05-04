@@ -92,6 +92,19 @@ Vous voulez que Claude Code l'installe en toute sécurité ? Collez ce prompt :
 >    `echo '{\"model\":{\"display_name\":\"Test\"},\"transcript_path\":\"\"}' | bash ~/.claude/status-line.sh`
 > 5. Demande-moi de redémarrer Claude Code et liste les sauvegardes créées. »
 
+### Mise à jour vers la dernière version
+
+```bash
+~/.claude/status-line.sh update
+```
+
+Récupère le dernier bundle depuis GitHub, crée une sauvegarde horodatée
+(`~/.claude/status-line.sh.bak.<YYYYMMDD-HHMMSS>`) et préserve votre
+config de thème (`~/.claude/statusline.conf`). Redémarrez Claude Code
+après.
+
+Voir la version installée : `~/.claude/status-line.sh version`.
+
 ### Prérequis
 
 - `bash` 4+ (le script utilise des tableaux indexés à 0 — **ne pas exécuter sous `zsh`**)

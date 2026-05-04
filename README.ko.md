@@ -93,6 +93,19 @@ Claude Code가 안전하게 설치하길 원하시나요? 이 프롬프트를 �
 >    `echo '{\"model\":{\"display_name\":\"Test\"},\"transcript_path\":\"\"}' | bash ~/.claude/status-line.sh`
 > 5. 나에게 Claude Code 재시작을 알리고 만든 백업을 보고해줘."
 
+### 최신 버전으로 업데이트
+
+```bash
+~/.claude/status-line.sh update
+```
+
+GitHub에서 최신 bundle을 가져오고, 타임스탬프 백업
+(`~/.claude/status-line.sh.bak.<YYYYMMDD-HHMMSS>`)을 만들며, 테마 설정
+(`~/.claude/statusline.conf`)을 보존합니다. 그 후 Claude Code를 재시작
+하세요.
+
+설치된 버전 확인: `~/.claude/status-line.sh version`.
+
 ### 요구사항
 
 - `bash` 4+ (스크립트는 0-인덱스 배열 사용 — **`zsh`에서 실행 금지**)
