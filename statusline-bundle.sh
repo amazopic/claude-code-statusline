@@ -58,6 +58,22 @@
 
 set -uo pipefail
 
+# ─────────────────────────  PRECHECK: jq  ─────────────────────────────
+# jq parses both Claude Code's stdin JSON and the per-message usage in the
+# transcript. Without it the line renders empty. Fail loudly with install
+# hints rather than silently returning blanks.
+if ! command -v jq >/dev/null 2>&1; then
+  printf '\e[1;38;5;196mstatus-line: jq not found\e[0m — install it:\n' >&2
+  printf '  Ubuntu/Debian:  sudo apt-get install -y jq\n' >&2
+  printf '  Fedora/RHEL:    sudo dnf install -y jq\n' >&2
+  printf '  Arch:           sudo pacman -S jq\n' >&2
+  printf '  macOS (brew):   brew install jq\n' >&2
+  printf '  Alpine:         sudo apk add jq\n' >&2
+  # Stdout still needs *some* output so Claude Code does not show the raw error.
+  if [[ ! -t 0 ]]; then printf 'jq required — see stderr\n'; fi
+  exit 0
+fi
+
 # ─────────────────────────  CONFIG  ───────────────────────────────────
 CONFIG_FILE="${HOME}/.claude/statusline.conf"
 DEFAULT_THEME="minimal"
@@ -527,6 +543,11 @@ block_limits()      {
   local l5 l7 w5 w7
   l5=$(j '.rate_limits.five_hour.used_percentage // .rate_limits.session.percent_used'); l5=${l5%.*}
   l7=$(j '.rate_limits.seven_day.used_percentage // .rate_limits.weekly.percent_used'); l7=${l7%.*}
+  if [[ -z "$l5" && -z "$l7" ]]; then
+    # API mode — payload carries no subscription limits; fall back to tokens.
+    block_tokens_session
+    return
+  fi
   w5=""; (( ${l5:-0} > 50 )) && w5="⚠️ "
   w7=""; (( ${l7:-0} > 50 )) && w7="⚠️ "
   line+="${GRD}5h:${N} ${w5}${GR}${l5:-—}${GRD}%${N} ${GRD}7d:${N} ${w7}${GR}${l7:-—}${GRD}%${N}"
@@ -604,6 +625,20 @@ _lim_default() {
   local l5 l7 w5 w7
   l5=$(j '.rate_limits.five_hour.used_percentage // .rate_limits.session.percent_used'); l5=${l5%.*}
   l7=$(j '.rate_limits.seven_day.used_percentage // .rate_limits.weekly.percent_used'); l7=${l7%.*}
+  if [[ -z "$l5" && -z "$l7" ]]; then
+    # API mode (no subscription limits in payload) — show session tokens
+    local total=0
+    if [[ -n "${transcript:-}" && -f "$transcript" ]]; then
+      total=$(grep '"usage"' "$transcript" 2>/dev/null \
+        | jq -s '[.[] | select(.message.usage) | .message.usage
+                 | ((.input_tokens // 0) + (.output_tokens // 0)
+                    + (.cache_creation_input_tokens // 0)
+                    + (.cache_read_input_tokens // 0))] | add // 0' 2>/dev/null)
+    fi
+    local k=$(( ${total:-0} / 1000 ))
+    line+="${SEP}${GRD}tokens: ${GR}$(fmt_thin "$k")${GRD}K${N}"
+    return
+  fi
   w5=""; (( ${l5:-0} > 50 )) && w5="⚠️ "
   w7=""; (( ${l7:-0} > 50 )) && w7="⚠️ "
   line+="${SEP}${GRD}5h:${N} ${w5}${GR}${l5:-—}${GRD}%${N} ${GRD}7d:${N} ${w7}${GR}${l7:-—}${GRD}%${N}"

@@ -1,6 +1,21 @@
 #!/usr/bin/env bash
 set -uo pipefail
 
+# ─── PRECHECK: jq ─────────────────────────────────────────────────────
+# jq parses Claude Code's stdin JSON and the per-message usage in the
+# transcript. Without it the line renders empty. Fail loudly with install
+# hints rather than silently returning blanks.
+if ! command -v jq >/dev/null 2>&1; then
+  printf '\e[1;38;5;196mstatus-line: jq not found\e[0m — install it:\n' >&2
+  printf '  Ubuntu/Debian:  sudo apt-get install -y jq\n' >&2
+  printf '  Fedora/RHEL:    sudo dnf install -y jq\n' >&2
+  printf '  Arch:           sudo pacman -S jq\n' >&2
+  printf '  macOS (brew):   brew install jq\n' >&2
+  printf '  Alpine:         sudo apk add jq\n' >&2
+  printf 'jq required — see stderr\n'
+  exit 0
+fi
+
 input=$(cat)
 
 # Bright ANSI 256-colors

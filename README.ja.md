@@ -282,7 +282,7 @@ Claude Code を再起動(または `/config` reload)。完了。
 Claude Code があるのに、なぜターミナルを触る？この 1 つのプロンプトを Claude Code セッションに貼り付け — Claude が全ステップを処理し、各コマンド前に確認します。
 
 ```text
-amazopic の claude-code-statusline をインストールして。まず ~/.claude/settings.json を読んで — statusLine.command が既存ファイル（例：~/.claude/status-line.sh など）を指していたら、そのファイルに .bak を追加してバックアップ（既存 .bak は上書き）。~/.claude/status-line.sh が既にあれば同様にバックアップ。次に github.com/amazopic/claude-code-statusline をクローンし、statusline-bundle.sh を ~/.claude/status-line.sh にコピーして実行可能にし、commands/statusline.md も ~/.claude/commands/ にコピー。~/.claude/settings.json を更新して statusLine = { type: "command", command: "<~/.claude/status-line.sh の絶対パス>" } にして。最後に ~/.claude/status-line.sh use developer を実行して developer テーマをテストし、Claude Code を再起動するよう伝えて。
+amazopic の claude-code-statusline をインストールして。まず jq がインストールされているか確認（`which jq` を実行）— 入っていなければプラットフォームに合わせて入れて：`sudo apt-get install -y jq`（Ubuntu/Debian）、`sudo dnf install -y jq`（Fedora）、`brew install jq`（macOS）、`sudo apk add jq`（Alpine）。次に ~/.claude/settings.json を読んで — statusLine.command が既存ファイル（例：~/.claude/status-line.sh など）を指していたら、そのファイルに .bak を追加してバックアップ（既存 .bak は上書き）。~/.claude/status-line.sh が既にあれば同様にバックアップ。次に github.com/amazopic/claude-code-statusline をクローンし、statusline-bundle.sh を ~/.claude/status-line.sh にコピーして実行可能にし、commands/statusline.md も ~/.claude/commands/ にコピー。~/.claude/settings.json を更新して statusLine = { type: "command", command: "<~/.claude/status-line.sh の絶対パス>" } にして。最後に ~/.claude/status-line.sh use developer を実行して developer テーマをテストし、Claude Code を再起動するよう伝えて。
 ```
 
 > 許可プロンプトには `y`（yes）と答えるだけ。完了。
