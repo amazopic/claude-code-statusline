@@ -42,9 +42,28 @@
 #
 #  ─────────────────────────  THEMES  ──────────────────────────
 #
+#  Classic (20):
 #    minimal · developer · time · zen · rainbow · anime · love
 #    cat · christmas · hacker · cyberpunk · space · retro · fire
 #    ocean · weather · coffee · music · game · pirate
+#
+#  Auto brands (17):
+#    Europe   — porsche · mercedes · bmw · ferrari · volvo
+#    America  — ford · chevy · jeep · cadillac
+#    Japan    — toyota · honda · nissan
+#    Korea    — hyundai · kia
+#    China    — byd · nio · geely
+#
+#  Great scientists (10):
+#    einstein · newton · curie · tesla · darwin · hawking
+#    galileo · feynman · turing · davinci
+#
+#  Anime (5):
+#    dragonball · naruto · onepiece · pokemon · ghibli
+#
+#  Marvel superheroes (10):
+#    ironman · spiderman · hulk · thor · captain-america
+#    wolverine · deadpool · blackwidow · strange · wanda
 #
 #  Append "-compact" to any name for the compact variant
 #  (model · context · branch only).
@@ -79,7 +98,7 @@ fi
 # ─────────────────────────  CONFIG  ───────────────────────────────────
 # Calendar versioning: YYYY.MM.DD — bump on every release. Compared by
 # `statusline update` against the upstream copy on GitHub.
-VERSION="2026.05.04"
+VERSION="2026.05.06"
 UPSTREAM_URL="https://raw.githubusercontent.com/amazopic/claude-code-statusline/main/statusline-bundle.sh"
 
 CONFIG_FILE="${HOME}/.claude/statusline.conf"
@@ -91,7 +110,13 @@ BLOCKS=""
 
 # ─────────────────────────  ALL THEMES  ───────────────────────────────
 THEMES=(minimal developer time zen rainbow anime love cat christmas hacker
-        cyberpunk space retro fire ocean weather coffee music game pirate)
+        cyberpunk space retro fire ocean weather coffee music game pirate
+        porsche mercedes bmw ferrari volvo ford chevy jeep cadillac
+        toyota honda nissan hyundai kia byd nio geely
+        einstein newton curie tesla darwin hawking galileo feynman turing davinci
+        dragonball naruto onepiece pokemon ghibli
+        ironman spiderman hulk thor captain-america wolverine deadpool
+        blackwidow strange wanda)
 
 # ─────────────────────────  ALL BLOCKS  ───────────────────────────────
 BLOCKS_LIST=(model context context-pct context-bar cost folder
@@ -962,6 +987,374 @@ render_pirate() {
 }
 
 # ═════════════════════════════════════════════════════════════════════
+#                   AUTOMOTIVE BRAND THEMES (17)
+# ═════════════════════════════════════════════════════════════════════
+
+# ── Europe ───────────────────────────────────────────────────────────
+render_porsche() {
+  line="${R}● ${W}PORSCHE${N} ${D}·${N} ${WD}${model_name}${N}"
+  line+="${SEP}${R}${ctx_pct}${RD2}%${N} $(bar_simple "$ctx_pct" "$R" "$RD2" "▰" "▱")"
+  line+="${SEP}${WD}€${G}${cost_fmt}${N}"
+  [[ -n "$br" ]] && line+="${SEP}${WD}🏁 ${br}${N}"
+  _lim_default
+}
+
+render_mercedes() {
+  line="${WD}✦ ${W}MERCEDES-BENZ${N} ${D}·${N} ${WD}${model_name}${N}"
+  line+="${SEP}${B}${ctx_pct}${BD}%${N} $(bar_simple "$ctx_pct" "$WD" "$D2" "▰" "▱")"
+  line+="${SEP}${WD}€${B}${cost_fmt}${N}"
+  [[ -n "$br" ]] && line+="${SEP}${B}⎇ ${br}${N}"
+  _lim_default
+}
+
+render_bmw() {
+  line="${B}M${W}//${B}BMW${N} ${D}·${N} ${W}${model_name}${N}"
+  line+="${SEP}${B}${ctx_pct}${BD}% $(bar_simple "$ctx_pct" "$B" "$W" "▰" "▱")${N}"
+  line+="${SEP}${BD}€${B}${cost_fmt}${N}"
+  [[ -n "$br" ]] && line+="${SEP}${B}⎇ ${br}${N}"
+  _lim_default
+}
+
+render_ferrari() {
+  line="${R}🐎 FERRARI${N} ${YD}·${N} ${W}rosso · ${model_name}${N}"
+  line+="${SEP}${R}${ctx_pct}${RU}%${N} $(bar_simple "$ctx_pct" "$R" "$Y" "▰" "▱")"
+  line+="${SEP}${Y}€${R}${cost_fmt}${N}"
+  [[ -n "$br" ]] && line+="${SEP}${Y}🏁 ${R}${br}${N}"
+  _lim_default
+}
+
+render_volvo() {
+  line="${WD}♂ ${B}VOLVO${N} ${D}·${N} ${W}${model_name}${N}"
+  line+="${SEP}${WD}safe ${B}${ctx_pct}${BD}%${N} $(bar_simple "$ctx_pct" "$B" "$D2" "█" "░")"
+  line+="${SEP}${B}kr ${WD}${cost_fmt}${N}"
+  [[ -n "$br" ]] && line+="${SEP}${WD}❄ ${B}${br}${N}"
+  _lim_default
+}
+
+# ── America ──────────────────────────────────────────────────────────
+render_ford() {
+  line="${B}⊰${W}FORD${B}⊱${N} ${D}·${N} ${W}${model_name}${N}"
+  line+="${SEP}${B}built ${C}${ctx_pct}${BD}% $(bar_simple "$ctx_pct" "$B" "$BD" "▰" "▱")${N}"
+  line+="${SEP}${WD}\$${B}${cost_fmt}${N}"
+  [[ -n "$br" ]] && line+="${SEP}${B}⎇ ${br}${N}"
+  _lim_default
+}
+
+render_chevy() {
+  line="${Y}⋈ ${B}CHEVROLET${N} ${D}·${N} ${W}${model_name}${N}"
+  line+="${SEP}${Y}SS ${B}${ctx_pct}${BD}%${N} $(bar_simple "$ctx_pct" "$Y" "$BD" "▰" "▱")"
+  line+="${SEP}${Y}\$${B}${cost_fmt}${N}"
+  [[ -n "$br" ]] && line+="${SEP}${Y}${br}${N}"
+  _lim_default
+}
+
+render_jeep() {
+  line="${BR}⊞⊞⊞⊞⊞⊞⊞${N} ${W}JEEP${N} ${D}·${N} ${W}${model_name}${N}"
+  line+="${SEP}${BR}trail ${G}${ctx_pct}${GD}% $(bar_simple "$ctx_pct" "$BR" "$BRD" "▰" "▱")${N}"
+  line+="${SEP}${BR}\$${G}${cost_fmt}${N}"
+  [[ -n "$br" ]] && line+="${SEP}${BR}🛞 ${G}${br}${N}"
+  _lim_default
+}
+
+render_cadillac() {
+  line="${WD}✧ ${W}CADILLAC${N} ${D}·${N} ${WD}${model_name}${N}"
+  line+="${SEP}${R}prestige ${WD}${ctx_pct}${D}% $(bar_simple "$ctx_pct" "$WD" "$D2" "█" "░")${N}"
+  line+="${SEP}${WD}\$${R}${cost_fmt}${N}"
+  [[ -n "$br" ]] && line+="${SEP}${R}⎇ ${WD}${br}${N}"
+  _lim_default
+}
+
+# ── Japan ────────────────────────────────────────────────────────────
+render_toyota() {
+  line="${R}⊝ ${W}TOYOTA${N} ${D}·${N} ${W}${model_name}${N}"
+  line+="${SEP}${R}drive ${WD}${ctx_pct}${D}% $(bar_simple "$ctx_pct" "$R" "$WD" "▰" "▱")${N}"
+  line+="${SEP}${R}¥${W}${cost_fmt}${N}"
+  [[ -n "$br" ]] && line+="${SEP}${R}⛩ ${W}${br}${N}"
+  _lim_default
+}
+
+render_honda() {
+  line="${R}Ⓗ ${W}HONDA${N} ${D}·${N} ${W}${model_name}${N}"
+  line+="${SEP}${R}vtec ${C}${ctx_pct}${CD}% $(bar_simple "$ctx_pct" "$R" "$D2" "█" "░")${N}"
+  line+="${SEP}${R}¥${W}${cost_fmt}${N}"
+  [[ -n "$br" ]] && line+="${SEP}${R}⎇ ${WD}${br}${N}"
+  _lim_default
+}
+
+render_nissan() {
+  line="${R}Ⓝ ${W}NISSAN${N} ${D}·${N} ${WD}GT-R · ${W}${model_name}${N}"
+  line+="${SEP}${R}rpm ${C}${ctx_pct}${BD}% $(bar_simple "$ctx_pct" "$R" "$WD" "▰" "▱")${N}"
+  line+="${SEP}${R}¥${W}${cost_fmt}${N}"
+  [[ -n "$br" ]] && line+="${SEP}${B}⎇ ${br}${N}"
+  _lim_default
+}
+
+# ── Korea ────────────────────────────────────────────────────────────
+render_hyundai() {
+  line="${B}Ⓗ ${W}HYUNDAI${N} ${D}·${N} ${W}${model_name}${N}"
+  line+="${SEP}${B}new ${C}${ctx_pct}${BD}% $(bar_simple "$ctx_pct" "$B" "$BD" "▰" "▱")${N}"
+  line+="${SEP}${B}₩${W}${cost_fmt}${N}"
+  [[ -n "$br" ]] && line+="${SEP}${B}⎇ ${WD}${br}${N}"
+  _lim_default
+}
+
+render_kia() {
+  line="${R}Ⓚ ${W}KIA${N} ${D}·${N} ${W}${model_name}${N} ${D}·${N} ${WD}EV9${N}"
+  line+="${SEP}${R}charge ${G}${ctx_pct}${GD}% $(bar_simple "$ctx_pct" "$R" "$D2" "▰" "▱")${N}"
+  line+="${SEP}${R}₩${W}${cost_fmt}${N}"
+  [[ -n "$br" ]] && line+="${SEP}${R}⎇ ${G}${br}${N}"
+  _lim_default
+}
+
+# ── China ────────────────────────────────────────────────────────────
+render_byd() {
+  line="${GR}⚡ ${W}BYD${N} ${D}·${N} ${WD}build-your-dream · ${W}${model_name}${N}"
+  line+="${SEP}${GR}🔋 ${C}${ctx_pct}${CD}% $(bar_simple "$ctx_pct" "$GR" "$D2" "▰" "▱")${N}"
+  line+="${SEP}${GR}¥${W}${cost_fmt}${N}"
+  [[ -n "$br" ]] && line+="${SEP}${C}⎇ ${GR}${br}${N}"
+  _lim_default
+}
+
+render_nio() {
+  line="${C}◐ ${W}NIO${N} ${D}·${N} ${W}${model_name}${N} ${D}·${N} ${WD}ET7${N}"
+  line+="${SEP}${C}drive ${B}${ctx_pct}${BD}% $(bar_simple "$ctx_pct" "$C" "$D2" "▰" "▱")${N}"
+  line+="${SEP}${C}¥${W}${cost_fmt}${N}"
+  [[ -n "$br" ]] && line+="${SEP}${C}⎇ ${B}${br}${N}"
+  _lim_default
+}
+
+render_geely() {
+  line="${B}◆ ${W}GEELY${N} ${D}·${N} ${W}${model_name}${N}"
+  line+="${SEP}${B}global ${C}${ctx_pct}${BD}% $(bar_simple "$ctx_pct" "$B" "$BD" "▰" "▱")${N}"
+  line+="${SEP}${B}¥${W}${cost_fmt}${N}"
+  [[ -n "$br" ]] && line+="${SEP}${C}⎇ ${B}${br}${N}"
+  _lim_default
+}
+
+# ═════════════════════════════════════════════════════════════════════
+#                    GREAT SCIENTIST THEMES (10)
+# ═════════════════════════════════════════════════════════════════════
+
+render_einstein() {
+  line="${WD}Ψ ${W}Einstein${N} ${D}·${N} ${G}E=mc²${N}"
+  line+="${SEP}${G}c ${C}${ctx_pct}${CD}% $(bar_simple "$ctx_pct" "$G" "$D2" "█" "░")${N}"
+  line+="${SEP}${WD}ε ${G}${cost_fmt}${N}"
+  [[ -n "$br" ]] && line+="${SEP}${WD}⎇ ${G}${br}${N}"
+  _lim_default
+}
+
+render_newton() {
+  line="${R}🍎 ${W}Newton${N} ${D}·${N} ${BR}F = ma${N}"
+  line+="${SEP}${BR}gravity ${R}${ctx_pct}${RU}% $(bar_simple "$ctx_pct" "$R" "$BRD" "█" "░")${N}"
+  line+="${SEP}${BR}£${R}${cost_fmt}${N}"
+  [[ -n "$br" ]] && line+="${SEP}${BR}⎇ ${R}${br}${N}"
+  _lim_default
+}
+
+render_curie() {
+  line="${GR}☢ ${W}Curie${N} ${D}·${N} ${GR}Ra · Po${N}"
+  line+="${SEP}${GR}half-life ${C}${ctx_pct}${GRD}% $(bar_simple "$ctx_pct" "$GR" "$GRDD" "▰" "▱")${N}"
+  line+="${SEP}${GR}⚛ ${C}${cost_fmt}${N}"
+  [[ -n "$br" ]] && line+="${SEP}${GR}⎇ ${C}${br}${N}"
+  _lim_default
+}
+
+render_tesla() {
+  line="${V}⚡ ${W}Tesla${N} ${D}·${N} ${Y}AC ~${N}"
+  line+="${SEP}${V}coil ${Y}${ctx_pct}${YD}% $(bar_simple "$ctx_pct" "$Y" "$V2" "▰" "▱")${N}"
+  line+="${SEP}${V}⚡ ${Y}${cost_fmt}${N}"
+  [[ -n "$br" ]] && line+="${SEP}${V}⎇ ${Y}${br}${N}"
+  _lim_default
+}
+
+render_darwin() {
+  line="${G}🐢 ${W}Darwin${N} ${D}·${N} ${G}HMS Beagle${N}"
+  line+="${SEP}${G}adapt ${B}${ctx_pct}${BD}% $(bar_simple "$ctx_pct" "$G" "$D2" "▰" "▱")${N}"
+  line+="${SEP}${BR}£${G}${cost_fmt}${N}"
+  [[ -n "$br" ]] && line+="${SEP}${G}🐦 ${B}${br}${N}"
+  _lim_default
+}
+
+render_hawking() {
+  line="${V}🌌 ${W}Hawking${N} ${D}·${N} ${V2}t → ∞${N}"
+  line+="${SEP}${V}horizon ${C}${ctx_pct}${V2}% $(bar_simple "$ctx_pct" "$V" "$D2" "▰" "▱")${N}"
+  line+="${SEP}${V}⌬ ${W}${cost_fmt}${N}"
+  [[ -n "$br" ]] && line+="${SEP}${V}🕳 ${C}${br}${N}"
+  _lim_default
+}
+
+render_galileo() {
+  line="${Y}🔭 ${W}Galileo${N} ${D}·${N} ${Y}☉ → eppur si muove${N}"
+  line+="${SEP}${Y}orbits ${C}${ctx_pct}${CD}% $(bar_simple "$ctx_pct" "$Y" "$BD" "▰" "▱")${N}"
+  line+="${SEP}${Y}✦ ${W}${cost_fmt}${N}"
+  [[ -n "$br" ]] && line+="${SEP}${C}⎇ ${Y}${br}${N}"
+  _lim_default
+}
+
+render_feynman() {
+  line="${G}〰 ${W}Feynman${N} ${D}·${N} ${G}ψ → ψ'${N}"
+  line+="${SEP}${G}qed ${WD}${ctx_pct}${D}% $(bar_simple "$ctx_pct" "$G" "$WD" "═" "─")${N}"
+  line+="${SEP}${G}⊳ ${W}${cost_fmt}${N}"
+  [[ -n "$br" ]] && line+="${SEP}${G}🥁 ${WD}${br}${N}"
+  _lim_default
+}
+
+render_turing() {
+  line="${GR}Ⓣ ${W}Turing${N} ${D}·${N} ${GR}h(p) ↻${N}"
+  line+="${SEP}${GR}halt? ${R}${ctx_pct}${RU}% $(bar_simple "$ctx_pct" "$GR" "$GRDD" "1" "0")${N}"
+  line+="${SEP}${GR}0x${R}${cost_fmt}${N}"
+  [[ -n "$br" ]] && line+="${SEP}${GR}⊏⊐ ${R}${br}${N}"
+  _lim_default
+}
+
+render_davinci() {
+  line="${BR}✎ ${W}da Vinci${N} ${D}·${N} ${BR}Vitruvian${N}"
+  line+="${SEP}${BR}sketch ${Y}${ctx_pct}${BRD}% $(bar_simple "$ctx_pct" "$BR" "$BRD" "▰" "▱")${N}"
+  line+="${SEP}${BR}ƒ ${Y}${cost_fmt}${N}"
+  [[ -n "$br" ]] && line+="${SEP}${BR}⎇ ${Y}${br}${N}"
+  _lim_default
+}
+
+# ═════════════════════════════════════════════════════════════════════
+#                          TOP 5 ANIME (5)
+# ═════════════════════════════════════════════════════════════════════
+
+render_dragonball() {
+  local kai
+  if   (( ctx_pct < 30 )); then kai="${O}🐉 base${N}"
+  elif (( ctx_pct < 60 )); then kai="${Y}⚡ super saiyan${N}"
+  elif (( ctx_pct < 85 )); then kai="${B}💧 ssj blue${N}"
+  else                          kai="${V}🟣 ultra instinct${N}"
+  fi
+  line="${O}🐉 ${Y}DRAGON BALL${N} ${D}·${N} ${W}${model_name}${N}"
+  line+="${SEP}${Y}KI ${O}${ctx_pct}${YD}% $(bar_simple "$ctx_pct" "$O" "$Y" "▰" "▱")${N}"
+  line+="${SEP}${Y}zeni ${O}${cost_fmt}${N} ${D}·${N} ${kai}"
+  [[ -n "$br" ]] && line+="${SEP}${Y}⎇ ${O}${br}${N}"
+  _lim_default
+}
+
+render_naruto() {
+  line="${O}🍃 ${Y}NARUTO${N} ${D}·${N} ${W}${model_name}${N}"
+  line+="${SEP}${O}chakra ${G}${ctx_pct}${GD}% $(bar_simple "$ctx_pct" "$O" "$G" "▰" "▱")${N}"
+  line+="${SEP}${O}🌀 rasengan ${cost_fmt}${N}"
+  [[ -n "$br" ]] && line+="${SEP}${G}⎇ ${O}${br}${N}"
+  _lim_default
+}
+
+render_onepiece() {
+  line="${R}🏴‍☠️ ${Y}ONE PIECE${N} ${D}·${N} ${W}Mugiwara · ${model_name}${N}"
+  line+="${SEP}${R}gum-gum ${Y}${ctx_pct}${YD}% $(bar_simple "$ctx_pct" "$R" "$Y" "▰" "▱")${N}"
+  line+="${SEP}${Y}berry ${R}${cost_fmt}${N}"
+  [[ -n "$br" ]] && line+="${SEP}${B}⎇ ${R}${br}${N}"
+  _lim_default
+}
+
+render_pokemon() {
+  line="${Y}⚡ ${R}POKÉMON${N} ${D}·${N} ${Y}Pikachu · ${W}${model_name}${N}"
+  line+="${SEP}${R}HP ${Y}${ctx_pct}${YD}% $(bar_simple "$ctx_pct" "$Y" "$R" "█" "░")${N}"
+  line+="${SEP}${R}⚪ poké ${Y}${cost_fmt}${N}"
+  [[ -n "$br" ]] && line+="${SEP}${R}⎇ ${Y}${br}${N}"
+  _lim_default
+}
+
+render_ghibli() {
+  line="${G}🌳 ${W}Ghibli${N} ${D}·${N} ${WD}Totoro · ${model_name}${N}"
+  line+="${SEP}${G}leaves ${C}${ctx_pct}${CD}% $(bar_simple "$ctx_pct" "$G" "$WD" "✿" "·")${N}"
+  line+="${SEP}${G}🌱 ${C}${cost_fmt}${N}"
+  [[ -n "$br" ]] && line+="${SEP}${G}⎇ ${WD}${br}${N}"
+  _lim_default
+}
+
+# ═════════════════════════════════════════════════════════════════════
+#                       MARVEL SUPERHEROES (10)
+# ═════════════════════════════════════════════════════════════════════
+
+render_ironman() {
+  line="${R}🦾 ${Y}IRON MAN${N} ${D}·${N} ${W}Stark · ${model_name}${N}"
+  line+="${SEP}${R}arc ${Y}${ctx_pct}${YD}% $(bar_simple "$ctx_pct" "$Y" "$R" "▰" "▱")${N}"
+  line+="${SEP}${Y}\$${R}${cost_fmt}${N}"
+  [[ -n "$br" ]] && line+="${SEP}${R}⎇ ${Y}${br}${N}"
+  _lim_default
+}
+
+render_spiderman() {
+  line="${R}🕷 ${B}SPIDER-MAN${N} ${D}·${N} ${W}Parker · ${model_name}${N}"
+  line+="${SEP}${R}web ${B}${ctx_pct}${BD}% $(bar_simple "$ctx_pct" "$R" "$B" "▰" "▱")${N}"
+  line+="${SEP}${R}\$${B}${cost_fmt}${N}"
+  [[ -n "$br" ]] && line+="${SEP}${B}⎇ ${R}${br}${N}"
+  _lim_default
+}
+
+render_hulk() {
+  local mood
+  if   (( ctx_pct < 50 )); then mood="${G}calm Banner${N}"
+  elif (( ctx_pct < 80 )); then mood="${G}HULK angry${N}"
+  else                          mood="${G}HULK SMASH${N}"
+  fi
+  line="${G}🟢 ${W}HULK${N} ${D}·${N} ${V}${model_name}${N}"
+  line+="${SEP}${G}rage ${V}${ctx_pct}${V2}% $(bar_simple "$ctx_pct" "$G" "$D2" "█" "░")${N}"
+  line+="${SEP}${G}\$${V}${cost_fmt}${N} ${D}·${N} ${mood}"
+  [[ -n "$br" ]] && line+="${SEP}${G}⎇ ${V}${br}${N}"
+  _lim_default
+}
+
+render_thor() {
+  line="${Y}⚡ ${R}THOR${N} ${D}·${N} ${WD}Mjölnir · ${W}${model_name}${N}"
+  line+="${SEP}${Y}storm ${R}${ctx_pct}${RU}% $(bar_simple "$ctx_pct" "$Y" "$R" "▰" "▱")${N}"
+  line+="${SEP}${Y}⚒ ${R}${cost_fmt}${N}"
+  [[ -n "$br" ]] && line+="${SEP}${R}⎇ ${Y}${br}${N}"
+  _lim_default
+}
+
+render_captain_america() {
+  line="${R}🛡 ${B}CAPTAIN AMERICA${N} ${D}·${N} ${W}Rogers · ${model_name}${N}"
+  line+="${SEP}${B}duty ${R}${ctx_pct}${RU}% $(bar_simple "$ctx_pct" "$R" "$B" "█" "░")${N}"
+  line+="${SEP}${R}\$${B}${cost_fmt}${N}"
+  [[ -n "$br" ]] && line+="${SEP}${B}⎇ ${W}${br}${N}"
+  _lim_default
+}
+
+render_wolverine() {
+  line="${Y}🗡 ${B}WOLVERINE${N} ${D}·${N} ${W}Logan · ${model_name}${N}"
+  line+="${SEP}${Y}snikt ${B}${ctx_pct}${BD}% $(bar_simple "$ctx_pct" "$Y" "$B" "▰" "▱")${N}"
+  line+="${SEP}${Y}\$${B}${cost_fmt}${N}"
+  [[ -n "$br" ]] && line+="${SEP}${B}⎇ ${Y}${br}${N}"
+  _lim_default
+}
+
+render_deadpool() {
+  line="${R}🌮 ${W}DEADPOOL${N} ${D}·${N} ${WD}Wade · ${model_name}${N}"
+  line+="${SEP}${R}max-effort ${WD}${ctx_pct}${D}% $(bar_simple "$ctx_pct" "$R" "$D2" "▰" "▱")${N}"
+  line+="${SEP}${R}\$${WD}${cost_fmt}${N}"
+  [[ -n "$br" ]] && line+="${SEP}${R}⎇ ${WD}${br}${N}"
+  _lim_default
+}
+
+render_blackwidow() {
+  line="${R}🕸 ${W}BLACK WIDOW${N} ${D}·${N} ${WD}Romanoff · ${model_name}${N}"
+  line+="${SEP}${R}ops ${WD}${ctx_pct}${D}% $(bar_simple "$ctx_pct" "$R" "$D2" "▰" "▱")${N}"
+  line+="${SEP}${R}\$${WD}${cost_fmt}${N}"
+  [[ -n "$br" ]] && line+="${SEP}${R}⎇ ${WD}${br}${N}"
+  _lim_default
+}
+
+render_strange() {
+  line="${V}🔮 ${R}DR. STRANGE${N} ${D}·${N} ${W}${model_name}${N}"
+  line+="${SEP}${V}mystic ${Y}${ctx_pct}${YD}% $(bar_simple "$ctx_pct" "$V" "$Y" "✦" "·")${N}"
+  line+="${SEP}${V}⌬ ${Y}${cost_fmt}${N}"
+  [[ -n "$br" ]] && line+="${SEP}${V}⎇ ${Y}${br}${N}"
+  _lim_default
+}
+
+render_wanda() {
+  line="${R}🌹 ${V}SCARLET WITCH${N} ${D}·${N} ${W}Wanda · ${model_name}${N}"
+  line+="${SEP}${R}chaos ${V}${ctx_pct}${V2}% $(bar_simple "$ctx_pct" "$R" "$V" "▰" "▱")${N}"
+  line+="${SEP}${R}🪄 ${V}${cost_fmt}${N}"
+  [[ -n "$br" ]] && line+="${SEP}${V}⎇ ${R}${br}${N}"
+  _lim_default
+}
+
+# ═════════════════════════════════════════════════════════════════════
 #                       COMPACT THEME RENDERER
 #                  (model · context % + bar · branch)
 # ═════════════════════════════════════════════════════════════════════
@@ -1066,6 +1459,216 @@ render_compact() {
     pirate)
       line="🏴‍☠️ ${W}${model_name}${N} ${D}·${N} ${G}${ctx_pct}%${N} $(bar_simple "$ctx_pct" "$G" "$BR" "█" "-")"
       [[ -n "$br" ]] && line+=" ${D}·${N} ⚓ ${G}${br}${N}"
+      _lim_default
+      ;;
+    porsche)
+      line="${R}● ${W}PORSCHE${N} ${D}·${N} ${R}${ctx_pct}${RD2}%${N} $(bar_simple "$ctx_pct" "$R" "$RD2" "▰" "▱")"
+      [[ -n "$br" ]] && line+=" ${D}·${N} ${WD}🏁 ${br}${N}"
+      _lim_default
+      ;;
+    mercedes)
+      line="${WD}✦ ${W}MERCEDES${N} ${D}·${N} ${B}${ctx_pct}${BD}%${N} $(bar_simple "$ctx_pct" "$WD" "$D2" "▰" "▱")"
+      [[ -n "$br" ]] && line+=" ${D}·${N} ${B}${br}${N}"
+      _lim_default
+      ;;
+    bmw)
+      line="${B}M${W}//${B}BMW${N} ${D}·${N} ${B}${ctx_pct}${BD}%${N} $(bar_simple "$ctx_pct" "$B" "$W" "▰" "▱")"
+      [[ -n "$br" ]] && line+=" ${D}·${N} ${B}${br}${N}"
+      _lim_default
+      ;;
+    ferrari)
+      line="${R}🐎 FERRARI${N} ${D}·${N} ${R}${ctx_pct}${RU}%${N} $(bar_simple "$ctx_pct" "$R" "$Y" "▰" "▱")"
+      [[ -n "$br" ]] && line+=" ${D}·${N} ${Y}${br}${N}"
+      _lim_default
+      ;;
+    volvo)
+      line="${WD}♂ ${B}VOLVO${N} ${D}·${N} ${B}${ctx_pct}${BD}%${N} $(bar_simple "$ctx_pct" "$B" "$D2" "█" "░")"
+      [[ -n "$br" ]] && line+=" ${D}·${N} ${B}${br}${N}"
+      _lim_default
+      ;;
+    ford)
+      line="${B}⊰FORD⊱${N} ${D}·${N} ${B}${ctx_pct}${BD}%${N} $(bar_simple "$ctx_pct" "$B" "$BD" "▰" "▱")"
+      [[ -n "$br" ]] && line+=" ${D}·${N} ${B}${br}${N}"
+      _lim_default
+      ;;
+    chevy)
+      line="${Y}⋈ ${B}CHEVROLET${N} ${D}·${N} ${B}${ctx_pct}${BD}%${N} $(bar_simple "$ctx_pct" "$Y" "$BD" "▰" "▱")"
+      [[ -n "$br" ]] && line+=" ${D}·${N} ${Y}${br}${N}"
+      _lim_default
+      ;;
+    jeep)
+      line="${BR}⊞⊞⊞${N} ${W}JEEP${N} ${D}·${N} ${G}${ctx_pct}${GD}%${N} $(bar_simple "$ctx_pct" "$BR" "$BRD" "▰" "▱")"
+      [[ -n "$br" ]] && line+=" ${D}·${N} ${BR}${br}${N}"
+      _lim_default
+      ;;
+    cadillac)
+      line="${WD}✧ ${W}CADILLAC${N} ${D}·${N} ${WD}${ctx_pct}${D}%${N} $(bar_simple "$ctx_pct" "$WD" "$D2" "█" "░")"
+      [[ -n "$br" ]] && line+=" ${D}·${N} ${R}${br}${N}"
+      _lim_default
+      ;;
+    toyota)
+      line="${R}⊝ ${W}TOYOTA${N} ${D}·${N} ${R}${ctx_pct}${RU}%${N} $(bar_simple "$ctx_pct" "$R" "$WD" "▰" "▱")"
+      [[ -n "$br" ]] && line+=" ${D}·${N} ${R}⛩ ${W}${br}${N}"
+      _lim_default
+      ;;
+    honda)
+      line="${R}Ⓗ ${W}HONDA${N} ${D}·${N} ${R}${ctx_pct}${RU}%${N} $(bar_simple "$ctx_pct" "$R" "$D2" "█" "░")"
+      [[ -n "$br" ]] && line+=" ${D}·${N} ${R}${br}${N}"
+      _lim_default
+      ;;
+    nissan)
+      line="${R}Ⓝ ${W}NISSAN${N} ${D}·${N} ${R}${ctx_pct}${RU}%${N} $(bar_simple "$ctx_pct" "$R" "$WD" "▰" "▱")"
+      [[ -n "$br" ]] && line+=" ${D}·${N} ${B}${br}${N}"
+      _lim_default
+      ;;
+    hyundai)
+      line="${B}Ⓗ ${W}HYUNDAI${N} ${D}·${N} ${B}${ctx_pct}${BD}%${N} $(bar_simple "$ctx_pct" "$B" "$BD" "▰" "▱")"
+      [[ -n "$br" ]] && line+=" ${D}·${N} ${B}${br}${N}"
+      _lim_default
+      ;;
+    kia)
+      line="${R}Ⓚ ${W}KIA${N} ${D}·${N} ${G}${ctx_pct}${GD}%${N} $(bar_simple "$ctx_pct" "$R" "$D2" "▰" "▱")"
+      [[ -n "$br" ]] && line+=" ${D}·${N} ${G}${br}${N}"
+      _lim_default
+      ;;
+    byd)
+      line="${GR}⚡ ${W}BYD${N} ${D}·${N} ${C}${ctx_pct}${CD}%${N} $(bar_simple "$ctx_pct" "$GR" "$D2" "▰" "▱")"
+      [[ -n "$br" ]] && line+=" ${D}·${N} ${GR}${br}${N}"
+      _lim_default
+      ;;
+    nio)
+      line="${C}◐ ${W}NIO${N} ${D}·${N} ${C}${ctx_pct}${CD}%${N} $(bar_simple "$ctx_pct" "$C" "$D2" "▰" "▱")"
+      [[ -n "$br" ]] && line+=" ${D}·${N} ${B}${br}${N}"
+      _lim_default
+      ;;
+    geely)
+      line="${B}◆ ${W}GEELY${N} ${D}·${N} ${B}${ctx_pct}${BD}%${N} $(bar_simple "$ctx_pct" "$B" "$BD" "▰" "▱")"
+      [[ -n "$br" ]] && line+=" ${D}·${N} ${B}${br}${N}"
+      _lim_default
+      ;;
+    einstein)
+      line="${WD}Ψ ${W}Einstein${N} ${D}·${N} ${G}${ctx_pct}${GD}%${N} $(bar_simple "$ctx_pct" "$G" "$D2" "█" "░")"
+      [[ -n "$br" ]] && line+=" ${D}·${N} ${G}${br}${N}"
+      _lim_default
+      ;;
+    newton)
+      line="${R}🍎 ${W}Newton${N} ${D}·${N} ${R}${ctx_pct}${RU}%${N} $(bar_simple "$ctx_pct" "$R" "$BRD" "█" "░")"
+      [[ -n "$br" ]] && line+=" ${D}·${N} ${BR}${br}${N}"
+      _lim_default
+      ;;
+    curie)
+      line="${GR}☢ ${W}Curie${N} ${D}·${N} ${GR}${ctx_pct}${GRD}%${N} $(bar_simple "$ctx_pct" "$GR" "$GRDD" "▰" "▱")"
+      [[ -n "$br" ]] && line+=" ${D}·${N} ${C}${br}${N}"
+      _lim_default
+      ;;
+    tesla)
+      line="${V}⚡ ${W}Tesla${N} ${D}·${N} ${Y}${ctx_pct}${YD}%${N} $(bar_simple "$ctx_pct" "$Y" "$V2" "▰" "▱")"
+      [[ -n "$br" ]] && line+=" ${D}·${N} ${V}${br}${N}"
+      _lim_default
+      ;;
+    darwin)
+      line="${G}🐢 ${W}Darwin${N} ${D}·${N} ${G}${ctx_pct}${GD}%${N} $(bar_simple "$ctx_pct" "$G" "$D2" "▰" "▱")"
+      [[ -n "$br" ]] && line+=" ${D}·${N} ${G}${br}${N}"
+      _lim_default
+      ;;
+    hawking)
+      line="${V}🌌 ${W}Hawking${N} ${D}·${N} ${V}${ctx_pct}${V2}%${N} $(bar_simple "$ctx_pct" "$V" "$D2" "▰" "▱")"
+      [[ -n "$br" ]] && line+=" ${D}·${N} ${C}${br}${N}"
+      _lim_default
+      ;;
+    galileo)
+      line="${Y}🔭 ${W}Galileo${N} ${D}·${N} ${Y}${ctx_pct}${YD}%${N} $(bar_simple "$ctx_pct" "$Y" "$BD" "▰" "▱")"
+      [[ -n "$br" ]] && line+=" ${D}·${N} ${C}${br}${N}"
+      _lim_default
+      ;;
+    feynman)
+      line="${G}〰 ${W}Feynman${N} ${D}·${N} ${G}${ctx_pct}${GD}%${N} $(bar_simple "$ctx_pct" "$G" "$WD" "═" "─")"
+      [[ -n "$br" ]] && line+=" ${D}·${N} ${WD}${br}${N}"
+      _lim_default
+      ;;
+    turing)
+      line="${GR}Ⓣ ${W}Turing${N} ${D}·${N} ${R}${ctx_pct}${RU}%${N} $(bar_simple "$ctx_pct" "$GR" "$GRDD" "1" "0")"
+      [[ -n "$br" ]] && line+=" ${D}·${N} ${GR}${br}${N}"
+      _lim_default
+      ;;
+    davinci)
+      line="${BR}✎ ${W}da Vinci${N} ${D}·${N} ${Y}${ctx_pct}${BRD}%${N} $(bar_simple "$ctx_pct" "$BR" "$BRD" "▰" "▱")"
+      [[ -n "$br" ]] && line+=" ${D}·${N} ${BR}${br}${N}"
+      _lim_default
+      ;;
+    dragonball)
+      line="${O}🐉 ${Y}DRAGON BALL${N} ${D}·${N} ${O}${ctx_pct}${YD}%${N} $(bar_simple "$ctx_pct" "$O" "$Y" "▰" "▱")"
+      [[ -n "$br" ]] && line+=" ${D}·${N} ${O}${br}${N}"
+      _lim_default
+      ;;
+    naruto)
+      line="${O}🍃 ${Y}NARUTO${N} ${D}·${N} ${G}${ctx_pct}${GD}%${N} $(bar_simple "$ctx_pct" "$O" "$G" "▰" "▱")"
+      [[ -n "$br" ]] && line+=" ${D}·${N} ${G}${br}${N}"
+      _lim_default
+      ;;
+    onepiece)
+      line="${R}🏴‍☠️ ${Y}ONE PIECE${N} ${D}·${N} ${Y}${ctx_pct}${YD}%${N} $(bar_simple "$ctx_pct" "$R" "$Y" "▰" "▱")"
+      [[ -n "$br" ]] && line+=" ${D}·${N} ${R}${br}${N}"
+      _lim_default
+      ;;
+    pokemon)
+      line="${Y}⚡ ${R}POKÉMON${N} ${D}·${N} ${Y}${ctx_pct}${YD}%${N} $(bar_simple "$ctx_pct" "$Y" "$R" "█" "░")"
+      [[ -n "$br" ]] && line+=" ${D}·${N} ${Y}${br}${N}"
+      _lim_default
+      ;;
+    ghibli)
+      line="${G}🌳 ${W}Ghibli${N} ${D}·${N} ${G}${ctx_pct}${GD}%${N} $(bar_simple "$ctx_pct" "$G" "$WD" "✿" "·")"
+      [[ -n "$br" ]] && line+=" ${D}·${N} ${G}${br}${N}"
+      _lim_default
+      ;;
+    ironman)
+      line="${R}🦾 ${Y}IRON MAN${N} ${D}·${N} ${Y}${ctx_pct}${YD}%${N} $(bar_simple "$ctx_pct" "$Y" "$R" "▰" "▱")"
+      [[ -n "$br" ]] && line+=" ${D}·${N} ${Y}${br}${N}"
+      _lim_default
+      ;;
+    spiderman)
+      line="${R}🕷 ${B}SPIDER-MAN${N} ${D}·${N} ${B}${ctx_pct}${BD}%${N} $(bar_simple "$ctx_pct" "$R" "$B" "▰" "▱")"
+      [[ -n "$br" ]] && line+=" ${D}·${N} ${R}${br}${N}"
+      _lim_default
+      ;;
+    hulk)
+      line="${G}🟢 ${W}HULK${N} ${D}·${N} ${V}${ctx_pct}${V2}%${N} $(bar_simple "$ctx_pct" "$G" "$D2" "█" "░")"
+      [[ -n "$br" ]] && line+=" ${D}·${N} ${V}${br}${N}"
+      _lim_default
+      ;;
+    thor)
+      line="${Y}⚡ ${R}THOR${N} ${D}·${N} ${R}${ctx_pct}${RU}%${N} $(bar_simple "$ctx_pct" "$Y" "$R" "▰" "▱")"
+      [[ -n "$br" ]] && line+=" ${D}·${N} ${R}${br}${N}"
+      _lim_default
+      ;;
+    captain-america)
+      line="${R}🛡 ${B}CAP${N} ${D}·${N} ${R}${ctx_pct}${RU}%${N} $(bar_simple "$ctx_pct" "$R" "$B" "█" "░")"
+      [[ -n "$br" ]] && line+=" ${D}·${N} ${B}${br}${N}"
+      _lim_default
+      ;;
+    wolverine)
+      line="${Y}🗡 ${B}WOLVERINE${N} ${D}·${N} ${B}${ctx_pct}${BD}%${N} $(bar_simple "$ctx_pct" "$Y" "$B" "▰" "▱")"
+      [[ -n "$br" ]] && line+=" ${D}·${N} ${Y}${br}${N}"
+      _lim_default
+      ;;
+    deadpool)
+      line="${R}🌮 ${W}DEADPOOL${N} ${D}·${N} ${WD}${ctx_pct}${D}%${N} $(bar_simple "$ctx_pct" "$R" "$D2" "▰" "▱")"
+      [[ -n "$br" ]] && line+=" ${D}·${N} ${R}${br}${N}"
+      _lim_default
+      ;;
+    blackwidow)
+      line="${R}🕸 ${W}WIDOW${N} ${D}·${N} ${WD}${ctx_pct}${D}%${N} $(bar_simple "$ctx_pct" "$R" "$D2" "▰" "▱")"
+      [[ -n "$br" ]] && line+=" ${D}·${N} ${R}${br}${N}"
+      _lim_default
+      ;;
+    strange)
+      line="${V}🔮 ${R}STRANGE${N} ${D}·${N} ${Y}${ctx_pct}${YD}%${N} $(bar_simple "$ctx_pct" "$V" "$Y" "✦" "·")"
+      [[ -n "$br" ]] && line+=" ${D}·${N} ${V}${br}${N}"
+      _lim_default
+      ;;
+    wanda)
+      line="${R}🌹 ${V}WANDA${N} ${D}·${N} ${V}${ctx_pct}${V2}%${N} $(bar_simple "$ctx_pct" "$R" "$V" "▰" "▱")"
+      [[ -n "$br" ]] && line+=" ${D}·${N} ${V}${br}${N}"
       _lim_default
       ;;
     *)

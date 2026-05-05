@@ -24,8 +24,8 @@ export const defaultLocale = 'en';
 // HTML content (italicized, links) uses `data-i18n-html="key"`.
 export const messages = {
   en: {
-    'meta.title': 'Claude Code Status Line — Limit control · 40 themes · CLI',
-    'meta.description': 'Drop-in replacement for the Claude Code default status line. Track 5h/7d rate limits in real time, watch context fill, see session cost — never blow past the window. 40 themes, 18 blocks, /statusline slash command.',
+    'meta.title': 'Claude Code Status Line — Limit control · 62 themes · CLI',
+    'meta.description': 'Drop-in replacement for the Claude Code default status line. Track 5h/7d rate limits in real time, watch context fill, see session cost — never blow past the window. 62 themes, 18 blocks, /statusline slash command.',
 
     'lang.label': 'Language',
 
@@ -201,8 +201,8 @@ export const messages = {
   },
 
   ru: {
-    'meta.title': 'Claude Code Status Line — контроль лимитов · 40 тем · CLI',
-    'meta.description': 'Замена стандартной строки статуса Claude Code. Контролируйте лимиты 5ч / 7д в реальном времени, следите за заполнением контекста, видите стоимость сессии — без сюрпризов и упёртых стен. 40 тем, 18 блоков, slash-команда /statusline.',
+    'meta.title': 'Claude Code Status Line — контроль лимитов · 62 тем · CLI',
+    'meta.description': 'Замена стандартной строки статуса Claude Code. Контролируйте лимиты 5ч / 7д в реальном времени, следите за заполнением контекста, видите стоимость сессии — без сюрпризов и упёртых стен. 62 тем, 18 блоков, slash-команда /statusline.',
 
     'lang.label': 'Язык',
 
@@ -377,8 +377,8 @@ export const messages = {
   },
 
   fr: {
-    'meta.title': 'Claude Code Status Line — contrôle des limites · 40 thèmes · CLI',
-    'meta.description': 'Remplacement direct de la barre de statut par défaut de Claude Code. Suivez vos limites 5h / 7j en temps réel, regardez le contexte se remplir, voyez le coût de session — zéro surprise. 40 thèmes, 18 blocs, commande slash /statusline.',
+    'meta.title': 'Claude Code Status Line — contrôle des limites · 62 thèmes · CLI',
+    'meta.description': 'Remplacement direct de la barre de statut par défaut de Claude Code. Suivez vos limites 5h / 7j en temps réel, regardez le contexte se remplir, voyez le coût de session — zéro surprise. 62 thèmes, 18 blocs, commande slash /statusline.',
 
     'lang.label': 'Langue',
 
@@ -553,8 +553,8 @@ export const messages = {
   },
 
   de: {
-    'meta.title': 'Claude Code Status Line — Limit-Kontrolle · 40 Themes · CLI',
-    'meta.description': 'Drop-in-Ersatz für die Standard-Statusleiste von Claude Code. 5h-/7d-Limits in Echtzeit verfolgen, Kontextfüllung beobachten, Sitzungskosten sehen — keine bösen Überraschungen. 40 Themes, 18 Blöcke, /statusline-Slash-Befehl.',
+    'meta.title': 'Claude Code Status Line — Limit-Kontrolle · 62 Themes · CLI',
+    'meta.description': 'Drop-in-Ersatz für die Standard-Statusleiste von Claude Code. 5h-/7d-Limits in Echtzeit verfolgen, Kontextfüllung beobachten, Sitzungskosten sehen — keine bösen Überraschungen. 62 Themes, 18 Blöcke, /statusline-Slash-Befehl.',
 
     'lang.label': 'Sprache',
 
@@ -729,8 +729,8 @@ export const messages = {
   },
 
   uk: {
-    'meta.title': 'Claude Code Status Line — контроль лімітів · 40 тем · CLI',
-    'meta.description': 'Заміна стандартної рядка статусу Claude Code. Контролюйте ліміти 5г / 7д у реальному часі, стежте за заповненням контексту, бачте вартість сесії — ніяких сюрпризів. 40 тем, 18 блоків, slash-команда /statusline.',
+    'meta.title': 'Claude Code Status Line — контроль лімітів · 62 тем · CLI',
+    'meta.description': 'Заміна стандартної рядка статусу Claude Code. Контролюйте ліміти 5г / 7д у реальному часі, стежте за заповненням контексту, бачте вартість сесії — ніяких сюрпризів. 62 тем, 18 блоків, slash-команда /statusline.',
     'lang.label': 'Мова',
     'hero.brand': 'Claude Code · Status Line',
     'hero.issue': 'Випуск 01 · 11 мов · 40 зразків',
@@ -890,8 +890,8 @@ export const messages = {
   },
 
   sl: {
-    'meta.title': 'Claude Code Status Line — nadzor omejitev · 40 tem · CLI',
-    'meta.description': 'Zamenjava privzete vrstice stanja Claude Code. Spremljajte 5h / 7d omejitve v živo, opazujte polnjenje konteksta, vidite stroške seje — brez presenečenj. 40 tem, 18 blokov, ukaz /statusline.',
+    'meta.title': 'Claude Code Status Line — nadzor omejitev · 62 tem · CLI',
+    'meta.description': 'Zamenjava privzete vrstice stanja Claude Code. Spremljajte 5h / 7d omejitve v živo, opazujte polnjenje konteksta, vidite stroške seje — brez presenečenj. 62 tem, 18 blokov, ukaz /statusline.',
     'lang.label': 'Jezik',
     'hero.brand': 'Claude Code · Status Line',
     'hero.issue': 'Izdaja 01 · 11 jezikov · 40 primerkov',
@@ -1051,8 +1051,8 @@ export const messages = {
   },
 
   it: {
-    'meta.title': 'Claude Code Status Line — controllo limiti · 40 temi · CLI',
-    'meta.description': 'Sostituto della status line predefinita di Claude Code. Monitora i limiti 5h / 7g in tempo reale, osserva il riempimento del contesto, vedi il costo della sessione — zero sorprese. 40 temi, 18 blocchi, comando slash /statusline.',
+    'meta.title': 'Claude Code Status Line — controllo limiti · 62 temi · CLI',
+    'meta.description': 'Sostituto della status line predefinita di Claude Code. Monitora i limiti 5h / 7g in tempo reale, osserva il riempimento del contesto, vedi il costo della sessione — zero sorprese. 62 temi, 18 blocchi, comando slash /statusline.',
     'lang.label': 'Lingua',
     'hero.brand': 'Claude Code · Status Line',
     'hero.issue': 'Numero 01 · 11 lingue · 40 esemplari',
@@ -1212,8 +1212,8 @@ export const messages = {
   },
 
   es: {
-    'meta.title': 'Claude Code Status Line — control de límites · 40 temas · CLI',
-    'meta.description': 'Reemplazo directo de la línea de estado predeterminada de Claude Code. Monitorea los límites 5h / 7d en tiempo real, observa el llenado del contexto, ve el costo de la sesión — cero sorpresas. 40 temas, 18 bloques, comando slash /statusline.',
+    'meta.title': 'Claude Code Status Line — control de límites · 62 temas · CLI',
+    'meta.description': 'Reemplazo directo de la línea de estado predeterminada de Claude Code. Monitorea los límites 5h / 7d en tiempo real, observa el llenado del contexto, ve el costo de la sesión — cero sorpresas. 62 temas, 18 bloques, comando slash /statusline.',
     'lang.label': 'Idioma',
     'hero.brand': 'Claude Code · Status Line',
     'hero.issue': 'Número 01 · 11 idiomas · 40 especímenes',
@@ -1373,8 +1373,8 @@ export const messages = {
   },
 
   zh: {
-    'meta.title': 'Claude Code Status Line — 限额掌控 · 40 主题 · CLI',
-    'meta.description': 'Claude Code 默认状态栏的直接替代品。实时跟踪 5 小时 / 7 天限额，观察上下文填充，查看会话成本 — 绝无意外。40 主题、18 模块、/statusline 斜杠命令。',
+    'meta.title': 'Claude Code Status Line — 限额掌控 · 62 主题 · CLI',
+    'meta.description': 'Claude Code 默认状态栏的直接替代品。实时跟踪 5 小时 / 7 天限额，观察上下文填充，查看会话成本 — 绝无意外。62 主题、18 模块、/statusline 斜杠命令。',
     'lang.label': '语言',
     'hero.brand': 'Claude Code · Status Line',
     'hero.issue': '第 01 期 · 11 种语言 · 40 个样本',
@@ -1534,8 +1534,8 @@ export const messages = {
   },
 
   ja: {
-    'meta.title': 'Claude Code Status Line — リミット管理 · 40テーマ · CLI',
-    'meta.description': 'Claude Code のデフォルトステータスラインを置き換え。5時間 / 7日のリミットをリアルタイムで追跡、コンテキストの埋まり具合を確認、セッション費用を表示 — サプライズなし。40テーマ、18ブロック、/statusline スラッシュコマンド。',
+    'meta.title': 'Claude Code Status Line — リミット管理 · 62テーマ · CLI',
+    'meta.description': 'Claude Code のデフォルトステータスラインを置き換え。5時間 / 7日のリミットをリアルタイムで追跡、コンテキストの埋まり具合を確認、セッション費用を表示 — サプライズなし。62テーマ、18ブロック、/statusline スラッシュコマンド。',
     'lang.label': '言語',
     'hero.brand': 'Claude Code · Status Line',
     'hero.issue': '第01号 · 11言語 · 40サンプル',
@@ -1695,8 +1695,8 @@ export const messages = {
   },
 
   ko: {
-    'meta.title': 'Claude Code Status Line — 한도 제어 · 40 테마 · CLI',
-    'meta.description': 'Claude Code 기본 상태줄 대체. 5시간 / 7일 한도를 실시간 추적, 컨텍스트 채움 확인, 세션 비용 표시 — 놀라움 없음. 40 테마, 18 블록, /statusline 슬래시 명령.',
+    'meta.title': 'Claude Code Status Line — 한도 제어 · 62 테마 · CLI',
+    'meta.description': 'Claude Code 기본 상태줄 대체. 5시간 / 7일 한도를 실시간 추적, 컨텍스트 채움 확인, 세션 비용 표시 — 놀라움 없음. 62 테마, 18 블록, /statusline 슬래시 명령.',
     'lang.label': '언어',
     'hero.brand': 'Claude Code · Status Line',
     'hero.issue': '01호 · 11개 언어 · 40개 견본',
