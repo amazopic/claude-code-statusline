@@ -106,7 +106,7 @@ fi
 # ─────────────────────────  CONFIG  ───────────────────────────────────
 # Calendar versioning: YYYY.MM.DD — bump on every release. Compared by
 # `statusline update` against the upstream copy on GitHub.
-VERSION="2026.05.07"
+VERSION="2026.05.07.1"
 UPSTREAM_URL="https://raw.githubusercontent.com/amazopic/claude-code-statusline/main/statusline-bundle.sh"
 
 CONFIG_FILE="${HOME}/.claude/statusline.conf"
@@ -797,6 +797,20 @@ _lim_default() {
   line+="${SEP}${GRD}5h:${N} ${w5}${GR}${l5:-—}${GRD}%${N} ${GRD}7d:${N} ${w7}${GR}${l7:-—}${GRD}%${N}"
 }
 
+# Extended tail — used by every detailed theme except `minimal`. Renders the
+# standard developer-style segment list after the theme's own intro:
+#   tokens-msg · folder · git (or "no git") · 5h/7d limits · thinking.
+# Themes keep their branded model + context + cost rendering; this just
+# guarantees the same INFO blocks appear in every theme so users get a
+# consistent dashboard regardless of which theme they pick.
+_ext_tail() {
+  line+="${SEP}"; block_tokens_msg
+  line+="${SEP}${B}$(basename "$cwd")${N}"
+  line+="${SEP}"; if [[ -n "$br" ]]; then block_git; else line+="${RD}no git${N}"; fi
+  _lim_default
+  line+="${SEP}"; block_thinking
+}
+
 render_minimal() {
   local cc=$(pct_color "$ctx_pct") cd=$(pct_color_dim "$ctx_pct")
   line="${G}${model_name}${N}${SEP}${cc}${ctx_pct}${cd}% ${cc}$(bar_vertical "$ctx_pct")${N}${SEP}${G}${cost_fmt}${GD}\$${N}"
@@ -829,19 +843,18 @@ render_time() {
   line="${G}${model_name}${N}${SEP}${cc}${ctx_pct}%${N} ${cc}$(bar_vertical "$ctx_pct")${N}"
   line+="${SEP}${C}⏱ ${M}active ${C}$(format_duration "$active_s")${D}/${M}wall ${C}$(format_duration "$wall_s")${N}"
   line+="${SEP}${B}${turns}${D} turns${N}${SEP}${G}${cost_fmt}${GD}\$${N}"
-  _lim_default
+  _ext_tail
 }
 
 render_zen() {
   local name=$(printf '%s' "$model_name" | tr '[:upper:]' '[:lower:]')
   line="${name}  ${ctx_pct}%  $(bar_ascii "$ctx_pct")  \$${cost_fmt}"
-  [[ -n "$br" ]] && line+="  ${br}"
-  _lim_default
+  _ext_tail
 }
 
 render_rainbow() {
   line="${G}${model_name}${N} ${D}·${N} 🌈 $(bar_rainbow "$ctx_pct")${D} ${ctx_pct}%${N} ${D}·${N} ${G}${cost_fmt}${GD}\$${N}"
-  _lim_default
+  _ext_tail
 }
 
 render_anime() {
@@ -854,7 +867,7 @@ render_anime() {
   line="${P}✨ ${V}${model_name} ${P}✨${N}"
   line+=" ${M}🌸 ${P}${ctx_pct}${PD}% $(bar_simple "$ctx_pct" "$M" "$PD" "♥" "♡") ${M}🌸${N}"
   line+=" ${V}${cost_fmt}${PD}\$${N} ${P}uwu ${M}${face}${N}"
-  _lim_default
+  _ext_tail
 }
 
 render_love() {
@@ -866,7 +879,7 @@ render_love() {
   fi
   line="💖 ${P}${model_name}${N} ❤ ${PD}love-meter${N} $(bar_simple "$ctx_pct" "$R" "$PD" "▰" "▱") ${R}${ctx_pct}${PD}%${N}"
   line+=" ${D}·${N} ${PD}spent${N} ${R}${cost_fmt}${RU}\$${N} ${PD}on us${N} ${D}·${N} ${heart}"
-  _lim_default
+  _ext_tail
 }
 
 render_cat() {
@@ -881,7 +894,7 @@ render_cat() {
   for (( i=0; i<10-cells;  i++ )); do b+="${D}··"; done
   line="🐱 ${W}${model_name}${N} ${D}·${N} ${O}purrs${N} ${b}${N} ${O}${ctx_pct}%${N}"
   line+=" ${D}·${N} ${P}treats:${N} ${Y}${cost_fmt}\$${N} ${D}·${N} ${mood}"
-  _lim_default
+  _ext_tail
 }
 
 render_christmas() {
@@ -893,7 +906,7 @@ render_christmas() {
   fi
   line="🎄 ${W}${model_name}${N} ${D}·${N} 🎁 $(bar_simple "$ctx_pct" "$R" "$WD" "❅" "❄") ${R}${ctx_pct}%${N}"
   line+=" ${D}·${N} ${GR}gifts:${N} ${G}${cost_fmt}\$${N} ${D}·${N} ${icn}"
-  _lim_default
+  _ext_tail
 }
 
 render_hacker() {
@@ -902,7 +915,7 @@ render_hacker() {
   line+=" ${GRDD}::${N} ${GR}CTX${GRDD}=${GR}${ctx_pct}%${N} $(bar_hacker "$ctx_pct")"
   line+=" ${GRDD}::${N} ${GR}\$${cost_fmt}${N}"
   line+=" ${GRDD}::${N} ${GR}ROOT${GRDD}@${GR}${host}${GRDD}#${N}"
-  _lim_default
+  _ext_tail
 }
 
 render_cyberpunk() {
@@ -911,7 +924,7 @@ render_cyberpunk() {
   line+=" ${MD}//${C}CTX${MD}:${C}${ctx_pct}%${N} $(bar_simple "$ctx_pct" "$M" "$D2" "▰" "▱")"
   line+=" ${MD}//${Y2}₵RED${MD}:${Y2}${cost_fmt}${N}"
   line+=" ${M}▐${N} ${C}JACK-IN${N}"
-  _lim_default
+  _ext_tail
 }
 
 render_space() {
@@ -923,7 +936,7 @@ render_space() {
   fi
   line="🚀 ${W}${model_name}${N} ${D}·${N} ${C}O₂${N} $(bar_simple "$ctx_pct" "$C" "$D2" "▰" "▱") ${C}${ctx_pct}${CD}%${N}"
   line+=" ${D}·${N} ${V2}fuel${N} ${B}${cost_fmt}${CD}\$${N} ${D}·${N} ${mission}"
-  _lim_default
+  _ext_tail
 }
 
 render_retro() {
@@ -932,7 +945,7 @@ render_retro() {
   line="${O}▀▄▀▄${N} ${W}${chrome}${N} ${O}▄▀▄▀${N}"
   line+=" ${R}HP:${hp}${N} $(bar_simple "$hp" "$GR" "$D2" "▰" "▱")"
   line+=" ${B}MP:${ctx_pct}${N} ${O}SCORE:${score}${N}"
-  _lim_default
+  _ext_tail
 }
 
 render_fire() {
@@ -943,7 +956,7 @@ render_fire() {
   else                          intensity="${R}🌋 LAVA${N}"
   fi
   line="🔥 ${W}${model_name}${N} ${D}·${N} ${intensity} $(bar_fire "$ctx_pct") ${R}${ctx_pct}%${N} ${D}·${N} ${DR}ash${N} ${O}${cost_fmt}\$${N}"
-  _lim_default
+  _ext_tail
 }
 
 render_ocean() {
@@ -955,7 +968,7 @@ render_ocean() {
   fi
   line="🌊 ${W}${model_name}${N} ${D}·${N} ${C}tide${N} $(bar_wave "$ctx_pct") ${C}${ctx_pct}${CD}%${N}"
   line+=" ${D}·${N} ${B}${cost_fmt}\$${N} ${D}·${N} ${depth}"
-  _lim_default
+  _ext_tail
 }
 
 render_weather() {
@@ -966,7 +979,7 @@ render_weather() {
   else                          icn="${PR}⛈ STORM — compact soon${N}"
   fi
   line="${W}${model_name}${N} ${D}·${N} ${icn} ${D}·${N} ${ctx_pct}% $(bar_sparks "$ctx_pct") ${D}·${N} ${cost_fmt}\$"
-  _lim_default
+  _ext_tail
 }
 
 render_coffee() {
@@ -974,7 +987,7 @@ render_coffee() {
   local cups=$(awk -v c="$cost" 'BEGIN { printf "%d", c*4 }')
   line="☕ ${W}${model_name}${N} ${D}·${N} ${BG}brew level${N} $(bar_simple "$left" "$BR" "$BRD" "█" "░") ${BR}${left}${BRD}%${N}"
   line+=" ${D}·${N} ${BG}cups:${N} ${BR}${cups}${N} ${D}·${N} ${G}${cost_fmt}${BRD}\$${N}"
-  _lim_default
+  _ext_tail
 }
 
 render_music() {
@@ -986,7 +999,7 @@ render_music() {
   fi
   line="🎵 ${W}${model_name}${N} ${D}·${N} $(bar_notes "$ctx_pct") ${M}${ctx_pct}%${N}"
   line+=" ${D}·${N} ${G}♩ ${cost_fmt}\$${N} ${D}·${N} ${tempo}"
-  _lim_default
+  _ext_tail
 }
 
 render_game() {
@@ -995,7 +1008,7 @@ render_game() {
   line="⚔ ${W}${model_name}${N} ${D}·${N} ${R}HP${N} $(bar_simple "$hp" "$R" "$RD2" "█" "░") ${R}${hp}${RD2}/100${N}"
   line+=" ${D}·${N} ${B}MP${N} $(bar_simple "$ctx_pct" "$B" "$BD" "█" "░") ${B}${ctx_pct}${BD}%${N}"
   line+=" ${D}·${N} ${G}gold ${cost_fmt}\$${N} ${D}·${N} ${M}LV ${level}${N}"
-  _lim_default
+  _ext_tail
 }
 
 render_pirate() {
@@ -1008,7 +1021,7 @@ render_pirate() {
   line="🏴‍☠️ ${W}Cap'n ${G}${model_name}${N} ⚓"
   line+=" ${BR}ye plundered${N} ${G}${ctx_pct}%${N} $(bar_simple "$ctx_pct" "$G" "$BR" "█" "-")"
   line+=" ${D}·${N} ${BR}doubloons:${N} ${G}${cost_fmt}${GD}\$${N} ${D}·${N} ${R}${mood}${N}"
-  _lim_default
+  _ext_tail
 }
 
 # ═════════════════════════════════════════════════════════════════════
@@ -1020,40 +1033,35 @@ render_porsche() {
   line="${R}● ${W}PORSCHE${N} ${D}·${N} ${WD}${model_name}${N}"
   line+="${SEP}${R}${ctx_pct}${RD2}%${N} $(bar_simple "$ctx_pct" "$R" "$RD2" "▰" "▱")"
   line+="${SEP}${WD}€${G}${cost_fmt}${N}"
-  [[ -n "$br" ]] && line+="${SEP}${WD}🏁 ${br}${N}"
-  _lim_default
+  _ext_tail
 }
 
 render_mercedes() {
   line="${WD}✦ ${W}MERCEDES-BENZ${N} ${D}·${N} ${WD}${model_name}${N}"
   line+="${SEP}${B}${ctx_pct}${BD}%${N} $(bar_simple "$ctx_pct" "$WD" "$D2" "▰" "▱")"
   line+="${SEP}${WD}€${B}${cost_fmt}${N}"
-  [[ -n "$br" ]] && line+="${SEP}${B}⎇ ${br}${N}"
-  _lim_default
+  _ext_tail
 }
 
 render_bmw() {
   line="${B}M${W}//${B}BMW${N} ${D}·${N} ${W}${model_name}${N}"
   line+="${SEP}${B}${ctx_pct}${BD}% $(bar_simple "$ctx_pct" "$B" "$W" "▰" "▱")${N}"
   line+="${SEP}${BD}€${B}${cost_fmt}${N}"
-  [[ -n "$br" ]] && line+="${SEP}${B}⎇ ${br}${N}"
-  _lim_default
+  _ext_tail
 }
 
 render_ferrari() {
   line="${R}🐎 FERRARI${N} ${YD}·${N} ${W}rosso · ${model_name}${N}"
   line+="${SEP}${R}${ctx_pct}${RU}%${N} $(bar_simple "$ctx_pct" "$R" "$Y" "▰" "▱")"
   line+="${SEP}${Y}€${R}${cost_fmt}${N}"
-  [[ -n "$br" ]] && line+="${SEP}${Y}🏁 ${R}${br}${N}"
-  _lim_default
+  _ext_tail
 }
 
 render_volvo() {
   line="${WD}♂ ${B}VOLVO${N} ${D}·${N} ${W}${model_name}${N}"
   line+="${SEP}${WD}safe ${B}${ctx_pct}${BD}%${N} $(bar_simple "$ctx_pct" "$B" "$D2" "█" "░")"
   line+="${SEP}${B}kr ${WD}${cost_fmt}${N}"
-  [[ -n "$br" ]] && line+="${SEP}${WD}❄ ${B}${br}${N}"
-  _lim_default
+  _ext_tail
 }
 
 # ── America ──────────────────────────────────────────────────────────
@@ -1061,32 +1069,28 @@ render_ford() {
   line="${B}⊰${W}FORD${B}⊱${N} ${D}·${N} ${W}${model_name}${N}"
   line+="${SEP}${B}built ${C}${ctx_pct}${BD}% $(bar_simple "$ctx_pct" "$B" "$BD" "▰" "▱")${N}"
   line+="${SEP}${WD}\$${B}${cost_fmt}${N}"
-  [[ -n "$br" ]] && line+="${SEP}${B}⎇ ${br}${N}"
-  _lim_default
+  _ext_tail
 }
 
 render_chevy() {
   line="${Y}⋈ ${B}CHEVROLET${N} ${D}·${N} ${W}${model_name}${N}"
   line+="${SEP}${Y}SS ${B}${ctx_pct}${BD}%${N} $(bar_simple "$ctx_pct" "$Y" "$BD" "▰" "▱")"
   line+="${SEP}${Y}\$${B}${cost_fmt}${N}"
-  [[ -n "$br" ]] && line+="${SEP}${Y}${br}${N}"
-  _lim_default
+  _ext_tail
 }
 
 render_jeep() {
   line="${BR}⊞⊞⊞⊞⊞⊞⊞${N} ${W}JEEP${N} ${D}·${N} ${W}${model_name}${N}"
   line+="${SEP}${BR}trail ${G}${ctx_pct}${GD}% $(bar_simple "$ctx_pct" "$BR" "$BRD" "▰" "▱")${N}"
   line+="${SEP}${BR}\$${G}${cost_fmt}${N}"
-  [[ -n "$br" ]] && line+="${SEP}${BR}🛞 ${G}${br}${N}"
-  _lim_default
+  _ext_tail
 }
 
 render_cadillac() {
   line="${WD}✧ ${W}CADILLAC${N} ${D}·${N} ${WD}${model_name}${N}"
   line+="${SEP}${R}prestige ${WD}${ctx_pct}${D}% $(bar_simple "$ctx_pct" "$WD" "$D2" "█" "░")${N}"
   line+="${SEP}${WD}\$${R}${cost_fmt}${N}"
-  [[ -n "$br" ]] && line+="${SEP}${R}⎇ ${WD}${br}${N}"
-  _lim_default
+  _ext_tail
 }
 
 # ── Japan ────────────────────────────────────────────────────────────
@@ -1094,24 +1098,21 @@ render_toyota() {
   line="${R}⊝ ${W}TOYOTA${N} ${D}·${N} ${W}${model_name}${N}"
   line+="${SEP}${R}drive ${WD}${ctx_pct}${D}% $(bar_simple "$ctx_pct" "$R" "$WD" "▰" "▱")${N}"
   line+="${SEP}${R}¥${W}${cost_fmt}${N}"
-  [[ -n "$br" ]] && line+="${SEP}${R}⛩ ${W}${br}${N}"
-  _lim_default
+  _ext_tail
 }
 
 render_honda() {
   line="${R}Ⓗ ${W}HONDA${N} ${D}·${N} ${W}${model_name}${N}"
   line+="${SEP}${R}vtec ${C}${ctx_pct}${CD}% $(bar_simple "$ctx_pct" "$R" "$D2" "█" "░")${N}"
   line+="${SEP}${R}¥${W}${cost_fmt}${N}"
-  [[ -n "$br" ]] && line+="${SEP}${R}⎇ ${WD}${br}${N}"
-  _lim_default
+  _ext_tail
 }
 
 render_nissan() {
   line="${R}Ⓝ ${W}NISSAN${N} ${D}·${N} ${WD}GT-R · ${W}${model_name}${N}"
   line+="${SEP}${R}rpm ${C}${ctx_pct}${BD}% $(bar_simple "$ctx_pct" "$R" "$WD" "▰" "▱")${N}"
   line+="${SEP}${R}¥${W}${cost_fmt}${N}"
-  [[ -n "$br" ]] && line+="${SEP}${B}⎇ ${br}${N}"
-  _lim_default
+  _ext_tail
 }
 
 # ── Korea ────────────────────────────────────────────────────────────
@@ -1119,16 +1120,14 @@ render_hyundai() {
   line="${B}Ⓗ ${W}HYUNDAI${N} ${D}·${N} ${W}${model_name}${N}"
   line+="${SEP}${B}new ${C}${ctx_pct}${BD}% $(bar_simple "$ctx_pct" "$B" "$BD" "▰" "▱")${N}"
   line+="${SEP}${B}₩${W}${cost_fmt}${N}"
-  [[ -n "$br" ]] && line+="${SEP}${B}⎇ ${WD}${br}${N}"
-  _lim_default
+  _ext_tail
 }
 
 render_kia() {
   line="${R}Ⓚ ${W}KIA${N} ${D}·${N} ${W}${model_name}${N} ${D}·${N} ${WD}EV9${N}"
   line+="${SEP}${R}charge ${G}${ctx_pct}${GD}% $(bar_simple "$ctx_pct" "$R" "$D2" "▰" "▱")${N}"
   line+="${SEP}${R}₩${W}${cost_fmt}${N}"
-  [[ -n "$br" ]] && line+="${SEP}${R}⎇ ${G}${br}${N}"
-  _lim_default
+  _ext_tail
 }
 
 # ── China ────────────────────────────────────────────────────────────
@@ -1136,24 +1135,21 @@ render_byd() {
   line="${GR}⚡ ${W}BYD${N} ${D}·${N} ${WD}build-your-dream · ${W}${model_name}${N}"
   line+="${SEP}${GR}🔋 ${C}${ctx_pct}${CD}% $(bar_simple "$ctx_pct" "$GR" "$D2" "▰" "▱")${N}"
   line+="${SEP}${GR}¥${W}${cost_fmt}${N}"
-  [[ -n "$br" ]] && line+="${SEP}${C}⎇ ${GR}${br}${N}"
-  _lim_default
+  _ext_tail
 }
 
 render_nio() {
   line="${C}◐ ${W}NIO${N} ${D}·${N} ${W}${model_name}${N} ${D}·${N} ${WD}ET7${N}"
   line+="${SEP}${C}drive ${B}${ctx_pct}${BD}% $(bar_simple "$ctx_pct" "$C" "$D2" "▰" "▱")${N}"
   line+="${SEP}${C}¥${W}${cost_fmt}${N}"
-  [[ -n "$br" ]] && line+="${SEP}${C}⎇ ${B}${br}${N}"
-  _lim_default
+  _ext_tail
 }
 
 render_geely() {
   line="${B}◆ ${W}GEELY${N} ${D}·${N} ${W}${model_name}${N}"
   line+="${SEP}${B}global ${C}${ctx_pct}${BD}% $(bar_simple "$ctx_pct" "$B" "$BD" "▰" "▱")${N}"
   line+="${SEP}${B}¥${W}${cost_fmt}${N}"
-  [[ -n "$br" ]] && line+="${SEP}${C}⎇ ${B}${br}${N}"
-  _lim_default
+  _ext_tail
 }
 
 # ═════════════════════════════════════════════════════════════════════
@@ -1164,80 +1160,70 @@ render_einstein() {
   line="${WD}Ψ ${W}Einstein${N} ${D}·${N} ${G}E=mc²${N}"
   line+="${SEP}${G}c ${C}${ctx_pct}${CD}% $(bar_simple "$ctx_pct" "$G" "$D2" "█" "░")${N}"
   line+="${SEP}${WD}ε ${G}${cost_fmt}${N}"
-  [[ -n "$br" ]] && line+="${SEP}${WD}⎇ ${G}${br}${N}"
-  _lim_default
+  _ext_tail
 }
 
 render_newton() {
   line="${R}🍎 ${W}Newton${N} ${D}·${N} ${BR}F = ma${N}"
   line+="${SEP}${BR}gravity ${R}${ctx_pct}${RU}% $(bar_simple "$ctx_pct" "$R" "$BRD" "█" "░")${N}"
   line+="${SEP}${BR}£${R}${cost_fmt}${N}"
-  [[ -n "$br" ]] && line+="${SEP}${BR}⎇ ${R}${br}${N}"
-  _lim_default
+  _ext_tail
 }
 
 render_curie() {
   line="${GR}☢ ${W}Curie${N} ${D}·${N} ${GR}Ra · Po${N}"
   line+="${SEP}${GR}half-life ${C}${ctx_pct}${GRD}% $(bar_simple "$ctx_pct" "$GR" "$GRDD" "▰" "▱")${N}"
   line+="${SEP}${GR}⚛ ${C}${cost_fmt}${N}"
-  [[ -n "$br" ]] && line+="${SEP}${GR}⎇ ${C}${br}${N}"
-  _lim_default
+  _ext_tail
 }
 
 render_tesla() {
   line="${V}⚡ ${W}Tesla${N} ${D}·${N} ${Y}AC ~${N}"
   line+="${SEP}${V}coil ${Y}${ctx_pct}${YD}% $(bar_simple "$ctx_pct" "$Y" "$V2" "▰" "▱")${N}"
   line+="${SEP}${V}⚡ ${Y}${cost_fmt}${N}"
-  [[ -n "$br" ]] && line+="${SEP}${V}⎇ ${Y}${br}${N}"
-  _lim_default
+  _ext_tail
 }
 
 render_darwin() {
   line="${G}🐢 ${W}Darwin${N} ${D}·${N} ${G}HMS Beagle${N}"
   line+="${SEP}${G}adapt ${B}${ctx_pct}${BD}% $(bar_simple "$ctx_pct" "$G" "$D2" "▰" "▱")${N}"
   line+="${SEP}${BR}£${G}${cost_fmt}${N}"
-  [[ -n "$br" ]] && line+="${SEP}${G}🐦 ${B}${br}${N}"
-  _lim_default
+  _ext_tail
 }
 
 render_hawking() {
   line="${V}🌌 ${W}Hawking${N} ${D}·${N} ${V2}t → ∞${N}"
   line+="${SEP}${V}horizon ${C}${ctx_pct}${V2}% $(bar_simple "$ctx_pct" "$V" "$D2" "▰" "▱")${N}"
   line+="${SEP}${V}⌬ ${W}${cost_fmt}${N}"
-  [[ -n "$br" ]] && line+="${SEP}${V}🕳 ${C}${br}${N}"
-  _lim_default
+  _ext_tail
 }
 
 render_galileo() {
   line="${Y}🔭 ${W}Galileo${N} ${D}·${N} ${Y}☉ → eppur si muove${N}"
   line+="${SEP}${Y}orbits ${C}${ctx_pct}${CD}% $(bar_simple "$ctx_pct" "$Y" "$BD" "▰" "▱")${N}"
   line+="${SEP}${Y}✦ ${W}${cost_fmt}${N}"
-  [[ -n "$br" ]] && line+="${SEP}${C}⎇ ${Y}${br}${N}"
-  _lim_default
+  _ext_tail
 }
 
 render_feynman() {
   line="${G}〰 ${W}Feynman${N} ${D}·${N} ${G}ψ → ψ'${N}"
   line+="${SEP}${G}qed ${WD}${ctx_pct}${D}% $(bar_simple "$ctx_pct" "$G" "$WD" "═" "─")${N}"
   line+="${SEP}${G}⊳ ${W}${cost_fmt}${N}"
-  [[ -n "$br" ]] && line+="${SEP}${G}🥁 ${WD}${br}${N}"
-  _lim_default
+  _ext_tail
 }
 
 render_turing() {
   line="${GR}Ⓣ ${W}Turing${N} ${D}·${N} ${GR}h(p) ↻${N}"
   line+="${SEP}${GR}halt? ${R}${ctx_pct}${RU}% $(bar_simple "$ctx_pct" "$GR" "$GRDD" "1" "0")${N}"
   line+="${SEP}${GR}0x${R}${cost_fmt}${N}"
-  [[ -n "$br" ]] && line+="${SEP}${GR}⊏⊐ ${R}${br}${N}"
-  _lim_default
+  _ext_tail
 }
 
 render_davinci() {
   line="${BR}✎ ${W}da Vinci${N} ${D}·${N} ${BR}Vitruvian${N}"
   line+="${SEP}${BR}sketch ${Y}${ctx_pct}${BRD}% $(bar_simple "$ctx_pct" "$BR" "$BRD" "▰" "▱")${N}"
   line+="${SEP}${BR}ƒ ${Y}${cost_fmt}${N}"
-  [[ -n "$br" ]] && line+="${SEP}${BR}⎇ ${Y}${br}${N}"
-  _lim_default
+  _ext_tail
 }
 
 # ═════════════════════════════════════════════════════════════════════
@@ -1254,40 +1240,35 @@ render_dragonball() {
   line="${O}🐉 ${Y}DRAGON BALL${N} ${D}·${N} ${W}${model_name}${N}"
   line+="${SEP}${Y}KI ${O}${ctx_pct}${YD}% $(bar_simple "$ctx_pct" "$O" "$Y" "▰" "▱")${N}"
   line+="${SEP}${Y}zeni ${O}${cost_fmt}${N} ${D}·${N} ${kai}"
-  [[ -n "$br" ]] && line+="${SEP}${Y}⎇ ${O}${br}${N}"
-  _lim_default
+  _ext_tail
 }
 
 render_naruto() {
   line="${O}🍃 ${Y}NARUTO${N} ${D}·${N} ${W}${model_name}${N}"
   line+="${SEP}${O}chakra ${G}${ctx_pct}${GD}% $(bar_simple "$ctx_pct" "$O" "$G" "▰" "▱")${N}"
   line+="${SEP}${O}🌀 rasengan ${cost_fmt}${N}"
-  [[ -n "$br" ]] && line+="${SEP}${G}⎇ ${O}${br}${N}"
-  _lim_default
+  _ext_tail
 }
 
 render_onepiece() {
   line="${R}🏴‍☠️ ${Y}ONE PIECE${N} ${D}·${N} ${W}Mugiwara · ${model_name}${N}"
   line+="${SEP}${R}gum-gum ${Y}${ctx_pct}${YD}% $(bar_simple "$ctx_pct" "$R" "$Y" "▰" "▱")${N}"
   line+="${SEP}${Y}berry ${R}${cost_fmt}${N}"
-  [[ -n "$br" ]] && line+="${SEP}${B}⎇ ${R}${br}${N}"
-  _lim_default
+  _ext_tail
 }
 
 render_pokemon() {
   line="${Y}⚡ ${R}POKÉMON${N} ${D}·${N} ${Y}Pikachu · ${W}${model_name}${N}"
   line+="${SEP}${R}HP ${Y}${ctx_pct}${YD}% $(bar_simple "$ctx_pct" "$Y" "$R" "█" "░")${N}"
   line+="${SEP}${R}⚪ poké ${Y}${cost_fmt}${N}"
-  [[ -n "$br" ]] && line+="${SEP}${R}⎇ ${Y}${br}${N}"
-  _lim_default
+  _ext_tail
 }
 
 render_ghibli() {
   line="${G}🌳 ${W}Ghibli${N} ${D}·${N} ${WD}Totoro · ${model_name}${N}"
   line+="${SEP}${G}leaves ${C}${ctx_pct}${CD}% $(bar_simple "$ctx_pct" "$G" "$WD" "✿" "·")${N}"
   line+="${SEP}${G}🌱 ${C}${cost_fmt}${N}"
-  [[ -n "$br" ]] && line+="${SEP}${G}⎇ ${WD}${br}${N}"
-  _lim_default
+  _ext_tail
 }
 
 # ═════════════════════════════════════════════════════════════════════
@@ -1298,16 +1279,14 @@ render_ironman() {
   line="${R}🦾 ${Y}IRON MAN${N} ${D}·${N} ${W}Stark · ${model_name}${N}"
   line+="${SEP}${R}arc ${Y}${ctx_pct}${YD}% $(bar_simple "$ctx_pct" "$Y" "$R" "▰" "▱")${N}"
   line+="${SEP}${Y}\$${R}${cost_fmt}${N}"
-  [[ -n "$br" ]] && line+="${SEP}${R}⎇ ${Y}${br}${N}"
-  _lim_default
+  _ext_tail
 }
 
 render_spiderman() {
   line="${R}🕷 ${B}SPIDER-MAN${N} ${D}·${N} ${W}Parker · ${model_name}${N}"
   line+="${SEP}${R}web ${B}${ctx_pct}${BD}% $(bar_simple "$ctx_pct" "$R" "$B" "▰" "▱")${N}"
   line+="${SEP}${R}\$${B}${cost_fmt}${N}"
-  [[ -n "$br" ]] && line+="${SEP}${B}⎇ ${R}${br}${N}"
-  _lim_default
+  _ext_tail
 }
 
 render_hulk() {
@@ -1319,64 +1298,56 @@ render_hulk() {
   line="${G}🟢 ${W}HULK${N} ${D}·${N} ${V}${model_name}${N}"
   line+="${SEP}${G}rage ${V}${ctx_pct}${V2}% $(bar_simple "$ctx_pct" "$G" "$D2" "█" "░")${N}"
   line+="${SEP}${G}\$${V}${cost_fmt}${N} ${D}·${N} ${mood}"
-  [[ -n "$br" ]] && line+="${SEP}${G}⎇ ${V}${br}${N}"
-  _lim_default
+  _ext_tail
 }
 
 render_thor() {
   line="${Y}⚡ ${R}THOR${N} ${D}·${N} ${WD}Mjölnir · ${W}${model_name}${N}"
   line+="${SEP}${Y}storm ${R}${ctx_pct}${RU}% $(bar_simple "$ctx_pct" "$Y" "$R" "▰" "▱")${N}"
   line+="${SEP}${Y}⚒ ${R}${cost_fmt}${N}"
-  [[ -n "$br" ]] && line+="${SEP}${R}⎇ ${Y}${br}${N}"
-  _lim_default
+  _ext_tail
 }
 
 render_captain_america() {
   line="${R}🛡 ${B}CAPTAIN AMERICA${N} ${D}·${N} ${W}Rogers · ${model_name}${N}"
   line+="${SEP}${B}duty ${R}${ctx_pct}${RU}% $(bar_simple "$ctx_pct" "$R" "$B" "█" "░")${N}"
   line+="${SEP}${R}\$${B}${cost_fmt}${N}"
-  [[ -n "$br" ]] && line+="${SEP}${B}⎇ ${W}${br}${N}"
-  _lim_default
+  _ext_tail
 }
 
 render_wolverine() {
   line="${Y}🗡 ${B}WOLVERINE${N} ${D}·${N} ${W}Logan · ${model_name}${N}"
   line+="${SEP}${Y}snikt ${B}${ctx_pct}${BD}% $(bar_simple "$ctx_pct" "$Y" "$B" "▰" "▱")${N}"
   line+="${SEP}${Y}\$${B}${cost_fmt}${N}"
-  [[ -n "$br" ]] && line+="${SEP}${B}⎇ ${Y}${br}${N}"
-  _lim_default
+  _ext_tail
 }
 
 render_deadpool() {
   line="${R}🌮 ${W}DEADPOOL${N} ${D}·${N} ${WD}Wade · ${model_name}${N}"
   line+="${SEP}${R}max-effort ${WD}${ctx_pct}${D}% $(bar_simple "$ctx_pct" "$R" "$D2" "▰" "▱")${N}"
   line+="${SEP}${R}\$${WD}${cost_fmt}${N}"
-  [[ -n "$br" ]] && line+="${SEP}${R}⎇ ${WD}${br}${N}"
-  _lim_default
+  _ext_tail
 }
 
 render_blackwidow() {
   line="${R}🕸 ${W}BLACK WIDOW${N} ${D}·${N} ${WD}Romanoff · ${model_name}${N}"
   line+="${SEP}${R}ops ${WD}${ctx_pct}${D}% $(bar_simple "$ctx_pct" "$R" "$D2" "▰" "▱")${N}"
   line+="${SEP}${R}\$${WD}${cost_fmt}${N}"
-  [[ -n "$br" ]] && line+="${SEP}${R}⎇ ${WD}${br}${N}"
-  _lim_default
+  _ext_tail
 }
 
 render_strange() {
   line="${V}🔮 ${R}DR. STRANGE${N} ${D}·${N} ${W}${model_name}${N}"
   line+="${SEP}${V}mystic ${Y}${ctx_pct}${YD}% $(bar_simple "$ctx_pct" "$V" "$Y" "✦" "·")${N}"
   line+="${SEP}${V}⌬ ${Y}${cost_fmt}${N}"
-  [[ -n "$br" ]] && line+="${SEP}${V}⎇ ${Y}${br}${N}"
-  _lim_default
+  _ext_tail
 }
 
 render_wanda() {
   line="${R}🌹 ${V}SCARLET WITCH${N} ${D}·${N} ${W}Wanda · ${model_name}${N}"
   line+="${SEP}${R}chaos ${V}${ctx_pct}${V2}% $(bar_simple "$ctx_pct" "$R" "$V" "▰" "▱")${N}"
   line+="${SEP}${R}🪄 ${V}${cost_fmt}${N}"
-  [[ -n "$br" ]] && line+="${SEP}${V}⎇ ${R}${br}${N}"
-  _lim_default
+  _ext_tail
 }
 
 # ═════════════════════════════════════════════════════════════════════
@@ -1388,8 +1359,7 @@ render_macos() {
   line="${G}🍎${R} m${O}a${Y}c${GR}O${B}S${N} ${D}·${N} ${WD}${model_name}${N}"
   line+="${SEP}${WD}${ctx_pct}${D}% $(bar_simple "$ctx_pct" "$WD" "$D2" "█" "░")${N}"
   line+="${SEP}${WD}\$${G}${cost_fmt}${N}"
-  [[ -n "$br" ]] && line+="${SEP}${WD}⎇ ${br}${N}"
-  _lim_default
+  _ext_tail
 }
 
 render_windows() {
@@ -1397,72 +1367,63 @@ render_windows() {
   line="${R}⊞${GR}⊞${B}⊞${Y}⊞${N} ${C}WINDOWS 11${N} ${D}·${N} ${W}${model_name}${N}"
   line+="${SEP}${C}${ctx_pct}${CD}% $(bar_simple "$ctx_pct" "$C" "$BD" "█" "░")${N}"
   line+="${SEP}${C}\$${W}${cost_fmt}${N}"
-  [[ -n "$br" ]] && line+="${SEP}${C}⎇ ${br}${N}"
-  _lim_default
+  _ext_tail
 }
 
 render_linux() {
   line="${O}🐧 ${W}GNU/Linux${N} ${D}·${N} ${WD}${model_name}${N}"
   line+="${SEP}${O}tux ${WD}${ctx_pct}${D}% $(bar_simple "$ctx_pct" "$O" "$D2" "█" "░")${N}"
   line+="${SEP}${O}\$${W}${cost_fmt}${N}"
-  [[ -n "$br" ]] && line+="${SEP}${O}⎇ ${WD}${br}${N}"
-  _lim_default
+  _ext_tail
 }
 
 render_ubuntu() {
   line="${O}⊕ ${W}UBUNTU${N} ${D}·${N} ${V}${model_name}${N}"
   line+="${SEP}${O}friend ${V}${ctx_pct}${V2}% $(bar_simple "$ctx_pct" "$O" "$V2" "▰" "▱")${N}"
   line+="${SEP}${O}\$${V}${cost_fmt}${N}"
-  [[ -n "$br" ]] && line+="${SEP}${O}⎇ ${V}${br}${N}"
-  _lim_default
+  _ext_tail
 }
 
 render_arch() {
   line="${C}▲ ${W}ARCH${N} ${D}·${N} ${WD}btw · ${W}${model_name}${N}"
   line+="${SEP}${C}pacman ${B}${ctx_pct}${BD}% $(bar_simple "$ctx_pct" "$C" "$BD" "█" "░")${N}"
   line+="${SEP}${C}\$${W}${cost_fmt}${N}"
-  [[ -n "$br" ]] && line+="${SEP}${C}⎇ ${B}${br}${N}"
-  _lim_default
+  _ext_tail
 }
 
 render_debian() {
   line="${R}🌀 ${W}DEBIAN${N} ${D}·${N} ${WD}sid · ${W}${model_name}${N}"
   line+="${SEP}${R}stable ${WD}${ctx_pct}${D}% $(bar_simple "$ctx_pct" "$R" "$D2" "█" "░")${N}"
   line+="${SEP}${R}\$${W}${cost_fmt}${N}"
-  [[ -n "$br" ]] && line+="${SEP}${R}⎇ ${WD}${br}${N}"
-  _lim_default
+  _ext_tail
 }
 
 render_fedora() {
   line="${B}🎩 ${W}FEDORA${N} ${D}·${N} ${WD}${model_name}${N}"
   line+="${SEP}${B}freedom ${C}${ctx_pct}${BD}% $(bar_simple "$ctx_pct" "$B" "$BD" "█" "░")${N}"
   line+="${SEP}${B}\$${W}${cost_fmt}${N}"
-  [[ -n "$br" ]] && line+="${SEP}${B}⎇ ${W}${br}${N}"
-  _lim_default
+  _ext_tail
 }
 
 render_kali() {
   line="${B}🐉 ${W}KALI${N} ${D}·${N} ${R}offsec · ${WD}${model_name}${N}"
   line+="${SEP}${R}pwn ${B}${ctx_pct}${BD}% $(bar_simple "$ctx_pct" "$B" "$D2" "▰" "▱")${N}"
   line+="${SEP}${B}\$${R}${cost_fmt}${N}"
-  [[ -n "$br" ]] && line+="${SEP}${R}⎇ ${B}${br}${N}"
-  _lim_default
+  _ext_tail
 }
 
 render_mint() {
   line="${GR}🌿 ${W}MINT${N} ${D}·${N} ${WD}cinnamon · ${W}${model_name}${N}"
   line+="${SEP}${GR}fresh ${C}${ctx_pct}${CD}% $(bar_simple "$ctx_pct" "$GR" "$D2" "▰" "▱")${N}"
   line+="${SEP}${GR}\$${W}${cost_fmt}${N}"
-  [[ -n "$br" ]] && line+="${SEP}${GR}⎇ ${W}${br}${N}"
-  _lim_default
+  _ext_tail
 }
 
 render_nixos() {
   line="${C}❄ ${W}NIXOS${N} ${D}·${N} ${WD}declarative · ${W}${model_name}${N}"
   line+="${SEP}${C}reproducible ${B}${ctx_pct}${BD}% $(bar_simple "$ctx_pct" "$C" "$B" "▰" "▱")${N}"
   line+="${SEP}${C}\$${W}${cost_fmt}${N}"
-  [[ -n "$br" ]] && line+="${SEP}${B}⎇ ${C}${br}${N}"
-  _lim_default
+  _ext_tail
 }
 
 # ═════════════════════════════════════════════════════════════════════
