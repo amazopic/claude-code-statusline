@@ -3,9 +3,9 @@
 //        i18n (11 locales), language switcher, hero limits visualization
 // ─────────────────────────────────────────────────────────────────────
 
-import { themes, blocks, faq, compare } from './themes.js?v=11';
-import { ansiToHtml, specimenHtml, loadSpecimen } from './ansi.js?v=11';
-import { messages, supportedLocales, defaultLocale, t as tBase, detectLocale, persistLocale } from './i18n.js?v=11';
+import { themes, blocks, faq, compare } from './themes.js?v=12';
+import { ansiToHtml, specimenHtml, loadSpecimen } from './ansi.js?v=12';
+import { messages, supportedLocales, defaultLocale, t as tBase, detectLocale, persistLocale } from './i18n.js?v=12';
 
 document.documentElement.classList.add('has-cursor');
 
@@ -330,16 +330,16 @@ async function showSpecimen(idx) {
       <h3 class="specimen__name">${theme.name}</h3>
       <p class="specimen__vibe">${theme.vibe}</p>
     </header>
-    <div class="specimen__main">
-      <div class="specimen__terminals">
-        <div class="specimen__terminal-label"><span>${t('specimens.detailed')}</span><span>statusline-${theme.id}.sh</span></div>
-        <div class="specimen__terminal">${detailedHtml}</div>
-        ${compactHtml ? `
-          <div class="specimen__terminal-label"><span>${t('specimens.compact')}</span><span>statusline-${theme.id}-compact.sh</span></div>
-          <div class="specimen__compact">${compactHtml}</div>
-        ` : ''}
-      </div>
-      <aside class="specimen__side">
+    <div class="specimen__terminals">
+      <div class="specimen__terminal-label"><span>${t('specimens.detailed')}</span><span>statusline-${theme.id}.sh</span></div>
+      <div class="specimen__terminal">${detailedHtml}</div>
+      ${compactHtml ? `
+        <div class="specimen__terminal-label"><span>${t('specimens.compact')}</span><span>statusline-${theme.id}-compact.sh</span></div>
+        <div class="specimen__compact">${compactHtml}</div>
+      ` : ''}
+    </div>
+    <footer class="specimen__meta">
+      <div class="specimen__meta-col specimen__meta-col--usages">
         <div class="specimen__usages">
           <div class="specimen__usage">
             <span class="specimen__usage-label">${t('specimens.use')}</span>
@@ -354,20 +354,20 @@ async function showSpecimen(idx) {
             <code>examples/statusline-${theme.id}.sh <span class="ext">↗</span></code>
           </a>
         </div>
-        <div>
-          <h4>${t('specimens.palette')}</h4>
-          <div class="specimen__palette">${swatches}</div>
-        </div>
-        <div>
-          <h4>${t('specimens.glyphs')}</h4>
-          <div class="specimen__glyphs">▖ ▄ ▙ █ ▏ ▎ ▍ ▌ ▋ ▊ ▉</div>
-        </div>
-        <div>
-          <h4>${t('specimens.group')}</h4>
-          <p class="specimen__group">${theme.group}</p>
-        </div>
-      </aside>
-    </div>
+      </div>
+      <div class="specimen__meta-col">
+        <h4>${t('specimens.palette')}</h4>
+        <div class="specimen__palette">${swatches}</div>
+      </div>
+      <div class="specimen__meta-col">
+        <h4>${t('specimens.glyphs')}</h4>
+        <div class="specimen__glyphs">▖ ▄ ▙ █ ▏ ▎ ▍ ▌ ▋ ▊ ▉</div>
+      </div>
+      <div class="specimen__meta-col">
+        <h4>${t('specimens.group')}</h4>
+        <p class="specimen__group">${theme.group}</p>
+      </div>
+    </footer>
   `;
   $$('.specimen-pager button').forEach((b, i) => {
     b.classList.toggle('active', i === idx);
