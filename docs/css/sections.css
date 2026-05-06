@@ -1323,27 +1323,34 @@
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  margin-top: 1rem;
-  align-items: flex-start;
+  margin-top: 0;
+  align-items: stretch;
+  width: 100%;
 }
 .specimen__usage {
   font-family: var(--font-mono);
   font-size: var(--fs-xs);
   color: var(--ink);
-  padding: 0.6rem 0.85rem;
+  padding: 0.55rem 0.75rem 0.65rem;
   background: var(--paper-3);
-  display: inline-flex;
-  align-items: center;
-  gap: 0.65rem;
-  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  width: 100%;
+  min-width: 0;
+}
+.specimen__usage code {
+  display: block;
+  overflow-wrap: anywhere;
   word-break: break-word;
+  white-space: pre-wrap;
+  line-height: 1.45;
 }
 .specimen__usage-label {
   color: var(--sub);
   letter-spacing: var(--tr-wide);
   text-transform: uppercase;
   font-size: 0.6875rem;
-  flex-shrink: 0;
 }
 .specimen__usage code { color: var(--phosphor-d); }
 .specimen__usage--slash {
