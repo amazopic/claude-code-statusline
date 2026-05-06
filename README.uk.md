@@ -14,6 +14,35 @@
 Opus 4.7 (1M) │ 🚀 12% █▌░░░░░░░░ 121.4K/1000K │ 0.42$ │ ↑0.5K ↓1.2K │ project │ ⎇ main │ tokens: 87 K │ 🤖 xhigh
 ```
 
+## 🎨 144 готових варіанти — обирайте і застосовуйте
+
+72 теми × 2 варіанти (`detailed` + `-compact`). Застосовуйте через `~/.claude/status-line.sh use <name>`.
+
+### 🔝 Топ-10 — найпопулярніші, крос-культурні
+`cyberpunk` · `hacker` · `dragonball` · `naruto` · `pokemon` · `ironman` · `spiderman` · `einstein` · `tesla` · `ferrari`
+
+### 🛠 Класика (19): `minimal` `developer` `time` `zen` `rainbow` `anime` `love` `cat` `christmas` `space` `retro` `fire` `ocean` `weather` `coffee` `music` `game` `pirate`
+
+### 🚗 Авто-бренди (15)
+- 🇪🇺 Європа: `porsche` · `mercedes` · `bmw` · `volvo`
+- 🇺🇸 Америка: `ford` · `chevy` · `jeep` · `cadillac`
+- 🇯🇵 Японія: `toyota` · `honda` · `nissan`
+- 🇰🇷 Корея: `hyundai` · `kia`
+- 🇨🇳 Китай: `byd` · `nio` · `geely`
+
+### 🔬 Великі вчені (8): `newton` · `curie` · `darwin` · `hawking` · `galileo` · `feynman` · `turing` · `davinci`
+
+### ✨ Аніме (3 + топ): `onepiece` · `ghibli`
+
+### 🦸 Marvel (8 + топ): `hulk` · `thor` · `captain-america` · `wolverine` · `deadpool` · `blackwidow` · `strange` · `wanda`
+
+### 💻 Операційні системи (10): `macos` · `windows` · `linux` · `ubuntu` · `arch` · `debian` · `fedora` · `kali` · `mint` · `nixos`
+
+```bash
+~/.claude/status-line.sh use cyberpunk        # detailed
+~/.claude/status-line.sh use macos-compact    # compact
+```
+
 ## Навіщо?
 
 Стандартний статусний рядок Claude Code — мінімалістичний. Ця заміна перетворює його на **повноцінний дашборд** для кожної сесії:

@@ -14,6 +14,35 @@
 Opus 4.7 (1M) │ 🚀 12% █▌░░░░░░░░ 121.4K/1000K │ 0.42$ │ ↑0.5K ↓1.2K │ project │ ⎇ main │ tokens: 87 K │ 🤖 xhigh
 ```
 
+## 🎨 144 pripravljenih variant — izberite in uporabite
+
+72 tem × 2 varianti (`detailed` + `-compact`). Uporabite z `~/.claude/status-line.sh use <name>`.
+
+### 🔝 Top 10 — najbolj iskane, mednarodne
+`cyberpunk` · `hacker` · `dragonball` · `naruto` · `pokemon` · `ironman` · `spiderman` · `einstein` · `tesla` · `ferrari`
+
+### 🛠 Klasika (19): `minimal` `developer` `time` `zen` `rainbow` `anime` `love` `cat` `christmas` `space` `retro` `fire` `ocean` `weather` `coffee` `music` `game` `pirate`
+
+### 🚗 Avtomobilske znamke (15)
+- 🇪🇺 Evropa: `porsche` · `mercedes` · `bmw` · `volvo`
+- 🇺🇸 Amerika: `ford` · `chevy` · `jeep` · `cadillac`
+- 🇯🇵 Japonska: `toyota` · `honda` · `nissan`
+- 🇰🇷 Koreja: `hyundai` · `kia`
+- 🇨🇳 Kitajska: `byd` · `nio` · `geely`
+
+### 🔬 Veliki znanstveniki (8): `newton` · `curie` · `darwin` · `hawking` · `galileo` · `feynman` · `turing` · `davinci`
+
+### ✨ Anime (3 + top): `onepiece` · `ghibli`
+
+### 🦸 Marvel (8 + top): `hulk` · `thor` · `captain-america` · `wolverine` · `deadpool` · `blackwidow` · `strange` · `wanda`
+
+### 💻 Operacijski sistemi (10): `macos` · `windows` · `linux` · `ubuntu` · `arch` · `debian` · `fedora` · `kali` · `mint` · `nixos`
+
+```bash
+~/.claude/status-line.sh use cyberpunk        # detailed
+~/.claude/status-line.sh use macos-compact    # compact
+```
+
 ## Zakaj?
 
 Privzeta statusna vrstica Claude Code je skopa. Ta nadomestek jo spremeni v **nadzorno ploščo na prvi pogled** za vsako sejo:

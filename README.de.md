@@ -14,6 +14,35 @@
 Opus 4.7 (1M) │ 🚀 12% █▌░░░░░░░░ 121.4K/1000K │ 0.42$ │ ↑0.5K ↓1.2K │ project │ ⎇ main │ tokens: 87 K │ 🤖 xhigh
 ```
 
+## 🎨 144 fertige Varianten — wählen und anwenden
+
+72 Themes × 2 Varianten (`detailed` + `-compact`). Anwenden mit `~/.claude/status-line.sh use <name>`.
+
+### 🔝 Top 10 — meistgefragt, kulturübergreifend
+`cyberpunk` · `hacker` · `dragonball` · `naruto` · `pokemon` · `ironman` · `spiderman` · `einstein` · `tesla` · `ferrari`
+
+### 🛠 Klassisch (19): `minimal` `developer` `time` `zen` `rainbow` `anime` `love` `cat` `christmas` `space` `retro` `fire` `ocean` `weather` `coffee` `music` `game` `pirate`
+
+### 🚗 Automarken (15)
+- 🇪🇺 Europa: `porsche` · `mercedes` · `bmw` · `volvo`
+- 🇺🇸 Amerika: `ford` · `chevy` · `jeep` · `cadillac`
+- 🇯🇵 Japan: `toyota` · `honda` · `nissan`
+- 🇰🇷 Korea: `hyundai` · `kia`
+- 🇨🇳 China: `byd` · `nio` · `geely`
+
+### 🔬 Große Wissenschaftler (8): `newton` · `curie` · `darwin` · `hawking` · `galileo` · `feynman` · `turing` · `davinci`
+
+### ✨ Anime (3 + Top): `onepiece` · `ghibli`
+
+### 🦸 Marvel (8 + Top): `hulk` · `thor` · `captain-america` · `wolverine` · `deadpool` · `blackwidow` · `strange` · `wanda`
+
+### 💻 Betriebssysteme (10): `macos` · `windows` · `linux` · `ubuntu` · `arch` · `debian` · `fedora` · `kali` · `mint` · `nixos`
+
+```bash
+~/.claude/status-line.sh use cyberpunk        # detailed
+~/.claude/status-line.sh use macos-compact    # compact
+```
+
 ## Warum?
 
 Die Standard-Statuszeile von Claude Code ist sparsam. Dieser Drop-in-Ersatz macht daraus ein **Dashboard auf einen Blick** für jede Session:

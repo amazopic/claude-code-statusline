@@ -41,6 +41,35 @@ Opus 4.7 (1M) │ 🚀 12% █▌░░░░░░░░ 121.4K/1000K │ 0.42$
 
 > 💡 **Совет — Контроль контекста**: чем больше заполнено окно контекста, тем **менее эффективным** становится диалог с Claude — и тем **быстрее сгорают** твои лимиты 5ч / 7д. Своевременная очистка или `/compact` при пересечении **60%** = эффективная работа.
 
+## 🎨 144 готовых варианта — выбирайте и применяйте
+
+72 темы × 2 варианта (`detailed` + `-compact`). Применяйте через `~/.claude/status-line.sh use <name>`.
+
+### 🔝 Топ-10 — самые популярные, кросс-культурные
+`cyberpunk` · `hacker` · `dragonball` · `naruto` · `pokemon` · `ironman` · `spiderman` · `einstein` · `tesla` · `ferrari`
+
+### 🛠 Классика (19): `minimal` `developer` `time` `zen` `rainbow` `anime` `love` `cat` `christmas` `space` `retro` `fire` `ocean` `weather` `coffee` `music` `game` `pirate`
+
+### 🚗 Автомобильные бренды (15)
+- 🇪🇺 Европа: `porsche` · `mercedes` · `bmw` · `volvo`
+- 🇺🇸 Америка: `ford` · `chevy` · `jeep` · `cadillac`
+- 🇯🇵 Япония: `toyota` · `honda` · `nissan`
+- 🇰🇷 Корея: `hyundai` · `kia`
+- 🇨🇳 Китай: `byd` · `nio` · `geely`
+
+### 🔬 Великие учёные (8): `newton` · `curie` · `darwin` · `hawking` · `galileo` · `feynman` · `turing` · `davinci`
+
+### ✨ Аниме (3 + топ): `onepiece` · `ghibli`
+
+### 🦸 Marvel (8 + топ): `hulk` · `thor` · `captain-america` · `wolverine` · `deadpool` · `blackwidow` · `strange` · `wanda`
+
+### 💻 Операционные системы (10): `macos` · `windows` · `linux` · `ubuntu` · `arch` · `debian` · `fedora` · `kali` · `mint` · `nixos`
+
+```bash
+~/.claude/status-line.sh use cyberpunk        # detailed
+~/.claude/status-line.sh use macos-compact    # compact
+```
+
 ## 🚀 Установка
 
 ### ⚡ или vibe-chill метод · пусть Claude сделает сам

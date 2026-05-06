@@ -14,6 +14,35 @@
 Opus 4.7 (1M) │ 🚀 12% █▌░░░░░░░░ 121.4K/1000K │ 0.42$ │ ↑0.5K ↓1.2K │ project │ ⎇ main │ tokens: 87 K │ 🤖 xhigh
 ```
 
+## 🎨 144개 변형 — 선택해서 적용
+
+72개 테마 × 2개 변형 (`detailed` + `-compact`). `~/.claude/status-line.sh use <name>`로 적용.
+
+### 🔝 Top 10 — 가장 많이 요청되는, 국제적
+`cyberpunk` · `hacker` · `dragonball` · `naruto` · `pokemon` · `ironman` · `spiderman` · `einstein` · `tesla` · `ferrari`
+
+### 🛠 클래식 (19): `minimal` `developer` `time` `zen` `rainbow` `anime` `love` `cat` `christmas` `space` `retro` `fire` `ocean` `weather` `coffee` `music` `game` `pirate`
+
+### 🚗 자동차 브랜드 (15)
+- 🇪🇺 유럽: `porsche` · `mercedes` · `bmw` · `volvo`
+- 🇺🇸 미국: `ford` · `chevy` · `jeep` · `cadillac`
+- 🇯🇵 일본: `toyota` · `honda` · `nissan`
+- 🇰🇷 한국: `hyundai` · `kia`
+- 🇨🇳 중국: `byd` · `nio` · `geely`
+
+### 🔬 위대한 과학자 (8): `newton` · `curie` · `darwin` · `hawking` · `galileo` · `feynman` · `turing` · `davinci`
+
+### ✨ 애니메이션 (3 + top): `onepiece` · `ghibli`
+
+### 🦸 마블 (8 + top): `hulk` · `thor` · `captain-america` · `wolverine` · `deadpool` · `blackwidow` · `strange` · `wanda`
+
+### 💻 운영 체제 (10): `macos` · `windows` · `linux` · `ubuntu` · `arch` · `debian` · `fedora` · `kali` · `mint` · `nixos`
+
+```bash
+~/.claude/status-line.sh use cyberpunk        # detailed
+~/.claude/status-line.sh use macos-compact    # compact
+```
+
 ## 왜 사용하나요?
 
 Claude Code의 기본 상태 표시줄은 단조롭습니다. 이 드롭인 교체본은 매 세션을 **한눈에 보는 대시보드** 로 바꿔줍니다:

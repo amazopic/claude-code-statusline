@@ -41,6 +41,35 @@ Todo en **una sola línea**, con código de colores e iconos inteligentes que in
 
 > 💡 **Consejo pro — Control del contexto**: cuanto más llena esté tu ventana de contexto, **menos eficaz** será tu conversación con Claude — y **más rápido** se queman tus límites de 5h / 7d. Limpia o `/compact` cuando cruces el **60%** para trabajar eficientemente.
 
+## 🎨 144 variantes listas — elige y aplica
+
+72 temas × 2 variantes (`detailed` + `-compact`). Aplica con `~/.claude/status-line.sh use <name>`.
+
+### 🔝 Top 10 — los más pedidos, interculturales
+`cyberpunk` · `hacker` · `dragonball` · `naruto` · `pokemon` · `ironman` · `spiderman` · `einstein` · `tesla` · `ferrari`
+
+### 🛠 Clásicos (19): `minimal` `developer` `time` `zen` `rainbow` `anime` `love` `cat` `christmas` `space` `retro` `fire` `ocean` `weather` `coffee` `music` `game` `pirate`
+
+### 🚗 Marcas de coches (15)
+- 🇪🇺 Europa: `porsche` · `mercedes` · `bmw` · `volvo`
+- 🇺🇸 América: `ford` · `chevy` · `jeep` · `cadillac`
+- 🇯🇵 Japón: `toyota` · `honda` · `nissan`
+- 🇰🇷 Corea: `hyundai` · `kia`
+- 🇨🇳 China: `byd` · `nio` · `geely`
+
+### 🔬 Grandes científicos (8): `newton` · `curie` · `darwin` · `hawking` · `galileo` · `feynman` · `turing` · `davinci`
+
+### ✨ Anime (3 + top): `onepiece` · `ghibli`
+
+### 🦸 Marvel (8 + top): `hulk` · `thor` · `captain-america` · `wolverine` · `deadpool` · `blackwidow` · `strange` · `wanda`
+
+### 💻 Sistemas operativos (10): `macos` · `windows` · `linux` · `ubuntu` · `arch` · `debian` · `fedora` · `kali` · `mint` · `nixos`
+
+```bash
+~/.claude/status-line.sh use cyberpunk        # detailed
+~/.claude/status-line.sh use macos-compact    # compact
+```
+
 ## 🚀 Instalación
 
 ### Manual (3 pasos)

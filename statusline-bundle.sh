@@ -42,28 +42,36 @@
 #
 #  ─────────────────────────  THEMES  ──────────────────────────
 #
-#  Classic (20):
-#    minimal · developer · time · zen · rainbow · anime · love
-#    cat · christmas · hacker · cyberpunk · space · retro · fire
-#    ocean · weather · coffee · music · game · pirate
+#  Top picks (10) — most asked-for, cross-cultural:
+#    cyberpunk · hacker · dragonball · naruto · pokemon
+#    ironman · spiderman · einstein · tesla · ferrari
 #
-#  Auto brands (17):
-#    Europe   — porsche · mercedes · bmw · ferrari · volvo
+#  Classic (19):
+#    minimal · developer · time · zen · rainbow · anime · love
+#    cat · christmas · space · retro · fire · ocean · weather
+#    coffee · music · game · pirate
+#
+#  Auto brands (15 more):
+#    Europe   — porsche · mercedes · bmw · volvo
 #    America  — ford · chevy · jeep · cadillac
 #    Japan    — toyota · honda · nissan
 #    Korea    — hyundai · kia
 #    China    — byd · nio · geely
 #
-#  Great scientists (10):
-#    einstein · newton · curie · tesla · darwin · hawking
-#    galileo · feynman · turing · davinci
+#  Great scientists (8 more):
+#    newton · curie · darwin · hawking · galileo
+#    feynman · turing · davinci
 #
-#  Anime (5):
-#    dragonball · naruto · onepiece · pokemon · ghibli
+#  Anime (3 more):
+#    onepiece · ghibli
 #
-#  Marvel superheroes (10):
-#    ironman · spiderman · hulk · thor · captain-america
-#    wolverine · deadpool · blackwidow · strange · wanda
+#  Marvel superheroes (8 more):
+#    hulk · thor · captain-america · wolverine · deadpool
+#    blackwidow · strange · wanda
+#
+#  Operating systems (10):
+#    macos · windows · linux · ubuntu · arch
+#    debian · fedora · kali · mint · nixos
 #
 #  Append "-compact" to any name for the compact variant
 #  (model · context · branch only).
@@ -98,7 +106,7 @@ fi
 # ─────────────────────────  CONFIG  ───────────────────────────────────
 # Calendar versioning: YYYY.MM.DD — bump on every release. Compared by
 # `statusline update` against the upstream copy on GitHub.
-VERSION="2026.05.06"
+VERSION="2026.05.07"
 UPSTREAM_URL="https://raw.githubusercontent.com/amazopic/claude-code-statusline/main/statusline-bundle.sh"
 
 CONFIG_FILE="${HOME}/.claude/statusline.conf"
@@ -109,14 +117,31 @@ BLOCKS=""
 [[ -z "$THEME" ]] && THEME="$DEFAULT_THEME"
 
 # ─────────────────────────  ALL THEMES  ───────────────────────────────
-THEMES=(minimal developer time zen rainbow anime love cat christmas hacker
-        cyberpunk space retro fire ocean weather coffee music game pirate
-        porsche mercedes bmw ferrari volvo ford chevy jeep cadillac
-        toyota honda nissan hyundai kia byd nio geely
-        einstein newton curie tesla darwin hawking galileo feynman turing davinci
-        dragonball naruto onepiece pokemon ghibli
-        ironman spiderman hulk thor captain-america wolverine deadpool
-        blackwidow strange wanda)
+THEMES=(
+  # — Top picks (cross-cultural recognition) —
+  cyberpunk hacker dragonball naruto pokemon ironman spiderman einstein tesla ferrari
+  # — Practical / Classic —
+  minimal developer time zen rainbow anime love cat christmas
+  space retro fire ocean weather coffee music game pirate
+  # — Auto: Europe —
+  porsche mercedes bmw volvo
+  # — Auto: America —
+  ford chevy jeep cadillac
+  # — Auto: Japan —
+  toyota honda nissan
+  # — Auto: Korea —
+  hyundai kia
+  # — Auto: China —
+  byd nio geely
+  # — Scientists —
+  newton curie darwin hawking galileo feynman turing davinci
+  # — Anime —
+  onepiece ghibli
+  # — Marvel —
+  hulk thor captain-america wolverine deadpool blackwidow strange wanda
+  # — Operating systems —
+  macos windows linux ubuntu arch debian fedora kali mint nixos
+)
 
 # ─────────────────────────  ALL BLOCKS  ───────────────────────────────
 BLOCKS_LIST=(model context context-pct context-bar cost folder
@@ -1355,6 +1380,92 @@ render_wanda() {
 }
 
 # ═════════════════════════════════════════════════════════════════════
+#                      OPERATING SYSTEM THEMES (10)
+# ═════════════════════════════════════════════════════════════════════
+
+render_macos() {
+  # Six-color rainbow on the brand mark, then chrome-grey body
+  line="${G}🍎${R} m${O}a${Y}c${GR}O${B}S${N} ${D}·${N} ${WD}${model_name}${N}"
+  line+="${SEP}${WD}${ctx_pct}${D}% $(bar_simple "$ctx_pct" "$WD" "$D2" "█" "░")${N}"
+  line+="${SEP}${WD}\$${G}${cost_fmt}${N}"
+  [[ -n "$br" ]] && line+="${SEP}${WD}⎇ ${br}${N}"
+  _lim_default
+}
+
+render_windows() {
+  # Fluent 11: four-color tile + cyan body
+  line="${R}⊞${GR}⊞${B}⊞${Y}⊞${N} ${C}WINDOWS 11${N} ${D}·${N} ${W}${model_name}${N}"
+  line+="${SEP}${C}${ctx_pct}${CD}% $(bar_simple "$ctx_pct" "$C" "$BD" "█" "░")${N}"
+  line+="${SEP}${C}\$${W}${cost_fmt}${N}"
+  [[ -n "$br" ]] && line+="${SEP}${C}⎇ ${br}${N}"
+  _lim_default
+}
+
+render_linux() {
+  line="${O}🐧 ${W}GNU/Linux${N} ${D}·${N} ${WD}${model_name}${N}"
+  line+="${SEP}${O}tux ${WD}${ctx_pct}${D}% $(bar_simple "$ctx_pct" "$O" "$D2" "█" "░")${N}"
+  line+="${SEP}${O}\$${W}${cost_fmt}${N}"
+  [[ -n "$br" ]] && line+="${SEP}${O}⎇ ${WD}${br}${N}"
+  _lim_default
+}
+
+render_ubuntu() {
+  line="${O}⊕ ${W}UBUNTU${N} ${D}·${N} ${V}${model_name}${N}"
+  line+="${SEP}${O}friend ${V}${ctx_pct}${V2}% $(bar_simple "$ctx_pct" "$O" "$V2" "▰" "▱")${N}"
+  line+="${SEP}${O}\$${V}${cost_fmt}${N}"
+  [[ -n "$br" ]] && line+="${SEP}${O}⎇ ${V}${br}${N}"
+  _lim_default
+}
+
+render_arch() {
+  line="${C}▲ ${W}ARCH${N} ${D}·${N} ${WD}btw · ${W}${model_name}${N}"
+  line+="${SEP}${C}pacman ${B}${ctx_pct}${BD}% $(bar_simple "$ctx_pct" "$C" "$BD" "█" "░")${N}"
+  line+="${SEP}${C}\$${W}${cost_fmt}${N}"
+  [[ -n "$br" ]] && line+="${SEP}${C}⎇ ${B}${br}${N}"
+  _lim_default
+}
+
+render_debian() {
+  line="${R}🌀 ${W}DEBIAN${N} ${D}·${N} ${WD}sid · ${W}${model_name}${N}"
+  line+="${SEP}${R}stable ${WD}${ctx_pct}${D}% $(bar_simple "$ctx_pct" "$R" "$D2" "█" "░")${N}"
+  line+="${SEP}${R}\$${W}${cost_fmt}${N}"
+  [[ -n "$br" ]] && line+="${SEP}${R}⎇ ${WD}${br}${N}"
+  _lim_default
+}
+
+render_fedora() {
+  line="${B}🎩 ${W}FEDORA${N} ${D}·${N} ${WD}${model_name}${N}"
+  line+="${SEP}${B}freedom ${C}${ctx_pct}${BD}% $(bar_simple "$ctx_pct" "$B" "$BD" "█" "░")${N}"
+  line+="${SEP}${B}\$${W}${cost_fmt}${N}"
+  [[ -n "$br" ]] && line+="${SEP}${B}⎇ ${W}${br}${N}"
+  _lim_default
+}
+
+render_kali() {
+  line="${B}🐉 ${W}KALI${N} ${D}·${N} ${R}offsec · ${WD}${model_name}${N}"
+  line+="${SEP}${R}pwn ${B}${ctx_pct}${BD}% $(bar_simple "$ctx_pct" "$B" "$D2" "▰" "▱")${N}"
+  line+="${SEP}${B}\$${R}${cost_fmt}${N}"
+  [[ -n "$br" ]] && line+="${SEP}${R}⎇ ${B}${br}${N}"
+  _lim_default
+}
+
+render_mint() {
+  line="${GR}🌿 ${W}MINT${N} ${D}·${N} ${WD}cinnamon · ${W}${model_name}${N}"
+  line+="${SEP}${GR}fresh ${C}${ctx_pct}${CD}% $(bar_simple "$ctx_pct" "$GR" "$D2" "▰" "▱")${N}"
+  line+="${SEP}${GR}\$${W}${cost_fmt}${N}"
+  [[ -n "$br" ]] && line+="${SEP}${GR}⎇ ${W}${br}${N}"
+  _lim_default
+}
+
+render_nixos() {
+  line="${C}❄ ${W}NIXOS${N} ${D}·${N} ${WD}declarative · ${W}${model_name}${N}"
+  line+="${SEP}${C}reproducible ${B}${ctx_pct}${BD}% $(bar_simple "$ctx_pct" "$C" "$B" "▰" "▱")${N}"
+  line+="${SEP}${C}\$${W}${cost_fmt}${N}"
+  [[ -n "$br" ]] && line+="${SEP}${B}⎇ ${C}${br}${N}"
+  _lim_default
+}
+
+# ═════════════════════════════════════════════════════════════════════
 #                       COMPACT THEME RENDERER
 #                  (model · context % + bar · branch)
 # ═════════════════════════════════════════════════════════════════════
@@ -1669,6 +1780,56 @@ render_compact() {
     wanda)
       line="${R}🌹 ${V}WANDA${N} ${D}·${N} ${V}${ctx_pct}${V2}%${N} $(bar_simple "$ctx_pct" "$R" "$V" "▰" "▱")"
       [[ -n "$br" ]] && line+=" ${D}·${N} ${V}${br}${N}"
+      _lim_default
+      ;;
+    macos)
+      line="${G}🍎${R} m${O}a${Y}c${GR}O${B}S${N} ${D}·${N} ${WD}${ctx_pct}${D}%${N} $(bar_simple "$ctx_pct" "$WD" "$D2" "█" "░")"
+      [[ -n "$br" ]] && line+=" ${D}·${N} ${WD}${br}${N}"
+      _lim_default
+      ;;
+    windows)
+      line="${R}⊞${GR}⊞${B}⊞${Y}⊞${N} ${C}WINDOWS${N} ${D}·${N} ${C}${ctx_pct}${CD}%${N} $(bar_simple "$ctx_pct" "$C" "$BD" "█" "░")"
+      [[ -n "$br" ]] && line+=" ${D}·${N} ${C}${br}${N}"
+      _lim_default
+      ;;
+    linux)
+      line="${O}🐧 ${W}LINUX${N} ${D}·${N} ${WD}${ctx_pct}${D}%${N} $(bar_simple "$ctx_pct" "$O" "$D2" "█" "░")"
+      [[ -n "$br" ]] && line+=" ${D}·${N} ${O}${br}${N}"
+      _lim_default
+      ;;
+    ubuntu)
+      line="${O}⊕ ${W}UBUNTU${N} ${D}·${N} ${V}${ctx_pct}${V2}%${N} $(bar_simple "$ctx_pct" "$O" "$V2" "▰" "▱")"
+      [[ -n "$br" ]] && line+=" ${D}·${N} ${V}${br}${N}"
+      _lim_default
+      ;;
+    arch)
+      line="${C}▲ ${W}ARCH${N} ${D}·${N} ${B}${ctx_pct}${BD}%${N} $(bar_simple "$ctx_pct" "$C" "$BD" "█" "░")"
+      [[ -n "$br" ]] && line+=" ${D}·${N} ${C}${br}${N}"
+      _lim_default
+      ;;
+    debian)
+      line="${R}🌀 ${W}DEBIAN${N} ${D}·${N} ${WD}${ctx_pct}${D}%${N} $(bar_simple "$ctx_pct" "$R" "$D2" "█" "░")"
+      [[ -n "$br" ]] && line+=" ${D}·${N} ${R}${br}${N}"
+      _lim_default
+      ;;
+    fedora)
+      line="${B}🎩 ${W}FEDORA${N} ${D}·${N} ${C}${ctx_pct}${BD}%${N} $(bar_simple "$ctx_pct" "$B" "$BD" "█" "░")"
+      [[ -n "$br" ]] && line+=" ${D}·${N} ${B}${br}${N}"
+      _lim_default
+      ;;
+    kali)
+      line="${B}🐉 ${W}KALI${N} ${D}·${N} ${B}${ctx_pct}${BD}%${N} $(bar_simple "$ctx_pct" "$B" "$D2" "▰" "▱")"
+      [[ -n "$br" ]] && line+=" ${D}·${N} ${R}${br}${N}"
+      _lim_default
+      ;;
+    mint)
+      line="${GR}🌿 ${W}MINT${N} ${D}·${N} ${C}${ctx_pct}${CD}%${N} $(bar_simple "$ctx_pct" "$GR" "$D2" "▰" "▱")"
+      [[ -n "$br" ]] && line+=" ${D}·${N} ${GR}${br}${N}"
+      _lim_default
+      ;;
+    nixos)
+      line="${C}❄ ${W}NIXOS${N} ${D}·${N} ${B}${ctx_pct}${BD}%${N} $(bar_simple "$ctx_pct" "$C" "$B" "▰" "▱")"
+      [[ -n "$br" ]] && line+=" ${D}·${N} ${C}${br}${N}"
       _lim_default
       ;;
     *)

@@ -14,6 +14,35 @@
 Opus 4.7 (1M) │ 🚀 12% █▌░░░░░░░░ 121.4K/1000K │ 0.42$ │ ↑0.5K ↓1.2K │ project │ ⎇ main │ tokens: 87 K │ 🤖 xhigh
 ```
 
+## 🎨 144 个现成变体 — 选择并应用
+
+72 个主题 × 2 个变体（`detailed` + `-compact`）。使用 `~/.claude/status-line.sh use <name>` 应用。
+
+### 🔝 Top 10 — 最受欢迎，跨文化
+`cyberpunk` · `hacker` · `dragonball` · `naruto` · `pokemon` · `ironman` · `spiderman` · `einstein` · `tesla` · `ferrari`
+
+### 🛠 经典（19）：`minimal` `developer` `time` `zen` `rainbow` `anime` `love` `cat` `christmas` `space` `retro` `fire` `ocean` `weather` `coffee` `music` `game` `pirate`
+
+### 🚗 汽车品牌（15）
+- 🇪🇺 欧洲：`porsche` · `mercedes` · `bmw` · `volvo`
+- 🇺🇸 美国：`ford` · `chevy` · `jeep` · `cadillac`
+- 🇯🇵 日本：`toyota` · `honda` · `nissan`
+- 🇰🇷 韩国：`hyundai` · `kia`
+- 🇨🇳 中国：`byd` · `nio` · `geely`
+
+### 🔬 伟大科学家（8）：`newton` · `curie` · `darwin` · `hawking` · `galileo` · `feynman` · `turing` · `davinci`
+
+### ✨ 动漫（3 + top）：`onepiece` · `ghibli`
+
+### 🦸 漫威（8 + top）：`hulk` · `thor` · `captain-america` · `wolverine` · `deadpool` · `blackwidow` · `strange` · `wanda`
+
+### 💻 操作系统（10）：`macos` · `windows` · `linux` · `ubuntu` · `arch` · `debian` · `fedora` · `kali` · `mint` · `nixos`
+
+```bash
+~/.claude/status-line.sh use cyberpunk        # detailed
+~/.claude/status-line.sh use macos-compact    # compact
+```
+
 ## 为什么用它?
 
 Claude Code 自带的状态栏过于简陋。这个替换方案把它升级为每次会话都能 **一眼看清** 的仪表盘:

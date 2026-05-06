@@ -14,6 +14,35 @@
 Opus 4.7 (1M) │ 🚀 12% █▌░░░░░░░░ 121.4K/1000K │ 0.42$ │ ↑0.5K ↓1.2K │ project │ ⎇ main │ tokens: 87 K │ 🤖 xhigh
 ```
 
+## 🎨 144 のバリアント — 選んで適用
+
+72 テーマ × 2 バリアント（`detailed` + `-compact`）。`~/.claude/status-line.sh use <name>` で適用。
+
+### 🔝 トップ 10 — 最も要望の多い、国際的
+`cyberpunk` · `hacker` · `dragonball` · `naruto` · `pokemon` · `ironman` · `spiderman` · `einstein` · `tesla` · `ferrari`
+
+### 🛠 クラシック（19）: `minimal` `developer` `time` `zen` `rainbow` `anime` `love` `cat` `christmas` `space` `retro` `fire` `ocean` `weather` `coffee` `music` `game` `pirate`
+
+### 🚗 自動車ブランド（15）
+- 🇪🇺 ヨーロッパ: `porsche` · `mercedes` · `bmw` · `volvo`
+- 🇺🇸 アメリカ: `ford` · `chevy` · `jeep` · `cadillac`
+- 🇯🇵 日本: `toyota` · `honda` · `nissan`
+- 🇰🇷 韓国: `hyundai` · `kia`
+- 🇨🇳 中国: `byd` · `nio` · `geely`
+
+### 🔬 偉大な科学者（8）: `newton` · `curie` · `darwin` · `hawking` · `galileo` · `feynman` · `turing` · `davinci`
+
+### ✨ アニメ（3 + top）: `onepiece` · `ghibli`
+
+### 🦸 マーベル（8 + top）: `hulk` · `thor` · `captain-america` · `wolverine` · `deadpool` · `blackwidow` · `strange` · `wanda`
+
+### 💻 オペレーティングシステム（10）: `macos` · `windows` · `linux` · `ubuntu` · `arch` · `debian` · `fedora` · `kali` · `mint` · `nixos`
+
+```bash
+~/.claude/status-line.sh use cyberpunk        # detailed
+~/.claude/status-line.sh use macos-compact    # compact
+```
+
 ## なぜ?
 
 Claude Code 標準のステータスラインは控えめです。このドロップイン置換は、毎セッションを **一目でわかるダッシュボード** に変えます:
