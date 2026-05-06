@@ -3,9 +3,9 @@
 //        i18n (11 locales), language switcher, hero limits visualization
 // ─────────────────────────────────────────────────────────────────────
 
-import { themes, blocks, faq, compare } from './themes.js?v=9';
-import { ansiToHtml, specimenHtml, loadSpecimen } from './ansi.js?v=9';
-import { messages, supportedLocales, defaultLocale, t as tBase, detectLocale, persistLocale } from './i18n.js?v=9';
+import { themes, blocks, faq, compare } from './themes.js?v=10';
+import { ansiToHtml, specimenHtml, loadSpecimen } from './ansi.js?v=10';
+import { messages, supportedLocales, defaultLocale, t as tBase, detectLocale, persistLocale } from './i18n.js?v=10';
 
 document.documentElement.classList.add('has-cursor');
 
@@ -323,49 +323,51 @@ async function showSpecimen(idx) {
   ).join('');
 
   specimenView.innerHTML = `
-    <div class="specimen__left">
+    <header class="specimen__header">
       <div class="specimen__id">
         <span>${t('specimens.id')}</span><strong>${String(idx + 1).padStart(2, '0')} / ${themes.length}</strong>
       </div>
       <h3 class="specimen__name">${theme.name}</h3>
       <p class="specimen__vibe">${theme.vibe}</p>
-      <div class="specimen__usages">
-        <div class="specimen__usage">
-          <span class="specimen__usage-label">${t('specimens.use')}</span>
-          <code>~/.claude/statusline.sh use ${theme.id}</code>
+    </header>
+    <div class="specimen__main">
+      <div class="specimen__terminals">
+        <div class="specimen__terminal-label"><span>${t('specimens.detailed')}</span><span>statusline-${theme.id}.sh</span></div>
+        <div class="specimen__terminal">${detailedHtml}</div>
+        ${compactHtml ? `
+          <div class="specimen__terminal-label"><span>${t('specimens.compact')}</span><span>statusline-${theme.id}-compact.sh</span></div>
+          <div class="specimen__compact">${compactHtml}</div>
+        ` : ''}
+      </div>
+      <aside class="specimen__side">
+        <div class="specimen__usages">
+          <div class="specimen__usage">
+            <span class="specimen__usage-label">${t('specimens.use')}</span>
+            <code>~/.claude/status-line.sh use ${theme.id}</code>
+          </div>
+          <div class="specimen__usage specimen__usage--slash">
+            <span class="specimen__usage-label">${t('specimens.in_claude')}</span>
+            <code><span class="slash">/statusline</span> ${theme.id}</code>
+          </div>
+          <a class="specimen__usage specimen__usage--source" href="${exampleUrl(theme.id)}" target="_blank" rel="noopener">
+            <span class="specimen__usage-label">${t('specimens.source')}</span>
+            <code>examples/statusline-${theme.id}.sh <span class="ext">↗</span></code>
+          </a>
         </div>
-        <div class="specimen__usage specimen__usage--slash">
-          <span class="specimen__usage-label">${t('specimens.in_claude')}</span>
-          <code><span class="slash">/statusline</span> ${theme.id}</code>
+        <div>
+          <h4>${t('specimens.palette')}</h4>
+          <div class="specimen__palette">${swatches}</div>
         </div>
-        <a class="specimen__usage specimen__usage--source" href="${exampleUrl(theme.id)}" target="_blank" rel="noopener">
-          <span class="specimen__usage-label">${t('specimens.source')}</span>
-          <code>examples/statusline-${theme.id}.sh <span class="ext">↗</span></code>
-        </a>
-      </div>
+        <div>
+          <h4>${t('specimens.glyphs')}</h4>
+          <div class="specimen__glyphs">▖ ▄ ▙ █ ▏ ▎ ▍ ▌ ▋ ▊ ▉</div>
+        </div>
+        <div>
+          <h4>${t('specimens.group')}</h4>
+          <p class="specimen__group">${theme.group}</p>
+        </div>
+      </aside>
     </div>
-    <div class="specimen__center">
-      <div class="specimen__terminal-label"><span>${t('specimens.detailed')}</span><span>statusline-${theme.id}.sh</span></div>
-      <div class="specimen__terminal">${detailedHtml}</div>
-      ${compactHtml ? `
-        <div class="specimen__terminal-label"><span>${t('specimens.compact')}</span><span>statusline-${theme.id}-compact.sh</span></div>
-        <div class="specimen__compact">${compactHtml}</div>
-      ` : ''}
-    </div>
-    <aside class="specimen__side">
-      <div>
-        <h4>${t('specimens.palette')}</h4>
-        <div class="specimen__palette">${swatches}</div>
-      </div>
-      <div>
-        <h4>${t('specimens.glyphs')}</h4>
-        <div class="specimen__glyphs">▖ ▄ ▙ █ ▏ ▎ ▍ ▌ ▋ ▊ ▉</div>
-      </div>
-      <div>
-        <h4>${t('specimens.group')}</h4>
-        <p style="font-family: var(--font-display); font-style: italic; font-size: var(--fs-md);">${theme.group}</p>
-      </div>
-    </aside>
   `;
   $$('.specimen-pager button').forEach((b, i) => {
     b.classList.toggle('active', i === idx);

@@ -1160,8 +1160,8 @@
 }
 
 .specimen {
-  display: grid;
-  grid-template-columns: 1fr;
+  display: flex;
+  flex-direction: column;
   gap: 2rem;
   background: var(--paper);
   padding: clamp(1.5rem, 4vw, 3rem);
@@ -1169,9 +1169,22 @@
   min-height: 30rem;
   position: relative;
 }
+.specimen__header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 1.5rem;
+}
+.specimen__main {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 2rem;
+  min-width: 0;
+}
 @media (min-width: 900px) {
-  .specimen {
-    grid-template-columns: 3fr 6fr 3fr;
+  .specimen__main {
+    grid-template-columns: minmax(0, 9fr) minmax(0, 3fr);
     gap: 3rem;
     align-items: start;
   }
@@ -1195,10 +1208,10 @@
   font-family: var(--font-display);
   font-style: italic;
   font-weight: 200;
-  font-size: clamp(3rem, 7vw, 5rem);
-  line-height: 0.92;
+  font-size: clamp(2.5rem, 6vw, 4.25rem);
+  line-height: 0.95;
   letter-spacing: -0.04em;
-  margin: 1.5rem 0 1rem;
+  margin: 0;
 }
 .specimen__vibe {
   font-family: var(--font-display);
@@ -1207,25 +1220,29 @@
   font-size: var(--fs-md);
   line-height: 1.4;
   color: var(--sub);
-  max-width: 22rem;
+  max-width: 50rem;
+  margin: 0;
 }
-.specimen__center {
+.specimen__terminals {
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
-  align-self: center;
+  gap: 1rem;
+  min-width: 0;
 }
 .specimen__terminal {
   background: #0E0E10;
   color: #F5F2EA;
   font-family: var(--font-mono);
-  font-size: clamp(0.7rem, 1.2vw, 0.875rem);
-  padding: 1.5rem;
+  font-size: clamp(0.72rem, 0.95vw, 0.85rem);
+  padding: 1.25rem 1.5rem;
   border-radius: 4px;
-  overflow-x: auto;
-  white-space: nowrap;
+  overflow-x: hidden;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  white-space: pre-wrap;
   box-shadow: var(--shadow-deep);
-  line-height: 1.4;
+  line-height: 1.55;
+  min-width: 0;
 }
 .specimen__terminal--paper {
   background: var(--paper-3);
@@ -1241,16 +1258,25 @@
   color: var(--sub);
 }
 .specimen__compact {
-  margin-top: -0.25rem;
   background: #0E0E10;
   color: #F5F2EA;
   font-family: var(--font-mono);
-  font-size: clamp(0.65rem, 1vw, 0.78rem);
+  font-size: clamp(0.7rem, 0.85vw, 0.8rem);
   padding: 1rem 1.5rem;
   border-radius: 4px;
-  overflow-x: auto;
-  white-space: nowrap;
-  opacity: 0.85;
+  overflow-x: hidden;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  white-space: pre-wrap;
+  opacity: 0.92;
+  line-height: 1.5;
+  min-width: 0;
+}
+.specimen__group {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: var(--fs-md);
+  margin: 0;
 }
 .specimen__side {
   display: flex;
