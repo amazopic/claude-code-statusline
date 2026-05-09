@@ -1948,3 +1948,82 @@
   transform: translateX(-50%) translateY(0);
   opacity: 1;
 }
+
+/* ─────────────────────────────────────────────────────────────────────
+ * RTL support (Arabic)
+ *
+ * Strategy: let the document flip via [dir="rtl"] (set on <html> by
+ * main.js when locale.rtl === true). Most layout uses flex/grid which
+ * already mirror correctly. Below are the targeted overrides for
+ * elements that MUST stay LTR (commands, terminal output, code blocks)
+ * and a few alignment fixes where browsers do not auto-flip.
+ * ─────────────────────────────────────────────────────────────────── */
+
+/* Force LTR on anything that contains shell commands / file paths /
+   ANSI terminal output. Mirroring would visually break bash. */
+[dir="rtl"] .specimen__terminal,
+[dir="rtl"] .specimen__compact,
+[dir="rtl"] .specimen__usage code,
+[dir="rtl"] .specimen__usage-label,
+[dir="rtl"] .specimen__terminal-label,
+[dir="rtl"] .vibe-prompt,
+[dir="rtl"] .install__claude-prompt,
+[dir="rtl"] .install__claude-prompt code,
+[dir="rtl"] .install__claude-prompt .msg,
+[dir="rtl"] .install__claude-prompt .who,
+[dir="rtl"] .recipe__code,
+[dir="rtl"] .recipe__bash,
+[dir="rtl"] .terminal,
+[dir="rtl"] .terminal-line,
+[dir="rtl"] code,
+[dir="rtl"] pre,
+[dir="rtl"] kbd,
+[dir="rtl"] .mono {
+  direction: ltr;
+  text-align: left;
+  unicode-bidi: isolate;
+}
+
+/* Glyph sample (▖ ▄ ▙ █ …) reads better LTR even in Arabic */
+[dir="rtl"] .specimen__glyphs {
+  direction: ltr;
+  text-align: left;
+}
+
+/* Arabic body uses a slightly larger line-height for comfortable reading */
+[dir="rtl"] body {
+  line-height: 1.65;
+}
+
+/* Specimen pager dots / arrows: visual flow stays LTR (chronological by
+   index, not language reading order) */
+[dir="rtl"] .specimen-nav,
+[dir="rtl"] .specimen-pager {
+  direction: ltr;
+}
+
+/* Lang switcher menu: keep menu LTR-aligned for code labels (EN, RU…) */
+[dir="rtl"] .lang-switcher__menu .lang-switcher__opt-code {
+  direction: ltr;
+}
+
+/* Numbers section: huge numerals look wrong RTL; keep LTR */
+[dir="rtl"] .numbers-grid,
+[dir="rtl"] .numbers__big {
+  direction: ltr;
+}
+
+/* GitHub badges, copy buttons, "Issue 01 · 12 languages" runs: LTR */
+[dir="rtl"] .hero-meta__github,
+[dir="rtl"] .hero-meta__issue,
+[dir="rtl"] .copy-btn {
+  direction: ltr;
+}
+
+/* Hero terminal preview must stay LTR — it shows ANSI output */
+[dir="rtl"] .terminal,
+[dir="rtl"] .terminal *,
+[dir="rtl"] .hero-terminal,
+[dir="rtl"] .hero-terminal * {
+  direction: ltr;
+}

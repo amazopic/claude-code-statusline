@@ -3,9 +3,9 @@
 //        i18n (11 locales), language switcher, hero limits visualization
 // ─────────────────────────────────────────────────────────────────────
 
-import { themes, blocks, faq, compare } from './themes.js?v=12';
-import { ansiToHtml, specimenHtml, loadSpecimen } from './ansi.js?v=12';
-import { messages, supportedLocales, defaultLocale, t as tBase, detectLocale, persistLocale } from './i18n.js?v=12';
+import { themes, blocks, faq, compare } from './themes.js?v=13';
+import { ansiToHtml, specimenHtml, loadSpecimen } from './ansi.js?v=13';
+import { messages, supportedLocales, defaultLocale, t as tBase, detectLocale, persistLocale } from './i18n.js?v=13';
 
 document.documentElement.classList.add('has-cursor');
 
@@ -59,8 +59,10 @@ function applyTranslations() {
     if (!key) return;
     el.setAttribute('aria-label', t(key));
   });
-  // <html lang="">
+  // <html lang=""> + dir="rtl|ltr"
   document.documentElement.lang = currentLocale;
+  const localeMeta = supportedLocales.find(l => l.code === currentLocale);
+  document.documentElement.dir = (localeMeta && localeMeta.rtl) ? 'rtl' : 'ltr';
   // README links — point to the language-appropriate README on GitHub
   $$('[data-readme-link]').forEach(a => a.setAttribute('href', readmeUrl(currentLocale)));
   // <title>
