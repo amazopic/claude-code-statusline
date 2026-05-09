@@ -98,6 +98,15 @@ export const themes = [
   { id: 'kali',            name: 'Kali',            vibe: '🐉 Kali blue + offsec red. pwn-mode.',                                                 palette: ['#367BF0','#DC2626','#0E0E10','#F5F2EA','#3B82F6'], group: 'OS' },
   { id: 'mint',            name: 'Mint',            vibe: '🌿 Cinnamon mint green. Fresh.',                                                       palette: ['#86BE43','#22C55E','#F5F2EA','#0E0E10','#22D3EE'], group: 'OS' },
   { id: 'nixos',           name: 'NixOS',           vibe: '❄ Nix blue snowflake. Declarative, reproducible.',                                    palette: ['#5277C3','#22D3EE','#3B82F6','#F5F2EA','#0E0E10'], group: 'OS' },
+
+  // ── World religions (top 7 by adherents) ─────────────────────────
+  { id: 'christianity',    name: 'Christianity',    vibe: '✝ Wine-red + Marian blue + papal gold. Faith meter, € alms.',                            palette: ['#7F1D1D','#1E40AF','#FBBF24','#F5F2EA','#0E0E10'], group: 'Religion' },
+  { id: 'islam',           name: 'Islam',           vibe: '☪ Islamic green + white + gold calligraphy. Taqwa, ﷼ sadaqah.',                          palette: ['#16A34A','#F5F2EA','#FBBF24','#0E0E10','#22C55E'], group: 'Religion' },
+  { id: 'hinduism',        name: 'Hinduism',        vibe: '🕉 Saffron + marigold + vermilion. Dharma scale, ₹ seva.',                                palette: ['#F97316','#FBBF24','#DC2626','#F5F2EA','#0E0E10'], group: 'Religion' },
+  { id: 'buddhism',        name: 'Buddhism',        vibe: '☸ Monk saffron + gold + maroon. Karma meter, ฿ dāna.',                                   palette: ['#F97316','#FBBF24','#7F1D1D','#F5F2EA','#0E0E10'], group: 'Religion' },
+  { id: 'judaism',         name: 'Judaism',         vibe: '✡ Tallit blue + white + menorah gold. Mitzvah, ₪ tzedakah.',                              palette: ['#1E40AF','#F5F2EA','#FBBF24','#0E0E10','#3B82F6'], group: 'Religion' },
+  { id: 'sikhism',         name: 'Sikhism',         vibe: '☬ Khalsa deep blue + saffron + white. Sewa, daswandh.',                                  palette: ['#1E40AF','#F97316','#F5F2EA','#0E0E10','#FBBF24'], group: 'Religion' },
+  { id: 'shinto',          name: 'Shinto',          vibe: '⛩ Vermilion torii + shrine white + gold. Kami, ¥ saisen.',                              palette: ['#DC2626','#F5F2EA','#FBBF24','#0E0E10','#7F1D1D'], group: 'Religion' },
 ];
 
 /** Building blocks for the recipe section. */
@@ -244,4 +253,12 @@ export const specimenCaptions = {
   kali:            '🐉 Kali blue + offsec red. The pwn-mode aesthetic, bar reads "pwn ##%".',
   mint:            '🌿 Cinnamon mint green. The friendliest shell in the catalog.',
   nixos:           '❄ Nix blue snowflake. Declarative, reproducible — even the bar is deterministic.',
+  // Religions
+  christianity:    '✝ Cardinal wine, Marian blue, papal gold on cream. Faith meter scales with context; alms in € for the Vatican touch.',
+  islam:           '☪ Islamic green and white with calligraphic gold. The taqwa meter rises with context, sadaqah in ﷼.',
+  hinduism:        '🕉 Saffron, marigold yellow, vermilion — the colours of festival. Dharma scales as context grows; seva in ₹.',
+  buddhism:        '☸ Monk saffron + Tibetan maroon + dharma gold. Karma meter, dāna in ฿ — the bar fills like the wheel turning.',
+  judaism:         '✡ Tallit blue and white with menorah gold accents. The mitzvah counter rises with context; tzedakah in ₪.',
+  sikhism:         '☬ Khalsa deep blue with saffron Nishan Sahib accents. The sewa scale measures service; daswandh in ₹.',
+  shinto:          '⛩ Vermilion torii red on shrine white, with gold for the offering bell. Kami presence rises with the bar; saisen in ¥.',
 };

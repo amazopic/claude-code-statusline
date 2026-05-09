@@ -41,9 +41,9 @@ Todo en **una sola línea**, con código de colores e iconos inteligentes que in
 
 > 💡 **Consejo pro — Control del contexto**: cuanto más llena esté tu ventana de contexto, **menos eficaz** será tu conversación con Claude — y **más rápido** se queman tus límites de 5h / 7d. Limpia o `/compact` cuando cruces el **60%** para trabajar eficientemente.
 
-## 🎨 144 variantes listas — elige y aplica
+## 🎨 158 variantes listas — elige y aplica
 
-72 temas × 2 variantes (`detailed` + `-compact`). Aplica con `~/.claude/status-line.sh use <name>`.
+79 temas × 2 variantes (`detailed` + `-compact`). Aplica con `~/.claude/status-line.sh use <name>`.
 
 ### 🔝 Top 10 — los más pedidos, interculturales
 `cyberpunk` · `hacker` · `dragonball` · `naruto` · `pokemon` · `ironman` · `spiderman` · `einstein` · `tesla` · `ferrari`
@@ -69,6 +69,9 @@ Todo en **una sola línea**, con código de colores e iconos inteligentes que in
 ~/.claude/status-line.sh use cyberpunk        # detailed
 ~/.claude/status-line.sh use macos-compact    # compact
 ```
+
+
+### 🕊 Religiones del mundo (top 7): `christianity` · `islam` · `hinduism` · `buddhism` · `judaism` · `sikhism` · `shinto`
 
 ## 🚀 Instalación
 

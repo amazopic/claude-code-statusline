@@ -73,6 +73,10 @@
 #    macos · windows · linux · ubuntu · arch
 #    debian · fedora · kali · mint · nixos
 #
+#  World religions (top 7 by adherents):
+#    christianity · islam · hinduism · buddhism
+#    judaism · sikhism · shinto
+#
 #  Append "-compact" to any name for the compact variant
 #  (model · context · branch only).
 #
@@ -106,7 +110,7 @@ fi
 # ─────────────────────────  CONFIG  ───────────────────────────────────
 # Calendar versioning: YYYY.MM.DD — bump on every release. Compared by
 # `statusline update` against the upstream copy on GitHub.
-VERSION="2026.05.07.1"
+VERSION="2026.05.09"
 UPSTREAM_URL="https://raw.githubusercontent.com/amazopic/claude-code-statusline/main/statusline-bundle.sh"
 
 CONFIG_FILE="${HOME}/.claude/statusline.conf"
@@ -141,6 +145,8 @@ THEMES=(
   hulk thor captain-america wolverine deadpool blackwidow strange wanda
   # — Operating systems —
   macos windows linux ubuntu arch debian fedora kali mint nixos
+  # — World religions (top 7 by adherents) —
+  christianity islam hinduism buddhism judaism sikhism shinto
 )
 
 # ─────────────────────────  ALL BLOCKS  ───────────────────────────────
@@ -1427,6 +1433,71 @@ render_nixos() {
 }
 
 # ═════════════════════════════════════════════════════════════════════
+#                  WORLD RELIGION THEMES (top 7 by adherents)
+#
+#  Symbols used are universally accepted religious-identity glyphs
+#  (✝ ☪ 🕉 ☸ ✡ ☬ ⛩). Currency choices reflect majority-adherent
+#  countries: € (Vatican), ﷼ (SAR), ₹ (India), ฿ (Thailand),
+#  ₪ (Israel), ₹ (Sikh-majority Punjab), ¥ (Japan).
+# ═════════════════════════════════════════════════════════════════════
+
+render_christianity() {
+  # Wine-red + Marian blue + papal gold on cream
+  line="${R}✝ ${W}CHRISTIANITY${N} ${D}·${N} ${WD}${model_name}${N}"
+  line+="${SEP}${R}faith ${G}${ctx_pct}${GD}% $(bar_simple "$ctx_pct" "$R" "$G" "▰" "▱")${N}"
+  line+="${SEP}${R}€${G}${cost_fmt}${N}"
+  _ext_tail
+}
+
+render_islam() {
+  # Islamic green + white + gold for calligraphy
+  line="${GR}☪ ${W}ISLAM${N} ${D}·${N} ${WD}${model_name}${N}"
+  line+="${SEP}${GR}taqwa ${W}${ctx_pct}${WD}% $(bar_simple "$ctx_pct" "$GR" "$WD" "▰" "▱")${N}"
+  line+="${SEP}${GR}﷼ ${W}${cost_fmt}${N}"
+  _ext_tail
+}
+
+render_hinduism() {
+  # Saffron + marigold yellow + vermilion
+  line="${O}🕉 ${Y}HINDUISM${N} ${D}·${N} ${W}${model_name}${N}"
+  line+="${SEP}${O}dharma ${Y}${ctx_pct}${YD}% $(bar_simple "$ctx_pct" "$O" "$Y" "▰" "▱")${N}"
+  line+="${SEP}${O}seva ${Y}₹${O}${cost_fmt}${N}"
+  _ext_tail
+}
+
+render_buddhism() {
+  # Monk saffron + gold + maroon (Tibetan tradition)
+  line="${O}☸ ${G}BUDDHISM${N} ${D}·${N} ${W}${model_name}${N}"
+  line+="${SEP}${O}karma ${G}${ctx_pct}${GD}% $(bar_simple "$ctx_pct" "$O" "$G" "▰" "▱")${N}"
+  line+="${SEP}${O}dāna ${G}฿${O}${cost_fmt}${N}"
+  _ext_tail
+}
+
+render_judaism() {
+  # Tallit blue + white + menorah gold
+  line="${B}✡ ${W}JUDAISM${N} ${D}·${N} ${WD}${model_name}${N}"
+  line+="${SEP}${B}mitzvah ${G}${ctx_pct}${GD}% $(bar_simple "$ctx_pct" "$B" "$WD" "▰" "▱")${N}"
+  line+="${SEP}${B}tzedakah ${G}₪${B}${cost_fmt}${N}"
+  _ext_tail
+}
+
+render_sikhism() {
+  # Khalsa deep blue + saffron + white (Nishan Sahib)
+  line="${B}☬ ${O}SIKHISM${N} ${D}·${N} ${W}${model_name}${N}"
+  line+="${SEP}${B}sewa ${O}${ctx_pct}${YD}% $(bar_simple "$ctx_pct" "$B" "$O" "▰" "▱")${N}"
+  line+="${SEP}${O}daswandh ${B}₹${O}${cost_fmt}${N}"
+  _ext_tail
+}
+
+render_shinto() {
+  # Vermilion torii red + shrine white + gold
+  line="${R}⛩ ${W}SHINTO${N} ${D}·${N} ${WD}${model_name}${N}"
+  line+="${SEP}${R}kami ${W}${ctx_pct}${WD}% $(bar_simple "$ctx_pct" "$R" "$WD" "▰" "▱")${N}"
+  line+="${SEP}${R}saisen ${W}¥${R}${cost_fmt}${N}"
+  _ext_tail
+}
+
+# ═════════════════════════════════════════════════════════════════════
 #                       COMPACT THEME RENDERER
 #                  (model · context % + bar · branch)
 # ═════════════════════════════════════════════════════════════════════
@@ -1791,6 +1862,41 @@ render_compact() {
     nixos)
       line="${C}❄ ${W}NIXOS${N} ${D}·${N} ${B}${ctx_pct}${BD}%${N} $(bar_simple "$ctx_pct" "$C" "$B" "▰" "▱")"
       [[ -n "$br" ]] && line+=" ${D}·${N} ${C}${br}${N}"
+      _lim_default
+      ;;
+    christianity)
+      line="${R}✝ ${W}CHRISTIANITY${N} ${D}·${N} ${G}${ctx_pct}${GD}%${N} $(bar_simple "$ctx_pct" "$R" "$G" "▰" "▱")"
+      [[ -n "$br" ]] && line+=" ${D}·${N} ${R}${br}${N}"
+      _lim_default
+      ;;
+    islam)
+      line="${GR}☪ ${W}ISLAM${N} ${D}·${N} ${W}${ctx_pct}${WD}%${N} $(bar_simple "$ctx_pct" "$GR" "$WD" "▰" "▱")"
+      [[ -n "$br" ]] && line+=" ${D}·${N} ${GR}${br}${N}"
+      _lim_default
+      ;;
+    hinduism)
+      line="${O}🕉 ${Y}HINDUISM${N} ${D}·${N} ${Y}${ctx_pct}${YD}%${N} $(bar_simple "$ctx_pct" "$O" "$Y" "▰" "▱")"
+      [[ -n "$br" ]] && line+=" ${D}·${N} ${O}${br}${N}"
+      _lim_default
+      ;;
+    buddhism)
+      line="${O}☸ ${G}BUDDHISM${N} ${D}·${N} ${G}${ctx_pct}${GD}%${N} $(bar_simple "$ctx_pct" "$O" "$G" "▰" "▱")"
+      [[ -n "$br" ]] && line+=" ${D}·${N} ${O}${br}${N}"
+      _lim_default
+      ;;
+    judaism)
+      line="${B}✡ ${W}JUDAISM${N} ${D}·${N} ${G}${ctx_pct}${GD}%${N} $(bar_simple "$ctx_pct" "$B" "$WD" "▰" "▱")"
+      [[ -n "$br" ]] && line+=" ${D}·${N} ${B}${br}${N}"
+      _lim_default
+      ;;
+    sikhism)
+      line="${B}☬ ${O}SIKHISM${N} ${D}·${N} ${O}${ctx_pct}${YD}%${N} $(bar_simple "$ctx_pct" "$B" "$O" "▰" "▱")"
+      [[ -n "$br" ]] && line+=" ${D}·${N} ${B}${br}${N}"
+      _lim_default
+      ;;
+    shinto)
+      line="${R}⛩ ${W}SHINTO${N} ${D}·${N} ${W}${ctx_pct}${WD}%${N} $(bar_simple "$ctx_pct" "$R" "$WD" "▰" "▱")"
+      [[ -n "$br" ]] && line+=" ${D}·${N} ${R}${br}${N}"
       _lim_default
       ;;
     *)

@@ -14,9 +14,9 @@
 Opus 4.7 (1M) │ 🚀 12% █▌░░░░░░░░ 121.4K/1000K │ 0.42$ │ ↑0.5K ↓1.2K │ project │ ⎇ main │ tokens: 87 K │ 🤖 xhigh
 ```
 
-## 🎨 144 fertige Varianten — wählen und anwenden
+## 🎨 158 fertige Varianten — wählen und anwenden
 
-72 Themes × 2 Varianten (`detailed` + `-compact`). Anwenden mit `~/.claude/status-line.sh use <name>`.
+79 Themes × 2 Varianten (`detailed` + `-compact`). Anwenden mit `~/.claude/status-line.sh use <name>`.
 
 ### 🔝 Top 10 — meistgefragt, kulturübergreifend
 `cyberpunk` · `hacker` · `dragonball` · `naruto` · `pokemon` · `ironman` · `spiderman` · `einstein` · `tesla` · `ferrari`
@@ -42,6 +42,9 @@ Opus 4.7 (1M) │ 🚀 12% █▌░░░░░░░░ 121.4K/1000K │ 0.42$
 ~/.claude/status-line.sh use cyberpunk        # detailed
 ~/.claude/status-line.sh use macos-compact    # compact
 ```
+
+
+### 🕊 Weltreligionen (Top 7): `christianity` · `islam` · `hinduism` · `buddhism` · `judaism` · `sikhism` · `shinto`
 
 ## Warum?
 

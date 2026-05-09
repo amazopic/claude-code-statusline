@@ -14,9 +14,9 @@
 Opus 4.7 (1M) │ 🚀 12% █▌░░░░░░░░ 121.4K/1000K │ 0.42$ │ ↑0.5K ↓1.2K │ project │ ⎇ main │ tokens: 87 K │ 🤖 xhigh
 ```
 
-## 🎨 144 个现成变体 — 选择并应用
+## 🎨 158 个现成变体 — 选择并应用
 
-72 个主题 × 2 个变体（`detailed` + `-compact`）。使用 `~/.claude/status-line.sh use <name>` 应用。
+79 个主题 × 2 个变体（`detailed` + `-compact`）。使用 `~/.claude/status-line.sh use <name>` 应用。
 
 ### 🔝 Top 10 — 最受欢迎，跨文化
 `cyberpunk` · `hacker` · `dragonball` · `naruto` · `pokemon` · `ironman` · `spiderman` · `einstein` · `tesla` · `ferrari`
@@ -42,6 +42,9 @@ Opus 4.7 (1M) │ 🚀 12% █▌░░░░░░░░ 121.4K/1000K │ 0.42$
 ~/.claude/status-line.sh use cyberpunk        # detailed
 ~/.claude/status-line.sh use macos-compact    # compact
 ```
+
+
+### 🕊 世界宗教（按信众数前 7）：`christianity` · `islam` · `hinduism` · `buddhism` · `judaism` · `sikhism` · `shinto`
 
 ## 为什么用它?
 

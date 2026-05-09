@@ -41,9 +41,9 @@ Opus 4.7 (1M) │ 🚀 12% █▌░░░░░░░░ 121.4K/1000K │ 0.42$
 
 > 💡 **Совет — Контроль контекста**: чем больше заполнено окно контекста, тем **менее эффективным** становится диалог с Claude — и тем **быстрее сгорают** твои лимиты 5ч / 7д. Своевременная очистка или `/compact` при пересечении **60%** = эффективная работа.
 
-## 🎨 144 готовых варианта — выбирайте и применяйте
+## 🎨 158 готовых варианта — выбирайте и применяйте
 
-72 темы × 2 варианта (`detailed` + `-compact`). Применяйте через `~/.claude/status-line.sh use <name>`.
+79 тем × 2 варианта (`detailed` + `-compact`). Применяйте через `~/.claude/status-line.sh use <name>`.
 
 ### 🔝 Топ-10 — самые популярные, кросс-культурные
 `cyberpunk` · `hacker` · `dragonball` · `naruto` · `pokemon` · `ironman` · `spiderman` · `einstein` · `tesla` · `ferrari`
@@ -69,6 +69,9 @@ Opus 4.7 (1M) │ 🚀 12% █▌░░░░░░░░ 121.4K/1000K │ 0.42$
 ~/.claude/status-line.sh use cyberpunk        # detailed
 ~/.claude/status-line.sh use macos-compact    # compact
 ```
+
+
+### 🕊 Мировые религии (топ-7 по числу последователей): `christianity` · `islam` · `hinduism` · `buddhism` · `judaism` · `sikhism` · `shinto`
 
 ## 🚀 Установка
 

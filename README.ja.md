@@ -14,9 +14,9 @@
 Opus 4.7 (1M) │ 🚀 12% █▌░░░░░░░░ 121.4K/1000K │ 0.42$ │ ↑0.5K ↓1.2K │ project │ ⎇ main │ tokens: 87 K │ 🤖 xhigh
 ```
 
-## 🎨 144 のバリアント — 選んで適用
+## 🎨 158 のバリアント — 選んで適用
 
-72 テーマ × 2 バリアント（`detailed` + `-compact`）。`~/.claude/status-line.sh use <name>` で適用。
+79 テーマ × 2 バリアント（`detailed` + `-compact`）。`~/.claude/status-line.sh use <name>` で適用。
 
 ### 🔝 トップ 10 — 最も要望の多い、国際的
 `cyberpunk` · `hacker` · `dragonball` · `naruto` · `pokemon` · `ironman` · `spiderman` · `einstein` · `tesla` · `ferrari`
@@ -42,6 +42,9 @@ Opus 4.7 (1M) │ 🚀 12% █▌░░░░░░░░ 121.4K/1000K │ 0.42$
 ~/.claude/status-line.sh use cyberpunk        # detailed
 ~/.claude/status-line.sh use macos-compact    # compact
 ```
+
+
+### 🕊 世界宗教（信者数トップ7）: `christianity` · `islam` · `hinduism` · `buddhism` · `judaism` · `sikhism` · `shinto`
 
 ## なぜ?
 

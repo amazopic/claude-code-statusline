@@ -14,9 +14,9 @@
 Opus 4.7 (1M) │ 🚀 12% █▌░░░░░░░░ 121.4K/1000K │ 0.42$ │ ↑0.5K ↓1.2K │ project │ ⎇ main │ tokens: 87 K │ 🤖 xhigh
 ```
 
-## 🎨 144 готових варіанти — обирайте і застосовуйте
+## 🎨 158 готових варіанти — обирайте і застосовуйте
 
-72 теми × 2 варіанти (`detailed` + `-compact`). Застосовуйте через `~/.claude/status-line.sh use <name>`.
+79 тем × 2 варіанти (`detailed` + `-compact`). Застосовуйте через `~/.claude/status-line.sh use <name>`.
 
 ### 🔝 Топ-10 — найпопулярніші, крос-культурні
 `cyberpunk` · `hacker` · `dragonball` · `naruto` · `pokemon` · `ironman` · `spiderman` · `einstein` · `tesla` · `ferrari`
@@ -42,6 +42,9 @@ Opus 4.7 (1M) │ 🚀 12% █▌░░░░░░░░ 121.4K/1000K │ 0.42$
 ~/.claude/status-line.sh use cyberpunk        # detailed
 ~/.claude/status-line.sh use macos-compact    # compact
 ```
+
+
+### 🕊 Світові релігії (топ-7): `christianity` · `islam` · `hinduism` · `buddhism` · `judaism` · `sikhism` · `shinto`
 
 ## Навіщо?
 

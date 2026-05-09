@@ -14,9 +14,9 @@
 Opus 4.7 (1M) │ 🚀 12% █▌░░░░░░░░ 121.4K/1000K │ 0.42$ │ ↑0.5K ↓1.2K │ project │ ⎇ main │ tokens: 87 K │ 🤖 xhigh
 ```
 
-## 🎨 144개 변형 — 선택해서 적용
+## 🎨 158개 변형 — 선택해서 적용
 
-72개 테마 × 2개 변형 (`detailed` + `-compact`). `~/.claude/status-line.sh use <name>`로 적용.
+79개 테마 × 2개 변형 (`detailed` + `-compact`). `~/.claude/status-line.sh use <name>`로 적용.
 
 ### 🔝 Top 10 — 가장 많이 요청되는, 국제적
 `cyberpunk` · `hacker` · `dragonball` · `naruto` · `pokemon` · `ironman` · `spiderman` · `einstein` · `tesla` · `ferrari`
@@ -42,6 +42,9 @@ Opus 4.7 (1M) │ 🚀 12% █▌░░░░░░░░ 121.4K/1000K │ 0.42$
 ~/.claude/status-line.sh use cyberpunk        # detailed
 ~/.claude/status-line.sh use macos-compact    # compact
 ```
+
+
+### 🕊 세계 종교 (신자 수 상위 7): `christianity` · `islam` · `hinduism` · `buddhism` · `judaism` · `sikhism` · `shinto`
 
 ## 왜 사용하나요?
 
