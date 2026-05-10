@@ -1,4 +1,4 @@
-# Examples — 40 ready-made status line variants
+# Examples — 158 ready-made status line variants
 
 Each theme ships in **two variants**:
 
@@ -9,7 +9,7 @@ Both are **standalone** — copy any one to `~/.claude/statusline.sh`,
 `chmod +x`, and you're done.
 
 > 💡 **One-file alternative**: see [`../statusline-bundle.sh`](../statusline-bundle.sh) —
-> all 40 themes + all blocks + a CLI configurator (`use`, `custom`,
+> all 79 themes + all blocks + a CLI configurator (`use`, `custom`,
 > `preview`, `list`) in a single script. Pair with [`../commands/statusline.md`](../commands/statusline.md)
 > for a `/statusline` Claude Code slash command.
 
@@ -85,7 +85,7 @@ Restart Claude Code (or `/config` reload).
 ## See them all in your terminal
 
 The `../screenshots/` folder has pre-rendered ANSI captures of every
-variant (40 themes + the main reference). To browse the whole gallery:
+variant (79 themes × 2 = 158 specimens + the main reference). To browse the whole gallery:
 
 ```bash
 for f in screenshots/*.ansi; do

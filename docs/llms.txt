@@ -1,38 +1,51 @@
 # Claude Code Status Line
 
-> A bash-based replacement for Claude Code's default status line. Shows context window usage, session cost in USD, rate-limit warnings, git branch with dirty/ahead/behind, time-on-task, model name with 1M-context indicator, and a configurable bar — all in one colorful line. Ships with 40 ready-made themes (anime, cyberpunk, hacker, weather, fire, ocean, coffee, music, game, pirate, christmas, retro, space, cat, love, rainbow, zen, plus practical: minimal, developer, time-tracker) and an 18-block library to compose your own. Also includes an all-in-one CLI configurator and a `/statusline` Claude Code slash command.
+> A bash-based replacement for **Claude Code's** default status line. Renders a real-time dashboard at the bottom of your Claude Code session: live **5-hour and 7-day rate-limit meters** with ⚠️ alerts above 50 % (the headline feature — the default Claude Code status line gives zero limit visibility), live **context window** usage with a 1.25 %-precision progress bar, **session cost** in USD, **per-message token counts** (input/output), **git branch** with dirty / ahead / behind counters, **active vs wall human-hours**, the active **model name** with `(1M)` indicator for 1M-context variants, and more — all in one colorful Bash line. Ships with **79 ready-made themes × 2 variants = 158 specimens** spanning popular culture (cyberpunk, hacker, anime, Marvel, Dragon Ball, Naruto, Pokémon, Iron Man, Spider-Man), great scientists (Einstein, Tesla, Newton, Curie, Darwin, Hawking, Galileo, Feynman, Turing, da Vinci), 15 car brands (Porsche, Mercedes, BMW, Ferrari, Volvo, Ford, Chevy, Jeep, Cadillac, Toyota, Honda, Nissan, Hyundai, Kia, BYD, NIO, Geely), 10 operating systems (macOS, Windows, Linux, Ubuntu, Arch, Debian, Fedora, Kali, Mint, NixOS), 7 world religions by adherent count (christianity, islam, hinduism, buddhism, judaism, sikhism, shinto), and 21 classics (minimal, developer, time, zen, rainbow, anime, love, cat, christmas, space, retro, fire, ocean, weather, coffee, music, game, pirate). Includes an **18-block library** to compose your own status line, an all-in-one CLI configurator, and a `/statusline` Claude Code slash command.
 
 Author: Yevgeniy Achin <amazopic@gmail.com>
+Version: 2026.05.09 (CalVer; check with `~/.claude/status-line.sh version`)
 License: Source-Available — reuse only with prior written permission of the author.
-Languages: English plus 10 translations (Russian, French, German, Ukrainian, Slovenian, Italian, Spanish, Chinese, Japanese, Korean).
+Languages: 12 (English plus Russian, French, German, Ukrainian, Slovenian, Italian, Spanish, Chinese, Japanese, Korean, Arabic with full RTL support).
+Repo: https://github.com/amazopic/claude-code-statusline
+Site: https://amazopic.github.io/claude-code-statusline/
+
+## Why this exists
+
+Claude Code's default status line is sparse — just a model name, maybe a directory. Meanwhile your context fills up, your **5-hour and 7-day plan limits tick down silently**, your session quietly accrues cost — and you only find out you've hit a limit when Claude refuses mid-task. **This project is the dashboard that should have been there.** It's the #1 reason people install it.
 
 ## Documentation
 
-- [README](README.md): Overview, install, all themes, build-your-own guide.
-- [BLOCKS.md](BLOCKS.md): Library of 18 named blocks (model, context, context-bar, cost, folder, git, git-branch, tokens-msg, tokens-session, limits, thinking, time-active, time-wall, turns, host, cups, level, mood-icon) and a 3-step recipe for composing a custom status line.
-- [LICENSE](LICENSE): Source-Available License (reuse-by-permission).
-- [examples/README.md](examples/README.md): Index of 40 ready-made variants (20 themes × detailed + compact).
-- [screenshots/README.md](screenshots/README.md): Pre-rendered ANSI previews of every variant; preview commands.
-- [commands/statusline.md](commands/statusline.md): Template Claude Code slash command — drop into `~/.claude/commands/`.
+- [README](https://github.com/amazopic/claude-code-statusline/blob/main/README.md): Overview, install, all 79 themes (with category groupings), build-your-own guide.
+- [BLOCKS.md](https://github.com/amazopic/claude-code-statusline/blob/main/BLOCKS.md): Library of 18 named blocks (model, context, context-bar, cost, folder, git, git-branch, tokens-msg, tokens-session, limits, thinking, time-active, time-wall, turns, host, cups, level, mood-icon) with a 3-step recipe for composing a custom status line.
+- [LICENSE](https://github.com/amazopic/claude-code-statusline/blob/main/LICENSE): Source-Available License (reuse-by-permission).
+- [examples/README.md](https://github.com/amazopic/claude-code-statusline/blob/main/examples/README.md): Index of all 158 ready-made variants (79 themes × detailed + compact).
+- [commands/statusline.md](https://github.com/amazopic/claude-code-statusline/blob/main/commands/statusline.md): Template Claude Code slash command — drop into `~/.claude/commands/`.
+- Translated READMEs: README.ru.md, README.fr.md, README.de.md, README.uk.md, README.sl.md, README.it.md, README.es.md, README.zh.md, README.ja.md, README.ko.md, README.ar.md.
 
 ## Code
 
-- [statusline.sh](statusline.sh): Main reference implementation — fully featured single-file status line. Uses bash + jq.
-- [statusline-bundle.sh](statusline-bundle.sh): All-in-one bundle (40 themes + 18 blocks + CLI configurator) in 914 lines. Same file is both the renderer (called by Claude Code with JSON on stdin) and the configurator (called with arguments: `use`, `custom`, `list`, `preview`, `show`, `reset`).
-- [examples/statusline-*.sh](examples/): 20 standalone detailed themes.
-- [examples/statusline-*-compact.sh](examples/): 20 standalone compact themes (model · context · branch only).
+- [statusline-bundle.sh](https://github.com/amazopic/claude-code-statusline/blob/main/statusline-bundle.sh): All-in-one bundle (79 themes + 18 blocks + CLI configurator + auto-updater) in a single bash file. Same script is both the renderer (called by Claude Code with JSON on stdin) and the configurator (called with arguments: `use`, `custom`, `list`, `preview`, `show`, `reset`, `update`, `version`).
+- [statusline.sh](https://github.com/amazopic/claude-code-statusline/blob/main/statusline.sh): Minimal reference implementation — single-file status line. Bash + jq.
+- [examples/statusline-*.sh](https://github.com/amazopic/claude-code-statusline/tree/main/examples): 158 standalone variants (79 detailed + 79 compact).
 
 ## Quick install
 
 ```bash
-git clone https://github.com/amazopic/REPO.git
-cp REPO/statusline-bundle.sh ~/.claude/status-line.sh
+git clone https://github.com/amazopic/claude-code-statusline.git
+cp claude-code-statusline/statusline-bundle.sh ~/.claude/status-line.sh
 chmod +x ~/.claude/status-line.sh
-~/.claude/status-line.sh use cyberpunk
+~/.claude/status-line.sh use cyberpunk          # or: hacker, naruto, einstein, ferrari, …
 ```
 
 Then point Claude Code's `~/.claude/settings.json` `statusLine.command` at `~/.claude/status-line.sh` and restart.
 
+## Update
+
+```bash
+~/.claude/status-line.sh update    # fetches latest bundle, backs up your config, preserves theme
+~/.claude/status-line.sh version   # prints installed version (CalVer)
+```
+
 ## Topics
 
-claude-code, claude-code-statusline, statusline, status-bar, terminal-prompt, anthropic-claude, ai-coding, developer-tools, bash-script, terminal-customization, prompt-customization, claude-4, opus-4, sonnet-4, dotfiles, terminal-dashboard, context-window-monitor, token-counter, rate-limit-monitor.
+claude-code, claude-code-statusline, claude-code-status-bar, claude-rate-limit-monitor, statusline, status-bar, terminal-prompt, terminal-dashboard, anthropic-claude, ai-coding, developer-tools, bash-script, terminal-customization, prompt-customization, claude-4, claude-opus-4, claude-sonnet-4, opus-4-7, sonnet-4-6, haiku-4-5, dotfiles, context-window-monitor, token-counter, 5h-limit-tracker, 7d-limit-tracker, 1m-context.

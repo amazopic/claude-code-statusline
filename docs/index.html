@@ -27,6 +27,7 @@
     <link rel="alternate" hreflang="zh" href="https://amazopic.github.io/claude-code-statusline/?lang=zh" />
     <link rel="alternate" hreflang="ja" href="https://amazopic.github.io/claude-code-statusline/?lang=ja" />
     <link rel="alternate" hreflang="ko" href="https://amazopic.github.io/claude-code-statusline/?lang=ko" />
+    <link rel="alternate" hreflang="ar" href="https://amazopic.github.io/claude-code-statusline/?lang=ar" />
 
     <!-- OpenGraph -->
     <meta property="og:type" content="website" />
@@ -49,6 +50,7 @@
     <meta property="og:locale:alternate" content="zh_CN" />
     <meta property="og:locale:alternate" content="ja_JP" />
     <meta property="og:locale:alternate" content="ko_KR" />
+    <meta property="og:locale:alternate" content="ar_SA" />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -73,9 +75,9 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@300;400;500;600&display=swap" />
 
     <!-- Styles -->
-    <link rel="stylesheet" href="css/tokens.css?v=14" />
-    <link rel="stylesheet" href="css/base.css?v=14" />
-    <link rel="stylesheet" href="css/sections.css?v=14" />
+    <link rel="stylesheet" href="css/tokens.css?v=15" />
+    <link rel="stylesheet" href="css/base.css?v=15" />
+    <link rel="stylesheet" href="css/sections.css?v=15" />
 
     <!-- Google Analytics (GA4) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-GN8ZDLTY1D"></script>
@@ -95,14 +97,19 @@
       "applicationCategory": "DeveloperApplication",
       "operatingSystem": "macOS, Linux, Windows (WSL/Git Bash)",
       "description": "Drop-in replacement for the Claude Code default status line with real-time 5h/7d rate-limit warnings, 79 themes, 18 configurable blocks, a CLI configurator, and a /statusline slash command.",
-      "softwareVersion": "1.0.0",
-      "author": { "@type": "Person", "name": "Yevgeniy Achin", "email": "amazopic@gmail.com" },
+      "softwareVersion": "2026.05.09",
+      "datePublished": "2025-10-15",
+      "dateModified": "2026-05-09",
+      "author": { "@type": "Person", "name": "Yevgeniy Achin", "email": "amazopic@gmail.com", "url": "https://github.com/amazopic" },
+      "publisher": { "@type": "Person", "name": "Yevgeniy Achin" },
       "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
       "license": "Source-Available (Reuse-by-Permission)",
       "softwareRequirements": "bash 4+, jq",
       "url": "https://amazopic.github.io/claude-code-statusline/",
       "downloadUrl": "https://github.com/amazopic/claude-code-statusline",
-      "inLanguage": ["en", "ru", "fr", "de", "uk", "sl", "it", "es", "zh", "ja", "ko"],
+      "codeRepository": "https://github.com/amazopic/claude-code-statusline",
+      "inLanguage": ["en", "ru", "fr", "de", "uk", "sl", "it", "es", "zh", "ja", "ko", "ar"],
+      "keywords": "claude code statusline, claude code status bar, anthropic claude statusline, claude rate limit monitor, 5h limit, 7d limit, context window monitor, bash statusline, terminal dashboard, dotfiles",
       "featureList": [
         "Live 5-hour and 7-day rate-limit meters with ⚠️ alert above 50%",
         "Context window % with 1.25% precision progress bar",
@@ -110,9 +117,11 @@
         "Git branch, dirty, ahead/behind",
         "Active vs wall human-hours tracking",
         "79 themes × 2 variants = 158 ready-made (top picks: cyberpunk, hacker, dragonball, naruto, pokemon, ironman, spiderman, einstein, tesla, ferrari)",
+        "Theme groups: Marvel (8), great scientists (8), car brands (15), anime, OS (10: macos/windows/linux/ubuntu/arch/debian/fedora/kali/mint/nixos), world religions (7: christianity/islam/hinduism/buddhism/judaism/sikhism/shinto)",
         "18 named, composable blocks",
         "Built-in CLI configurator",
-        "/statusline slash command"
+        "/statusline slash command",
+        "12 documented languages including Arabic (RTL)"
       ]
     }
     </script>
@@ -129,6 +138,33 @@
         { "@type": "Question", "name": "Does it support the 1M context window models?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. The script detects [1m] in the model id and 1M in the display name and adjusts the bar's denominator to 1,000,000 tokens." }},
         { "@type": "Question", "name": "Will it slow down Claude Code?", "acceptedAnswer": { "@type": "Answer", "text": "No. Each render runs once per status redraw. Typical render is under 50 ms even with the time-tracker enabled." }},
         { "@type": "Question", "name": "Is it free? Can I use it commercially?", "acceptedAnswer": { "@type": "Answer", "text": "Personal local use is free under the Source-Available License. Any reuse, redistribution, fork, or inclusion in another project requires prior written permission from the author Yevgeniy Achin (amazopic@gmail.com)." }}
+      ]
+    }
+    </script>
+
+    <!-- JSON-LD: WebSite (sitelinks search box hint) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Claude Code Status Line",
+      "alternateName": ["Claude Code Statusline", "Claude Code Status Bar"],
+      "url": "https://amazopic.github.io/claude-code-statusline/",
+      "inLanguage": ["en", "ru", "fr", "de", "uk", "sl", "it", "es", "zh", "ja", "ko", "ar"],
+      "publisher": { "@type": "Person", "name": "Yevgeniy Achin" }
+    }
+    </script>
+
+    <!-- JSON-LD: BreadcrumbList -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://amazopic.github.io/claude-code-statusline/" },
+        { "@type": "ListItem", "position": 2, "name": "Specimens", "item": "https://amazopic.github.io/claude-code-statusline/#specimens" },
+        { "@type": "ListItem", "position": 3, "name": "Install", "item": "https://amazopic.github.io/claude-code-statusline/#install" },
+        { "@type": "ListItem", "position": 4, "name": "FAQ", "item": "https://amazopic.github.io/claude-code-statusline/#faq" }
       ]
     }
     </script>
@@ -334,7 +370,7 @@
               <span class="num__label" data-i18n="numbers.limits">limit warnings (5h + 7d)</span>
             </div>
             <div class="num">
-              <div class="num__value">40</div>
+              <div class="num__value">79</div>
               <span class="num__label" data-i18n="numbers.themes">themes</span>
             </div>
             <div class="num">
@@ -346,7 +382,7 @@
               <span class="num__label" data-i18n="numbers.precision">bar precision</span>
             </div>
             <div class="num">
-              <div class="num__value">11</div>
+              <div class="num__value">12</div>
               <span class="num__label" data-i18n="numbers.languages">documented languages</span>
             </div>
             <div class="num">
@@ -372,7 +408,7 @@
         <div class="wrap">
           <span class="catalog__meta" data-i18n="catalog.meta">Contents · 158 specimens</span>
           <h2 id="catalog-title" class="catalog__title" data-i18n-html="catalog.title">The Catalog<br/><em>in two volumes — detailed &amp; compact</em></h2>
-          <p style="color:var(--sub); max-width:42rem; margin-bottom:2rem; font-size:var(--fs-md);" data-i18n="catalog.intro">Twenty themes, each in two trims. Tap a name to jump to its specimen page.</p>
+          <p style="color:var(--sub); max-width:42rem; margin-bottom:2rem; font-size:var(--fs-md);" data-i18n="catalog.intro">Seventy-nine themes, each in two trims — detailed and compact. Tap a name to jump to its specimen page.</p>
           <div class="catalog-list" data-reveal></div>
         </div>
       </section>
@@ -430,7 +466,7 @@
               </div>
               <div class="claude-demo__line response">
                 <span class="who claude">claude</span>
-                <span class="msg"><span class="dot">⏺</span> Available themes <span class="dim">(20)</span>:<br><span class="dim">minimal · developer · time · zen · rainbow · anime · love · cat · christmas · hacker</span><br><span class="dim">cyberpunk · space · retro · fire · ocean · weather · coffee · music · game · pirate</span></span>
+                <span class="msg"><span class="dot">⏺</span> Available themes <span class="dim">(79)</span>:<br><span class="dim">cyberpunk · hacker · dragonball · naruto · pokemon · ironman · spiderman · einstein · tesla · ferrari</span><br><span class="dim">+ 8 Marvel · 8 scientists · 15 car brands · 10 OS · 7 religions · 21 classics</span></span>
               </div>
             </div>
             <p class="claude-demo__caption" data-i18n-html="specimens.try.caption">Same script, two modes — <strong>stdin = render</strong>, <strong>args = configure</strong>. Already shipped as <code class="mono">~/.claude/commands/statusline.md</code>.</p>
@@ -690,7 +726,7 @@ cp claude-code-statusline/commands/statusline.md \
           <div class="colophon-meta">
             <span data-i18n="colo.meta.copyright">© 2026 Yevgeniy Achin · Source-Available</span>
             <span data-i18n="colo.meta.made">Made for the Claude Code community</span>
-            <span data-i18n="colo.meta.issue">Issue 01 · v1.0.0</span>
+            <span data-i18n="colo.meta.issue">Issue 01 · v2026.05.09</span>
           </div>
         </div>
       </footer>
@@ -703,6 +739,6 @@ cp claude-code-statusline/commands/statusline.md \
       <p style="padding:2rem;text-align:center;">This page is enhanced with JavaScript. The full project is documented in the <a href="https://github.com/amazopic/claude-code-statusline">GitHub repository</a>.</p>
     </noscript>
 
-    <script type="module" src="js/main.js?v=14"></script>
+    <script type="module" src="js/main.js?v=15"></script>
   </body>
 </html>

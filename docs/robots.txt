@@ -1,20 +1,65 @@
 User-agent: *
 Allow: /
 
-# AI / LLM crawlers — explicit allowance + index hint
+# AI / LLM crawlers — explicit allowance for ingestion + AI search
+
+# OpenAI — training corpus + ChatGPT browse + ChatGPT search
 User-agent: GPTBot
 Allow: /
 
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+# Anthropic — Claude
 User-agent: ClaudeBot
 Allow: /
 
+User-agent: Claude-User
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+# Perplexity
 User-agent: PerplexityBot
 Allow: /
 
+User-agent: Perplexity-User
+Allow: /
+
+# Google Gemini training opt-in
 User-agent: Google-Extended
 Allow: /
 
+# Common Crawl (used by many LLM training pipelines)
 User-agent: CCBot
+Allow: /
+
+# Apple Intelligence
+User-agent: Applebot-Extended
+Allow: /
+
+# Meta AI
+User-agent: meta-externalagent
+Allow: /
+
+# Mistral
+User-agent: MistralAI-User
+Allow: /
+
+# DuckDuckGo AI assist
+User-agent: DuckAssistBot
+Allow: /
+
+# Cohere
+User-agent: cohere-ai
+Allow: /
+
+# You.com
+User-agent: YouBot
 Allow: /
 
 Sitemap: https://amazopic.github.io/claude-code-statusline/sitemap.xml
