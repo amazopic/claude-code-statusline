@@ -10,10 +10,14 @@
   --paper-2:    #EFEBE0;     /* slightly darker paper for sections */
   --paper-3:    #E5E0D0;     /* divider lines, subtle bg */
   --phosphor:   #00FF6B;     /* terminal green, single hot accent */
-  --phosphor-d: #00C054;     /* dim phosphor */
+  --phosphor-d: #00C054;     /* dim phosphor — use ONLY on dark bg */
+  --phosphor-p: #056330;     /* paper-safe phosphor (AA on F5F2EA AND E5E0D0) */
   --hot:        #FF3B00;     /* alert/highlight, used sparingly */
   --sub:        #4A4A48;     /* editorial gray, marginalia, captions */
-  --sub-2:      #7A7A78;     /* lighter caption gray */
+  --sub-2:      #5E5E5C;     /* lighter caption gray (WCAG AA on paper, 6.0:1) */
+  --sub-inv:    #B0AAA0;     /* muted gray for use on DARK bg (WCAG AA on ink, 7.4:1) */
+  --sub-inv-2:  #969084;     /* slightly muter, AA on ink, 5.8:1 */
+  --paper-dim:  #969590;     /* dim text on dark terminal bg, AA 4.5:1 */
   --rule:       rgba(14,14,16,0.12);  /* hairline rules */
 
   /* Inverted (dark sections) */

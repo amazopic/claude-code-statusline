@@ -260,7 +260,7 @@
   color: var(--ink);
 }
 .hero-pitch__title em {
-  color: var(--phosphor-d);
+  color: var(--phosphor-p);
   font-style: italic;
   font-weight: 400;
   position: relative;
@@ -473,7 +473,7 @@
   font-size: var(--fs-xs);
   letter-spacing: var(--tr-wide);
   text-transform: uppercase;
-  color: var(--phosphor-d);
+  color: var(--phosphor-p);
   padding-top: 0.55rem;
   margin-top: 0.4rem;
   border-top: 1px solid var(--rule);
@@ -765,7 +765,7 @@
   font-style: normal;
   background: var(--paper-3);
   padding: 0.1em 0.4em;
-  color: var(--phosphor-d);
+  color: var(--phosphor-p);
 }
 
 /* ─── 02 · EDITOR'S NOTE ──────────────────────────────────────── */
@@ -807,7 +807,7 @@
   margin: 0.05em 0.08em -0.1em -0.04em;
   color: var(--ink);
 }
-.note__body strong { color: var(--phosphor-d); font-weight: 500; font-style: normal; }
+.note__body strong { color: var(--phosphor-p); font-weight: 500; font-style: normal; }
 .note__margin {
   font-family: var(--font-body);
   font-size: var(--fs-sm);
@@ -1006,7 +1006,7 @@
   font-family: var(--font-mono);
   background: var(--paper-3);
   padding: 0.1em 0.4em;
-  color: var(--phosphor-d);
+  color: var(--phosphor-p);
 }
 .claude-demo__terminal {
   background: #0E0E10;
@@ -1082,7 +1082,7 @@
 .claude-demo__line .ok  { color: #00FF6B; margin-right: 0.35em; font-weight: 600; }
 .claude-demo__line .path { color: #FFD700; }
 .claude-demo__line .hl   { color: #00FFFF; font-weight: 500; }
-.claude-demo__line .dim  { color: #6A6A68; }
+.claude-demo__line .dim  { color: #969590; } /* paper-dim — AA on dark, 4.5:1 */
 .claude-demo__line em {
   color: #00FFFF;
   font-style: italic;
@@ -1352,7 +1352,7 @@
   text-transform: uppercase;
   font-size: 0.6875rem;
 }
-.specimen__usage code { color: var(--phosphor-d); }
+.specimen__usage code { color: var(--phosphor-p); }
 .specimen__usage--slash {
   background: var(--ink);
   color: var(--paper);
@@ -1376,7 +1376,7 @@
 }
 .specimen__usage--source code { color: var(--ink); }
 .specimen__usage--source .ext {
-  color: var(--phosphor-d);
+  color: var(--phosphor-p);
   margin-left: 0.25em;
 }
 
@@ -1390,17 +1390,25 @@
   max-width: 30rem;
 }
 .specimen-pager button {
+  /* Visual dot stays 8×8, hit area is 32×32 via padding + content-box bg-clip */
   width: 8px;
   height: 8px;
+  min-width: 8px;
+  min-height: 8px;
+  padding: 12px;
+  box-sizing: content-box;
   border-radius: 50%;
-  background: var(--rule);
+  background: var(--ink);
+  background-clip: content-box;
   border: none;
-  padding: 0;
-  transition: background var(--dur-fast) var(--easing-out),
+  cursor: pointer;
+  opacity: 0.18;
+  transition: opacity var(--dur-fast) var(--easing-out),
               transform var(--dur-fast) var(--easing-out);
 }
+.specimen-pager button:hover { opacity: 0.45; }
 .specimen-pager button.active {
-  background: var(--ink);
+  opacity: 1;
   transform: scale(1.4);
 }
 
@@ -1453,7 +1461,7 @@
   border-bottom-color: var(--phosphor);
 }
 .compare-table tr.cmp-highlight .feature {
-  color: var(--phosphor-d);
+  color: var(--phosphor-p);
   font-weight: 500;
 }
 .compare-table .feature {
@@ -1464,7 +1472,7 @@
   letter-spacing: var(--tr-snug);
   width: 50%;
 }
-.compare-table .yes { color: var(--phosphor-d); font-weight: 500; }
+.compare-table .yes { color: var(--phosphor-p); font-weight: 500; }
 .compare-table .no { color: var(--sub-2); }
 .compare-table .yes::before { content: "● "; }
 .compare-table .no::before { content: "○ "; }
@@ -1558,7 +1566,7 @@
   font-size: var(--fs-xs);
   letter-spacing: var(--tr-wide);
   text-transform: uppercase;
-  color: var(--phosphor-d);
+  color: var(--phosphor-p);
   white-space: nowrap;
 }
 
@@ -1630,7 +1638,7 @@
   line-height: 1.5;
 }
 .recipe__code .cmd { color: #00FF6B; }
-.recipe__code .cmt { color: #4A4A48; font-style: italic; }
+.recipe__code .cmt { color: #8C8C8A; font-style: italic; } /* AA on dark code bg, 4.5:1 */
 .copy-btn {
   position: absolute;
   top: 1rem;
@@ -1639,11 +1647,13 @@
   font-size: var(--fs-xs);
   letter-spacing: var(--tr-wide);
   text-transform: uppercase;
-  background: rgba(245,242,234,0.1);
-  color: #F5F2EA;
+  /* Solid ink-on-paper — readable on ANY background (paper or dark code). */
+  background: var(--ink);
+  color: var(--paper);
   padding: 0.4rem 0.7rem;
-  border: 1px solid rgba(245,242,234,0.2);
+  border: 1px solid var(--ink);
   transition: all var(--dur-fast) var(--easing-out);
+  cursor: pointer;
 }
 .copy-btn:hover {
   background: var(--phosphor);
@@ -1680,7 +1690,7 @@
   font-weight: 200;
   font-size: 4rem;
   line-height: 0.85;
-  color: var(--phosphor-d);
+  color: var(--phosphor-p);
 }
 .install-step__title {
   font-family: var(--font-display);
@@ -1837,7 +1847,7 @@
   color: var(--ink);
   transition: color var(--dur-fast) var(--easing-out);
 }
-.faq-q:hover { color: var(--phosphor-d); }
+.faq-q:hover { color: var(--phosphor-p); }
 .faq-q .num {
   font-family: var(--font-mono);
   font-style: normal;
@@ -1850,7 +1860,7 @@
   color: var(--sub);
   transition: transform var(--dur-fast) var(--easing-out);
 }
-.faq-item[open] .faq-q .toggle { transform: rotate(45deg); color: var(--phosphor-d); }
+.faq-item[open] .faq-q .toggle { transform: rotate(45deg); color: var(--phosphor-p); }
 .faq-a {
   padding: 0 0 1.5rem 4rem;
   max-width: 50rem;
@@ -1866,7 +1876,7 @@
   padding: 0.1em 0.4em;
   color: var(--ink);
 }
-.faq-a a { color: var(--phosphor-d); border-bottom: 1px solid var(--phosphor-d); }
+.faq-a a { color: var(--phosphor-p); border-bottom: 1px solid var(--phosphor-p); }
 
 /* ─── 10 · COLOPHON (footer) ──────────────────────────────────── */
 .s-colophon {
@@ -2027,3 +2037,22 @@
 [dir="rtl"] .hero-terminal * {
   direction: ltr;
 }
+
+/* ─────────────────────────────────────────────────────────────────────
+   ACCESSIBILITY: dark-section overrides
+   In sections with dark (--ink) backgrounds, --sub-2 is too dark and
+   --phosphor-p (paper-safe green) is unnecessarily dim. Override locally.
+   ───────────────────────────────────────────────────────────────────── */
+.s-numbers,
+.s-colophon,
+.install__claude,
+.claude-demo__terminal,
+.specimen__usage--slash {
+  --sub-2: var(--sub-inv);          /* lighter gray for legibility on ink */
+  --phosphor-p: var(--phosphor-d);  /* keep brighter green where it works */
+}
+.s-colophon em[style*="--sub-2"] {
+  color: var(--sub-inv) !important;  /* override inline style on "Set in" subtext */
+}
+/* slash-variant of specimen usage card has dark bg — re-color the label */
+.specimen__usage--slash .specimen__usage-label { color: var(--sub-inv); }

@@ -3,9 +3,9 @@
 //        i18n (11 locales), language switcher, hero limits visualization
 // ─────────────────────────────────────────────────────────────────────
 
-import { themes, blocks, faq, compare } from './themes.js?v=16';
-import { ansiToHtml, specimenHtml, loadSpecimen } from './ansi.js?v=16';
-import { messages, supportedLocales, defaultLocale, t as tBase, detectLocale, persistLocale } from './i18n.js?v=16';
+import { themes, blocks, faq, compare } from './themes.js?v=17';
+import { ansiToHtml, specimenHtml, loadSpecimen } from './ansi.js?v=17';
+import { messages, supportedLocales, defaultLocale, t as tBase, detectLocale, persistLocale } from './i18n.js?v=17';
 
 document.documentElement.classList.add('has-cursor');
 
@@ -372,7 +372,10 @@ async function showSpecimen(idx) {
     </footer>
   `;
   $$('.specimen-pager button').forEach((b, i) => {
-    b.classList.toggle('active', i === idx);
+    const isActive = i === idx;
+    b.classList.toggle('active', isActive);
+    b.setAttribute('aria-selected', isActive ? 'true' : 'false');
+    b.tabIndex = isActive ? 0 : -1;
   });
   prevBtn.disabled = idx === 0;
   nextBtn.disabled = idx === themes.length - 1;
@@ -381,7 +384,7 @@ async function showSpecimen(idx) {
 function buildPager() {
   if (!pager) return;
   pager.innerHTML = themes.map((t, i) =>
-    `<button title="${t.name}" data-i="${i}" aria-label="Show specimen ${i + 1}: ${t.name}"></button>`
+    `<button role="tab" aria-selected="${i === 0 ? 'true' : 'false'}" tabindex="${i === 0 ? 0 : -1}" title="${t.name}" data-i="${i}" aria-label="Show specimen ${i + 1}: ${t.name}"></button>`
   ).join('');
   pager.addEventListener('click', (e) => {
     const b = e.target.closest('button');
