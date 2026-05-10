@@ -1,9 +1,9 @@
-# 🛰️ Claude Code Status Line
+# 🛰️ Claude Code Status Line — 79 테마, 구성 가능한 블록, CLI
 
 > Claude Code를 위한 세련되고 해킹 가능한 상태 표시줄 — 컨텍스트 바, 사용량 한도, 비용, 모델 등을 아름답게 색상 코딩된 한 줄에 모두 담았습니다.
 
 [![License: Source-Available](https://img.shields.io/badge/license-Source--Available-orange.svg)](LICENSE)
-[![Variants: 40](https://img.shields.io/badge/variants-40-brightgreen.svg)](#)
+[![Variants: 158](https://img.shields.io/badge/variants-158-brightgreen.svg)](#)
 [![Author](https://img.shields.io/badge/author-Yevgeniy%20Achin-blue.svg)](mailto:amazopic@gmail.com)
 [![Made for Claude Code](https://img.shields.io/badge/made%20for-Claude%20Code-7c3aed.svg)](https://claude.com/claude-code)
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](#-기여)
@@ -347,7 +347,7 @@ Claude Code를 재시작 (또는 `/config` reload). 완료.
 | Git 브랜치 + dirty + ahead/behind | ❌ | ✅ |
 | 작업 시간 (active vs wall) | ❌ | ✅ |
 | Thinking / effort 레벨 | ❌ | ✅ |
-| 사전 설정 테마 | ❌ | ✅ 20 테마 × 2 변형 = **40개 준비** |
+| 사전 설정 테마 | ❌ | ✅ 79 테마 × 2 변형 = **158개 준비** |
 | 명명된 블록으로 구성 | ❌ | ✅ 18 블록, [BLOCKS.md](BLOCKS.md) 참조 |
 | 내장 CLI 설정 도구 | ❌ | ✅ `statusline-bundle.sh use / custom / list / preview` |
 | Claude Code `/statusline` 슬래시 명령 | ❌ | ✅ 선택, [`commands/`](commands/) 참조 |

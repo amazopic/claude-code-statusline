@@ -1,9 +1,9 @@
-# 🛰️ Claude Code Status Line
+# 🛰️ Claude Code Status Line — 79 Themes, konfigurierbare Blöcke, CLI
 
 > Eine durchdachte, hackbare Statuszeile für Claude Code — Kontextbalken, Rate Limits, Kosten, Modell und mehr — alles in einer schön gefärbten Zeile.
 
 [![License: Source-Available](https://img.shields.io/badge/license-Source--Available-orange.svg)](LICENSE)
-[![Variants: 40](https://img.shields.io/badge/variants-40-brightgreen.svg)](#)
+[![Variants: 158](https://img.shields.io/badge/variants-158-brightgreen.svg)](#)
 [![Author](https://img.shields.io/badge/author-Yevgeniy%20Achin-blue.svg)](mailto:amazopic@gmail.com)
 [![Made for Claude Code](https://img.shields.io/badge/made%20for-Claude%20Code-7c3aed.svg)](https://claude.com/claude-code)
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](#-mitwirken)
@@ -348,7 +348,7 @@ Claude Code neu starten (oder `/config` reload). Fertig.
 | Git-Branch + dirty + ahead/behind | ❌ | ✅ |
 | Zeit-am-Task (active vs wall) | ❌ | ✅ |
 | Thinking / Effort-Level | ❌ | ✅ |
-| Vorgefertigte Themes | ❌ | ✅ 20 Themes × 2 Varianten = **40 fertig** |
+| Vorgefertigte Themes | ❌ | ✅ 79 Themes × 2 Varianten = **158 fertig** |
 | Komposition aus benannten Blöcken | ❌ | ✅ 18 Blöcke, siehe [BLOCKS.md](BLOCKS.md) |
 | Eingebauter CLI-Konfigurator | ❌ | ✅ `statusline-bundle.sh use / custom / list / preview` |
 | Claude Code `/statusline` Slash-Befehl | ❌ | ✅ optional, siehe [`commands/`](commands/) |

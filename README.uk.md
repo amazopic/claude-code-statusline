@@ -1,9 +1,9 @@
-# 🛰️ Claude Code Status Line
+# 🛰️ Claude Code Status Line — 79 тем, налаштовувані блоки, CLI
 
 > Гарний, легко розширюваний статусний рядок для Claude Code — контекст, ліміти, вартість, модель та інше — все в одному кольоровому рядку.
 
 [![License: Source-Available](https://img.shields.io/badge/license-Source--Available-orange.svg)](LICENSE)
-[![Variants: 40](https://img.shields.io/badge/variants-40-brightgreen.svg)](#)
+[![Variants: 158](https://img.shields.io/badge/variants-158-brightgreen.svg)](#)
 [![Author](https://img.shields.io/badge/author-Yevgeniy%20Achin-blue.svg)](mailto:amazopic@gmail.com)
 [![Made for Claude Code](https://img.shields.io/badge/made%20for-Claude%20Code-7c3aed.svg)](https://claude.com/claude-code)
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](#-як-зробити-внесок)
@@ -348,7 +348,7 @@ chmod +x ~/.claude/status-line.sh
 | Git-гілка + dirty + ahead/behind | ❌ | ✅ |
 | Час на задачі (active vs wall) | ❌ | ✅ |
 | Рівень thinking / effort | ❌ | ✅ |
-| Готові теми | ❌ | ✅ 20 тем × 2 варіанти = **40 варіантів** |
+| Готові теми | ❌ | ✅ 79 тем × 2 варіанти = **158 варіантів** |
 | Збірка з іменованих блоків | ❌ | ✅ 18 блоків, див. [BLOCKS.md](BLOCKS.md) |
 | Вбудований CLI-конфігуратор | ❌ | ✅ `statusline-bundle.sh use / custom / list / preview` |
 | Slash-команда `/statusline` | ❌ | ✅ опціонально, див. [`commands/`](commands/) |
@@ -385,7 +385,7 @@ Bash-заміна стандартного статусного рядка в [C
 
 ### Чи можна налаштувати теми та кольори?
 
-Так, трьома способами: (1) вибрати з **40 готових варіантів** у [`examples/`](examples/), (2) зібрати свій з іменованих блоків — див. [BLOCKS.md](BLOCKS.md), (3) редагувати кольорові константи в `statusline.sh` напряму.
+Так, трьома способами: (1) вибрати з **158 готових варіантів** у [`examples/`](examples/), (2) зібрати свій з іменованих блоків — див. [BLOCKS.md](BLOCKS.md), (3) редагувати кольорові константи в `statusline.sh` напряму.
 
 ### Чи сповільнить Claude Code?
 

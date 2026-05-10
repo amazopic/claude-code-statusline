@@ -1,9 +1,9 @@
-# 🛰️ Claude Code Status Line
+# 🛰️ Claude Code Status Line — 79 tem, nastavljivi bloki, CLI
 
 > Dovršena, prilagodljiva statusna vrstica za Claude Code — kontekst, omejitve, stroški, model in več — vse v eni lepo obarvani vrstici.
 
 [![License: Source-Available](https://img.shields.io/badge/license-Source--Available-orange.svg)](LICENSE)
-[![Variants: 40](https://img.shields.io/badge/variants-40-brightgreen.svg)](#)
+[![Variants: 158](https://img.shields.io/badge/variants-158-brightgreen.svg)](#)
 [![Author](https://img.shields.io/badge/author-Yevgeniy%20Achin-blue.svg)](mailto:amazopic@gmail.com)
 [![Made for Claude Code](https://img.shields.io/badge/made%20for-Claude%20Code-7c3aed.svg)](https://claude.com/claude-code)
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](#-prispevanje)
@@ -349,7 +349,7 @@ Ponovno zaženite Claude Code (ali `/config` reload). Končano.
 | Git veja + dirty + ahead/behind | ❌ | ✅ |
 | Čas na nalogi (active vs wall) | ❌ | ✅ |
 | Raven thinking / effort | ❌ | ✅ |
-| Pripravljene teme | ❌ | ✅ 20 tem × 2 različici = **40 pripravljenih** |
+| Pripravljene teme | ❌ | ✅ 79 tem × 2 različici = **158 pripravljenih** |
 | Sestavljanje iz imenovanih blokov | ❌ | ✅ 18 blokov, glej [BLOCKS.md](BLOCKS.md) |
 | Vgrajen CLI konfigurator | ❌ | ✅ `statusline-bundle.sh use / custom / list / preview` |
 | Slash ukaz `/statusline` Claude Code | ❌ | ✅ neobvezno, glej [`commands/`](commands/) |

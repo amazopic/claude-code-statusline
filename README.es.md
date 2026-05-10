@@ -1,9 +1,9 @@
-# 🛰️ Claude Code Status Line
+# 🛰️ Claude Code Status Line — 79 temas, bloques configurables, CLI
 
 > Una barra de estado pulida y hackeable para Claude Code — barra de contexto, límites de uso, costos, modelo y más, todo en una sola línea bellamente coloreada.
 
 [![License: Source-Available](https://img.shields.io/badge/license-Source--Available-orange.svg)](LICENSE)
-[![Variants: 40](https://img.shields.io/badge/variants-40-brightgreen.svg)](#)
+[![Variants: 158](https://img.shields.io/badge/variants-158-brightgreen.svg)](#)
 [![Author](https://img.shields.io/badge/author-Yevgeniy%20Achin-blue.svg)](mailto:amazopic@gmail.com)
 [![Made for Claude Code](https://img.shields.io/badge/made%20for-Claude%20Code-7c3aed.svg)](https://claude.com/claude-code)
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](#-contribuir)
@@ -347,7 +347,7 @@ Instálame claude-code-statusline de amazopic. Primero asegúrate de que jq est�
 | Rama git + dirty + ahead/behind | ❌ | ✅ |
 | Tiempo en tarea (active vs wall) | ❌ | ✅ |
 | Nivel de thinking / effort | ❌ | ✅ |
-| Temas predefinidos | ❌ | ✅ 20 temas × 2 variantes = **40 listos** |
+| Temas predefinidos | ❌ | ✅ 79 temas × 2 variantes = **158 listos** |
 | Composición desde bloques nombrados | ❌ | ✅ 18 bloques, ver [BLOCKS.md](BLOCKS.md) |
 | Configurador CLI integrado | ❌ | ✅ `statusline-bundle.sh use / custom / list / preview` |
 | Comando slash `/statusline` Claude Code | ❌ | ✅ opcional, ver [`commands/`](commands/) |

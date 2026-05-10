@@ -1,9 +1,9 @@
-# 🛰️ Claude Code Status Line
+# 🛰️ Claude Code Status Line — 79 テーマ、設定可能ブロック、CLI
 
 > Claude Code 用の洗練された、ハック可能なステータスライン — コンテキストバー、レート制限、コスト、モデルなどを、美しく色分けされた 1 行に。
 
 [![License: Source-Available](https://img.shields.io/badge/license-Source--Available-orange.svg)](LICENSE)
-[![Variants: 40](https://img.shields.io/badge/variants-40-brightgreen.svg)](#)
+[![Variants: 158](https://img.shields.io/badge/variants-158-brightgreen.svg)](#)
 [![Author](https://img.shields.io/badge/author-Yevgeniy%20Achin-blue.svg)](mailto:amazopic@gmail.com)
 [![Made for Claude Code](https://img.shields.io/badge/made%20for-Claude%20Code-7c3aed.svg)](https://claude.com/claude-code)
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](#-コントリビュート)
@@ -347,7 +347,7 @@ amazopic の claude-code-statusline をインストールして。まず jq が�
 | Git ブランチ + dirty + ahead/behind | ❌ | ✅ |
 | タスク時間(active vs wall)| ❌ | ✅ |
 | Thinking / effort レベル | ❌ | ✅ |
-| プリセットテーマ | ❌ | ✅ 20 テーマ × 2 バリアント = **40 種類** |
+| プリセットテーマ | ❌ | ✅ 79 テーマ × 2 バリアント = **158 種類** |
 | 名前付きブロックから構成 | ❌ | ✅ 18 ブロック、[BLOCKS.md](BLOCKS.md) 参照 |
 | 内蔵 CLI 設定ツール | ❌ | ✅ `statusline-bundle.sh use / custom / list / preview` |
 | Claude Code `/statusline` スラッシュコマンド | ❌ | ✅ オプション、[`commands/`](commands/) 参照 |
