@@ -343,7 +343,7 @@ chmod +x ~/.claude/status-line.sh
 | Git 分支 + dirty + ahead/behind | ❌ | ✅ |
 | 任务用时(active vs wall)| ❌ | ✅ |
 | Thinking / effort 等级 | ❌ | ✅ |
-| 预设主题 | ❌ | ✅ 20 主题 × 2 变体 = **40 现成** |
+| 预设主题 | ❌ | ✅ 79 主题 × 2 变体 = **158 现成** |
 | 从命名块组合 | ❌ | ✅ 18 块,见 [BLOCKS.md](BLOCKS.md) |
 | 内置 CLI 配置器 | ❌ | ✅ `statusline-bundle.sh use / custom / list / preview` |
 | Claude Code `/statusline` 斜杠命令 | ❌ | ✅ 可选,见 [`commands/`](commands/) |
