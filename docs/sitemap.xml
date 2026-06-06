@@ -26,6 +26,10 @@
     <xhtml:link rel="alternate" hreflang="hi" href="https://amazopic.github.io/claude-code-statusline/?lang=hi" />
     <xhtml:link rel="alternate" hreflang="zh-TW" href="https://amazopic.github.io/claude-code-statusline/?lang=zh-tw" />
     <xhtml:link rel="alternate" hreflang="pl" href="https://amazopic.github.io/claude-code-statusline/?lang=pl" />
+    <xhtml:link rel="alternate" hreflang="th" href="https://amazopic.github.io/claude-code-statusline/?lang=th" />
+    <xhtml:link rel="alternate" hreflang="he" href="https://amazopic.github.io/claude-code-statusline/?lang=he" />
+    <xhtml:link rel="alternate" hreflang="bn" href="https://amazopic.github.io/claude-code-statusline/?lang=bn" />
+    <xhtml:link rel="alternate" hreflang="ur" href="https://amazopic.github.io/claude-code-statusline/?lang=ur" />
   </url>
   <url>
     <loc>https://amazopic.github.io/claude-code-statusline/#install</loc>

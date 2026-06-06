@@ -5,7 +5,7 @@
 Author: Yevgeniy Achin <amazopic@gmail.com>
 Version: 2026.06.06 (CalVer; check with `~/.claude/status-line.sh version`)
 License: Source-Available — reuse only with prior written permission of the author.
-Languages: 19 (English plus Russian, French, German, Ukrainian, Slovenian, Italian, Spanish, Chinese, Japanese, Korean, Arabic with full RTL support, Brazilian Portuguese, Turkish, Indonesian, Vietnamese, Hindi, Traditional Chinese, Polish).
+Languages: 23 (English plus Russian, French, German, Ukrainian, Slovenian, Italian, Spanish, Chinese, Japanese, Korean, Arabic with full RTL support, Brazilian Portuguese, Turkish, Indonesian, Vietnamese, Hindi, Traditional Chinese, Polish, Thai, Hebrew with full RTL support, Bengali, Urdu with full RTL support).
 Repo: https://github.com/amazopic/claude-code-statusline
 Site: https://amazopic.github.io/claude-code-statusline/
 
@@ -20,7 +20,7 @@ Claude Code's default status line is sparse — just a model name, maybe a direc
 - [LICENSE](https://github.com/amazopic/claude-code-statusline/blob/main/LICENSE): Source-Available License (reuse-by-permission).
 - [examples/README.md](https://github.com/amazopic/claude-code-statusline/blob/main/examples/README.md): Index of all 158 ready-made variants (79 themes × detailed + compact).
 - [commands/statusline.md](https://github.com/amazopic/claude-code-statusline/blob/main/commands/statusline.md): Template Claude Code slash command — drop into `~/.claude/commands/`.
-- Translated READMEs (18): README.ru.md, README.fr.md, README.de.md, README.uk.md, README.sl.md, README.it.md, README.es.md, README.zh.md, README.ja.md, README.ko.md, README.ar.md, README.pt.md, README.tr.md, README.id.md, README.vi.md, README.hi.md, README.zh-tw.md, README.pl.md.
+- Translated READMEs (22): README.ru.md, README.fr.md, README.de.md, README.uk.md, README.sl.md, README.it.md, README.es.md, README.zh.md, README.ja.md, README.ko.md, README.ar.md, README.pt.md, README.tr.md, README.id.md, README.vi.md, README.hi.md, README.zh-tw.md, README.pl.md, README.th.md, README.he.md, README.bn.md, README.ur.md.
 
 ## Code
 
