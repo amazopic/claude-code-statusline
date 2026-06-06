@@ -8,13 +8,23 @@
 [![Bash + jq](https://img.shields.io/badge/runs%20on-bash%20%2B%20jq-yellow.svg)](#requirements)
 [![Author](https://img.shields.io/badge/author-Yevgeniy%20Achin-blue.svg)](mailto:amazopic@gmail.com)
 
-**Languages:** English · [Русский](README.ru.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Українська](README.uk.md) · [Slovenščina](README.sl.md) · [Italiano](README.it.md) · [Español](README.es.md) · [中文](README.zh.md) · [日本語](README.ja.md) · [한국어](README.ko.md) · [العربية](README.ar.md)
+**Languages:** English · [Русский](README.ru.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Українська](README.uk.md) · [Slovenščina](README.sl.md) · [Italiano](README.it.md) · [Español](README.es.md) · [中文](README.zh.md) · [日本語](README.ja.md) · [한국어](README.ko.md) · [العربية](README.ar.md) · [Português](README.pt.md) · [Türkçe](README.tr.md) · [Bahasa Indonesia](README.id.md) · [Tiếng Việt](README.vi.md) · [हिन्दी](README.hi.md) · [繁體中文](README.zh-tw.md) · [Polski](README.pl.md)
 
 ```text
-Opus 4.7 (1M) │ 🚀 12% █▌░░░░░░░░ 121.4K/1000K │ 0.42$ │ ↑0.5K ↓1.2K │ project │ ⎇ main │ tokens: 87 K │ 🤖 xhigh
+Opus 4.7 (1M) │ 🚀 12% █▌░░░░░░░░ 121.4K/1000K │ 0.42$ │ ↑0.5K ↓1.2K │ project │ ⎇ main │ 5h{1.1h}: 15% 7d{1.1d}: 4% │ 🤖 xhigh
 ```
 
 > 💡 **Pro tip — Context control**: The fuller your context window, the **less effective** your conversation with Claude becomes — and the **faster** you burn through your 5h/7d limits. Clear or `/compact` whenever you cross **60%** to keep working efficiently.
+
+### ⏳ Reset countdown — plan around your limits
+
+The 5h / 7d meters include a live countdown to the moment each window resets: `5h{1.1h}: 1%` — the 5-hour window resets in 1.1 hours; `7d{1.1d}: 0%` — the weekly window resets in 1.1 days. You always know when you're back at 0%, so you can schedule heavy work right after a reset and distribute your productivity instead of slamming into the cap mid-task. Powered by `rate_limits.*.resets_at` sent by Claude Code; if your build doesn't send reset timestamps, the meters gracefully fall back to plain `5h: 1%`.
+
+```text
+… ⎇ main │ 5h{1.1h}: 1% 7d{1.1d}: 0% │ 🤖 xhigh
+```
+
+**Predictable by design** — every meter counts down to its reset, so you pace your work instead of hitting the wall.
 
 ## ⚡ Quick start
 
@@ -371,6 +381,7 @@ Edit constants near the top of `statusline.sh`:
 | **Per-message** input/output token counters | ❌ | ✅ |
 | **Total session tokens** (API mode fallback) | ❌ | ✅ |
 | **5h / 7d rate-limit** indicators with ⚠️ at > 50 % | ❌ | ✅ |
+| Reset countdown in limit meters (`5h{1.1h}`) | ❌ | ✅ |
 | **Git branch** + dirty + ahead/behind | ❌ | ✅ |
 | **Time-on-task** (active vs wall clock) | ❌ | ✅ |
 | **Thinking / effort level** display | ❌ | ✅ |
@@ -399,6 +410,10 @@ Concrete scenarios where this project pays for itself:
 ### What is "Claude Code Status Line"?
 
 A bash-based replacement for the default status line in [Claude Code](https://claude.com/claude-code) (Anthropic's CLI). It turns the bottom-of-screen line into a real dashboard: model, context %, progress bar, session cost, rate limits, git status, time-on-task, and more.
+
+### What does `5h{1.1h}: 1%` mean?
+
+You've used 1% of the 5-hour window, and `{1.1h}` is a live countdown — the window resets in 1.1 hours (`7d{1.1d}`: the weekly window resets in 1.1 days). Read from `rate_limits.*.resets_at` on every render. No reset timestamp in your build? The meter falls back to plain `5h: 1%`.
 
 ### How is it installed?
 

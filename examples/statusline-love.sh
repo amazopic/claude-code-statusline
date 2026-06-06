@@ -6,8 +6,14 @@
 #   💖 Opus 4.7 ❤ love-meter ▰▰▰▰▰▱▱▱▱▱ 12% · spent 0.42$ on us · 💕
 # ─────────────────────────────────────────────────────────────────────────
 set -uo pipefail
+
+# Force C numeric formatting (decimal dot) regardless of the user's locale,
+# while keeping UTF-8 character handling for glyphs.
+# LC_ALL would override LC_NUMERIC, so it must be unset first.
+unset LC_ALL
+export LC_NUMERIC=C
 input=$(cat)
-LIM=$' \e[1;38;5;197m♥\e[0m \e[1;38;5;211m5h:\e[0m \e[1;38;5;196m15%\e[0m \e[1;38;5;197m♥\e[0m \e[1;38;5;211m7d:\e[0m \e[1;38;5;196m5%\e[0m'
+LIM=$' \e[1;38;5;197m♥\e[0m \e[1;38;5;211m5h{1.1h}:\e[0m \e[1;38;5;196m15%\e[0m \e[1;38;5;197m♥\e[0m \e[1;38;5;211m7d{1.1d}:\e[0m \e[1;38;5;196m5%\e[0m'
 
 R=$'\e[1;38;5;196m'
 P=$'\e[1;38;5;213m'

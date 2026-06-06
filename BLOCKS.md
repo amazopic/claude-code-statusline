@@ -108,10 +108,19 @@ N=""
 ## Step 2 — shared HEADER
 
 Paste this once, near the top of your script (after the style pack).
-Every block below relies on the variables it sets.
+Every block below relies on the variables it sets. The locale guard keeps
+every number (`0.42$`, `87.5K`, `{1.1h}`) formatted with a decimal **dot**
+even when the shell runs under a comma-decimal locale (de_DE, ru_RU, …).
 
 ```bash
 set -uo pipefail
+
+# Force C numeric formatting (decimal dot) regardless of the user's locale,
+# while keeping UTF-8 character handling for glyphs.
+# LC_ALL would override LC_NUMERIC, so it must be unset first.
+unset LC_ALL
+export LC_NUMERIC=C
+
 input=$(cat)
 j() { jq -r "$1 // empty" 2>/dev/null <<<"$input"; }
 
@@ -308,16 +317,36 @@ if git -C "$cwd" rev-parse --git-dir >/dev/null 2>&1; then
 fi
 ```
 
-### `limits` — 5h / 7d rate limits with ⚠️ at > 50 %
+### `limits` — 5h / 7d rate limits with ⚠️ at > 50 % and reset countdown
+
+Renders `5h{1.1h}: 1% 7d{1.1d}: 0%` — each meter carries a live countdown to
+the moment its window resets (`{1.1h}` = 5-hour window resets in 1.1 hours,
+`{1.1d}` = weekly window resets in 1.1 days). The countdown is read from
+`rate_limits.*.resets_at` (unix epoch seconds) on every render — **predictability
+of work: distribute your productivity** by scheduling heavy work right after a
+reset. If `resets_at` is missing/null/0, the block **gracefully falls back** to
+plain `5h: 1% 7d: 0%` (no braces) for backward compatibility. The countdown text
+uses the same dim `${GRD}` color as the `5h:`/`7d:` labels.
 
 ```bash
 lim5h=$(j '.rate_limits.five_hour.used_percentage // .rate_limits.session.percent_used')
 lim7d=$(j '.rate_limits.seven_day.used_percentage // .rate_limits.weekly.percent_used')
+rst5h=$(j '.rate_limits.five_hour.resets_at')
+rst7d=$(j '.rate_limits.seven_day.resets_at')
+# helper: seconds-until-reset → "{1.1h}" / "{1.1d}" (dim), or "" if no/elapsed reset
+fmt_reset() {  # $1 = resets_at epoch, $2 = unit (h|d)
+  local at="$1" unit="$2" now rem div
+  [[ -z "$at" || "$at" == "null" || "$at" == "0" ]] && { printf ''; return; }
+  now=$(date +%s); rem=$(( at - now )); (( rem < 0 )) && rem=0
+  [[ "$unit" == "d" ]] && div=86400 || div=3600
+  awk -v r="$rem" -v d="$div" -v u="$unit" 'BEGIN { printf "{%.1f%s}", r/d, u }'
+}
 if [[ -n "$lim5h" || -n "$lim7d" ]]; then
   l5=${lim5h%.*}; l7=${lim7d%.*}
+  c5=$(fmt_reset "$rst5h" h); c7=$(fmt_reset "$rst7d" d)
   w5=""; (( ${l5:-0} > 50 )) && w5="⚠️ "
   w7=""; (( ${l7:-0} > 50 )) && w7="⚠️ "
-  line+="${SEP}${GRD}5h:${N} ${w5}${GR}${l5:-—}${GRD}%${N} ${GRD}7d:${N} ${w7}${GR}${l7:-—}${GRD}%${N}"
+  line+="${SEP}${GRD}5h${c5}:${N} ${w5}${GR}${l5:-—}${GRD}%${N} ${GRD}7d${c7}:${N} ${w7}${GR}${l7:-—}${GRD}%${N}"
 fi
 ```
 
@@ -434,6 +463,11 @@ Final script:
 # style: compact; blocks: model · context-pct + context-bar · git · cost
 
 set -uo pipefail
+
+# Force C numeric formatting (decimal dot) regardless of the user's locale.
+unset LC_ALL
+export LC_NUMERIC=C
+
 input=$(cat)
 
 # ── style: compact ───────────────────────────────────────────────────

@@ -8,10 +8,10 @@
 [![Made for Claude Code](https://img.shields.io/badge/made%20for-Claude%20Code-7c3aed.svg)](https://claude.com/claude-code)
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](#-コントリビュート)
 
-**言語:** [English](README.md) · [Русский](README.ru.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Українська](README.uk.md) · [Slovenščina](README.sl.md) · [Italiano](README.it.md) · [Español](README.es.md) · [中文](README.zh.md) · 日本語 · [한국어](README.ko.md) · [العربية](README.ar.md)
+**言語:** [English](README.md) · [Русский](README.ru.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Українська](README.uk.md) · [Slovenščina](README.sl.md) · [Italiano](README.it.md) · [Español](README.es.md) · [中文](README.zh.md) · 日本語 · [한국어](README.ko.md) · [العربية](README.ar.md) · [Português](README.pt.md) · [Türkçe](README.tr.md) · [Bahasa Indonesia](README.id.md) · [Tiếng Việt](README.vi.md) · [हिन्दी](README.hi.md) · [繁體中文](README.zh-tw.md) · [Polski](README.pl.md)
 
 ```text
-Opus 4.7 (1M) │ 🚀 12% █▌░░░░░░░░ 121.4K/1000K │ 0.42$ │ ↑0.5K ↓1.2K │ project │ ⎇ main │ tokens: 87 K │ 🤖 xhigh
+Opus 4.7 (1M) │ 🚀 12% █▌░░░░░░░░ 121.4K/1000K │ 0.42$ │ ↑0.5K ↓1.2K │ project │ ⎇ main │ 5h{1.1h}: 15% 7d{1.1d}: 4% │ 🤖 xhigh
 ```
 
 ## 🎨 158 のバリアント — 選んで適用
@@ -72,6 +72,12 @@ Claude Code 標準のステータスラインは控えめです。このドロ�
 - ⚡ **軽量** — `bash` + `jq` のみ。Node 不要、Python 不要、デーモン不要、テレメトリなし
 
 > 💡 **プロのコツ — コンテキスト制御**：コンテキストウィンドウが満杯に近いほど、Claude との会話は**効果が落ち**、5時間 / 7日のリミットも**速く燃え尽きる**。**60%** を超えたら整理または `/compact` で、効率的な作業を維持。
+
+### ⏳ リセットカウントダウン — 制限を見越して計画する
+
+**作業の予測可能性 — 自分の生産性を配分しよう。**
+
+5h / 7d のメーターには、各ウィンドウがリセットされる瞬間までのライブカウントダウンが含まれています：`5h{1.1h}: 1%` — 5時間ウィンドウはあと 1.1 時間でリセット；`7d{1.1d}: 0%` — 週次ウィンドウはあと 1.1 日でリセット。いつ 0% に戻るかが常に分かるので、リセット直後に重い作業をスケジュールし、タスクの途中で上限にぶつかる代わりに、自分の生産性を配分できます。Claude Code が送信する `rate_limits.*.resets_at` によって駆動されます。お使いのビルドがリセットのタイムスタンプを送信しない場合、メーターは素直に通常の `5h: 1%` にフォールバックします。
 
 ## 🚀 インストール
 
@@ -344,6 +350,7 @@ amazopic の claude-code-statusline をインストールして。まず jq が�
 | 入出力トークンカウンター | ❌ | ✅ |
 | セッション総トークン(API モードフォールバック)| ❌ | ✅ |
 | 5h / 7d レート制限インジケーター(> 50 % で ⚠️)| ❌ | ✅ |
+| 制限メーター内のリセットカウントダウン(`5h{1.1h}`)| ❌ | ✅ |
 | Git ブランチ + dirty + ahead/behind | ❌ | ✅ |
 | タスク時間(active vs wall)| ❌ | ✅ |
 | Thinking / effort レベル | ❌ | ✅ |
@@ -368,6 +375,10 @@ amazopic の claude-code-statusline をインストールして。まず jq が�
 ### Claude Code Status Line とは?
 
 [Claude Code](https://claude.com/claude-code)(Anthropic の CLI)デフォルトステータスラインの bash 製代替品。下部のステータスラインを本物のダッシュボードに変えます:モデル、コンテキスト %、進行バー、セッションコスト、制限、git、時間など。
+
+### `5h{1.1h}: 1%` とは何を意味しますか?
+
+5時間ウィンドウの 1% を使用済みで、`{1.1h}` はライブカウントダウン — ウィンドウはあと 1.1 時間でリセットされます(`7d{1.1d}`：週次ウィンドウはあと 1.1 日でリセット)。レンダリングごとに `rate_limits.*.resets_at` から読み取られます。お使いのビルドにリセットのタイムスタンプがない場合、メーターは通常の `5h: 1%` にフォールバックします。
 
 ### インストール方法は?
 

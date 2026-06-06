@@ -8,8 +8,14 @@ G=$'\e[1;38;5;220m'; B=$'\e[1;38;5;39m'; D=$'\e[38;5;238m'; DG=$'\e[38;5;244m'
 GRADIENT=(196 202 208 220 226 154 46 51 39 129)
 
 set -uo pipefail
+
+# Force C numeric formatting (decimal dot) regardless of the user's locale,
+# while keeping UTF-8 character handling for glyphs.
+# LC_ALL would override LC_NUMERIC, so it must be unset first.
+unset LC_ALL
+export LC_NUMERIC=C
 input=$(cat)
-LIM=$' \e[1;38;5;196m5\e[1;38;5;208mh\e[1;38;5;226m:\e[0m \e[1;38;5;46m1\e[1;38;5;51m5\e[1;38;5;201m%\e[0m \e[38;5;240m·\e[0m \e[1;38;5;226m7\e[1;38;5;46md\e[1;38;5;51m:\e[0m \e[1;38;5;201m5\e[1;38;5;196m%\e[0m'
+LIM=$' \e[1;38;5;196m5\e[1;38;5;208mh{1.1h}\e[1;38;5;226m:\e[0m \e[1;38;5;46m1\e[1;38;5;51m5\e[1;38;5;201m%\e[0m \e[38;5;240m·\e[0m \e[1;38;5;226m7\e[1;38;5;46md{1.1d}\e[1;38;5;51m:\e[0m \e[1;38;5;201m5\e[1;38;5;196m%\e[0m'
 N=$'\e[0m'
 j() { jq -r "$1 // empty" 2>/dev/null <<<"$input"; }
 model_disp=$(j '.model.display_name'); model_id=$(j '.model.id')

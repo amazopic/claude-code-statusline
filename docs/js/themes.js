@@ -135,6 +135,7 @@ export const blocks = [
 /** FAQ data — keys reference i18n.js. The limits Q&A is FIRST = #1 SEO/feature. */
 export const faq = [
   { qKey: 'faq.q.limits',    aKey: 'faq.a.limits' },
+  { qKey: 'faq.q.reset',     aKey: 'faq.a.reset' },
   { qKey: 'faq.q.what',      aKey: 'faq.a.what' },
   { qKey: 'faq.q.install',   aKey: 'faq.a.install' },
   { qKey: 'faq.q.update',    aKey: 'faq.a.update' },
@@ -167,6 +168,7 @@ export const compare = [
   { fKey: 'cmp.f.cli',    def: false, ours: 'use / custom / list / preview / update' },
   { fKey: 'cmp.f.slash',  def: false, ours: 'optional, drop-in' },
   { fKey: 'cmp.f.deps',   def: '—',  ours: 'bash + jq' },
+  { fKey: 'cmp.f.reset',  def: false, ours: true, highlight: true },
 ];
 
 /** A handful of editorial captions for specimen pages. */

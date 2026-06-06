@@ -7,8 +7,14 @@
 BR=$'\e[1;38;5;94m'; BRD=$'\e[38;5;58m'; W=$'\e[1;38;5;255m'; D=$'\e[38;5;244m'
 
 set -uo pipefail
+
+# Force C numeric formatting (decimal dot) regardless of the user's locale,
+# while keeping UTF-8 character handling for glyphs.
+# LC_ALL would override LC_NUMERIC, so it must be unset first.
+unset LC_ALL
+export LC_NUMERIC=C
 input=$(cat)
-LIM=$' \e[38;5;94m·\e[0m \e[38;5;130m5h:\e[0m \e[1;38;5;220m15%\e[0m \e[38;5;94m·\e[0m \e[38;5;130m7d:\e[0m \e[1;38;5;220m5%\e[0m'
+LIM=$' \e[38;5;94m·\e[0m \e[38;5;130m5h{1.1h}:\e[0m \e[1;38;5;220m15%\e[0m \e[38;5;94m·\e[0m \e[38;5;130m7d{1.1d}:\e[0m \e[1;38;5;220m5%\e[0m'
 N=$'\e[0m'
 j() { jq -r "$1 // empty" 2>/dev/null <<<"$input"; }
 model_disp=$(j '.model.display_name'); model_id=$(j '.model.id')

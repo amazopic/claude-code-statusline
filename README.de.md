@@ -8,11 +8,17 @@
 [![Made for Claude Code](https://img.shields.io/badge/made%20for-Claude%20Code-7c3aed.svg)](https://claude.com/claude-code)
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](#-mitwirken)
 
-**Sprachen:** [English](README.md) · [Русский](README.ru.md) · [Français](README.fr.md) · Deutsch · [Українська](README.uk.md) · [Slovenščina](README.sl.md) · [Italiano](README.it.md) · [Español](README.es.md) · [中文](README.zh.md) · [日本語](README.ja.md) · [한국어](README.ko.md) · [العربية](README.ar.md)
+**Sprachen:** [English](README.md) · [Русский](README.ru.md) · [Français](README.fr.md) · Deutsch · [Українська](README.uk.md) · [Slovenščina](README.sl.md) · [Italiano](README.it.md) · [Español](README.es.md) · [中文](README.zh.md) · [日本語](README.ja.md) · [한국어](README.ko.md) · [العربية](README.ar.md) · [Português](README.pt.md) · [Türkçe](README.tr.md) · [Bahasa Indonesia](README.id.md) · [Tiếng Việt](README.vi.md) · [हिन्दी](README.hi.md) · [繁體中文](README.zh-tw.md) · [Polski](README.pl.md)
 
 ```text
-Opus 4.7 (1M) │ 🚀 12% █▌░░░░░░░░ 121.4K/1000K │ 0.42$ │ ↑0.5K ↓1.2K │ project │ ⎇ main │ tokens: 87 K │ 🤖 xhigh
+Opus 4.7 (1M) │ 🚀 12% █▌░░░░░░░░ 121.4K/1000K │ 0.42$ │ ↑0.5K ↓1.2K │ project │ ⎇ main │ 5h{1.1h}: 15% 7d{1.1d}: 4% │ 🤖 xhigh
 ```
+
+### ⏳ Reset countdown — plan rund um deine Limits
+
+**Vorhersehbarkeit der Arbeit — verteile deine Produktivität.** Vorhersehbar by design — jede Anzeige zählt bis zu ihrem Reset herunter, sodass du dein Arbeitstempo bestimmst, statt gegen die Wand zu fahren.
+
+Die 5h- / 7d-Anzeigen enthalten einen Live-Countdown bis zu dem Moment, in dem jedes Fenster zurückgesetzt wird: `5h{1.1h}: 1%` — das 5-Stunden-Fenster wird in 1,1 Stunden zurückgesetzt; `7d{1.1d}: 0%` — das Wochenfenster wird in 1,1 Tagen zurückgesetzt. Du weißt jederzeit, wann du wieder bei 0 % bist, kannst also schwere Aufgaben direkt nach einem Reset einplanen und deine Produktivität verteilen, statt mitten in der Aufgabe gegen das Limit zu prallen. Angetrieben von `rate_limits.*.resets_at`, das Claude Code mitsendet; wenn dein Build keine Reset-Zeitstempel sendet, fallen die Anzeigen elegant auf das schlichte `5h: 1%` zurück.
 
 ## 🎨 158 fertige Varianten — wählen und anwenden
 
@@ -345,6 +351,7 @@ Claude Code neu starten (oder `/config` reload). Fertig.
 | Token-Zähler Eingabe/Ausgabe | ❌ | ✅ |
 | Gesamt-Session-Tokens (API-Modus-Fallback) | ❌ | ✅ |
 | Rate-Limit-Indikatoren 5h / 7d mit ⚠️ bei > 50 % | ❌ | ✅ |
+| Reset-Countdown in den Limit-Anzeigen (`5h{1.1h}`) | ❌ | ✅ |
 | Git-Branch + dirty + ahead/behind | ❌ | ✅ |
 | Zeit-am-Task (active vs wall) | ❌ | ✅ |
 | Thinking / Effort-Level | ❌ | ✅ |
@@ -369,6 +376,10 @@ Claude Code neu starten (oder `/config` reload). Fertig.
 ### Was ist Claude Code Status Line?
 
 Ein bash-basierter Ersatz für die Standard-Statuszeile in [Claude Code](https://claude.com/claude-code) (Anthropics CLI). Macht aus der unteren Zeile ein echtes Dashboard: Modell, Kontext %, Fortschrittsbalken, Session-Kosten, Limits, Git, Zeit und mehr.
+
+### Was bedeutet `5h{1.1h}: 1%`?
+
+Du hast 1 % des 5-Stunden-Fensters verbraucht, und `{1.1h}` ist ein Live-Countdown — das Fenster wird in 1,1 Stunden zurückgesetzt (`7d{1.1d}`: das Wochenfenster wird in 1,1 Tagen zurückgesetzt). Bei jedem Render aus `rate_limits.*.resets_at` gelesen. Kein Reset-Zeitstempel in deinem Build? Die Anzeige fällt auf das schlichte `5h: 1%` zurück.
 
 ### Wie wird es installiert?
 

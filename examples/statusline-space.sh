@@ -6,8 +6,14 @@
 #   🚀 Opus 4.7 · O₂ ▰▰▰▰▰▱▱▱▱▱ 12% · fuel 0.42$ · 🌌 nominal
 # ─────────────────────────────────────────────────────────────────────────
 set -uo pipefail
+
+# Force C numeric formatting (decimal dot) regardless of the user's locale,
+# while keeping UTF-8 character handling for glyphs.
+# LC_ALL would override LC_NUMERIC, so it must be unset first.
+unset LC_ALL
+export LC_NUMERIC=C
 input=$(cat)
-LIM=$' \e[38;5;240m▸\e[0m \e[38;5;75m5h:\e[0m \e[1;38;5;39m15%\e[0m \e[38;5;240m▸\e[0m \e[38;5;75m7d:\e[0m \e[1;38;5;39m5%\e[0m'
+LIM=$' \e[38;5;240m▸\e[0m \e[38;5;75m5h{1.1h}:\e[0m \e[1;38;5;39m15%\e[0m \e[38;5;240m▸\e[0m \e[38;5;75m7d{1.1d}:\e[0m \e[1;38;5;39m5%\e[0m'
 
 C=$'\e[1;38;5;51m'      # cyan (oxygen)
 CD=$'\e[38;5;38m'

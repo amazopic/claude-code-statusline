@@ -1,11 +1,11 @@
 // ─────────────────────────────────────────────────────────────────────
 // MAIN — orchestrates page-load, hero animation, specimens, recipe, FAQ,
-//        i18n (11 locales), language switcher, hero limits visualization
+//        i18n (19 locales), language switcher, hero limits visualization
 // ─────────────────────────────────────────────────────────────────────
 
-import { themes, blocks, faq, compare } from './themes.js?v=17';
-import { ansiToHtml, specimenHtml, loadSpecimen } from './ansi.js?v=17';
-import { messages, supportedLocales, defaultLocale, t as tBase, detectLocale, persistLocale } from './i18n.js?v=17';
+import { themes, blocks, faq, compare } from './themes.js?v=19';
+import { ansiToHtml, specimenHtml, loadSpecimen } from './ansi.js?v=19';
+import { messages, supportedLocales, defaultLocale, t as tBase, detectLocale, persistLocale } from './i18n.js?v=19';
 
 document.documentElement.classList.add('has-cursor');
 
@@ -193,18 +193,22 @@ document.addEventListener('click', (e) => {
 //  HERO LIMITS — animate 5h/7d meters from low → critical → reset loop
 // ═════════════════════════════════════════════════════════════════════
 
+// Each frame carries the meter % plus a live reset countdown (eta) that
+// ticks down toward 0 — 5h in decimal hours, 7d in decimal days — exactly
+// like rate_limits.*.resets_at rendered by the bundle (e.g. 5h{1.1h}).
+// First frame is {1.1h}/{1.1d} to match the marketing copy verbatim.
 const limitsCycle = [
-  { '5h': 8,  '7d': 4  },
-  { '5h': 22, '7d': 10 },
-  { '5h': 35, '7d': 18 },
-  { '5h': 47, '7d': 27 },
-  { '5h': 62, '7d': 38 },  // first warn
-  { '5h': 78, '7d': 51 },  // both warn
-  { '5h': 91, '7d': 64 },
-  { '5h': 10, '7d': 5  },  // session reset (the "after restart" relief)
+  { '5h': 8,  '7d': 4,  eta5: '1.1h', eta7: '1.1d' },
+  { '5h': 22, '7d': 10, eta5: '3.2h', eta7: '4.6d' },
+  { '5h': 35, '7d': 18, eta5: '2.7h', eta7: '4.4d' },
+  { '5h': 47, '7d': 27, eta5: '2.1h', eta7: '4.2d' },
+  { '5h': 62, '7d': 38, eta5: '1.6h', eta7: '3.5d' },  // first warn
+  { '5h': 78, '7d': 51, eta5: '0.9h', eta7: '2.4d' },  // both warn
+  { '5h': 91, '7d': 64, eta5: '0.4h', eta7: '1.3d' },
+  { '5h': 10, '7d': 5,  eta5: '5.0h', eta7: '7.0d' },  // session reset (the "after restart" relief)
 ];
 
-function setLimit(which, pct) {
+function setLimit(which, pct, eta) {
   const fill = $(`[data-fill="${which}"]`);
   const label = $(`[data-pct="${which}"]`);
   if (!fill || !label) return;
@@ -213,16 +217,18 @@ function setLimit(which, pct) {
   const warn = pct > 50;
   fill.dataset.state = warn ? 'warn' : 'ok';
   label.dataset.state = warn ? 'warn' : 'ok';
+  const etaEl = $(`[data-eta="${which}"]`);
+  if (etaEl && eta) etaEl.textContent = '{' + eta + '}';
 }
 
 function startLimitsAnimation() {
   let i = 0;
-  setLimit('5h', limitsCycle[0]['5h']);
-  setLimit('7d', limitsCycle[0]['7d']);
+  setLimit('5h', limitsCycle[0]['5h'], limitsCycle[0].eta5);
+  setLimit('7d', limitsCycle[0]['7d'], limitsCycle[0].eta7);
   setInterval(() => {
     i = (i + 1) % limitsCycle.length;
-    setLimit('5h', limitsCycle[i]['5h']);
-    setLimit('7d', limitsCycle[i]['7d']);
+    setLimit('5h', limitsCycle[i]['5h'], limitsCycle[i].eta5);
+    setLimit('7d', limitsCycle[i]['7d'], limitsCycle[i].eta7);
   }, 2200);
 }
 

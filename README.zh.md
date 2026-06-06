@@ -8,10 +8,10 @@
 [![Made for Claude Code](https://img.shields.io/badge/made%20for-Claude%20Code-7c3aed.svg)](https://claude.com/claude-code)
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](#-贡献)
 
-**语言:** [English](README.md) · [Русский](README.ru.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Українська](README.uk.md) · [Slovenščina](README.sl.md) · [Italiano](README.it.md) · [Español](README.es.md) · 中文 · [日本語](README.ja.md) · [한국어](README.ko.md) · [العربية](README.ar.md)
+**语言:** [English](README.md) · [Русский](README.ru.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Українська](README.uk.md) · [Slovenščina](README.sl.md) · [Italiano](README.it.md) · [Español](README.es.md) · 中文 · [日本語](README.ja.md) · [한국어](README.ko.md) · [العربية](README.ar.md) · [Português](README.pt.md) · [Türkçe](README.tr.md) · [Bahasa Indonesia](README.id.md) · [Tiếng Việt](README.vi.md) · [हिन्दी](README.hi.md) · [繁體中文](README.zh-tw.md) · [Polski](README.pl.md)
 
 ```text
-Opus 4.7 (1M) │ 🚀 12% █▌░░░░░░░░ 121.4K/1000K │ 0.42$ │ ↑0.5K ↓1.2K │ project │ ⎇ main │ tokens: 87 K │ 🤖 xhigh
+Opus 4.7 (1M) │ 🚀 12% █▌░░░░░░░░ 121.4K/1000K │ 0.42$ │ ↑0.5K ↓1.2K │ project │ ⎇ main │ 5h{1.1h}: 15% 7d{1.1d}: 4% │ 🤖 xhigh
 ```
 
 ## 🎨 158 个现成变体 — 选择并应用
@@ -72,6 +72,12 @@ Claude Code 自带的状态栏过于简陋。这个替换方案把它升级为�
 - ⚡ **轻量** —— 纯 `bash` + `jq`,无 Node、无 Python、无后台进程、无遥测
 
 > 💡 **小贴士 — 上下文控制**：上下文窗口越满，与 Claude 的对话**效率越低**，5 小时 / 7 天**限额烧得越快**。每次超过 **60%** 就清理或 `/compact`，保持高效工作。
+
+### ⏳ Reset countdown —— 围绕你的限额来规划
+
+**工作的可预测性 —— 合理分配你的产能。** 天生可预测：每个仪表都会倒数到自己的重置时刻，让你按节奏推进工作，而不是迎头撞上墙壁。
+
+5h / 7d 仪表内置了一个实时倒计时,精确到每个时间窗重置的那一刻:`5h{1.1h}: 1%` —— 5 小时窗口将在 1.1 小时后重置;`7d{1.1d}: 0%` —— 每周窗口将在 1.1 天后重置。你随时都清楚自己什么时候回到 0%,因此可以把重活安排在刚刚重置之后,把产能分散开来,而不是在任务进行到一半时撞上上限。由 Claude Code 发送的 `rate_limits.*.resets_at` 驱动;如果你的构建没有发送重置时间戳,这些仪表会优雅地回退为普通的 `5h: 1%`。
 
 ## 🚀 安装
 
@@ -340,6 +346,7 @@ chmod +x ~/.claude/status-line.sh
 | 输入/输出 token 计数 | ❌ | ✅ |
 | 会话总 token(API 模式回退)| ❌ | ✅ |
 | 5h / 7d 速率限制指示器(>50% 显示 ⚠️)| ❌ | ✅ |
+| 限额仪表中的重置倒计时(`5h{1.1h}`)| ❌ | ✅ |
 | Git 分支 + dirty + ahead/behind | ❌ | ✅ |
 | 任务用时(active vs wall)| ❌ | ✅ |
 | Thinking / effort 等级 | ❌ | ✅ |
@@ -364,6 +371,10 @@ chmod +x ~/.claude/status-line.sh
 ### 什么是 Claude Code Status Line?
 
 [Claude Code](https://claude.com/claude-code)(Anthropic 的 CLI)默认状态栏的 bash 替代品。把底部状态行变成真正的仪表盘:模型、上下文 %、进度条、会话费用、限制、git、时间等。
+
+### `5h{1.1h}: 1%` 是什么意思?
+
+表示你已经用掉了 5 小时窗口的 1%,而 `{1.1h}` 是一个实时倒计时 —— 该窗口将在 1.1 小时后重置(`7d{1.1d}`:每周窗口将在 1.1 天后重置)。每次渲染时都会从 `rate_limits.*.resets_at` 读取。你的构建里没有重置时间戳?该仪表会回退为普通的 `5h: 1%`。
 
 ### 如何安装?
 

@@ -11,8 +11,14 @@
 # ─────────────────────────────────────────────────────────────────────────
 set -uo pipefail
 
+# Force C numeric formatting (decimal dot) regardless of the user's locale,
+# while keeping UTF-8 character handling for glyphs.
+# LC_ALL would override LC_NUMERIC, so it must be unset first.
+unset LC_ALL
+export LC_NUMERIC=C
+
 input=$(cat)
-LIM=$' \e[1;38;5;196m5\e[1;38;5;208mh\e[1;38;5;226m:\e[0m \e[1;38;5;46m1\e[1;38;5;51m5\e[1;38;5;201m%\e[0m \e[38;5;240m·\e[0m \e[1;38;5;226m7\e[1;38;5;46md\e[1;38;5;51m:\e[0m \e[1;38;5;201m5\e[1;38;5;196m%\e[0m'
+LIM=$' \e[1;38;5;196m5\e[1;38;5;208mh{1.1h}\e[1;38;5;226m:\e[0m \e[1;38;5;46m1\e[1;38;5;51m5\e[1;38;5;201m%\e[0m \e[38;5;240m·\e[0m \e[1;38;5;226m7\e[1;38;5;46md{1.1d}\e[1;38;5;51m:\e[0m \e[1;38;5;201m5\e[1;38;5;196m%\e[0m'
 
 G=$'\e[1;38;5;220m'
 GD=$'\e[38;5;178m'

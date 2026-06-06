@@ -5,7 +5,7 @@ for question-answering about the project. It contains the full README, BLOCKS gu
 examples index, and license, concatenated in priority order.
 
 Author: Yevgeniy Achin <amazopic@gmail.com>
-Version: 2026.05.09 (CalVer)
+Version: 2026.06.06 (CalVer)
 License: Source-Available (Reuse-by-Permission)
 Site: https://amazopic.github.io/claude-code-statusline/
 Repo: https://github.com/amazopic/claude-code-statusline
@@ -22,7 +22,7 @@ Repo: https://github.com/amazopic/claude-code-statusline
 [![Bash + jq](https://img.shields.io/badge/runs%20on-bash%20%2B%20jq-yellow.svg)](#requirements)
 [![Author](https://img.shields.io/badge/author-Yevgeniy%20Achin-blue.svg)](mailto:amazopic@gmail.com)
 
-**Languages:** English · [Русский](README.ru.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Українська](README.uk.md) · [Slovenščina](README.sl.md) · [Italiano](README.it.md) · [Español](README.es.md) · [中文](README.zh.md) · [日本語](README.ja.md) · [한국어](README.ko.md) · [العربية](README.ar.md)
+**Languages:** English · [Русский](README.ru.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Українська](README.uk.md) · [Slovenščina](README.sl.md) · [Italiano](README.it.md) · [Español](README.es.md) · [中文](README.zh.md) · [日本語](README.ja.md) · [한국어](README.ko.md) · [العربية](README.ar.md) · [Português (Brasil)](README.pt.md) · [Türkçe](README.tr.md) · [Bahasa Indonesia](README.id.md) · [Tiếng Việt](README.vi.md) · [हिन्दी](README.hi.md) · [繁體中文](README.zh-tw.md) · [Polski](README.pl.md)
 
 ```text
 Opus 4.7 (1M) │ 🚀 12% █▌░░░░░░░░ 121.4K/1000K │ 0.42$ │ ↑0.5K ↓1.2K │ project │ ⎇ main │ tokens: 87 K │ 🤖 xhigh
@@ -79,7 +79,7 @@ All in **one line**, color-coded, with smart icons that signal urgency.
 - 🧠 **Model name** — with `(1M)` indicator for 1M-context variants
 - 💸 **Session cost** in USD, updated every render
 - ⬆️⬇️ **Per-message token counters** (input / output)
-- 🚦 **Rate limits** — 5h / 7d with ⚠️ warning when > 50%
+- 🚦 **Rate limits** — 5h / 7d with ⚠️ warning when > 50%, plus a live **reset countdown** (`5h{1.1h}: 1% 7d{1.1d}: 0%`) read from `rate_limits.*.resets_at` — predictability of work: distribute your productivity by scheduling heavy work right after a reset (falls back to plain `5h: 1%` when no timestamp is sent)
 - 🔄 **API-mode fallback** — when no rate limits are piped, shows total session tokens (`tokens: NNN K`) with thin-space thousand separators
 - 🚀 **Smart status icon** — 🚀 < 40%, 🚗 40–49%, ⚠️ ≥ 50% context fill
 - 🎨 **256-color ANSI** — bright, distinct color per segment
@@ -824,7 +824,14 @@ if git -C "$cwd" rev-parse --git-dir >/dev/null 2>&1; then
 fi
 ```
 
-### `limits` — 5h / 7d rate limits with ⚠️ at > 50 %
+### `limits` — 5h / 7d rate limits with ⚠️ at > 50 % and reset countdown
+
+Renders `5h{1.1h}: 1% 7d{1.1d}: 0%` — each meter carries a live countdown to the
+moment its window resets, read from `rate_limits.*.resets_at` (`{1.1h}` = 5-hour
+window resets in 1.1 hours, `{1.1d}` = weekly window resets in 1.1 days).
+Predictability of work — distribute your productivity by scheduling heavy work
+right after a reset. If `resets_at` is missing/null/0, falls back to plain
+`5h: 1% 7d: 0%` (no braces) for backward compatibility.
 
 ```bash
 lim5h=$(j '.rate_limits.five_hour.used_percentage // .rate_limits.session.percent_used')

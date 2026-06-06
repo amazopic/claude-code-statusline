@@ -6,8 +6,14 @@
 #   ⚔ Opus 4.7 · HP ████████░░ 88/100 · MP ██░░░░░░░░ 12% · gold 0.42$ · LV 4
 # ─────────────────────────────────────────────────────────────────────────
 set -uo pipefail
+
+# Force C numeric formatting (decimal dot) regardless of the user's locale,
+# while keeping UTF-8 character handling for glyphs.
+# LC_ALL would override LC_NUMERIC, so it must be unset first.
+unset LC_ALL
+export LC_NUMERIC=C
 input=$(cat)
-LIM=$' \e[38;5;240m⚔\e[0m \e[1;38;5;196m5h:\e[0m \e[1;38;5;220m15%\e[0m \e[38;5;240m⚔\e[0m \e[1;38;5;196m7d:\e[0m \e[1;38;5;220m5%\e[0m'
+LIM=$' \e[38;5;240m⚔\e[0m \e[1;38;5;196m5h{1.1h}:\e[0m \e[1;38;5;220m15%\e[0m \e[38;5;240m⚔\e[0m \e[1;38;5;196m7d{1.1d}:\e[0m \e[1;38;5;220m5%\e[0m'
 
 R=$'\e[1;38;5;196m'    # HP red
 RD=$'\e[38;5;88m'

@@ -8,11 +8,21 @@
 [![Made for Claude Code](https://img.shields.io/badge/made%20for-Claude%20Code-7c3aed.svg)](https://claude.com/claude-code)
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](#-기여)
 
-**언어:** [English](README.md) · [Русский](README.ru.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Українська](README.uk.md) · [Slovenščina](README.sl.md) · [Italiano](README.it.md) · [Español](README.es.md) · [中文](README.zh.md) · [日本語](README.ja.md) · 한국어 · [العربية](README.ar.md)
+**언어:** [English](README.md) · [Русский](README.ru.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Українська](README.uk.md) · [Slovenščina](README.sl.md) · [Italiano](README.it.md) · [Español](README.es.md) · [中文](README.zh.md) · [日本語](README.ja.md) · 한국어 · [العربية](README.ar.md) · [Português](README.pt.md) · [Türkçe](README.tr.md) · [Bahasa Indonesia](README.id.md) · [Tiếng Việt](README.vi.md) · [हिन्दी](README.hi.md) · [繁體中文](README.zh-tw.md) · [Polski](README.pl.md)
 
 ```text
-Opus 4.7 (1M) │ 🚀 12% █▌░░░░░░░░ 121.4K/1000K │ 0.42$ │ ↑0.5K ↓1.2K │ project │ ⎇ main │ tokens: 87 K │ 🤖 xhigh
+Opus 4.7 (1M) │ 🚀 12% █▌░░░░░░░░ 121.4K/1000K │ 0.42$ │ ↑0.5K ↓1.2K │ project │ ⎇ main │ 5h{1.1h}: 15% 7d{1.1d}: 4% │ 🤖 xhigh
 ```
+
+### ⏳ 리셋 카운트다운 — 한도에 맞춰 계획하세요
+
+5h / 7d 표시기에는 각 윈도우가 리셋되는 순간까지의 실시간 카운트다운이 포함됩니다: `5h{1.1h}: 1%` — 5시간 윈도우가 1.1시간 후에 리셋됨; `7d{1.1d}: 0%` — 주간 윈도우가 1.1일 후에 리셋됨. 언제 다시 0%로 돌아오는지 항상 알 수 있으므로, 리셋 직후에 무거운 작업을 잡아두고 작업 도중에 한도에 부딪히는 대신 자신의 생산성을 분산할 수 있습니다. Claude Code가 보내는 `rate_limits.*.resets_at`로 동작합니다; 사용하는 빌드가 리셋 타임스탬프를 보내지 않으면, 표시기는 우아하게 평범한 `5h: 1%`로 폴백합니다.
+
+```text
+… ⎇ main │ 5h{1.1h}: 1% 7d{1.1d}: 0% │ 🤖 xhigh
+```
+
+**설계부터 예측 가능** — 모든 표시기가 자신의 리셋까지 카운트다운하므로, 벽에 부딪히는 대신 작업의 속도를 조절할 수 있습니다. 일의 예측 가능성 — 자신의 생산성을 분산하세요.
 
 ## 🎨 158개 변형 — 선택해서 적용
 
@@ -344,6 +354,7 @@ Claude Code를 재시작 (또는 `/config` reload). 완료.
 | 입력/출력 토큰 카운터 | ❌ | ✅ |
 | 세션 총 토큰 (API 모드 폴백) | ❌ | ✅ |
 | 5h / 7d 사용량 한도 표시기 (> 50% 시 ⚠️) | ❌ | ✅ |
+| 한도 표시기 내 리셋 카운트다운 (`5h{1.1h}`) | ❌ | ✅ |
 | Git 브랜치 + dirty + ahead/behind | ❌ | ✅ |
 | 작업 시간 (active vs wall) | ❌ | ✅ |
 | Thinking / effort 레벨 | ❌ | ✅ |
@@ -368,6 +379,10 @@ Claude Code를 재시작 (또는 `/config` reload). 완료.
 ### Claude Code Status Line이란?
 
 [Claude Code](https://claude.com/claude-code) (Anthropic의 CLI) 기본 상태 표시줄의 bash 대체품. 하단 상태 줄을 진정한 대시보드로 바꿉니다: 모델, 컨텍스트 %, 진행 바, 세션 비용, 한도, git, 시간 등.
+
+### `5h{1.1h}: 1%`는 무슨 뜻인가요?
+
+5시간 윈도우의 1%를 사용했다는 뜻이고, `{1.1h}`는 실시간 카운트다운입니다 — 윈도우가 1.1시간 후에 리셋됩니다 (`7d{1.1d}`: 주간 윈도우가 1.1일 후에 리셋됨). 매 렌더링마다 `rate_limits.*.resets_at`에서 읽어옵니다. 사용하는 빌드에 리셋 타임스탬프가 없나요? 그러면 표시기는 평범한 `5h: 1%`로 폴백합니다.
 
 ### 어떻게 설치하나요?
 

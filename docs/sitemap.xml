@@ -3,7 +3,7 @@
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://amazopic.github.io/claude-code-statusline/</loc>
-    <lastmod>2026-05-09</lastmod>
+    <lastmod>2026-06-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://amazopic.github.io/claude-code-statusline/" />
@@ -19,58 +19,65 @@
     <xhtml:link rel="alternate" hreflang="ja" href="https://amazopic.github.io/claude-code-statusline/?lang=ja" />
     <xhtml:link rel="alternate" hreflang="ko" href="https://amazopic.github.io/claude-code-statusline/?lang=ko" />
     <xhtml:link rel="alternate" hreflang="ar" href="https://amazopic.github.io/claude-code-statusline/?lang=ar" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://amazopic.github.io/claude-code-statusline/?lang=pt" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://amazopic.github.io/claude-code-statusline/?lang=tr" />
+    <xhtml:link rel="alternate" hreflang="id" href="https://amazopic.github.io/claude-code-statusline/?lang=id" />
+    <xhtml:link rel="alternate" hreflang="vi" href="https://amazopic.github.io/claude-code-statusline/?lang=vi" />
+    <xhtml:link rel="alternate" hreflang="hi" href="https://amazopic.github.io/claude-code-statusline/?lang=hi" />
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://amazopic.github.io/claude-code-statusline/?lang=zh-tw" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://amazopic.github.io/claude-code-statusline/?lang=pl" />
   </url>
   <url>
     <loc>https://amazopic.github.io/claude-code-statusline/#install</loc>
-    <lastmod>2026-05-09</lastmod>
+    <lastmod>2026-06-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://amazopic.github.io/claude-code-statusline/#specimens</loc>
-    <lastmod>2026-05-09</lastmod>
+    <lastmod>2026-06-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://amazopic.github.io/claude-code-statusline/#vibe</loc>
-    <lastmod>2026-05-09</lastmod>
+    <lastmod>2026-06-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://amazopic.github.io/claude-code-statusline/#compare</loc>
-    <lastmod>2026-05-09</lastmod>
+    <lastmod>2026-06-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://amazopic.github.io/claude-code-statusline/#recipe</loc>
-    <lastmod>2026-05-09</lastmod>
+    <lastmod>2026-06-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://amazopic.github.io/claude-code-statusline/#catalog</loc>
-    <lastmod>2026-05-09</lastmod>
+    <lastmod>2026-06-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://amazopic.github.io/claude-code-statusline/#faq</loc>
-    <lastmod>2026-05-09</lastmod>
+    <lastmod>2026-06-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://amazopic.github.io/claude-code-statusline/llms.txt</loc>
-    <lastmod>2026-05-09</lastmod>
+    <lastmod>2026-06-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://amazopic.github.io/claude-code-statusline/llms-full.txt</loc>
-    <lastmod>2026-05-09</lastmod>
+    <lastmod>2026-06-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>

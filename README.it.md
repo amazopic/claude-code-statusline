@@ -8,11 +8,19 @@
 [![Made for Claude Code](https://img.shields.io/badge/made%20for-Claude%20Code-7c3aed.svg)](https://claude.com/claude-code)
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](#-contribuire)
 
-**Lingue:** [English](README.md) · [Русский](README.ru.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Українська](README.uk.md) · [Slovenščina](README.sl.md) · Italiano · [Español](README.es.md) · [中文](README.zh.md) · [日本語](README.ja.md) · [한국어](README.ko.md) · [العربية](README.ar.md)
+**Lingue:** [English](README.md) · [Русский](README.ru.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Українська](README.uk.md) · [Slovenščina](README.sl.md) · Italiano · [Español](README.es.md) · [中文](README.zh.md) · [日本語](README.ja.md) · [한국어](README.ko.md) · [العربية](README.ar.md) · [Português](README.pt.md) · [Türkçe](README.tr.md) · [Bahasa Indonesia](README.id.md) · [Tiếng Việt](README.vi.md) · [हिन्दी](README.hi.md) · [繁體中文](README.zh-tw.md) · [Polski](README.pl.md)
 
 ```text
-Opus 4.7 (1M) │ 🚀 12% █▌░░░░░░░░ 121.4K/1000K │ 0.42$ │ ↑0.5K ↓1.2K │ project │ ⎇ main │ tokens: 87 K │ 🤖 xhigh
+Opus 4.7 (1M) │ 🚀 12% █▌░░░░░░░░ 121.4K/1000K │ 0.42$ │ ↑0.5K ↓1.2K │ 5h{1.1h}: 15% 7d{1.1d}: 4% │ project │ ⎇ main │ tokens: 87 K │ 🤖 xhigh
 ```
+
+### ⏳ Reset countdown — pianifica intorno ai tuoi limiti
+
+> **Prevedibilità del lavoro — distribuisci la tua produttività.**
+
+Prevedibile per design — ogni indicatore conta alla rovescia fino al suo reset, così dosi il lavoro invece di sbattere contro il muro.
+
+Gli indicatori 5h / 7d includono un conto alla rovescia live fino al momento in cui ciascuna finestra si azzera: `5h{1.1h}: 1%` — la finestra di 5 ore si resetta tra 1,1 ore; `7d{1.1d}: 0%` — la finestra settimanale si resetta tra 1,1 giorni. Sai sempre quando torni a 0%, così puoi programmare il lavoro pesante subito dopo un reset e distribuire la tua produttività invece di schiantarti contro il limite a metà di un'attività. Alimentato da `rate_limits.*.resets_at` inviato da Claude Code; se la tua build non invia i timestamp di reset, gli indicatori ricadono con eleganza sul semplice `5h: 1%`.
 
 ## 🎨 158 varianti pronte — scegli e applica
 
@@ -344,6 +352,7 @@ Installa claude-code-statusline di amazopic per me. Prima assicurati che jq sia 
 | Contatori token input/output | ❌ | ✅ |
 | Token totali della sessione (fallback API) | ❌ | ✅ |
 | Indicatori limiti 5h / 7d con ⚠️ a > 50 % | ❌ | ✅ |
+| Conto alla rovescia del reset negli indicatori limiti (5h{1.1h}) | ❌ | ✅ |
 | Branch git + dirty + ahead/behind | ❌ | ✅ |
 | Tempo sull'attività (active vs wall) | ❌ | ✅ |
 | Livello thinking / effort | ❌ | ✅ |
@@ -368,6 +377,10 @@ Installa claude-code-statusline di amazopic per me. Prima assicurati che jq sia 
 ### Cos'è Claude Code Status Line?
 
 Un sostituto bash della status line predefinita in [Claude Code](https://claude.com/claude-code) (CLI di Anthropic). Trasforma la linea in basso in una vera dashboard: modello, contesto %, barra di progresso, costo sessione, limiti, git, tempo e altro.
+
+### Cosa significa `5h{1.1h}: 1%`?
+
+Hai usato l'1% della finestra di 5 ore, e `{1.1h}` è un conto alla rovescia live — la finestra si resetta tra 1,1 ore (`7d{1.1d}`: la finestra settimanale si resetta tra 1,1 giorni). Letto da `rate_limits.*.resets_at` a ogni rendering. Nessun timestamp di reset nella tua build? L'indicatore ricade sul semplice `5h: 1%`.
 
 ### Come si installa?
 

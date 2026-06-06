@@ -8,11 +8,17 @@
 [![Made for Claude Code](https://img.shields.io/badge/made%20for-Claude%20Code-7c3aed.svg)](https://claude.com/claude-code)
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](#-contribuir)
 
-**Idiomas:** [English](README.md) · [Русский](README.ru.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Українська](README.uk.md) · [Slovenščina](README.sl.md) · [Italiano](README.it.md) · Español · [中文](README.zh.md) · [日本語](README.ja.md) · [한국어](README.ko.md) · [العربية](README.ar.md)
+**Idiomas:** [English](README.md) · [Русский](README.ru.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Українська](README.uk.md) · [Slovenščina](README.sl.md) · [Italiano](README.it.md) · Español · [中文](README.zh.md) · [日本語](README.ja.md) · [한국어](README.ko.md) · [العربية](README.ar.md) · [Português](README.pt.md) · [Türkçe](README.tr.md) · [Bahasa Indonesia](README.id.md) · [Tiếng Việt](README.vi.md) · [हिन्दी](README.hi.md) · [繁體中文](README.zh-tw.md) · [Polski](README.pl.md)
 
 ```text
-Opus 4.7 (1M) │ 🚀 12% █▌░░░░░░░░ 121.4K/1000K │ 0.42$ │ ↑0.5K ↓1.2K │ project │ ⎇ main │ tokens: 87 K │ 🤖 xhigh
+Opus 4.7 (1M) │ 🚀 12% █▌░░░░░░░░ 121.4K/1000K │ 0.42$ │ ↑0.5K ↓1.2K │ 5h{1.1h}: 15% 7d{1.1d}: 4% │ project │ ⎇ main │ 🤖 xhigh
 ```
+
+### ⏳ Reset countdown — planifica en torno a tus límites
+
+**Predecible por diseño — cada medidor cuenta atrás hasta su reinicio, para que dosifiques tu trabajo en lugar de chocar contra el muro.**
+
+Predecibilidad del trabajo: distribuye tu productividad. Los medidores de 5h / 7d incluyen una cuenta atrás en vivo hasta el momento en que cada ventana se reinicia: `5h{1.1h}: 1%` — la ventana de 5 horas se reinicia en 1,1 horas; `7d{1.1d}: 0%` — la ventana semanal se reinicia en 1,1 días. Siempre sabes cuándo vuelves a 0 %, así que puedes programar el trabajo pesado justo después de un reinicio y distribuir tu productividad en vez de estrellarte contra el tope a mitad de tarea. Funciona gracias a `rate_limits.*.resets_at` enviado por Claude Code; si tu build no envía marcas de tiempo de reinicio, los medidores recurren con elegancia al simple `5h: 1%`.
 
 ## ¿Por qué?
 
@@ -344,6 +350,7 @@ Instálame claude-code-statusline de amazopic. Primero asegúrate de que jq est�
 | Contadores de tokens entrada/salida | ❌ | ✅ |
 | Total de tokens de sesión (fallback en modo API) | ❌ | ✅ |
 | Indicadores de límites 5h / 7d con ⚠️ a > 50 % | ❌ | ✅ |
+| Cuenta atrás de reinicio en los medidores de límites (5h{1.1h}) | ❌ | ✅ |
 | Rama git + dirty + ahead/behind | ❌ | ✅ |
 | Tiempo en tarea (active vs wall) | ❌ | ✅ |
 | Nivel de thinking / effort | ❌ | ✅ |
@@ -368,6 +375,10 @@ Instálame claude-code-statusline de amazopic. Primero asegúrate de que jq est�
 ### ¿Qué es Claude Code Status Line?
 
 Un reemplazo bash de la barra de estado predeterminada en [Claude Code](https://claude.com/claude-code) (CLI de Anthropic). Convierte la línea inferior en un dashboard real: modelo, contexto %, barra de progreso, costo de sesión, límites, git, tiempo y más.
+
+### ¿Qué significa `5h{1.1h}: 1%`?
+
+Has usado el 1 % de la ventana de 5 horas, y `{1.1h}` es una cuenta atrás en vivo: la ventana se reinicia en 1,1 horas (`7d{1.1d}`: la ventana semanal se reinicia en 1,1 días). Se lee de `rate_limits.*.resets_at` en cada render. ¿Tu build no incluye marca de tiempo de reinicio? El medidor recurre al simple `5h: 1%`.
 
 ### ¿Cómo se instala?
 

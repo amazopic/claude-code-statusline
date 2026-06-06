@@ -87,6 +87,12 @@
 #    thinking · time-active · time-wall · turns · host · cups
 #    level · mood-icon
 #
+#  The `limits` block shows the 5h / 7d subscription usage meters. When
+#  Claude Code supplies a `resets_at` epoch for a window, a reset countdown
+#  is appended to its label as 5h{1.1h}: / 7d{1.1d}: — decimal hours for the
+#  5-hour window, decimal days for the 7-day window. With no resets_at the
+#  label stays bare (5h:) for backward compatibility.
+#
 # ─────────────────────────────────────────────────────────────────────────
 
 set -uo pipefail
@@ -107,10 +113,16 @@ if ! command -v jq >/dev/null 2>&1; then
   exit 0
 fi
 
+# Force C numeric formatting (decimal dot in 1.1h / 0.42$ / 87.5K) regardless
+# of the user's locale, while keeping UTF-8 character handling for glyphs.
+# LC_ALL would override LC_NUMERIC, so it must be unset first.
+unset LC_ALL
+export LC_NUMERIC=C
+
 # ─────────────────────────  CONFIG  ───────────────────────────────────
 # Calendar versioning: YYYY.MM.DD — bump on every release. Compared by
 # `statusline update` against the upstream copy on GitHub.
-VERSION="2026.05.09"
+VERSION="2026.06.06"
 UPSTREAM_URL="https://raw.githubusercontent.com/amazopic/claude-code-statusline/main/statusline-bundle.sh"
 
 CONFIG_FILE="${HOME}/.claude/statusline.conf"
@@ -385,8 +397,11 @@ cli_update() {
 }
 
 render_with_fixture() {
-  local fixture
-  fixture='{"model":{"display_name":"Opus 4.7 (1M context)","id":"claude-opus-4-7[1m]"},"workspace":{"current_dir":"'"$PWD"'"},"cost":{"total_cost_usd":0.42},"transcript_path":""}'
+  local fixture now r5 r7
+  now=$(date +%s)
+  r5=$(( now + 3960 ))    # +1.1h → preview shows 5h{1.1h}
+  r7=$(( now + 95040 ))   # +1.1d → preview shows 7d{1.1d}
+  fixture='{"model":{"display_name":"Opus 4.7 (1M context)","id":"claude-opus-4-7[1m]"},"workspace":{"current_dir":"'"$PWD"'"},"cost":{"total_cost_usd":0.42},"transcript_path":"","rate_limits":{"five_hour":{"used_percentage":15,"resets_at":'"$r5"'},"seven_day":{"used_percentage":4,"resets_at":'"$r7"'}}}'
   printf '%s' "$fixture" | render_main
 }
 
@@ -699,7 +714,7 @@ block_tokens_session() {
   line+="${GRD}tokens: ${C}$(fmt_thin "$k")${CD}K${N}"
 }
 block_limits()      {
-  local l5 l7 w5 w7
+  local l5 l7 w5 w7 r5 r7 t5 t7 b5 b7
   l5=$(j '.rate_limits.five_hour.used_percentage // .rate_limits.session.percent_used'); l5=${l5%.*}
   l7=$(j '.rate_limits.seven_day.used_percentage // .rate_limits.weekly.percent_used'); l7=${l7%.*}
   if [[ -z "$l5" && -z "$l7" ]]; then
@@ -707,9 +722,11 @@ block_limits()      {
     block_tokens_session
     return
   fi
+  r5=$(j '.rate_limits.five_hour.resets_at'); t5=$(_lim_eta "$r5" h); b5=""; [[ -n "$t5" ]] && b5="{$t5}"
+  r7=$(j '.rate_limits.seven_day.resets_at'); t7=$(_lim_eta "$r7" d); b7=""; [[ -n "$t7" ]] && b7="{$t7}"
   w5=""; (( ${l5:-0} > 50 )) && w5="⚠️ "
   w7=""; (( ${l7:-0} > 50 )) && w7="⚠️ "
-  line+="${GRD}5h:${N} ${w5}${GR}${l5:-—}${GRD}%${N} ${GRD}7d:${N} ${w7}${GR}${l7:-—}${GRD}%${N}"
+  line+="${GRD}5h${b5}:${N} ${w5}${GR}${l5:-—}${GRD}%${N} ${GRD}7d${b7}:${N} ${w7}${GR}${l7:-—}${GRD}%${N}"
 }
 block_thinking()    { line+="🤖 ${C}${thinking}${N}"; }
 block_host()        { line+="${C}$(hostname -s 2>/dev/null || echo localhost)${N}"; }
@@ -780,8 +797,23 @@ render_custom() {
 # meters always appear (even when the theme builds its own line manually).
 # Each theme overrides via _lim_<theme> if it wants a custom palette;
 # otherwise the default green/dim styling matches the bundle's base palette.
+# Reset-window countdown — turns a resets_at epoch into "1.1h" / "1.1d".
+#   $1 = resets_at (unix epoch seconds, possibly empty/null/0/fractional)
+#   $2 = unit: h → decimal hours (rem/3600), d → decimal days (rem/86400)
+# Prints nothing when there's no usable resets_at (back-compat: no {} shown).
+_lim_eta() {
+  local r="${1%.*}"
+  [[ -z "$r" || "$r" == "null" || "$r" == 0 ]] && return
+  local rem=$(( r - $(date +%s) ))
+  (( rem < 0 )) && rem=0
+  case "$2" in
+    h) LC_ALL=C awk -v s="$rem" 'BEGIN { printf "%.1fh", s/3600 }' ;;
+    d) LC_ALL=C awk -v s="$rem" 'BEGIN { printf "%.1fd", s/86400 }' ;;
+  esac
+}
+
 _lim_default() {
-  local l5 l7 w5 w7
+  local l5 l7 w5 w7 r5 r7 t5 t7 b5 b7
   l5=$(j '.rate_limits.five_hour.used_percentage // .rate_limits.session.percent_used'); l5=${l5%.*}
   l7=$(j '.rate_limits.seven_day.used_percentage // .rate_limits.weekly.percent_used'); l7=${l7%.*}
   if [[ -z "$l5" && -z "$l7" ]]; then
@@ -798,9 +830,11 @@ _lim_default() {
     line+="${SEP}${GRD}tokens: ${GR}$(fmt_thin "$k")${GRD}K${N}"
     return
   fi
+  r5=$(j '.rate_limits.five_hour.resets_at'); t5=$(_lim_eta "$r5" h); b5=""; [[ -n "$t5" ]] && b5="{$t5}"
+  r7=$(j '.rate_limits.seven_day.resets_at'); t7=$(_lim_eta "$r7" d); b7=""; [[ -n "$t7" ]] && b7="{$t7}"
   w5=""; (( ${l5:-0} > 50 )) && w5="⚠️ "
   w7=""; (( ${l7:-0} > 50 )) && w7="⚠️ "
-  line+="${SEP}${GRD}5h:${N} ${w5}${GR}${l5:-—}${GRD}%${N} ${GRD}7d:${N} ${w7}${GR}${l7:-—}${GRD}%${N}"
+  line+="${SEP}${GRD}5h${b5}:${N} ${w5}${GR}${l5:-—}${GRD}%${N} ${GRD}7d${b7}:${N} ${w7}${GR}${l7:-—}${GRD}%${N}"
 }
 
 # Extended tail — used by every detailed theme except `minimal`. Renders the

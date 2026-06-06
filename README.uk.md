@@ -8,11 +8,17 @@
 [![Made for Claude Code](https://img.shields.io/badge/made%20for-Claude%20Code-7c3aed.svg)](https://claude.com/claude-code)
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](#-як-зробити-внесок)
 
-**Мови:** [English](README.md) · [Русский](README.ru.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · Українська · [Slovenščina](README.sl.md) · [Italiano](README.it.md) · [Español](README.es.md) · [中文](README.zh.md) · [日本語](README.ja.md) · [한국어](README.ko.md) · [العربية](README.ar.md)
+**Мови:** [English](README.md) · [Русский](README.ru.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · Українська · [Slovenščina](README.sl.md) · [Italiano](README.it.md) · [Español](README.es.md) · [中文](README.zh.md) · [日本語](README.ja.md) · [한국어](README.ko.md) · [العربية](README.ar.md) · [Português](README.pt.md) · [Türkçe](README.tr.md) · [Bahasa Indonesia](README.id.md) · [Tiếng Việt](README.vi.md) · [हिन्दी](README.hi.md) · [繁體中文](README.zh-tw.md) · [Polski](README.pl.md)
 
 ```text
-Opus 4.7 (1M) │ 🚀 12% █▌░░░░░░░░ 121.4K/1000K │ 0.42$ │ ↑0.5K ↓1.2K │ project │ ⎇ main │ tokens: 87 K │ 🤖 xhigh
+Opus 4.7 (1M) │ 🚀 12% █▌░░░░░░░░ 121.4K/1000K │ 0.42$ │ ↑0.5K ↓1.2K │ project │ ⎇ main │ 5h{1.1h}: 15% 7d{1.1d}: 4% │ 🤖 xhigh
 ```
+
+### ⏳ Reset countdown — плануй роботу навколо своїх лімітів
+
+**Передбачуваність роботи — розподіляй свою продуктивність.** Передбачуваність за задумом: кожен лічильник веде зворотний відлік до свого скидання, тож ти задаєш темп роботі, а не врізаєшся в стіну.
+
+Лічильники 5h / 7d містять живий зворотний відлік до моменту, коли скидається кожне вікно: `5h{1.1h}: 1%` — 5-годинне вікно скидається через 1.1 години; `7d{1.1d}: 0%` — тижневе вікно скидається через 1.1 дня. Ти завжди знаєш, коли повернешся до 0%, тож можеш планувати важку роботу одразу після скидання й розподіляти свою продуктивність замість того, щоб посеред задачі впертися в ліміт. Працює на основі `rate_limits.*.resets_at`, який надсилає Claude Code; якщо твоя збірка не надсилає мітки часу скидання, лічильники плавно повертаються до простого вигляду `5h: 1%`.
 
 ## 🎨 158 готових варіанти — обирайте і застосовуйте
 
@@ -345,6 +351,7 @@ chmod +x ~/.claude/status-line.sh
 | Лічильники токенів вхід/вихід | ❌ | ✅ |
 | Сума токенів сесії (fallback в API-режимі) | ❌ | ✅ |
 | Індикатори лімітів 5h / 7d з ⚠️ при > 50 % | ❌ | ✅ |
+| Зворотний відлік до скидання в лічильниках лімітів (`5h{1.1h}`) | ❌ | ✅ |
 | Git-гілка + dirty + ahead/behind | ❌ | ✅ |
 | Час на задачі (active vs wall) | ❌ | ✅ |
 | Рівень thinking / effort | ❌ | ✅ |
@@ -370,6 +377,10 @@ chmod +x ~/.claude/status-line.sh
 ### Що таке Claude Code Status Line?
 
 Bash-заміна стандартного статусного рядка в [Claude Code](https://claude.com/claude-code) (CLI від Anthropic). Перетворює нижній рядок на повноцінний дашборд: модель, контекст %, прогрес-бар, вартість сесії, ліміти, git, час та інше.
+
+### Що означає `5h{1.1h}: 1%`?
+
+Ти використав 1% від 5-годинного вікна, а `{1.1h}` — це живий зворотний відлік: вікно скидається через 1.1 години (`7d{1.1d}`: тижневе вікно скидається через 1.1 дня). Читається з `rate_limits.*.resets_at` на кожному рендері. Немає мітки часу скидання у твоїй збірці? Лічильник повертається до простого вигляду `5h: 1%`.
 
 ### Як встановити?
 

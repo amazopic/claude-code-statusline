@@ -62,10 +62,16 @@ display, and the per-segment color thresholds.
 
 ## Regenerate after editing a script
 
+The `INPUT` now carries `rate_limits` with `resets_at` epochs so the
+`limits` block renders its reset countdown (`5h{1.1h}:` / `7d{1.1d}:`).
+The two offsets are picked to land on round previews:
+`NOW+3960` → `3960/3600 = 1.1h`, `NOW+95040` → `95040/86400 = 1.1d`.
+
 ```bash
 cd <repo-root>
+NOW=$(date +%s); R5=$((NOW+3960)); R7=$((NOW+95040))   # → exactly {1.1h} and {1.1d}
 FIXTURE="$(pwd)/screenshots/fixture.jsonl"
-INPUT='{"model":{"display_name":"Opus 4.7 (1M context)","id":"claude-opus-4-7[1m]"},"workspace":{"current_dir":"'"$(pwd)"'"},"cost":{"total_cost_usd":0.42},"transcript_path":"'"$FIXTURE"'"}'
+INPUT='{"model":{"display_name":"Opus 4.7 (1M context)","id":"claude-opus-4-7[1m]"},"workspace":{"current_dir":"'"$(pwd)"'"},"cost":{"total_cost_usd":0.42},"transcript_path":"'"$FIXTURE"'","rate_limits":{"five_hour":{"used_percentage":15,"resets_at":'$R5'},"seven_day":{"used_percentage":4,"resets_at":'$R7'}}}'
 
 for f in examples/*.sh; do
   name=$(basename "$f" .sh)

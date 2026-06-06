@@ -16,6 +16,12 @@ if ! command -v jq >/dev/null 2>&1; then
   exit 0
 fi
 
+# Force C numeric formatting (decimal dot in 1.1h / 0.42$ / 87.5K) regardless
+# of the user's locale, while keeping UTF-8 character handling for glyphs.
+# LC_ALL would override LC_NUMERIC, so it must be unset first.
+unset LC_ALL
+export LC_NUMERIC=C
+
 input=$(cat)
 
 # Bright ANSI 256-colors
@@ -112,6 +118,21 @@ bar() {
 
 j() { jq -r "$1 // empty" 2>/dev/null <<<"$input"; }
 
+# Reset-window countdown — turns a resets_at epoch into "1.1h" / "1.1d".
+#   $1 = resets_at (unix epoch seconds, possibly empty/null/0/fractional)
+#   $2 = unit: h → decimal hours (rem/3600), d → decimal days (rem/86400)
+# Prints nothing when there's no usable resets_at (back-compat: no {} shown).
+_lim_eta() {
+  local r="${1%.*}"
+  [[ -z "$r" || "$r" == "null" || "$r" == 0 ]] && return
+  local rem=$(( r - $(date +%s) ))
+  (( rem < 0 )) && rem=0
+  case "$2" in
+    h) LC_ALL=C awk -v s="$rem" 'BEGIN { printf "%.1fh", s/3600 }' ;;
+    d) LC_ALL=C awk -v s="$rem" 'BEGIN { printf "%.1fd", s/86400 }' ;;
+  esac
+}
+
 model_disp=$(j '.model.display_name')
 model_id=$(j '.model.id')
 model_name="${model_disp:-${model_id:-Claude}}"
@@ -130,6 +151,8 @@ exceeds_200k=$(j '.exceeds_200k_tokens')
 # Left as best-effort lookups in case a future version exposes them.
 lim5h=$(j '.rate_limits.five_hour.used_percentage // .rate_limits.session.percent_used // .rate_limits.session.percent // .rate_limits["5h"].percent // .rate_limits.short.percent')
 lim7d=$(j '.rate_limits.seven_day.used_percentage // .rate_limits.weekly.percent_used  // .rate_limits.weekly.percent  // .rate_limits["7d"].percent // .rate_limits.long.percent')
+lim5h_reset=$(j '.rate_limits.five_hour.resets_at')
+lim7d_reset=$(j '.rate_limits.seven_day.resets_at')
 
 # Thinking / effort level (Claude Code stdin field is .effort.level)
 thinking=$(j '.effort.level // .thinking.level // .thinking // .model.thinking_level // .output_style.name')
@@ -203,6 +226,8 @@ if [[ -z "$lim5h" && -z "$lim7d" ]]; then
   sess_fmt=$(fmt_thin "$sess_k")
   limits_part="${GRD}tokens: ${C}${sess_fmt}${CD}K${N}"
 else
+  t5=$(_lim_eta "$lim5h_reset" h); b5=""; [[ -n "$t5" ]] && b5="{$t5}"
+  t7=$(_lim_eta "$lim7d_reset" d); b7=""; [[ -n "$t7" ]] && b7="{$t7}"
   if [[ -n "$lim5h" ]]; then
     l5=${lim5h%.*}
     warn5=""; (( l5 > 50 )) && warn5="⚠️ "
@@ -217,7 +242,7 @@ else
   else
     lim7_str="${D}—${N}"
   fi
-  limits_part="${GRD}5h: ${N}${lim5_str} ${GRD}7d: ${N}${lim7_str}"
+  limits_part="${GRD}5h${b5}: ${N}${lim5_str} ${GRD}7d${b7}: ${N}${lim7_str}"
 fi
 
 # Compose

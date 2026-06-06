@@ -11,3 +11,6 @@ node_modules/
 # Claude Code local state
 /claude
 /.claude
+
+# Browser MCP artifacts (page snapshots from live verification)
+.playwright-mcp/

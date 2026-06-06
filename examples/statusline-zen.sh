@@ -11,8 +11,14 @@
 # ─────────────────────────────────────────────────────────────────────────
 set -uo pipefail
 
+# Force C numeric formatting (decimal dot) regardless of the user's locale,
+# while keeping UTF-8 character handling for glyphs.
+# LC_ALL would override LC_NUMERIC, so it must be unset first.
+unset LC_ALL
+export LC_NUMERIC=C
+
 input=$(cat)
-LIM=$'  \e[38;5;245m· 5h: 15% · 7d: 5%\e[0m'
+LIM=$'  \e[38;5;245m· 5h{1.1h}: 15% · 7d{1.1d}: 5%\e[0m'
 
 j() { jq -r "$1 // empty" 2>/dev/null <<<"$input"; }
 
