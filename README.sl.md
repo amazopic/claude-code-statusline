@@ -95,7 +95,7 @@ merilnika gladko vrneta na navadni `5h: 1%`.
 Zakaj sam, ko imaš Claude Code? Prilepi ta en poziv v sejo Claude Code — Claude opravi vsak korak in vpraša pred vsakim ukazom.
 
 ```text
-Namesti claude-code-statusline od amazopic zame. Najprej preveri da je jq nameščen (zaženi `which jq`) — če ga ni, ga namesti glede na platformo: `sudo apt-get install -y jq` (Ubuntu/Debian), `sudo dnf install -y jq` (Fedora), `brew install jq` (macOS), `sudo apk add jq` (Alpine). Nato preberi ~/.claude/settings.json — če je tam statusLine.command, ki kaže na obstoječo datoteko (npr. ~/.claude/status-line.sh ali drugo pot), naredi varnostno kopijo te datoteke z dodatkom .bak (prepiši obstoječo .bak). Tudi če ~/.claude/status-line.sh že obstaja — naredi varnostno kopijo enako. Nato kloniraj github.com/amazopic/claude-code-statusline, kopiraj statusline-bundle.sh v ~/.claude/status-line.sh in ga naredi izvršljivega, kopiraj tudi commands/statusline.md v ~/.claude/commands/. Posodobi ~/.claude/settings.json tako da statusLine = { type: "command", command: "<absolutna pot do ~/.claude/status-line.sh>" }. Na koncu zaženi ~/.claude/status-line.sh use developer za test teme developer in mi reci da ponovno zaženem Claude Code.
+Namesti claude-code-statusline od amazopic zame. Najprej preveri da je jq nameščen (zaženi `which jq`) — če ga ni, ga namesti glede na platformo: `sudo apt-get install -y jq` (Ubuntu/Debian), `sudo dnf install -y jq` (Fedora), `brew install jq` (macOS), `sudo apk add jq` (Alpine). Nato preberi ~/.claude/settings.json — če je tam statusLine.command, ki kaže na obstoječo datoteko (npr. ~/.claude/status-line.sh ali drugo pot), naredi varnostno kopijo te datoteke z dodatkom .bak (prepiši obstoječo .bak). Tudi če ~/.claude/status-line.sh že obstaja — naredi varnostno kopijo enako. Nato kloniraj github.com/amazopic/claude-code-statusline, kopiraj statusline-bundle.sh v ~/.claude/status-line.sh in ga naredi izvršljivega, kopiraj tudi commands/statusline.md v ~/.claude/commands/. Posodobi ~/.claude/settings.json tako da statusLine = { type: "command", command: "<absolutna pot do ~/.claude/status-line.sh>", refreshInterval: 30 }. Na koncu zaženi ~/.claude/status-line.sh use developer za test teme developer in mi reci da ponovno zaženem Claude Code.
 ```
 
 > Samo reci `y` (ja) ob vsaki zahtevi za dovoljenje. Končano.
@@ -115,10 +115,13 @@ Nato dodajte v `~/.claude/settings.json`:
 {
   "statusLine": {
     "type": "command",
-    "command": "/Users/<vi>/.claude/status-line.sh"
+    "command": "/Users/<vi>/.claude/status-line.sh",
+    "refreshInterval": 30
   }
 }
 ```
+
+> 💡 `refreshInterval: 30` znova požene vrstico vsakih 30 sekund, tudi ko je seja nedejavna — tako ostanejo živi odštevanje do ponastavitve (5h{1.1h}), sledilnik časa in preklopi po ponastavitvi. 30 je razumna privzeta vrednost; 60 varčuje z baterijo; izpustite jo, da se osvežuje le ob dogodkih (novo sporočilo pomočnika, /compact, preklop vim).
 
 Ponovno zaženite Claude Code (ali zaženite `/config` reload).
 
@@ -134,7 +137,8 @@ Naj Claude Code namesti namesto vas, varno? Prilepite ta poziv:
 > 2. Kopiraj `statusline.sh` iz repozitorija v `~/.claude/status-line.sh`
 >    in `chmod +x`.
 > 3. Preberi `~/.claude/settings.json`. Če ključa `statusLine` ni,
->    dodaj blok z absolutno potjo do skripte. Če `statusLine` že kaže
+>    dodaj blok z absolutno potjo do skripte in poljem `"refreshInterval": 30`.
+>    Če `statusLine` že kaže
 >    drugam, najprej varnostno kopiraj `settings.json` v `.bak.<timestamp>`.
 > 4. Hitri test:
 >    `echo '{\"model\":{\"display_name\":\"Test\"},\"transcript_path\":\"\"}' | bash ~/.claude/status-line.sh`
@@ -345,8 +349,11 @@ Nato dodajte v `~/.claude/settings.json`:
 
 ```json
 { "statusLine": { "type": "command",
-  "command": "/Users/<vi>/.claude/status-line.sh" } }
+  "command": "/Users/<vi>/.claude/status-line.sh",
+  "refreshInterval": 30 } }
 ```
+
+> 💡 `refreshInterval: 30` znova požene vrstico vsakih 30 sekund, tudi ko je seja nedejavna — tako ostanejo živi odštevanje do ponastavitve (5h{1.1h}), sledilnik časa in preklopi po ponastavitvi. 30 je razumna privzeta vrednost; 60 varčuje z baterijo; izpustite jo, da se osvežuje le ob dogodkih (novo sporočilo pomočnika, /compact, preklop vim).
 
 Ponovno zaženite Claude Code (ali `/config` reload). Končano.
 
@@ -393,6 +400,17 @@ Porabili ste 1 % 5-urnega okna, `{1.1h}` pa je živo odštevanje — okno se
 ponastavi čez 1,1 ure (`7d{1.1d}`: tedensko okno se ponastavi čez 1,1 dneva).
 Prebrano iz `rate_limits.*.resets_at` ob vsakem izrisu. V vaši gradnji ni
 ponastavitvenega časovnega žiga? Merilnik se vrne na navadni `5h: 1%`.
+
+### Ali se statusna vrstica posodablja sama od sebe? Moje odštevanje {1.1h} je videti zamrznjeno.
+
+Claude Code se znova izriše ob dogodkih — novo sporočilo pomočnika, `/compact`,
+sprememba načina dovoljenj ali načina vim (z zakasnitvijo 300 ms) — zato se med
+dogodki vrstica zamrzne. Dodajte `"refreshInterval": 30` v blok statusLine v
+`~/.claude/settings.json` in tako se bo vrstica znova pognala tudi po fiksnem
+30-sekundnem časovniku, kar ohranja živo odštevanje in sledilnik časa, ko je
+seja nedejavna. Izris stane ~0,1 s, zato je 30 s zanemarljivo; uporabite 60 na
+bateriji ali v ogromnih repozitorijih (`git status` se izvede ob vsakem
+izrisu); minimum je 1.
 
 ### Kako se namesti?
 

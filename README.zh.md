@@ -86,7 +86,7 @@ Claude Code 自带的状态栏过于简陋。这个替换方案把它升级为�
 有 Claude Code，何必碰终端？把这一条提示粘到 Claude Code 会话里 — Claude 全程包办，每条命令前都会问你。
 
 ```text
-帮我安装 amazopic 的 claude-code-statusline。先确认已安装 jq（运行 `which jq`）— 如果没有，按平台安装：`sudo apt-get install -y jq`（Ubuntu/Debian）、`sudo dnf install -y jq`（Fedora）、`brew install jq`（macOS）、`sudo apk add jq`（Alpine）。然后读 ~/.claude/settings.json — 如果其中有 statusLine.command 指向某个已存在的文件（如 ~/.claude/status-line.sh 或其他路径），把那个文件加 .bak 后缀做备份（覆盖已有的 .bak）。如果 ~/.claude/status-line.sh 也已存在，同样备份。然后克隆 github.com/amazopic/claude-code-statusline，把 statusline-bundle.sh 复制到 ~/.claude/status-line.sh 并设为可执行，再把 commands/statusline.md 复制到 ~/.claude/commands/。更新 ~/.claude/settings.json 使 statusLine = { type: "command", command: "<~/.claude/status-line.sh 的绝对路径>" }。最后运行 ~/.claude/status-line.sh use developer 测试 developer 主题，并提醒我重启 Claude Code。
+帮我安装 amazopic 的 claude-code-statusline。先确认已安装 jq（运行 `which jq`）— 如果没有，按平台安装：`sudo apt-get install -y jq`（Ubuntu/Debian）、`sudo dnf install -y jq`（Fedora）、`brew install jq`（macOS）、`sudo apk add jq`（Alpine）。然后读 ~/.claude/settings.json — 如果其中有 statusLine.command 指向某个已存在的文件（如 ~/.claude/status-line.sh 或其他路径），把那个文件加 .bak 后缀做备份（覆盖已有的 .bak）。如果 ~/.claude/status-line.sh 也已存在，同样备份。然后克隆 github.com/amazopic/claude-code-statusline，把 statusline-bundle.sh 复制到 ~/.claude/status-line.sh 并设为可执行，再把 commands/statusline.md 复制到 ~/.claude/commands/。更新 ~/.claude/settings.json 使 statusLine = { type: "command", command: "<~/.claude/status-line.sh 的绝对路径>", "refreshInterval": 30 }。最后运行 ~/.claude/status-line.sh use developer 测试 developer 主题，并提醒我重启 Claude Code。
 ```
 
 > 每个权限提示都回 `y`（yes）即可。搞定。
@@ -106,10 +106,13 @@ chmod +x ~/.claude/status-line.sh
 {
   "statusLine": {
     "type": "command",
-    "command": "/Users/<你>/.claude/status-line.sh"
+    "command": "/Users/<你>/.claude/status-line.sh",
+    "refreshInterval": 30
   }
 }
 ```
+
+> 💡 `refreshInterval: 30` 每 30 秒重新渲染一次状态行，即使会话处于空闲状态 —— 让重置倒计时(5h{1.1h})、时间跟踪和重置后翻转保持实时更新。30 是合理的默认值；60 更省电；省略则仅在事件发生时刷新(新的助手消息、`/compact`、vim 切换)。
 
 重启 Claude Code(或运行 `/config` 重新加载)。
 
@@ -124,8 +127,9 @@ chmod +x ~/.claude/status-line.sh
 > 2. 把仓库中的 `statusline.sh` 复制到 `~/.claude/status-line.sh` 并
 >    `chmod +x`。
 > 3. 读取 `~/.claude/settings.json`。如果没有 `statusLine` 键,添加一个
->    指向脚本绝对路径的 `statusLine` 块。如果 `statusLine` 已指向其他
->    地方,先把 `settings.json` 备份为 `.bak.<timestamp>`。
+>    指向脚本绝对路径的 `statusLine` 块,并带上 `"refreshInterval": 30`。
+>    如果 `statusLine` 已指向其他地方,先把 `settings.json` 备份为
+>    `.bak.<timestamp>`。
 > 4. 冒烟测试:
 >    `echo '{\"model\":{\"display_name\":\"Test\"},\"transcript_path\":\"\"}' | bash ~/.claude/status-line.sh`
 > 5. 提醒我重启 Claude Code,并报告创建的备份文件。"
@@ -330,8 +334,11 @@ chmod +x ~/.claude/status-line.sh
 
 ```json
 { "statusLine": { "type": "command",
-  "command": "/Users/<你>/.claude/status-line.sh" } }
+  "command": "/Users/<你>/.claude/status-line.sh",
+  "refreshInterval": 30 } }
 ```
+
+> 💡 `refreshInterval: 30` 每 30 秒重新渲染一次状态行，即使会话处于空闲状态 —— 让重置倒计时(5h{1.1h})、时间跟踪和重置后翻转保持实时更新。30 是合理的默认值；60 更省电；省略则仅在事件发生时刷新(新的助手消息、`/compact`、vim 切换)。
 
 重启 Claude Code(或 `/config` reload)。完成。
 
@@ -375,6 +382,10 @@ chmod +x ~/.claude/status-line.sh
 ### `5h{1.1h}: 1%` 是什么意思?
 
 表示你已经用掉了 5 小时窗口的 1%,而 `{1.1h}` 是一个实时倒计时 —— 该窗口将在 1.1 小时后重置(`7d{1.1d}`:每周窗口将在 1.1 天后重置)。每次渲染时都会从 `rate_limits.*.resets_at` 读取。你的构建里没有重置时间戳?该仪表会回退为普通的 `5h: 1%`。
+
+### 状态行会自己更新吗?我的 {1.1h} 倒计时看起来冻住了。
+
+Claude Code 在事件发生时重新渲染 —— 新的助手消息、`/compact`、权限模式或 vim 模式变更(去抖 300 毫秒)—— 所以在两次事件之间状态行会冻住。在 `~/.claude/settings.json` 的 `statusLine` 块中添加 `"refreshInterval": 30`,它就会额外按固定的 30 秒计时器重新运行,让倒计时和时间跟踪在空闲时持续走动。一次渲染约耗时 0.1 秒,所以 30 秒可以忽略不计;在电池供电或超大仓库下用 60(每次渲染都会跑 git status);最小值为 1。
 
 ### 如何安装?
 

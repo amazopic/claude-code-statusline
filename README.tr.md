@@ -41,8 +41,11 @@ Ardından `~/.claude/settings.json` dosyasına ekleyin:
 
 ```json
 { "statusLine": { "type": "command",
-  "command": "/Users/<you>/.claude/status-line.sh" } }
+  "command": "/Users/<you>/.claude/status-line.sh",
+  "refreshInterval": 30 } }
 ```
+
+> 💡 `refreshInterval: 30`, oturum boştayken bile satırı her 30 saniyede bir yeniden çalıştırır — sıfırlanma geri sayımını (5h{1.1h}), süre takipçisini ve sıfırlanma sonrası geçişleri canlı tutar. 30 makul bir varsayılandır; 60 pile dosttur; etkinliklere (yeni asistan mesajı, `/compact`, vim geçişi) göre yenilemek için bu alanı atlayın.
 
 Claude Code'u yeniden başlatın (veya `/config` reload çalıştırın). Tamamdır.
 
@@ -51,7 +54,7 @@ Claude Code'u yeniden başlatın (veya `/config` reload çalıştırın). Tamamd
 Claude Code varken neden bir terminale dokunasınız? Bu tek istemi Claude Code oturumunuza yapıştırın — Claude her adımı halleder ve her komuttan önce onay ister.
 
 ```text
-amazopic'in claude-code-statusline'ını benim için kur. Önce jq'nun kurulu olduğundan emin ol (`which jq` çalıştır) — eksikse platforma göre kur: `sudo apt-get install -y jq` (Ubuntu/Debian), `sudo dnf install -y jq` (Fedora), `brew install jq` (macOS), `sudo apk add jq` (Alpine). Sonra ~/.claude/settings.json dosyasını oku — mevcut bir dosyaya işaret eden bir statusLine.command varsa (ör. ~/.claude/status-line.sh veya başka bir yol), o dosyayı .bak ekleyerek yedekle (mevcut herhangi bir .bak dosyasının üzerine yaz). Ayrıca ~/.claude/status-line.sh zaten varsa, onu da aynı şekilde yedekle. Sonra github.com/amazopic/claude-code-statusline depodan klonla, statusline-bundle.sh dosyasını ~/.claude/status-line.sh konumuna kopyala ve çalıştırılabilir yap, ayrıca commands/statusline.md dosyasını ~/.claude/commands/ içine kopyala. ~/.claude/settings.json dosyasını statusLine { type: "command", command: "<~/.claude/status-line.sh için mutlak yol>" } olacak şekilde güncelle. Son olarak developer temasını test etmek için ~/.claude/status-line.sh use developer çalıştır ve bana Claude Code'u yeniden başlatmamı söyle.
+amazopic'in claude-code-statusline'ını benim için kur. Önce jq'nun kurulu olduğundan emin ol (`which jq` çalıştır) — eksikse platforma göre kur: `sudo apt-get install -y jq` (Ubuntu/Debian), `sudo dnf install -y jq` (Fedora), `brew install jq` (macOS), `sudo apk add jq` (Alpine). Sonra ~/.claude/settings.json dosyasını oku — mevcut bir dosyaya işaret eden bir statusLine.command varsa (ör. ~/.claude/status-line.sh veya başka bir yol), o dosyayı .bak ekleyerek yedekle (mevcut herhangi bir .bak dosyasının üzerine yaz). Ayrıca ~/.claude/status-line.sh zaten varsa, onu da aynı şekilde yedekle. Sonra github.com/amazopic/claude-code-statusline depodan klonla, statusline-bundle.sh dosyasını ~/.claude/status-line.sh konumuna kopyala ve çalıştırılabilir yap, ayrıca commands/statusline.md dosyasını ~/.claude/commands/ içine kopyala. ~/.claude/settings.json dosyasını statusLine { type: "command", command: "<~/.claude/status-line.sh için mutlak yol>", "refreshInterval": 30 } olacak şekilde güncelle. Son olarak developer temasını test etmek için ~/.claude/status-line.sh use developer çalıştır ve bana Claude Code'u yeniden başlatmamı söyle.
 ```
 
 > Her izin isteminde sadece `y` (evet) deyin. Tamamdır.
@@ -313,10 +316,13 @@ Ardından `~/.claude/settings.json` dosyasına ekleyin:
 {
   "statusLine": {
     "type": "command",
-    "command": "/Users/<you>/.claude/status-line.sh"
+    "command": "/Users/<you>/.claude/status-line.sh",
+    "refreshInterval": 30
   }
 }
 ```
+
+> 💡 `refreshInterval: 30`, oturum boştayken bile satırı her 30 saniyede bir yeniden çalıştırır — sıfırlanma geri sayımını (5h{1.1h}), süre takipçisini ve sıfırlanma sonrası geçişleri canlı tutar. 30 makul bir varsayılandır; 60 pile dosttur; etkinliklere (yeni asistan mesajı, `/compact`, vim geçişi) göre yenilemek için bu alanı atlayın.
 
 Claude Code'u yeniden başlatın (veya `/config` reload çalıştırın).
 
@@ -330,9 +336,9 @@ Claude Code'un bunu sizin için güvenle kurmasını mı istiyorsunuz? Bu istemi
 >    bir yedek zaten varsa boş bir `-N` soneki seç).
 > 2. Bu depodaki `statusline.sh` dosyasını `~/.claude/status-line.sh` konumuna kopyala ve `chmod +x` yap.
 > 3. `~/.claude/settings.json` dosyasını oku. `statusLine` anahtarı yoksa, betiğin
->    mutlak yolunu gösteren bir `statusLine` bloğu ekle. `statusLine` zaten varsa ve
->    başka bir yeri gösteriyorsa, önce `settings.json` dosyasını `.bak.<timestamp>`
->    olarak yedekle.
+>    mutlak yolunu gösteren ve `"refreshInterval": 30` içeren bir `statusLine` bloğu
+>    ekle. `statusLine` zaten varsa ve başka bir yeri gösteriyorsa, önce
+>    `settings.json` dosyasını `.bak.<timestamp>` olarak yedekle.
 > 4. Betiği duman testinden geçir:
 >    `echo '{\"model\":{\"display_name\":\"Test\"},\"transcript_path\":\"\"}' | bash ~/.claude/status-line.sh`
 > 5. Bana Claude Code'u yeniden başlatmamı söyle ve oluşturulan yedekleri raporla."
@@ -411,6 +417,10 @@ Bu projenin kendini amorti ettiği somut senaryolar:
 ### `5h{1.1h}: 1%` ne anlama gelir?
 
 5 saatlik pencerenin %1'ini kullandınız ve `{1.1h}` canlı bir geri sayımdır — pencere 1,1 saat içinde sıfırlanır (`7d{1.1d}`: haftalık pencere 1,1 gün içinde sıfırlanır). Her render'da `rate_limits.*.resets_at` değerinden okunur. Sürümünüzde sıfırlanma zaman damgası yok mu? Ölçer sade `5h: 1%` biçimine geri döner.
+
+### Durum satırı kendiliğinden güncellenir mi? `{1.1h}` geri sayımım donmuş görünüyor.
+
+Claude Code, etkinliklere göre yeniden render eder — yeni asistan mesajı, `/compact`, izin modu veya vim modu değişikliği (300 ms gecikmeyle) — bu yüzden etkinlikler arasında satır donar. `~/.claude/settings.json` içindeki `statusLine` bloğuna `"refreshInterval": 30` ekleyin; o zaman sabit 30 saniyelik bir zamanlayıcıyla da yeniden çalışır ve boştayken bile geri sayımı ve süre takipçisini canlı tutar. Bir render ~0,1 s sürer, bu yüzden 30 s ihmal edilebilir; pilde veya büyük depolarda 60 kullanın (her render'da `git status` çalışır); minimum değer 1'dir.
 
 ### Nasıl kurulur?
 

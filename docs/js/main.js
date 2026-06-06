@@ -3,9 +3,9 @@
 //        i18n (19 locales), language switcher, hero limits visualization
 // ─────────────────────────────────────────────────────────────────────
 
-import { themes, blocks, faq, compare } from './themes.js?v=21';
-import { ansiToHtml, specimenHtml, loadSpecimen } from './ansi.js?v=21';
-import { messages, supportedLocales, defaultLocale, t as tBase, detectLocale, persistLocale } from './i18n.js?v=21';
+import { themes, blocks, faq, compare } from './themes.js?v=22';
+import { ansiToHtml, specimenHtml, loadSpecimen } from './ansi.js?v=22';
+import { messages, supportedLocales, defaultLocale, t as tBase, detectLocale, persistLocale } from './i18n.js?v=22';
 
 document.documentElement.classList.add('has-cursor');
 
@@ -35,6 +35,23 @@ let currentLocale = ((() => {
 })());
 
 const t = (key) => tBase(key, currentLocale);
+
+// ─────────────────────────────────────────────────────────────────────
+//  English-canon fallbacks for newly added keys (refreshInterval feature).
+//  Registered on the default-locale dict so t() resolves them everywhere
+//  via i18n.js's `?? messages[defaultLocale][key]` fallback chain, without
+//  editing i18n.js itself. Localized strings can be backfilled there later.
+// ─────────────────────────────────────────────────────────────────────
+if (messages[defaultLocale]) {
+  const enCanon = {
+    'install.refreshTip': 'refreshInterval: 30 re-runs the line every 30 seconds even while the session is idle — keeps the reset countdown (5h{1.1h}), the time tracker and post-reset flips live. 30 is a sensible default; 60 is battery-frugal; omit to refresh on events only (new assistant message, /compact, vim toggle).',
+    'faq.q.refresh': 'Does the status line update by itself? My {1.1h} countdown looks frozen.',
+    'faq.a.refresh': 'Claude Code re-renders on events — new assistant message, /compact, permission-mode or vim-mode change (debounced at 300 ms) — so between events the line freezes. Add "refreshInterval": 30 to the statusLine block in ~/.claude/settings.json and it also re-runs on a fixed 30-second timer, keeping the countdown and time tracker ticking while idle. A render costs ~0.1 s, so 30 s is negligible; use 60 on battery or in huge repos (git status runs each render); minimum is 1.',
+  };
+  for (const [k, v] of Object.entries(enCanon)) {
+    if (messages[defaultLocale][k] === undefined) messages[defaultLocale][k] = v;
+  }
+}
 
 // ═════════════════════════════════════════════════════════════════════
 //  i18n application

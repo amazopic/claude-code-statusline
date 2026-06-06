@@ -95,10 +95,13 @@ chmod +x ~/.claude/status-line.sh
 {
   "statusLine": {
     "type": "command",
-    "command": "/Users/<あなた>/.claude/status-line.sh"
+    "command": "/Users/<あなた>/.claude/status-line.sh",
+    "refreshInterval": 30
   }
 }
 ```
+
+> 💡 **ヒント:** `refreshInterval: 30` は、セッションがアイドル状態でも 30 秒ごとに行を再実行します — リセットカウントダウン（`5h{1.1h}`）、時間トラッカー、リセット後のフリップをライブに保ちます。`30` は妥当なデフォルト値です。`60` はバッテリーに優しく、省略するとイベント時のみ更新されます（新しいアシスタントメッセージ、`/compact`、vim トグル）。
 
 Claude Code を再起動(または `/config` reload)。
 
@@ -113,7 +116,8 @@ Claude Code に安全にインストールしてもらいたい?このプロン�
 > 2. リポジトリの `statusline.sh` を `~/.claude/status-line.sh` にコピーし
 >    `chmod +x` を実行。
 > 3. `~/.claude/settings.json` を読み込み。`statusLine` キーがなければ、
->    スクリプトの絶対パスを指す `statusLine` ブロックを追加。
+>    スクリプトの絶対パスを指し `"refreshInterval": 30` を含む
+>    `statusLine` ブロックを追加。
 >    すでに別の場所を指している場合は、まず `settings.json` を
 >    `.bak.<timestamp>` にバックアップ。
 > 4. スモークテスト:
@@ -323,8 +327,11 @@ chmod +x ~/.claude/status-line.sh
 
 ```json
 { "statusLine": { "type": "command",
-  "command": "/Users/<あなた>/.claude/status-line.sh" } }
+  "command": "/Users/<あなた>/.claude/status-line.sh",
+  "refreshInterval": 30 } }
 ```
+
+> 💡 **ヒント:** `refreshInterval: 30` は、セッションがアイドル状態でも 30 秒ごとに行を再実行します — リセットカウントダウン（`5h{1.1h}`）、時間トラッカー、リセット後のフリップをライブに保ちます。`30` は妥当なデフォルト値です。`60` はバッテリーに優しく、省略するとイベント時のみ更新されます（新しいアシスタントメッセージ、`/compact`、vim トグル）。
 
 Claude Code を再起動(または `/config` reload)。完了。
 
@@ -333,7 +340,7 @@ Claude Code を再起動(または `/config` reload)。完了。
 Claude Code があるのに、なぜターミナルを触る？この 1 つのプロンプトを Claude Code セッションに貼り付け — Claude が全ステップを処理し、各コマンド前に確認します。
 
 ```text
-amazopic の claude-code-statusline をインストールして。まず jq がインストールされているか確認（`which jq` を実行）— 入っていなければプラットフォームに合わせて入れて：`sudo apt-get install -y jq`（Ubuntu/Debian）、`sudo dnf install -y jq`（Fedora）、`brew install jq`（macOS）、`sudo apk add jq`（Alpine）。次に ~/.claude/settings.json を読んで — statusLine.command が既存ファイル（例：~/.claude/status-line.sh など）を指していたら、そのファイルに .bak を追加してバックアップ（既存 .bak は上書き）。~/.claude/status-line.sh が既にあれば同様にバックアップ。次に github.com/amazopic/claude-code-statusline をクローンし、statusline-bundle.sh を ~/.claude/status-line.sh にコピーして実行可能にし、commands/statusline.md も ~/.claude/commands/ にコピー。~/.claude/settings.json を更新して statusLine = { type: "command", command: "<~/.claude/status-line.sh の絶対パス>" } にして。最後に ~/.claude/status-line.sh use developer を実行して developer テーマをテストし、Claude Code を再起動するよう伝えて。
+amazopic の claude-code-statusline をインストールして。まず jq がインストールされているか確認（`which jq` を実行）— 入っていなければプラットフォームに合わせて入れて：`sudo apt-get install -y jq`（Ubuntu/Debian）、`sudo dnf install -y jq`（Fedora）、`brew install jq`（macOS）、`sudo apk add jq`（Alpine）。次に ~/.claude/settings.json を読んで — statusLine.command が既存ファイル（例：~/.claude/status-line.sh など）を指していたら、そのファイルに .bak を追加してバックアップ（既存 .bak は上書き）。~/.claude/status-line.sh が既にあれば同様にバックアップ。次に github.com/amazopic/claude-code-statusline をクローンし、statusline-bundle.sh を ~/.claude/status-line.sh にコピーして実行可能にし、commands/statusline.md も ~/.claude/commands/ にコピー。~/.claude/settings.json を更新して statusLine = { type: "command", command: "<~/.claude/status-line.sh の絶対パス>", refreshInterval: 30 } にして。最後に ~/.claude/status-line.sh use developer を実行して developer テーマをテストし、Claude Code を再起動するよう伝えて。
 ```
 
 > 許可プロンプトには `y`（yes）と答えるだけ。完了。
@@ -379,6 +386,10 @@ amazopic の claude-code-statusline をインストールして。まず jq が�
 ### `5h{1.1h}: 1%` とは何を意味しますか?
 
 5時間ウィンドウの 1% を使用済みで、`{1.1h}` はライブカウントダウン — ウィンドウはあと 1.1 時間でリセットされます(`7d{1.1d}`：週次ウィンドウはあと 1.1 日でリセット)。レンダリングごとに `rate_limits.*.resets_at` から読み取られます。お使いのビルドにリセットのタイムスタンプがない場合、メーターは通常の `5h: 1%` にフォールバックします。
+
+### ステータスラインは自動更新されますか? `{1.1h}` のカウントダウンが止まっているように見えます。
+
+Claude Code はイベント時に再描画します — 新しいアシスタントメッセージ、`/compact`、許可モードや vim モードの変更(300 ms でデバウンス) — そのためイベントの合間は行がフリーズします。`~/.claude/settings.json` の `statusLine` ブロックに `"refreshInterval": 30` を追加すると、固定された 30 秒タイマーでも再実行され、アイドル中もカウントダウンと時間トラッカーが進み続けます。1 回のレンダリングは約 0.1 秒なので 30 秒は無視できるコストです。バッテリー使用時や巨大リポジトリでは `60` を使ってください(レンダリングごとに git status が実行されます)。最小値は `1` です。
 
 ### インストール方法は?
 

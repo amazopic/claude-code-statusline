@@ -57,10 +57,13 @@ chmod +x ~/.claude/status-line.sh
 
 ```json
 { "statusLine": { "type": "command",
-  "command": "/Users/<you>/.claude/status-line.sh" } }
+  "command": "/Users/<you>/.claude/status-line.sh",
+  "refreshInterval": 30 } }
 ```
 
 </div>
+
+> 💡 `refreshInterval: 30` يعيد تشغيل السطر كل 30 ثانية حتى أثناء خمول الجلسة — وهذا يُبقي العدّ التنازلي لإعادة الضبط (`5h{1.1h}`) ومتتبع الوقت وتحوّلات ما بعد إعادة الضبط حيّة. القيمة 30 خيار افتراضي معقول؛ والقيمة 60 أوفر للبطارية؛ واحذف الحقل لتحديث السطر عند الأحداث فقط (رسالة مساعد جديدة، `/compact`، تبديل vim).
 
 أعد تشغيل Claude Code (أو شغّل `/config reload`). تم.
 
@@ -71,7 +74,7 @@ chmod +x ~/.claude/status-line.sh
 <div dir="ltr">
 
 ```text
-ثبّت لي claude-code-statusline من amazopic. أولاً تأكد من تثبيت jq (شغّل `which jq`) — إذا لم يكن موجودًا، ثبّته حسب المنصة: `sudo apt-get install -y jq` (Ubuntu/Debian)، `sudo dnf install -y jq` (Fedora)، `brew install jq` (macOS)، `sudo apk add jq` (Alpine). ثم اقرأ ~/.claude/settings.json — إذا كان به statusLine.command يشير إلى ملف موجود (مثل ~/.claude/status-line.sh أو مسار آخر)، فاحفظ نسخة احتياطية من ذلك الملف بإضافة .bak (الكتابة فوق أي .bak موجود). أيضًا إذا كان ~/.claude/status-line.sh موجودًا بالفعل، فاحفظه احتياطيًا بنفس الطريقة. ثم استنسخ github.com/amazopic/claude-code-statusline، وانسخ statusline-bundle.sh إلى ~/.claude/status-line.sh واجعله قابلاً للتنفيذ، وانسخ أيضًا commands/statusline.md إلى ~/.claude/commands/. حدّث ~/.claude/settings.json بحيث يكون statusLine = { type: "command", command: "<المسار المطلق إلى ~/.claude/status-line.sh>" }. أخيرًا شغّل ~/.claude/status-line.sh use developer لاختبار سمة developer وأخبرني بإعادة تشغيل Claude Code.
+ثبّت لي claude-code-statusline من amazopic. أولاً تأكد من تثبيت jq (شغّل `which jq`) — إذا لم يكن موجودًا، ثبّته حسب المنصة: `sudo apt-get install -y jq` (Ubuntu/Debian)، `sudo dnf install -y jq` (Fedora)، `brew install jq` (macOS)، `sudo apk add jq` (Alpine). ثم اقرأ ~/.claude/settings.json — إذا كان به statusLine.command يشير إلى ملف موجود (مثل ~/.claude/status-line.sh أو مسار آخر)، فاحفظ نسخة احتياطية من ذلك الملف بإضافة .bak (الكتابة فوق أي .bak موجود). أيضًا إذا كان ~/.claude/status-line.sh موجودًا بالفعل، فاحفظه احتياطيًا بنفس الطريقة. ثم استنسخ github.com/amazopic/claude-code-statusline، وانسخ statusline-bundle.sh إلى ~/.claude/status-line.sh واجعله قابلاً للتنفيذ، وانسخ أيضًا commands/statusline.md إلى ~/.claude/commands/. حدّث ~/.claude/settings.json بحيث يكون statusLine = { type: "command", command: "<المسار المطلق إلى ~/.claude/status-line.sh>", "refreshInterval": 30 }. أخيرًا شغّل ~/.claude/status-line.sh use developer لاختبار سمة developer وأخبرني بإعادة تشغيل Claude Code.
 ```
 
 </div>
@@ -202,6 +205,10 @@ chmod +x ~/.claude/status-line.sh
 ### ماذا يعني `5h{1.1h}: 1%`؟
 
 لقد استخدمت 1% من نافذة الـ5 ساعات، و`{1.1h}` عدّ تنازلي مباشر — تُعاد النافذة خلال 1.1 ساعة (`7d{1.1d}`: تُعاد النافذة الأسبوعية خلال 1.1 يوم). يُقرأ من `rate_limits.*.resets_at` في كل عرض. لا يوجد طابع زمني لإعادة الضبط في نسختك؟ يعود المؤشر بسلاسة إلى الصيغة البسيطة `5h: 1%`.
+
+### هل يُحدِّث شريط الحالة نفسه تلقائيًا؟ يبدو العدّ التنازلي `{1.1h}` مجمَّدًا.
+
+يعيد Claude Code الرسم عند الأحداث — رسالة مساعد جديدة، `/compact`، تغيير وضع الإذن أو وضع vim (بتأخير 300 مللي ثانية) — لذا يتجمّد السطر بين الأحداث. أضِف `"refreshInterval": 30` إلى كتلة statusLine في `~/.claude/settings.json` فيُعاد تشغيل السطر أيضًا على مؤقّت ثابت كل 30 ثانية، مما يُبقي العدّ التنازلي ومتتبع الوقت يعملان أثناء الخمول. يكلّف العرض الواحد نحو 0.1 ثانية، فتكون الـ30 ثانية مهملة؛ استخدم 60 على البطارية أو في المستودعات الضخمة (يعمل `git status` في كل عرض)؛ والحد الأدنى هو 1.
 
 ### كيف يُثبَّت؟
 

@@ -37,7 +37,15 @@ chmod +x ~/.claude/status-line.sh
 ~/.claude/status-line.sh use cyberpunk          # or: hacker, naruto, einstein, ferrari, …
 ```
 
-Then point Claude Code's `~/.claude/settings.json` `statusLine.command` at `~/.claude/status-line.sh` and restart.
+Then add to `~/.claude/settings.json`:
+
+```json
+{ "statusLine": { "type": "command",
+  "command": "/Users/<you>/.claude/status-line.sh",
+  "refreshInterval": 30 } }
+```
+
+`refreshInterval` is the official Claude Code setting (minimum 1 sec) — it keeps the reset countdown (`5h{1.1h}`), the time tracker, and post-reset flips live while the session is idle; 30 is the recommended default. Restart Claude Code afterwards.
 
 ## Update
 
@@ -48,4 +56,4 @@ Then point Claude Code's `~/.claude/settings.json` `statusLine.command` at `~/.c
 
 ## Topics
 
-claude-code, claude-code-statusline, claude-code-status-bar, claude-rate-limit-monitor, statusline, status-bar, terminal-prompt, terminal-dashboard, anthropic-claude, ai-coding, developer-tools, bash-script, terminal-customization, prompt-customization, claude-4, claude-opus-4, claude-sonnet-4, opus-4-7, sonnet-4-6, haiku-4-5, dotfiles, context-window-monitor, token-counter, 5h-limit-tracker, 7d-limit-tracker, 1m-context.
+claude-code, claude-code-statusline, claude-code-status-bar, claude-rate-limit-monitor, statusline, status-bar, terminal-prompt, terminal-dashboard, anthropic-claude, ai-coding, developer-tools, bash-script, terminal-customization, prompt-customization, claude-4, claude-opus-4, claude-sonnet-4, opus-4-7, sonnet-4-6, haiku-4-5, dotfiles, context-window-monitor, token-counter, 5h-limit-tracker, 7d-limit-tracker, 1m-context, refreshInterval.

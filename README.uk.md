@@ -86,7 +86,7 @@ Opus 4.7 (1M) │ 🚀 12% █▌░░░░░░░░ 121.4K/1000K │ 0.42$
 Навіщо самому, коли є Claude Code? Встав один промпт у сесію Claude Code — Claude зробить усе покроково і запитає перед кожною командою.
 
 ```text
-Встанови claude-code-statusline від amazopic. Спочатку перевір що встановлено jq (запусти `which jq`) — якщо немає, постав під поточну систему: `sudo apt-get install -y jq` (Ubuntu/Debian), `sudo dnf install -y jq` (Fedora), `brew install jq` (macOS), `sudo apk add jq` (Alpine). Потім прочитай ~/.claude/settings.json — якщо там statusLine.command вказує на існуючий файл (наприклад ~/.claude/status-line.sh або інший шлях), зроби резервну копію того файлу додавши .bak (перезапиши існуючий .bak). Також якщо ~/.claude/status-line.sh вже є — забекап його так само. Потім склонуй github.com/amazopic/claude-code-statusline, скопіюй statusline-bundle.sh у ~/.claude/status-line.sh і зроби виконуваним, також скопіюй commands/statusline.md у ~/.claude/commands/. Онови ~/.claude/settings.json щоб statusLine = { type: "command", command: "<абсолютний шлях до ~/.claude/status-line.sh>" }. Наприкінці запусти ~/.claude/status-line.sh use developer для перевірки теми developer і попроси перезапустити Claude Code.
+Встанови claude-code-statusline від amazopic. Спочатку перевір що встановлено jq (запусти `which jq`) — якщо немає, постав під поточну систему: `sudo apt-get install -y jq` (Ubuntu/Debian), `sudo dnf install -y jq` (Fedora), `brew install jq` (macOS), `sudo apk add jq` (Alpine). Потім прочитай ~/.claude/settings.json — якщо там statusLine.command вказує на існуючий файл (наприклад ~/.claude/status-line.sh або інший шлях), зроби резервну копію того файлу додавши .bak (перезапиши існуючий .bak). Також якщо ~/.claude/status-line.sh вже є — забекап його так само. Потім склонуй github.com/amazopic/claude-code-statusline, скопіюй statusline-bundle.sh у ~/.claude/status-line.sh і зроби виконуваним, також скопіюй commands/statusline.md у ~/.claude/commands/. Онови ~/.claude/settings.json щоб statusLine = { type: "command", command: "<абсолютний шлях до ~/.claude/status-line.sh>", refreshInterval: 30 }. Наприкінці запусти ~/.claude/status-line.sh use developer для перевірки теми developer і попроси перезапустити Claude Code.
 ```
 
 > Просто кажи `y` (так) на кожен запит дозволу. Готово.
@@ -106,10 +106,13 @@ chmod +x ~/.claude/status-line.sh
 {
   "statusLine": {
     "type": "command",
-    "command": "/Users/<ви>/.claude/status-line.sh"
+    "command": "/Users/<ви>/.claude/status-line.sh",
+    "refreshInterval": 30
   }
 }
 ```
+
+> 💡 `refreshInterval: 30` перезапускає рядок кожні 30 секунд навіть коли сесія простоює — підтримує живими зворотний відлік до скидання (5h{1.1h}), трекер часу та перемикання станів після скидання. 30 — розумне значення за замовчуванням; 60 — ощадливіше до батареї; пропустіть, щоб оновлювати лише за подіями (нове повідомлення асистента, /compact, перемикання vim).
 
 Перезапустіть Claude Code (або викличте `/config` для перезавантаження).
 
@@ -124,7 +127,8 @@ chmod +x ~/.claude/status-line.sh
 > 2. Скопіюй `statusline.sh` із репозиторію в `~/.claude/status-line.sh`
 >    і зроби `chmod +x`.
 > 3. Прочитай `~/.claude/settings.json`. Якщо ключа `statusLine` немає —
->    додай блок з абсолютним шляхом до скрипта. Якщо `statusLine` уже
+>    додай блок з абсолютним шляхом до скрипта та полем
+>    `"refreshInterval": 30`. Якщо `statusLine` уже
 >    вказує на інший файл — спочатку зроби резервну копію самого
 >    `settings.json` у `.bak.<timestamp>`.
 > 4. Зроби smoke-тест:
@@ -335,8 +339,11 @@ chmod +x ~/.claude/status-line.sh
 
 ```json
 { "statusLine": { "type": "command",
-  "command": "/Users/<ви>/.claude/status-line.sh" } }
+  "command": "/Users/<ви>/.claude/status-line.sh",
+  "refreshInterval": 30 } }
 ```
+
+> 💡 `refreshInterval: 30` перезапускає рядок кожні 30 секунд навіть коли сесія простоює — підтримує живими зворотний відлік до скидання (5h{1.1h}), трекер часу та перемикання станів після скидання. 30 — розумне значення за замовчуванням; 60 — ощадливіше до батареї; пропустіть, щоб оновлювати лише за подіями (нове повідомлення асистента, /compact, перемикання vim).
 
 Перезапустіть Claude Code (або `/config` reload). Готово.
 
@@ -381,6 +388,10 @@ Bash-заміна стандартного статусного рядка в [C
 ### Що означає `5h{1.1h}: 1%`?
 
 Ти використав 1% від 5-годинного вікна, а `{1.1h}` — це живий зворотний відлік: вікно скидається через 1.1 години (`7d{1.1d}`: тижневе вікно скидається через 1.1 дня). Читається з `rate_limits.*.resets_at` на кожному рендері. Немає мітки часу скидання у твоїй збірці? Лічильник повертається до простого вигляду `5h: 1%`.
+
+### Чи оновлюється статусний рядок сам по собі? Мій зворотний відлік `{1.1h}` виглядає замороженим.
+
+Claude Code перемальовує рядок за подіями — нове повідомлення асистента, `/compact`, зміна режиму дозволів чи режиму vim (з дебаунсом 300 мс) — тож між подіями рядок завмирає. Додай `"refreshInterval": 30` до блоку `statusLine` у `~/.claude/settings.json`, і він також перезапускатиметься за фіксованим 30-секундним таймером, підтримуючи живими зворотний відлік і трекер часу під час простою. Рендер коштує ~0.1 с, тож 30 с — мізерна вартість; використовуй 60 на батареї або у величезних репозиторіях (`git status` запускається на кожному рендері); мінімум — 1.
 
 ### Як встановити?
 

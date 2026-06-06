@@ -90,7 +90,7 @@ Claude Code의 기본 상태 표시줄은 단조롭습니다. 이 드롭인 교�
 Claude Code가 있는데 왜 터미널을 만져요? 이 한 프롬프트를 Claude Code 세션에 붙여넣으세요 — Claude가 모든 단계를 처리하고 각 명령 전에 물어봅니다.
 
 ```text
-amazopic의 claude-code-statusline을 설치해줘. 먼저 jq가 설치되어 있는지 확인해줘(`which jq` 실행) — 없으면 플랫폼에 맞게 설치: `sudo apt-get install -y jq`(Ubuntu/Debian), `sudo dnf install -y jq`(Fedora), `brew install jq`(macOS), `sudo apk add jq`(Alpine). 그다음 ~/.claude/settings.json을 읽고 — statusLine.command가 기존 파일(예: ~/.claude/status-line.sh 등)을 가리키면, 그 파일에 .bak를 붙여 백업해(기존 .bak는 덮어씀). ~/.claude/status-line.sh도 이미 있으면 같은 방식으로 백업. 그다음 github.com/amazopic/claude-code-statusline을 클론하고, statusline-bundle.sh를 ~/.claude/status-line.sh에 복사한 뒤 실행 가능하게 만들고, commands/statusline.md도 ~/.claude/commands/에 복사. ~/.claude/settings.json을 업데이트해서 statusLine = { type: "command", command: "<~/.claude/status-line.sh의 절대 경로>" }로 만들어줘. 마지막으로 ~/.claude/status-line.sh use developer를 실행해 developer 테마를 테스트하고 Claude Code 재시작하라고 알려줘.
+amazopic의 claude-code-statusline을 설치해줘. 먼저 jq가 설치되어 있는지 확인해줘(`which jq` 실행) — 없으면 플랫폼에 맞게 설치: `sudo apt-get install -y jq`(Ubuntu/Debian), `sudo dnf install -y jq`(Fedora), `brew install jq`(macOS), `sudo apk add jq`(Alpine). 그다음 ~/.claude/settings.json을 읽고 — statusLine.command가 기존 파일(예: ~/.claude/status-line.sh 등)을 가리키면, 그 파일에 .bak를 붙여 백업해(기존 .bak는 덮어씀). ~/.claude/status-line.sh도 이미 있으면 같은 방식으로 백업. 그다음 github.com/amazopic/claude-code-statusline을 클론하고, statusline-bundle.sh를 ~/.claude/status-line.sh에 복사한 뒤 실행 가능하게 만들고, commands/statusline.md도 ~/.claude/commands/에 복사. ~/.claude/settings.json을 업데이트해서 statusLine = { type: "command", command: "<~/.claude/status-line.sh의 절대 경로>", "refreshInterval": 30 }로 만들어줘. 마지막으로 ~/.claude/status-line.sh use developer를 실행해 developer 테마를 테스트하고 Claude Code 재시작하라고 알려줘.
 ```
 
 > 권한 프롬프트마다 `y`(yes)라고만 답하면 됩니다. 끝.
@@ -110,10 +110,13 @@ chmod +x ~/.claude/status-line.sh
 {
   "statusLine": {
     "type": "command",
-    "command": "/Users/<당신>/.claude/status-line.sh"
+    "command": "/Users/<당신>/.claude/status-line.sh",
+    "refreshInterval": 30
   }
 }
 ```
+
+> 💡 `refreshInterval: 30`은 세션이 유휴 상태일 때도 30초마다 줄을 다시 실행합니다 — 리셋 카운트다운(5h{1.1h}), 시간 추적기, 리셋 직후의 전환을 실시간으로 유지합니다. 30은 합리적인 기본값입니다; 60은 배터리 절약형입니다; 생략하면 이벤트 발생 시에만 갱신됩니다 (새 어시스턴트 메시지, /compact, vim 토글).
 
 Claude Code를 재시작 (또는 `/config` 리로드).
 
@@ -128,7 +131,8 @@ Claude Code가 안전하게 설치하길 원하시나요? 이 프롬프트를 �
 > 2. 저장소의 `statusline.sh`를 `~/.claude/status-line.sh`로 복사하고
 >    `chmod +x` 실행.
 > 3. `~/.claude/settings.json`을 읽어. `statusLine` 키가 없으면
->    스크립트의 절대 경로를 가리키는 `statusLine` 블록을 추가.
+>    스크립트의 절대 경로를 가리키고 `"refreshInterval": 30`을 포함하는
+>    `statusLine` 블록을 추가.
 >    `statusLine`이 이미 다른 곳을 가리키면, 먼저 `settings.json`을
 >    `.bak.<timestamp>`로 백업.
 > 4. 스모크 테스트:
@@ -338,8 +342,11 @@ chmod +x ~/.claude/status-line.sh
 
 ```json
 { "statusLine": { "type": "command",
-  "command": "/Users/<당신>/.claude/status-line.sh" } }
+  "command": "/Users/<당신>/.claude/status-line.sh",
+  "refreshInterval": 30 } }
 ```
+
+> 💡 `refreshInterval: 30`은 세션이 유휴 상태일 때도 30초마다 줄을 다시 실행합니다 — 리셋 카운트다운(5h{1.1h}), 시간 추적기, 리셋 직후의 전환을 실시간으로 유지합니다. 30은 합리적인 기본값입니다; 60은 배터리 절약형입니다; 생략하면 이벤트 발생 시에만 갱신됩니다 (새 어시스턴트 메시지, /compact, vim 토글).
 
 Claude Code를 재시작 (또는 `/config` reload). 완료.
 
@@ -383,6 +390,10 @@ Claude Code를 재시작 (또는 `/config` reload). 완료.
 ### `5h{1.1h}: 1%`는 무슨 뜻인가요?
 
 5시간 윈도우의 1%를 사용했다는 뜻이고, `{1.1h}`는 실시간 카운트다운입니다 — 윈도우가 1.1시간 후에 리셋됩니다 (`7d{1.1d}`: 주간 윈도우가 1.1일 후에 리셋됨). 매 렌더링마다 `rate_limits.*.resets_at`에서 읽어옵니다. 사용하는 빌드에 리셋 타임스탬프가 없나요? 그러면 표시기는 평범한 `5h: 1%`로 폴백합니다.
+
+### 상태 표시줄이 스스로 갱신되나요? `{1.1h}` 카운트다운이 멈춰 있는 것 같아요.
+
+Claude Code는 이벤트에 따라 다시 렌더링합니다 — 새 어시스턴트 메시지, `/compact`, 권한 모드 또는 vim 모드 변경 (300 ms 디바운스) — 그래서 이벤트 사이에는 줄이 멈춰 있습니다. `~/.claude/settings.json`의 statusLine 블록에 `"refreshInterval": 30`을 추가하면 고정된 30초 타이머에서도 다시 실행되어, 유휴 상태에서도 카운트다운과 시간 추적기가 계속 움직입니다. 렌더링 한 번에 약 0.1초가 들므로 30초는 무시할 만합니다; 배터리 사용 시나 거대한 저장소에서는 60을 쓰세요 (git status가 렌더링마다 실행됨); 최솟값은 1입니다.
 
 ### 어떻게 설치하나요?
 

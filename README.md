@@ -41,8 +41,11 @@ Then add to `~/.claude/settings.json`:
 
 ```json
 { "statusLine": { "type": "command",
-  "command": "/Users/<you>/.claude/status-line.sh" } }
+  "command": "/Users/<you>/.claude/status-line.sh",
+  "refreshInterval": 30 } }
 ```
+
+> 💡 `refreshInterval: 30` re-runs the line every 30 seconds even while the session is idle — keeps the reset countdown (`5h{1.1h}`), the time tracker and post-reset flips live. 30 is a sensible default; 60 is battery-frugal; omit to refresh on events only (new assistant message, `/compact`, vim toggle).
 
 Restart Claude Code (or run `/config` reload). Done.
 
@@ -51,7 +54,7 @@ Restart Claude Code (or run `/config` reload). Done.
 Why touch a terminal when you have Claude Code? Paste this single prompt into your Claude Code session — Claude handles every step and asks before each command.
 
 ```text
-Install claude-code-statusline by amazopic for me. First make sure jq is installed (run `which jq`) — if missing, install it for the platform: `sudo apt-get install -y jq` (Ubuntu/Debian), `sudo dnf install -y jq` (Fedora), `brew install jq` (macOS), `sudo apk add jq` (Alpine). Then read ~/.claude/settings.json — if it has a statusLine.command pointing to an existing file (e.g. ~/.claude/status-line.sh or another path), back up that file by appending .bak (overwrite any existing .bak). Also if ~/.claude/status-line.sh already exists, back it up the same way. Then clone github.com/amazopic/claude-code-statusline, copy statusline-bundle.sh to ~/.claude/status-line.sh and make it executable, also copy commands/statusline.md to ~/.claude/commands/. Update ~/.claude/settings.json so statusLine is { type: "command", command: "<absolute path to ~/.claude/status-line.sh>" }. Finally run ~/.claude/status-line.sh use developer to test the developer theme and tell me to restart Claude Code.
+Install claude-code-statusline by amazopic for me. First make sure jq is installed (run `which jq`) — if missing, install it for the platform: `sudo apt-get install -y jq` (Ubuntu/Debian), `sudo dnf install -y jq` (Fedora), `brew install jq` (macOS), `sudo apk add jq` (Alpine). Then read ~/.claude/settings.json — if it has a statusLine.command pointing to an existing file (e.g. ~/.claude/status-line.sh or another path), back up that file by appending .bak (overwrite any existing .bak). Also if ~/.claude/status-line.sh already exists, back it up the same way. Then clone github.com/amazopic/claude-code-statusline, copy statusline-bundle.sh to ~/.claude/status-line.sh and make it executable, also copy commands/statusline.md to ~/.claude/commands/. Update ~/.claude/settings.json so statusLine is { type: "command", command: "<absolute path to ~/.claude/status-line.sh>", "refreshInterval": 30 }. Finally run ~/.claude/status-line.sh use developer to test the developer theme and tell me to restart Claude Code.
 ```
 
 > Just say `y` (yes) at every permission prompt. Done.
@@ -316,10 +319,13 @@ Then add to `~/.claude/settings.json`:
 {
   "statusLine": {
     "type": "command",
-    "command": "/Users/<you>/.claude/status-line.sh"
+    "command": "/Users/<you>/.claude/status-line.sh",
+    "refreshInterval": 30
   }
 }
 ```
+
+> 💡 `refreshInterval: 30` re-runs the line every 30 seconds even while the session is idle — keeps the reset countdown (`5h{1.1h}`), the time tracker and post-reset flips live. 30 is a sensible default; 60 is battery-frugal; omit to refresh on events only (new assistant message, `/compact`, vim toggle).
 
 Restart Claude Code (or run `/config` reload).
 
@@ -333,9 +339,9 @@ Want Claude Code to install it safely for you? Paste this prompt:
 >    suffix if a backup with that name already exists).
 > 2. Copy `statusline.sh` from this repo to `~/.claude/status-line.sh` and `chmod +x`.
 > 3. Read `~/.claude/settings.json`. If it has no `statusLine` key, add a
->    `statusLine` block pointing to the absolute path of the script. If
->    `statusLine` already exists and points elsewhere, back up
->    `settings.json` to `.bak.<timestamp>` first.
+>    `statusLine` block pointing to the absolute path of the script and
+>    including `"refreshInterval": 30`. If `statusLine` already exists and
+>    points elsewhere, back up `settings.json` to `.bak.<timestamp>` first.
 > 4. Smoke-test the script:
 >    `echo '{\"model\":{\"display_name\":\"Test\"},\"transcript_path\":\"\"}' | bash ~/.claude/status-line.sh`
 > 5. Tell me to restart Claude Code and report the backups created."
@@ -414,6 +420,10 @@ A bash-based replacement for the default status line in [Claude Code](https://cl
 ### What does `5h{1.1h}: 1%` mean?
 
 You've used 1% of the 5-hour window, and `{1.1h}` is a live countdown — the window resets in 1.1 hours (`7d{1.1d}`: the weekly window resets in 1.1 days). Read from `rate_limits.*.resets_at` on every render. No reset timestamp in your build? The meter falls back to plain `5h: 1%`.
+
+### Does the status line update by itself? My `{1.1h}` countdown looks frozen.
+
+Claude Code re-renders on events — new assistant message, `/compact`, permission-mode or vim-mode change (debounced at 300 ms) — so between events the line freezes. Add `"refreshInterval": 30` to the statusLine block in `~/.claude/settings.json` and it also re-runs on a fixed 30-second timer, keeping the countdown and time tracker ticking while idle. A render costs ~0.1 s, so 30 s is negligible; use 60 on battery or in huge repos (git status runs each render); minimum is 1.
 
 ### How is it installed?
 

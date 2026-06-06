@@ -41,8 +41,11 @@ chmod +x ~/.claude/status-line.sh
 
 ```json
 { "statusLine": { "type": "command",
-  "command": "/Users/<you>/.claude/status-line.sh" } }
+  "command": "/Users/<you>/.claude/status-line.sh",
+  "refreshInterval": 30 } }
 ```
+
+> 💡 **`refreshInterval`** ：`refreshInterval: 30` 會每隔 30 秒重跑一次狀態列，即使工作階段處於閒置狀態也一樣 —— 這能讓重置倒數（`5h{1.1h}`）、時間追蹤器以及重置後的翻轉保持即時更新。30 是個合理的預設值；60 較省電；省略則只在事件發生時更新（新的助理訊息、`/compact`、vim 切換）。
 
 重新啟動 Claude Code（或執行 `/config` 重新載入）。完成。
 
@@ -51,7 +54,7 @@ chmod +x ~/.claude/status-line.sh
 都有 Claude Code 了，何必動手碰終端機？把這一段提示貼進你的 Claude Code 工作階段 —— Claude 會處理每一個步驟，而且每條指令前都會先問過你。
 
 ```text
-Install claude-code-statusline by amazopic for me. First make sure jq is installed (run `which jq`) — if missing, install it for the platform: `sudo apt-get install -y jq` (Ubuntu/Debian), `sudo dnf install -y jq` (Fedora), `brew install jq` (macOS), `sudo apk add jq` (Alpine). Then read ~/.claude/settings.json — if it has a statusLine.command pointing to an existing file (e.g. ~/.claude/status-line.sh or another path), back up that file by appending .bak (overwrite any existing .bak). Also if ~/.claude/status-line.sh already exists, back it up the same way. Then clone github.com/amazopic/claude-code-statusline, copy statusline-bundle.sh to ~/.claude/status-line.sh and make it executable, also copy commands/statusline.md to ~/.claude/commands/. Update ~/.claude/settings.json so statusLine is { type: "command", command: "<absolute path to ~/.claude/status-line.sh>" }. Finally run ~/.claude/status-line.sh use developer to test the developer theme and tell me to restart Claude Code.
+Install claude-code-statusline by amazopic for me. First make sure jq is installed (run `which jq`) — if missing, install it for the platform: `sudo apt-get install -y jq` (Ubuntu/Debian), `sudo dnf install -y jq` (Fedora), `brew install jq` (macOS), `sudo apk add jq` (Alpine). Then read ~/.claude/settings.json — if it has a statusLine.command pointing to an existing file (e.g. ~/.claude/status-line.sh or another path), back up that file by appending .bak (overwrite any existing .bak). Also if ~/.claude/status-line.sh already exists, back it up the same way. Then clone github.com/amazopic/claude-code-statusline, copy statusline-bundle.sh to ~/.claude/status-line.sh and make it executable, also copy commands/statusline.md to ~/.claude/commands/. Update ~/.claude/settings.json so statusLine is { type: "command", command: "<absolute path to ~/.claude/status-line.sh>", refreshInterval: 30 }. Finally run ~/.claude/status-line.sh use developer to test the developer theme and tell me to restart Claude Code.
 ```
 
 > 在每個權限提示都回答 `y`（yes）就好。完成。
@@ -313,10 +316,13 @@ chmod +x ~/.claude/status-line.sh
 {
   "statusLine": {
     "type": "command",
-    "command": "/Users/<you>/.claude/status-line.sh"
+    "command": "/Users/<you>/.claude/status-line.sh",
+    "refreshInterval": 30
   }
 }
 ```
+
+> 💡 **`refreshInterval`** ：`refreshInterval: 30` 會每隔 30 秒重跑一次狀態列，即使工作階段處於閒置狀態也一樣 —— 這能讓重置倒數（`5h{1.1h}`）、時間追蹤器以及重置後的翻轉保持即時更新。30 是個合理的預設值；60 較省電；省略則只在事件發生時更新（新的助理訊息、`/compact`、vim 切換）。
 
 重新啟動 Claude Code（或執行 `/config` 重新載入）。
 
@@ -330,7 +336,7 @@ chmod +x ~/.claude/status-line.sh
 >    已存在，就挑一個空的 `-N` 後綴）。
 > 2. 把這個 repo 裡的 `statusline.sh` 複製到 `~/.claude/status-line.sh` 並 `chmod +x`。
 > 3. 讀取 `~/.claude/settings.json`。如果它沒有 `statusLine` 鍵，就加上一個
->    指向腳本絕對路徑的 `statusLine` 區塊。如果
+>    指向腳本絕對路徑的 `statusLine` 區塊，並在其中加入 `"refreshInterval": 30`。如果
 >    `statusLine` 已存在且指向別處，先把
 >    `settings.json` 備份成 `.bak.<timestamp>`。
 > 4. 冒煙測試這支腳本：
@@ -411,6 +417,10 @@ chmod +x ~/.claude/status-line.sh
 ### `5h{1.1h}: 1%` 是什麼意思？
 
 你已經用掉了 5 小時窗口的 1%，而 `{1.1h}` 是一個即時倒數 —— 該窗口將在 1.1 小時後重置（`7d{1.1d}`：每週窗口將在 1.1 天後重置）。每次重繪時都會從 `rate_limits.*.resets_at` 讀取。你的版本沒有重置時間戳記？計量器會回退成單純的 `5h: 1%`。
+
+### 狀態列會自己更新嗎？我的 `{1.1h}` 倒數看起來凍住了。
+
+Claude Code 會在事件發生時重新算繪 —— 新的助理訊息、`/compact`、權限模式或 vim 模式切換（debounce 在 300 ms）—— 所以在事件之間狀態列會凍住。把 `"refreshInterval": 30` 加到 `~/.claude/settings.json` 的 `statusLine` 區塊，它就會額外按照固定的 30 秒計時器重跑，讓倒數與時間追蹤器在閒置時也持續跳動。一次算繪約耗 0.1 秒，所以 30 秒可以忽略不計；在電池供電或超大型 repo 裡用 60（每次算繪都會跑 git status）；最小值為 1。
 
 ### 它怎麼安裝？
 

@@ -47,6 +47,9 @@ the current configuration.
    Claude Code** (or run `/config` reload) to apply the change.
 3. If the command failed (e.g., unknown theme), suggest running
    `/statusline list` to see available themes.
+4. For a live countdown between turns, tip the user to add
+   `"refreshInterval": 30` to the `statusLine` block in
+   `~/.claude/settings.json` so the line re-runs on a 30-second timer.
 
 ## Available themes (cheat sheet)
 

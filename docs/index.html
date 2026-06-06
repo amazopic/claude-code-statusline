@@ -89,9 +89,9 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@300;400;500;600&display=swap" />
 
     <!-- Styles -->
-    <link rel="stylesheet" href="css/tokens.css?v=21" />
-    <link rel="stylesheet" href="css/base.css?v=21" />
-    <link rel="stylesheet" href="css/sections.css?v=21" />
+    <link rel="stylesheet" href="css/tokens.css?v=22" />
+    <link rel="stylesheet" href="css/base.css?v=22" />
+    <link rel="stylesheet" href="css/sections.css?v=22" />
 
     <!-- Google Analytics (GA4) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-GN8ZDLTY1D"></script>
@@ -149,6 +149,7 @@
       "mainEntity": [
         { "@type": "Question", "name": "Why is the 5h / 7d limit display the headline feature?", "acceptedAnswer": { "@type": "Answer", "text": "Because it's the #1 thing users complain about after buying a Claude plan: the default Claude Code status line gives you zero visibility into your 5-hour and 7-day rate limits. You only find out you hit them when Claude refuses to respond mid-task. This script reads limits data from the live JSON, renders both meters in real time, and triggers a visual alert when you cross 50% — so you can plan your session before you crash into the wall." }},
         { "@type": "Question", "name": "What does 5h{1.1h}: 1% mean?", "acceptedAnswer": { "@type": "Answer", "text": "You've used 1% of the 5-hour window, and {1.1h} is a live countdown — the window resets in 1.1 hours (7d{1.1d}: the weekly window resets in 1.1 days). Read from rate_limits.*.resets_at on every render. No reset timestamp in your build? The meter falls back to plain 5h: 1%." }},
+        { "@type": "Question", "name": "Does the status line update by itself? My {1.1h} countdown looks frozen.", "acceptedAnswer": { "@type": "Answer", "text": "Claude Code re-renders on events — new assistant message, /compact, permission-mode or vim-mode change (debounced at 300 ms) — so between events the line freezes. Add \"refreshInterval\": 30 to the statusLine block in ~/.claude/settings.json and it also re-runs on a fixed 30-second timer, keeping the countdown and time tracker ticking while idle. A render costs ~0.1 s, so 30 s is negligible; use 60 on battery or in huge repos (git status runs each render); minimum is 1." }},
         { "@type": "Question", "name": "What is Claude Code Status Line?", "acceptedAnswer": { "@type": "Answer", "text": "A bash-based replacement for the default status line in Claude Code (Anthropic's CLI). Turns the bottom-of-screen line into a real dashboard: model, context %, progress bar, session cost, 5h/7d rate limits, git status, time-on-task, and more." }},
         { "@type": "Question", "name": "How do I update to the latest version?", "acceptedAnswer": { "@type": "Answer", "text": "Run ~/.claude/status-line.sh update. The command fetches the latest bundle from GitHub, creates a timestamped backup at ~/.claude/status-line.sh.bak.<YYYYMMDD-HHMMSS>, and preserves your theme config in ~/.claude/statusline.conf. Restart Claude Code afterwards. Check what version you have with ~/.claude/status-line.sh version." }},
         { "@type": "Question", "name": "Does it support the 1M context window models?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. The script detects [1m] in the model id and 1M in the display name and adjusts the bar's denominator to 1,000,000 tokens." }},
@@ -198,7 +199,7 @@
         { "@type": "HowToStep", "name": "Clone", "text": "git clone https://github.com/amazopic/claude-code-statusline.git" },
         { "@type": "HowToStep", "name": "Copy script", "text": "cp claude-code-statusline/statusline-bundle.sh ~/.claude/status-line.sh && chmod +x ~/.claude/status-line.sh" },
         { "@type": "HowToStep", "name": "Pick a theme", "text": "~/.claude/status-line.sh use cyberpunk" },
-        { "@type": "HowToStep", "name": "Register in settings.json", "text": "Add { \"statusLine\": { \"type\": \"command\", \"command\": \"/Users/<you>/.claude/status-line.sh\" } } to ~/.claude/settings.json" },
+        { "@type": "HowToStep", "name": "Register in settings.json", "text": "Add { \"statusLine\": { \"type\": \"command\", \"command\": \"/Users/<you>/.claude/status-line.sh\", \"refreshInterval\": 30 } } to ~/.claude/settings.json" },
         { "@type": "HowToStep", "name": "Restart", "text": "Restart Claude Code or run /config reload." }
       ]
     }
@@ -345,7 +346,7 @@
               </span>
               <button class="copy-btn copy-btn--vibe" data-copy="#vibe-prompt" data-i18n="ui.copy">Copy</button>
             </div>
-            <pre class="vibe-prompt mono" id="vibe-prompt" data-i18n="vibe.prompt">Install claude-code-statusline by amazopic for me. Clone the repo at github.com/amazopic/claude-code-statusline, back up my current ~/.claude/status-line.sh if any exists, copy statusline-bundle.sh to ~/.claude/status-line.sh and make it executable, also copy commands/statusline.md to ~/.claude/commands/. Then show me what to add to ~/.claude/settings.json so Claude Code wires up the new statusLine. Finally run ~/.claude/status-line.sh use developer to test the developer theme and tell me to restart Claude Code.</pre>
+            <pre class="vibe-prompt mono" id="vibe-prompt" data-i18n="vibe.prompt">Install claude-code-statusline by amazopic for me. Clone the repo at github.com/amazopic/claude-code-statusline, back up my current ~/.claude/status-line.sh if any exists, copy statusline-bundle.sh to ~/.claude/status-line.sh and make it executable, also copy commands/statusline.md to ~/.claude/commands/. Then show me what to add to ~/.claude/settings.json so Claude Code wires up the new statusLine — include { "statusLine": { "type": "command", "command": "/Users/<you>/.claude/status-line.sh", "refreshInterval": 30 } } so the line keeps re-running every 30 seconds while idle. Finally run ~/.claude/status-line.sh use developer to test the developer theme and tell me to restart Claude Code.</pre>
             <p class="vibe-panel__note" data-i18n-html="vibe.note">↳ Just say <code class="mono">y</code> (yes) at every permission prompt — Claude will run each command one by one.</p>
           </div>
         </div>
@@ -626,7 +627,7 @@
                   </div>
                   <div class="install__claude-line">
                     <span class="who you">you</span>
-                    <span class="msg" id="claude-prompt-1" data-i18n="install.claude.prompt1">Run: git clone https://github.com/amazopic/claude-code-statusline.git claude-code-statusline / cp claude-code-statusline/statusline-bundle.sh ~/.claude/status-line.sh — back up the existing ~/.claude/status-line.sh if there is one.</span>
+                    <span class="msg" id="claude-prompt-1" data-i18n="install.claude.prompt1">Run: git clone https://github.com/amazopic/claude-code-statusline.git claude-code-statusline / cp claude-code-statusline/statusline-bundle.sh ~/.claude/status-line.sh — back up the existing ~/.claude/status-line.sh if there is one. Then update ~/.claude/settings.json so statusLine is { "type": "command", "command": "/Users/&lt;you&gt;/.claude/status-line.sh", "refreshInterval": 30 }.</span>
                   </div>
                 </div>
 
@@ -656,9 +657,11 @@ chmod +x ~/.claude/status-line.sh
 
 <span class="cmt"># 3 — register in ~/.claude/settings.json</span>
 <span class="cmt"># { "statusLine": { "type": "command",</span>
-<span class="cmt">#   "command": "/Users/&lt;you&gt;/.claude/status-line.sh" } }</span>
+<span class="cmt">#   "command": "/Users/&lt;you&gt;/.claude/status-line.sh",</span>
+<span class="cmt">#   "refreshInterval": 30 } }</span>
 
 <span class="cmt"># 4 — restart Claude Code (or /config reload)</span></pre>
+                <p class="install__refresh-tip" data-i18n="install.refreshTip">refreshInterval: 30 re-runs the line every 30 seconds even while the session is idle — keeps the reset countdown (5h{1.1h}), the time tracker and post-reset flips live. 30 is a sensible default; 60 is battery-frugal; omit to refresh on events only (new assistant message, /compact, vim toggle).</p>
               </div>
 
               <div class="install__code-wrap">
@@ -758,6 +761,6 @@ cp claude-code-statusline/commands/statusline.md \
       <p style="padding:2rem;text-align:center;">This page is enhanced with JavaScript. The full project is documented in the <a href="https://github.com/amazopic/claude-code-statusline">GitHub repository</a>.</p>
     </noscript>
 
-    <script type="module" src="js/main.js?v=21"></script>
+    <script type="module" src="js/main.js?v=22"></script>
   </body>
 </html>

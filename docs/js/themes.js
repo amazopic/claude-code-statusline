@@ -143,6 +143,7 @@ export const blocks = [
 export const faq = [
   { qKey: 'faq.q.limits',    aKey: 'faq.a.limits' },
   { qKey: 'faq.q.reset',     aKey: 'faq.a.reset' },
+  { qKey: 'faq.q.refresh',   aKey: 'faq.a.refresh' },
   { qKey: 'faq.q.what',      aKey: 'faq.a.what' },
   { qKey: 'faq.q.install',   aKey: 'faq.a.install' },
   { qKey: 'faq.q.update',    aKey: 'faq.a.update' },

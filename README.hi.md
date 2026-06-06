@@ -41,8 +41,11 @@ chmod +x ~/.claude/status-line.sh
 
 ```json
 { "statusLine": { "type": "command",
-  "command": "/Users/<you>/.claude/status-line.sh" } }
+  "command": "/Users/<you>/.claude/status-line.sh",
+  "refreshInterval": 30 } }
 ```
+
+> 💡 `refreshInterval: 30` लाइन को हर 30 सेकंड में फिर से चलाता है, तब भी जब सेशन निष्क्रिय हो — इससे reset countdown (5h{1.1h}), time tracker और post-reset flips लाइव बने रहते हैं। 30 एक उचित डिफ़ॉल्ट है; 60 बैटरी के लिए किफ़ायती है; इसे छोड़ दें तो लाइन केवल इवेंट्स पर रिफ़्रेश होगी (नया assistant संदेश, /compact, vim toggle)।
 
 Claude Code को रीस्टार्ट करें (या `/config` reload चलाएँ)। हो गया।
 
@@ -51,7 +54,7 @@ Claude Code को रीस्टार्ट करें (या `/config` re
 जब आपके पास Claude Code है तो terminal को छूने की क्या ज़रूरत? इस एक प्रॉम्प्ट को अपने Claude Code सेशन में पेस्ट करें — Claude हर कदम संभालता है और हर कमांड से पहले पूछता है।
 
 ```text
-मेरे लिए amazopic का claude-code-statusline इंस्टॉल करें। पहले सुनिश्चित करें कि jq इंस्टॉल है (`which jq` चलाएँ) — अगर नहीं है, तो प्लेटफ़ॉर्म के अनुसार इंस्टॉल करें: `sudo apt-get install -y jq` (Ubuntu/Debian), `sudo dnf install -y jq` (Fedora), `brew install jq` (macOS), `sudo apk add jq` (Alpine)। फिर ~/.claude/settings.json पढ़ें — अगर इसमें कोई मौजूदा फ़ाइल की ओर इशारा करने वाला statusLine.command है (जैसे ~/.claude/status-line.sh या कोई और पथ), तो उस फ़ाइल का .bak जोड़कर बैकअप बनाएँ (किसी भी मौजूदा .bak को ओवरराइट करें)। साथ ही अगर ~/.claude/status-line.sh पहले से मौजूद है, तो उसका भी इसी तरह बैकअप बनाएँ। फिर github.com/amazopic/claude-code-statusline को clone करें, statusline-bundle.sh को ~/.claude/status-line.sh में कॉपी करें और उसे executable बनाएँ, साथ ही commands/statusline.md को ~/.claude/commands/ में कॉपी करें। ~/.claude/settings.json को अपडेट करें ताकि statusLine बने { type: "command", command: "<~/.claude/status-line.sh का पूर्ण पथ>" }। अंत में developer थीम को टेस्ट करने के लिए ~/.claude/status-line.sh use developer चलाएँ और मुझे Claude Code रीस्टार्ट करने के लिए कहें।
+मेरे लिए amazopic का claude-code-statusline इंस्टॉल करें। पहले सुनिश्चित करें कि jq इंस्टॉल है (`which jq` चलाएँ) — अगर नहीं है, तो प्लेटफ़ॉर्म के अनुसार इंस्टॉल करें: `sudo apt-get install -y jq` (Ubuntu/Debian), `sudo dnf install -y jq` (Fedora), `brew install jq` (macOS), `sudo apk add jq` (Alpine)। फिर ~/.claude/settings.json पढ़ें — अगर इसमें कोई मौजूदा फ़ाइल की ओर इशारा करने वाला statusLine.command है (जैसे ~/.claude/status-line.sh या कोई और पथ), तो उस फ़ाइल का .bak जोड़कर बैकअप बनाएँ (किसी भी मौजूदा .bak को ओवरराइट करें)। साथ ही अगर ~/.claude/status-line.sh पहले से मौजूद है, तो उसका भी इसी तरह बैकअप बनाएँ। फिर github.com/amazopic/claude-code-statusline को clone करें, statusline-bundle.sh को ~/.claude/status-line.sh में कॉपी करें और उसे executable बनाएँ, साथ ही commands/statusline.md को ~/.claude/commands/ में कॉपी करें। ~/.claude/settings.json को अपडेट करें ताकि statusLine बने { type: "command", command: "<~/.claude/status-line.sh का पूर्ण पथ>", "refreshInterval": 30 }। अंत में developer थीम को टेस्ट करने के लिए ~/.claude/status-line.sh use developer चलाएँ और मुझे Claude Code रीस्टार्ट करने के लिए कहें।
 ```
 
 > हर permission prompt पर बस `y` (yes) कहें। हो गया।
@@ -316,10 +319,13 @@ chmod +x ~/.claude/status-line.sh
 {
   "statusLine": {
     "type": "command",
-    "command": "/Users/<you>/.claude/status-line.sh"
+    "command": "/Users/<you>/.claude/status-line.sh",
+    "refreshInterval": 30
   }
 }
 ```
+
+> 💡 `refreshInterval: 30` लाइन को हर 30 सेकंड में फिर से चलाता है, तब भी जब सेशन निष्क्रिय हो — इससे reset countdown (5h{1.1h}), time tracker और post-reset flips लाइव बने रहते हैं। 30 एक उचित डिफ़ॉल्ट है; 60 बैटरी के लिए किफ़ायती है; इसे छोड़ दें तो लाइन केवल इवेंट्स पर रिफ़्रेश होगी (नया assistant संदेश, /compact, vim toggle)।
 
 Claude Code को रीस्टार्ट करें (या `/config` reload चलाएँ)।
 
@@ -333,7 +339,8 @@ Claude Code को रीस्टार्ट करें (या `/config` re
 >    का बैकअप पहले से मौजूद है तो एक मुक्त `-N` सफ़िक्स चुनें)।
 > 2. इस repo से `statusline.sh` को `~/.claude/status-line.sh` में कॉपी करें और `chmod +x` करें।
 > 3. `~/.claude/settings.json` पढ़ें। अगर इसमें कोई `statusLine` key नहीं है, तो
->    स्क्रिप्ट के पूर्ण पथ की ओर इशारा करने वाला एक `statusLine` ब्लॉक जोड़ें। अगर
+>    स्क्रिप्ट के पूर्ण पथ की ओर इशारा करने वाला एक `statusLine` ब्लॉक जोड़ें जिसमें
+>    `"refreshInterval": 30` भी शामिल हो। अगर
 >    `statusLine` पहले से मौजूद है और कहीं और इशारा करता है, तो पहले
 >    `settings.json` का बैकअप `.bak.<timestamp>` में बनाएँ।
 > 4. स्क्रिप्ट का स्मोक-टेस्ट करें:
@@ -414,6 +421,10 @@ GitHub से नवीनतम बंडल लाता है, एक timest
 ### `5h{1.1h}: 1%` का क्या मतलब है?
 
 आपने 5-घंटे की window का 1% इस्तेमाल कर लिया है, और `{1.1h}` एक लाइव countdown है — window 1.1 घंटे में रीसेट होती है (`7d{1.1d}`: साप्ताहिक window 1.1 दिन में रीसेट होती है)। हर render पर `rate_limits.*.resets_at` से पढ़ा जाता है। आपके build में कोई reset timestamp नहीं है? मीटर सादे `5h: 1%` पर वापस आ जाता है।
+
+### क्या status line खुद-ब-खुद अपडेट होती है? मेरा {1.1h} countdown जमा हुआ दिखता है।
+
+Claude Code इवेंट्स पर फिर से रेंडर करता है — नया assistant संदेश, /compact, permission-mode या vim-mode बदलाव (300 ms पर debounced) — इसलिए इवेंट्स के बीच लाइन जम जाती है। `~/.claude/settings.json` के statusLine ब्लॉक में `"refreshInterval": 30` जोड़ें, और तब यह एक निश्चित 30-सेकंड टाइमर पर भी फिर से चलता है, जिससे निष्क्रिय रहते हुए भी countdown और time tracker टिकते रहते हैं। एक render की लागत ~0.1 s है, इसलिए 30 s नगण्य है; बैटरी पर या विशाल repos में 60 इस्तेमाल करें (हर render पर git status चलता है); न्यूनतम 1 है।
 
 ### इसे कैसे इंस्टॉल किया जाता है?
 

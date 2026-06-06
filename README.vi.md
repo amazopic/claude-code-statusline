@@ -41,8 +41,11 @@ Sau đó thêm vào `~/.claude/settings.json`:
 
 ```json
 { "statusLine": { "type": "command",
-  "command": "/Users/<you>/.claude/status-line.sh" } }
+  "command": "/Users/<you>/.claude/status-line.sh",
+  "refreshInterval": 30 } }
 ```
+
+> 💡 `refreshInterval: 30` chạy lại dòng trạng thái mỗi 30 giây ngay cả khi phiên đang nhàn rỗi — giữ cho đếm ngược reset (5h{1.1h}), bộ theo dõi thời gian và các bước lật sau reset luôn cập nhật trực tiếp. 30 là giá trị mặc định hợp lý; 60 tiết kiệm pin; bỏ qua để chỉ làm mới theo sự kiện (tin nhắn mới của trợ lý, /compact, bật/tắt vim).
 
 Khởi động lại Claude Code (hoặc chạy `/config` để tải lại). Xong.
 
@@ -51,7 +54,7 @@ Khởi động lại Claude Code (hoặc chạy `/config` để tải lại). Xo
 Tại sao phải đụng vào terminal khi bạn đã có Claude Code? Dán đoạn prompt duy nhất này vào phiên Claude Code của bạn — Claude sẽ xử lý mọi bước và hỏi trước mỗi lệnh.
 
 ```text
-Install claude-code-statusline by amazopic for me. First make sure jq is installed (run `which jq`) — if missing, install it for the platform: `sudo apt-get install -y jq` (Ubuntu/Debian), `sudo dnf install -y jq` (Fedora), `brew install jq` (macOS), `sudo apk add jq` (Alpine). Then read ~/.claude/settings.json — if it has a statusLine.command pointing to an existing file (e.g. ~/.claude/status-line.sh or another path), back up that file by appending .bak (overwrite any existing .bak). Also if ~/.claude/status-line.sh already exists, back it up the same way. Then clone github.com/amazopic/claude-code-statusline, copy statusline-bundle.sh to ~/.claude/status-line.sh and make it executable, also copy commands/statusline.md to ~/.claude/commands/. Update ~/.claude/settings.json so statusLine is { type: "command", command: "<absolute path to ~/.claude/status-line.sh>" }. Finally run ~/.claude/status-line.sh use developer to test the developer theme and tell me to restart Claude Code.
+Install claude-code-statusline by amazopic for me. First make sure jq is installed (run `which jq`) — if missing, install it for the platform: `sudo apt-get install -y jq` (Ubuntu/Debian), `sudo dnf install -y jq` (Fedora), `brew install jq` (macOS), `sudo apk add jq` (Alpine). Then read ~/.claude/settings.json — if it has a statusLine.command pointing to an existing file (e.g. ~/.claude/status-line.sh or another path), back up that file by appending .bak (overwrite any existing .bak). Also if ~/.claude/status-line.sh already exists, back it up the same way. Then clone github.com/amazopic/claude-code-statusline, copy statusline-bundle.sh to ~/.claude/status-line.sh and make it executable, also copy commands/statusline.md to ~/.claude/commands/. Update ~/.claude/settings.json so statusLine is { type: "command", command: "<absolute path to ~/.claude/status-line.sh>", "refreshInterval": 30 }. Finally run ~/.claude/status-line.sh use developer to test the developer theme and tell me to restart Claude Code.
 ```
 
 > Chỉ cần nói `y` (yes) ở mỗi lần hỏi quyền. Xong.
@@ -316,10 +319,13 @@ Sau đó thêm vào `~/.claude/settings.json`:
 {
   "statusLine": {
     "type": "command",
-    "command": "/Users/<you>/.claude/status-line.sh"
+    "command": "/Users/<you>/.claude/status-line.sh",
+    "refreshInterval": 30
   }
 }
 ```
+
+> 💡 `refreshInterval: 30` chạy lại dòng trạng thái mỗi 30 giây ngay cả khi phiên đang nhàn rỗi — giữ cho đếm ngược reset (5h{1.1h}), bộ theo dõi thời gian và các bước lật sau reset luôn cập nhật trực tiếp. 30 là giá trị mặc định hợp lý; 60 tiết kiệm pin; bỏ qua để chỉ làm mới theo sự kiện (tin nhắn mới của trợ lý, /compact, bật/tắt vim).
 
 Khởi động lại Claude Code (hoặc chạy `/config` để tải lại).
 
@@ -333,7 +339,8 @@ Muốn Claude Code cài đặt nó một cách an toàn cho bạn? Hãy dán pro
 >    còn trống nếu đã có bản sao lưu cùng tên).
 > 2. Sao chép `statusline.sh` từ repo này sang `~/.claude/status-line.sh` rồi `chmod +x`.
 > 3. Đọc `~/.claude/settings.json`. Nếu chưa có khóa `statusLine`, hãy thêm một
->    khối `statusLine` trỏ đến đường dẫn tuyệt đối của script. Nếu
+>    khối `statusLine` trỏ đến đường dẫn tuyệt đối của script và kèm thêm trường
+>    `"refreshInterval": 30`. Nếu
 >    `statusLine` đã tồn tại và trỏ đến nơi khác, hãy sao lưu
 >    `settings.json` thành `.bak.<timestamp>` trước.
 > 4. Kiểm tra nhanh script:
@@ -414,6 +421,10 @@ Một bản thay thế dựa trên bash cho thanh trạng thái mặc định tr
 ### `5h{1.1h}: 1%` nghĩa là gì?
 
 Bạn đã dùng 1% của cửa sổ 5 giờ, và `{1.1h}` là bộ đếm ngược trực tiếp — cửa sổ sẽ reset sau 1,1 giờ (`7d{1.1d}`: cửa sổ hàng tuần reset sau 1,1 ngày). Được đọc từ `rate_limits.*.resets_at` ở mỗi lần render. Bản dựng của bạn không có dấu thời gian reset? Đồng hồ đo sẽ chuyển về dạng đơn giản `5h: 1%`.
+
+### Dòng trạng thái có tự cập nhật không? Bộ đếm ngược `{1.1h}` của tôi trông như bị đóng băng.
+
+Claude Code render lại theo sự kiện — tin nhắn mới của trợ lý, `/compact`, thay đổi chế độ quyền hoặc chế độ vim (chống dội ở 300 ms) — nên giữa các sự kiện thì dòng bị đóng băng. Thêm `"refreshInterval": 30` vào khối `statusLine` trong `~/.claude/settings.json` và nó cũng sẽ chạy lại theo bộ hẹn giờ cố định 30 giây, giữ cho bộ đếm ngược và bộ theo dõi thời gian luôn nhích đều khi nhàn rỗi. Một lần render tốn ~0,1 s, nên 30 s là không đáng kể; dùng 60 khi chạy pin hoặc trong repo khổng lồ (git status chạy ở mỗi lần render); tối thiểu là 1.
 
 ### Cài đặt như thế nào?
 

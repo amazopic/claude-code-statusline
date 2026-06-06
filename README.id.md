@@ -41,8 +41,11 @@ Lalu tambahkan ke `~/.claude/settings.json`:
 
 ```json
 { "statusLine": { "type": "command",
-  "command": "/Users/<you>/.claude/status-line.sh" } }
+  "command": "/Users/<you>/.claude/status-line.sh",
+  "refreshInterval": 30 } }
 ```
+
+> 💡 `refreshInterval: 30` menjalankan ulang baris setiap 30 detik bahkan saat sesi sedang idle — menjaga hitung mundur reset (5h{1.1h}), pelacak waktu, dan flip pasca-reset tetap langsung. 30 adalah default yang masuk akal; 60 lebih hemat baterai; hilangkan agar hanya menyegarkan saat ada event (pesan asisten baru, /compact, toggle vim).
 
 Mulai ulang Claude Code (atau jalankan reload `/config`). Selesai.
 
@@ -51,7 +54,7 @@ Mulai ulang Claude Code (atau jalankan reload `/config`). Selesai.
 Untuk apa menyentuh terminal kalau Anda punya Claude Code? Tempel satu prompt ini ke sesi Claude Code Anda — Claude menangani setiap langkah dan bertanya sebelum setiap perintah.
 
 ```text
-Install claude-code-statusline buatan amazopic untuk saya. Pertama, pastikan jq sudah terpasang (jalankan `which jq`) — jika tidak ada, pasang sesuai platform: `sudo apt-get install -y jq` (Ubuntu/Debian), `sudo dnf install -y jq` (Fedora), `brew install jq` (macOS), `sudo apk add jq` (Alpine). Lalu baca ~/.claude/settings.json — jika ada statusLine.command yang menunjuk ke file yang sudah ada (mis. ~/.claude/status-line.sh atau path lain), cadangkan file itu dengan menambahkan .bak (timpa .bak yang sudah ada). Juga jika ~/.claude/status-line.sh sudah ada, cadangkan dengan cara yang sama. Lalu clone github.com/amazopic/claude-code-statusline, salin statusline-bundle.sh ke ~/.claude/status-line.sh dan buat dapat dieksekusi, juga salin commands/statusline.md ke ~/.claude/commands/. Perbarui ~/.claude/settings.json agar statusLine menjadi { type: "command", command: "<path absolut ke ~/.claude/status-line.sh>" }. Terakhir jalankan ~/.claude/status-line.sh use developer untuk menguji tema developer dan beri tahu saya untuk memulai ulang Claude Code.
+Install claude-code-statusline buatan amazopic untuk saya. Pertama, pastikan jq sudah terpasang (jalankan `which jq`) — jika tidak ada, pasang sesuai platform: `sudo apt-get install -y jq` (Ubuntu/Debian), `sudo dnf install -y jq` (Fedora), `brew install jq` (macOS), `sudo apk add jq` (Alpine). Lalu baca ~/.claude/settings.json — jika ada statusLine.command yang menunjuk ke file yang sudah ada (mis. ~/.claude/status-line.sh atau path lain), cadangkan file itu dengan menambahkan .bak (timpa .bak yang sudah ada). Juga jika ~/.claude/status-line.sh sudah ada, cadangkan dengan cara yang sama. Lalu clone github.com/amazopic/claude-code-statusline, salin statusline-bundle.sh ke ~/.claude/status-line.sh dan buat dapat dieksekusi, juga salin commands/statusline.md ke ~/.claude/commands/. Perbarui ~/.claude/settings.json agar statusLine menjadi { type: "command", command: "<path absolut ke ~/.claude/status-line.sh>", "refreshInterval": 30 }. Terakhir jalankan ~/.claude/status-line.sh use developer untuk menguji tema developer dan beri tahu saya untuk memulai ulang Claude Code.
 ```
 
 > Cukup ketik `y` (ya) di setiap prompt izin. Selesai.
@@ -316,10 +319,13 @@ Lalu tambahkan ke `~/.claude/settings.json`:
 {
   "statusLine": {
     "type": "command",
-    "command": "/Users/<you>/.claude/status-line.sh"
+    "command": "/Users/<you>/.claude/status-line.sh",
+    "refreshInterval": 30
   }
 }
 ```
+
+> 💡 `refreshInterval: 30` menjalankan ulang baris setiap 30 detik bahkan saat sesi sedang idle — menjaga hitung mundur reset (5h{1.1h}), pelacak waktu, dan flip pasca-reset tetap langsung. 30 adalah default yang masuk akal; 60 lebih hemat baterai; hilangkan agar hanya menyegarkan saat ada event (pesan asisten baru, /compact, toggle vim).
 
 Mulai ulang Claude Code (atau jalankan reload `/config`).
 
@@ -333,7 +339,8 @@ Ingin Claude Code memasangnya dengan aman untuk Anda? Tempel prompt ini:
 >    yang kosong jika cadangan dengan nama itu sudah ada).
 > 2. Salin `statusline.sh` dari repo ini ke `~/.claude/status-line.sh` lalu `chmod +x`.
 > 3. Baca `~/.claude/settings.json`. Jika tidak ada kunci `statusLine`, tambahkan
->    blok `statusLine` yang menunjuk ke path absolut skrip. Jika
+>    blok `statusLine` yang menunjuk ke path absolut skrip dengan menyertakan
+>    `"refreshInterval": 30`. Jika
 >    `statusLine` sudah ada dan menunjuk ke tempat lain, cadangkan dulu
 >    `settings.json` ke `.bak.<timestamp>`.
 > 4. Uji-coba skrip:
@@ -414,6 +421,10 @@ Pengganti berbasis bash untuk status line bawaan di [Claude Code](https://claude
 ### Apa arti `5h{1.1h}: 1%`?
 
 Anda telah memakai 1% dari jendela 5 jam, dan `{1.1h}` adalah hitung mundur langsung — jendela di-reset dalam 1,1 jam (`7d{1.1d}`: jendela mingguan di-reset dalam 1,1 hari). Dibaca dari `rate_limits.*.resets_at` pada setiap render. Tidak ada timestamp reset di build Anda? Meter beralih ke `5h: 1%` biasa.
+
+### Apakah status line memperbarui dirinya sendiri? Hitung mundur {1.1h} saya terlihat membeku.
+
+Claude Code merender ulang saat ada event — pesan asisten baru, `/compact`, perubahan mode izin atau mode vim (di-debounce pada 300 ms) — jadi di antara event, baris membeku. Tambahkan `"refreshInterval": 30` ke blok `statusLine` di `~/.claude/settings.json` dan baris juga akan dijalankan ulang pada timer tetap 30 detik, menjaga hitung mundur dan pelacak waktu tetap berdetak saat idle. Satu render menghabiskan ~0,1 detik, jadi 30 detik dapat diabaikan; gunakan 60 saat memakai baterai atau di repo besar (`git status` berjalan setiap render); minimum adalah 1.
 
 ### Bagaimana cara memasangnya?
 
