@@ -85,7 +85,7 @@ chmod +x ~/.claude/status-line.sh
 ### 🔝 أبرز 10 — الأكثر طلبًا، عبر الثقافات
 `cyberpunk` · `hacker` · `dragonball` · `naruto` · `pokemon` · `ironman` · `spiderman` · `einstein` · `tesla` · `ferrari`
 
-### 🛠 الكلاسيكية (19): `minimal` `developer` `time` `zen` `rainbow` `anime` `love` `cat` `christmas` `space` `retro` `fire` `ocean` `weather` `coffee` `music` `game` `pirate`
+### 🛠 الكلاسيكية (18): `minimal` `developer` `time` `zen` `rainbow` `anime` `love` `cat` `christmas` `space` `retro` `fire` `ocean` `weather` `coffee` `music` `game` `pirate`
 
 ### 🚗 علامات السيارات (15)
 - 🇪🇺 أوروبا: `porsche` · `mercedes` · `bmw` · `volvo`

@@ -106,7 +106,7 @@ Her tema **iki varyantla** gelir:
 | `tesla`      | ⚡ elektrik moru + şimşek sarısı · `AC ~` |
 | `ferrari`    | 🐎 rosso corsa + Modena sarısı |
 
-### 🛠 Pratik / Klasik (19 tema)
+### 🛠 Pratik / Klasik (18 tema)
 
 | Tema | Dosya / Uygulama |
 |---|---|

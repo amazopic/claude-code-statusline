@@ -21,7 +21,7 @@ Opus 4.7 (1M) │ 🚀 12% █▌░░░░░░░░ 121.4K/1000K │ 0.42$
 ### 🔝 Top 10 — najbolj iskane, mednarodne
 `cyberpunk` · `hacker` · `dragonball` · `naruto` · `pokemon` · `ironman` · `spiderman` · `einstein` · `tesla` · `ferrari`
 
-### 🛠 Klasika (19): `minimal` `developer` `time` `zen` `rainbow` `anime` `love` `cat` `christmas` `space` `retro` `fire` `ocean` `weather` `coffee` `music` `game` `pirate`
+### 🛠 Klasika (18): `minimal` `developer` `time` `zen` `rainbow` `anime` `love` `cat` `christmas` `space` `retro` `fire` `ocean` `weather` `coffee` `music` `game` `pirate`
 
 ### 🚗 Avtomobilske znamke (15)
 - 🇪🇺 Evropa: `porsche` · `mercedes` · `bmw` · `volvo`

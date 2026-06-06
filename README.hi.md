@@ -106,7 +106,7 @@ Claude Code की डिफ़ॉल्ट status line विरल है। �
 | `tesla`      | ⚡ electric purple + lightning yellow · `AC ~` |
 | `ferrari`    | 🐎 rosso corsa + Modena yellow |
 
-### 🛠 व्यावहारिक / क्लासिक (19 थीम)
+### 🛠 व्यावहारिक / क्लासिक (18 थीम)
 
 | Theme | File / Apply |
 |---|---|

@@ -31,7 +31,7 @@ Opus 4.7 (1M) │ 🚀 12% █▌░░░░░░░░ 121.4K/1000K │ 0.42$
 ### 🔝 Top 10 — 가장 많이 요청되는, 국제적
 `cyberpunk` · `hacker` · `dragonball` · `naruto` · `pokemon` · `ironman` · `spiderman` · `einstein` · `tesla` · `ferrari`
 
-### 🛠 클래식 (19): `minimal` `developer` `time` `zen` `rainbow` `anime` `love` `cat` `christmas` `space` `retro` `fire` `ocean` `weather` `coffee` `music` `game` `pirate`
+### 🛠 클래식 (18): `minimal` `developer` `time` `zen` `rainbow` `anime` `love` `cat` `christmas` `space` `retro` `fire` `ocean` `weather` `coffee` `music` `game` `pirate`
 
 ### 🚗 자동차 브랜드 (15)
 - 🇪🇺 유럽: `porsche` · `mercedes` · `bmw` · `volvo`

@@ -106,7 +106,7 @@ Apply with `~/.claude/status-line.sh use <name>` (append `-compact` for the comp
 | `tesla`      | ⚡ electric purple + lightning yellow · `AC ~` |
 | `ferrari`    | 🐎 rosso corsa + Modena yellow |
 
-### 🛠 Practical / Classic (19 themes)
+### 🛠 Practical / Classic (18 themes)
 
 | Theme | File / Apply |
 |---|---|

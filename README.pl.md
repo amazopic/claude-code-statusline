@@ -106,7 +106,7 @@ Zastosuj przez `~/.claude/status-line.sh use <name>` (dodaj `-compact` dla waria
 | `tesla`      | ⚡ elektryczny fiolet + błyskawicowa żółć · `AC ~` |
 | `ferrari`    | 🐎 rosso corsa + żółć Modeny |
 
-### 🛠 Praktyczne / Klasyczne (19 motywów)
+### 🛠 Praktyczne / Klasyczne (18 motywów)
 
 | Motyw | Plik / Zastosuj |
 |---|---|

@@ -27,7 +27,7 @@ Opus 4.7 (1M) │ 🚀 12% █▌░░░░░░░░ 121.4K/1000K │ 0.42$
 ### 🔝 Топ-10 — найпопулярніші, крос-культурні
 `cyberpunk` · `hacker` · `dragonball` · `naruto` · `pokemon` · `ironman` · `spiderman` · `einstein` · `tesla` · `ferrari`
 
-### 🛠 Класика (19): `minimal` `developer` `time` `zen` `rainbow` `anime` `love` `cat` `christmas` `space` `retro` `fire` `ocean` `weather` `coffee` `music` `game` `pirate`
+### 🛠 Класика (18): `minimal` `developer` `time` `zen` `rainbow` `anime` `love` `cat` `christmas` `space` `retro` `fire` `ocean` `weather` `coffee` `music` `game` `pirate`
 
 ### 🚗 Авто-бренди (15)
 - 🇪🇺 Європа: `porsche` · `mercedes` · `bmw` · `volvo`

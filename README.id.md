@@ -106,7 +106,7 @@ Terapkan dengan `~/.claude/status-line.sh use <name>` (tambahkan `-compact` untu
 | `tesla`      | ⚡ ungu listrik + kuning petir · `AC ~` |
 | `ferrari`    | 🐎 rosso corsa + kuning Modena |
 
-### 🛠 Praktis / Klasik (19 tema)
+### 🛠 Praktis / Klasik (18 tema)
 
 | Tema | File / Terapkan |
 |---|---|

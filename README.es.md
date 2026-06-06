@@ -54,7 +54,7 @@ Todo en **una sola línea**, con código de colores e iconos inteligentes que in
 ### 🔝 Top 10 — los más pedidos, interculturales
 `cyberpunk` · `hacker` · `dragonball` · `naruto` · `pokemon` · `ironman` · `spiderman` · `einstein` · `tesla` · `ferrari`
 
-### 🛠 Clásicos (19): `minimal` `developer` `time` `zen` `rainbow` `anime` `love` `cat` `christmas` `space` `retro` `fire` `ocean` `weather` `coffee` `music` `game` `pirate`
+### 🛠 Clásicos (18): `minimal` `developer` `time` `zen` `rainbow` `anime` `love` `cat` `christmas` `space` `retro` `fire` `ocean` `weather` `coffee` `music` `game` `pirate`
 
 ### 🚗 Marcas de coches (15)
 - 🇪🇺 Europa: `porsche` · `mercedes` · `bmw` · `volvo`

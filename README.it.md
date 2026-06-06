@@ -29,7 +29,7 @@ Gli indicatori 5h / 7d includono un conto alla rovescia live fino al momento in 
 ### 🔝 Top 10 — i più richiesti, interculturali
 `cyberpunk` · `hacker` · `dragonball` · `naruto` · `pokemon` · `ironman` · `spiderman` · `einstein` · `tesla` · `ferrari`
 
-### 🛠 Classici (19): `minimal` `developer` `time` `zen` `rainbow` `anime` `love` `cat` `christmas` `space` `retro` `fire` `ocean` `weather` `coffee` `music` `game` `pirate`
+### 🛠 Classici (18): `minimal` `developer` `time` `zen` `rainbow` `anime` `love` `cat` `christmas` `space` `retro` `fire` `ocean` `weather` `coffee` `music` `game` `pirate`
 
 ### 🚗 Marchi auto (15)
 - 🇪🇺 Europa: `porsche` · `mercedes` · `bmw` · `volvo`

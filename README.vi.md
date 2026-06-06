@@ -106,7 +106,7 @@ Mỗi chủ đề có **hai biến thể**:
 | `tesla`      | ⚡ tím điện + vàng tia chớp · `AC ~` |
 | `ferrari`    | 🐎 rosso corsa + vàng Modena |
 
-### 🛠 Thực dụng / Kinh điển (19 chủ đề)
+### 🛠 Thực dụng / Kinh điển (18 chủ đề)
 
 | Chủ đề | Tệp / Áp dụng |
 |---|---|

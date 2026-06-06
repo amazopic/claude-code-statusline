@@ -27,7 +27,7 @@ Die 5h- / 7d-Anzeigen enthalten einen Live-Countdown bis zu dem Moment, in dem j
 ### 🔝 Top 10 — meistgefragt, kulturübergreifend
 `cyberpunk` · `hacker` · `dragonball` · `naruto` · `pokemon` · `ironman` · `spiderman` · `einstein` · `tesla` · `ferrari`
 
-### 🛠 Klassisch (19): `minimal` `developer` `time` `zen` `rainbow` `anime` `love` `cat` `christmas` `space` `retro` `fire` `ocean` `weather` `coffee` `music` `game` `pirate`
+### 🛠 Klassisch (18): `minimal` `developer` `time` `zen` `rainbow` `anime` `love` `cat` `christmas` `space` `retro` `fire` `ocean` `weather` `coffee` `music` `game` `pirate`
 
 ### 🚗 Automarken (15)
 - 🇪🇺 Europa: `porsche` · `mercedes` · `bmw` · `volvo`

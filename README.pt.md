@@ -106,7 +106,7 @@ Aplique com `~/.claude/status-line.sh use <name>` (acrescente `-compact` para a 
 | `tesla`      | ⚡ roxo elétrico + amarelo relâmpago · `AC ~` |
 | `ferrari`    | 🐎 rosso corsa + amarelo Modena |
 
-### 🛠 Práticos / Clássicos (19 temas)
+### 🛠 Práticos / Clássicos (18 temas)
 
 | Tema | Arquivo / Aplicar |
 |---|---|
