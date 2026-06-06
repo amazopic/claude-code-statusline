@@ -33,7 +33,7 @@ export const defaultLocale = 'en';
 export const messages = {
   en: {
     'meta.title': 'Claude Code Status Line — Limit control · 79 themes · CLI',
-    'meta.description': 'Drop-in replacement for the Claude Code default status line. Track 5h/7d rate limits in real time, watch context fill, see session cost — never blow past the window. 79 themes, 19 blocks, /statusline slash command.',
+    'meta.description': 'Drop-in replacement for the Claude Code default status line. Track 5h/7d rate limits in real time, watch context fill, see session cost — never blow past the window. 79 themes, 26 blocks, /statusline slash command.',
 
     'lang.label': 'Language',
 
@@ -67,7 +67,7 @@ export const messages = {
 
     'note.label': "Editor's Note",
     'note.body.p1': '<span class="dropcap">C</span>laude Code ships with a <strong>sparse</strong> status line. A model name. Maybe a directory. That\'s it. Meanwhile your context fills up, your <strong>5h and 7d limits tick down</strong>, your session quietly accrues cost — and you find out only when you\'ve blown past the window.',
-    'note.body.p2': 'This project is the dashboard that should have been there. Seventy-nine themes. Nineteen composable blocks. One bash file. <strong>Pick something pretty</strong> — or build your own.',
+    'note.body.p2': 'This project is the dashboard that should have been there. Seventy-nine themes. Twenty-six composable blocks. One bash file. <strong>Pick something pretty</strong> — or build your own.',
     'note.margin': '<em>Editorial note —</em> the project is open source under a <em>source-available license</em>: read freely, but reuse requires the author\'s permission.',
 
     'numbers.title': 'By the numbers',
@@ -214,7 +214,7 @@ export const messages = {
 
   ru: {
     'meta.title': 'Claude Code Status Line — контроль лимитов · 79 тем · CLI',
-    'meta.description': 'Замена стандартной строки статуса Claude Code. Контролируйте лимиты 5ч / 7д в реальном времени, следите за заполнением контекста, видите стоимость сессии — без сюрпризов и упёртых стен. 79 тем, 19 блоков, slash-команда /statusline.',
+    'meta.description': 'Замена стандартной строки статуса Claude Code. Контролируйте лимиты 5ч / 7д в реальном времени, следите за заполнением контекста, видите стоимость сессии — без сюрпризов и упёртых стен. 79 тем, 26 блоков, slash-команда /statusline.',
 
     'lang.label': 'Язык',
 
@@ -248,7 +248,7 @@ export const messages = {
 
     'note.label': 'Примечание редактора',
     'note.body.p1': '<span class="dropcap">C</span>laude Code поставляется с <strong>скудной</strong> строкой статуса. Имя модели. Может быть, директория. И всё. А тем временем заполняется контекст, <strong>тикают лимиты 5ч и 7д</strong>, тихо набегает стоимость сессии — и узнаёте вы об этом, только когда уже пробили потолок.',
-    'note.body.p2': 'Этот проект — та самая панель, которая должна была быть. Семьдесят девять тем. Девятнадцать составных блоков. Один bash-файл. <strong>Выберите красоту</strong> — или соберите своё.',
+    'note.body.p2': 'Этот проект — та самая панель, которая должна была быть. Семьдесят девять тем. Двадцать шесть составных блоков. Один bash-файл. <strong>Выберите красоту</strong> — или соберите своё.',
     'note.margin': '<em>Примечание —</em> проект с открытым исходным кодом под <em>source-available лицензией</em>: читайте свободно, но переиспользование требует разрешения автора.',
 
     'numbers.title': 'Цифры',
@@ -394,7 +394,7 @@ export const messages = {
 
   fr: {
     'meta.title': 'Claude Code Status Line — contrôle des limites · 79 thèmes · CLI',
-    'meta.description': 'Remplacement direct de la barre de statut par défaut de Claude Code. Suivez vos limites 5h / 7j en temps réel, regardez le contexte se remplir, voyez le coût de session — zéro surprise. 79 thèmes, 19 blocs, commande slash /statusline.',
+    'meta.description': 'Remplacement direct de la barre de statut par défaut de Claude Code. Suivez vos limites 5h / 7j en temps réel, regardez le contexte se remplir, voyez le coût de session — zéro surprise. 79 thèmes, 26 blocs, commande slash /statusline.',
 
     'lang.label': 'Langue',
 
@@ -428,7 +428,7 @@ export const messages = {
 
     'note.label': 'Note de l\'éditeur',
     'note.body.p1': '<span class="dropcap">C</span>laude Code livre une barre de statut <strong>maigre</strong>. Un nom de modèle. Peut-être un dossier. C\'est tout. Pendant ce temps votre contexte se remplit, vos <strong>limites 5h et 7j s\'égrènent</strong>, votre session accumule du coût en silence — et vous l\'apprenez seulement quand vous avez tout claqué.',
-    'note.body.p2': 'Ce projet, c\'est le tableau de bord qui aurait dû être là. Soixante-dix-neuf thèmes. Dix-neuf blocs composables. Un fichier bash. <strong>Choisissez du joli</strong> — ou construisez le vôtre.',
+    'note.body.p2': 'Ce projet, c\'est le tableau de bord qui aurait dû être là. Soixante-dix-neuf thèmes. Vingt-six blocs composables. Un fichier bash. <strong>Choisissez du joli</strong> — ou construisez le vôtre.',
     'note.margin': '<em>Note éditoriale —</em> projet open source sous <em>licence source-available</em> : lisez librement, mais la réutilisation demande la permission de l\'auteur.',
 
     'numbers.title': 'En chiffres',
@@ -574,7 +574,7 @@ export const messages = {
 
   de: {
     'meta.title': 'Claude Code Status Line — Limit-Kontrolle · 79 Themes · CLI',
-    'meta.description': 'Drop-in-Ersatz für die Standard-Statusleiste von Claude Code. 5h-/7d-Limits in Echtzeit verfolgen, Kontextfüllung beobachten, Sitzungskosten sehen — keine bösen Überraschungen. 79 Themes, 19 Blöcke, /statusline-Slash-Befehl.',
+    'meta.description': 'Drop-in-Ersatz für die Standard-Statusleiste von Claude Code. 5h-/7d-Limits in Echtzeit verfolgen, Kontextfüllung beobachten, Sitzungskosten sehen — keine bösen Überraschungen. 79 Themes, 26 Blöcke, /statusline-Slash-Befehl.',
 
     'lang.label': 'Sprache',
 
@@ -608,7 +608,7 @@ export const messages = {
 
     'note.label': 'Anmerkung der Redaktion',
     'note.body.p1': '<span class="dropcap">C</span>laude Code wird mit einer <strong>spärlichen</strong> Statusleiste geliefert. Ein Modellname. Vielleicht ein Verzeichnis. Mehr nicht. Während Ihr Kontext sich füllt, Ihre <strong>5h- und 7d-Limits ablaufen</strong>, Ihre Sitzung still Kosten anhäuft — erfahren Sie es erst, wenn Sie schon durch sind.',
-    'note.body.p2': 'Dieses Projekt ist das Dashboard, das hätte da sein sollen. Neunundsiebzig Themes. Neunzehn kombinierbare Blöcke. Eine Bash-Datei. <strong>Wählen Sie etwas Hübsches</strong> — oder bauen Sie Ihr eigenes.',
+    'note.body.p2': 'Dieses Projekt ist das Dashboard, das hätte da sein sollen. Neunundsiebzig Themes. Sechsundzwanzig kombinierbare Blöcke. Eine Bash-Datei. <strong>Wählen Sie etwas Hübsches</strong> — oder bauen Sie Ihr eigenes.',
     'note.margin': '<em>Redaktionelle Notiz —</em> Open Source unter <em>Source-Available-Lizenz</em>: frei zu lesen, Wiederverwendung mit Erlaubnis des Autors.',
 
     'numbers.title': 'In Zahlen',
@@ -754,7 +754,7 @@ export const messages = {
 
   uk: {
     'meta.title': 'Claude Code Status Line — контроль лімітів · 79 тем · CLI',
-    'meta.description': 'Заміна стандартної рядка статусу Claude Code. Контролюйте ліміти 5г / 7д у реальному часі, стежте за заповненням контексту, бачте вартість сесії — ніяких сюрпризів. 79 тем, 19 блоків, slash-команда /statusline.',
+    'meta.description': 'Заміна стандартної рядка статусу Claude Code. Контролюйте ліміти 5г / 7д у реальному часі, стежте за заповненням контексту, бачте вартість сесії — ніяких сюрпризів. 79 тем, 26 блоків, slash-команда /statusline.',
     'lang.label': 'Мова',
     'hero.brand': 'Claude Code · Status Line',
     'hero.issue': 'Випуск 01 · 19 мов · 158 зразків',
@@ -783,7 +783,7 @@ export const messages = {
     'hero.terminal.label': 'Живе превʼю · 10 тем по колу',
     'note.label': 'Примітка редактора',
     'note.body.p1': '<span class="dropcap">C</span>laude Code постачається з <strong>скудним</strong> рядком статусу. Імʼя моделі. Можливо, директорія. І все. А тим часом заповнюється контекст, <strong>тікають ліміти 5г та 7д</strong>, тихо набігає вартість сесії — і дізнаєтеся ви про це лише коли вже пробили стелю.',
-    'note.body.p2': 'Цей проєкт — та сама панель, яка мала бути. Сімдесят дев\'ять тем. Дев\'ятнадцять складальних блоків. Один bash-файл. <strong>Оберіть красу</strong> — або зберіть своє.',
+    'note.body.p2': 'Цей проєкт — та сама панель, яка мала бути. Сімдесят дев\'ять тем. Двадцять шість складальних блоків. Один bash-файл. <strong>Оберіть красу</strong> — або зберіть своє.',
     'note.margin': '<em>Примітка —</em> проєкт з відкритим кодом під <em>source-available ліцензією</em>: читайте вільно, але переви­користання потребує дозволу автора.',
     'numbers.title': 'Цифри',
     'numbers.themes': 'тем',
@@ -919,7 +919,7 @@ export const messages = {
 
   sl: {
     'meta.title': 'Claude Code Status Line — nadzor omejitev · 79 tem · CLI',
-    'meta.description': 'Zamenjava privzete vrstice stanja Claude Code. Spremljajte 5h / 7d omejitve v živo, opazujte polnjenje konteksta, vidite stroške seje — brez presenečenj. 79 tem, 19 blokov, ukaz /statusline.',
+    'meta.description': 'Zamenjava privzete vrstice stanja Claude Code. Spremljajte 5h / 7d omejitve v živo, opazujte polnjenje konteksta, vidite stroške seje — brez presenečenj. 79 tem, 26 blokov, ukaz /statusline.',
     'lang.label': 'Jezik',
     'hero.brand': 'Claude Code · Status Line',
     'hero.issue': 'Izdaja 01 · 19 jezikov · 158 primerkov',
@@ -948,7 +948,7 @@ export const messages = {
     'hero.terminal.label': 'Predogled v živo · 10 tem v krogu',
     'note.label': 'Opomba urednika',
     'note.body.p1': '<span class="dropcap">C</span>laude Code prihaja s <strong>skopo</strong> vrstico stanja. Ime modela. Morda imenik. To je vse. Medtem se vaš kontekst polni, vaše <strong>5h in 7d omejitve tikkajo</strong>, vaša seja tiho nabira stroške — izveste šele, ko ste že prebili strop.',
-    'note.body.p2': 'Ta projekt je armaturna plošča, ki bi morala biti tam. Devetinsedemdeset tem. Devetnajst sestavljivih blokov. Ena bash datoteka. <strong>Izberite nekaj lepega</strong> — ali zgradite svojo.',
+    'note.body.p2': 'Ta projekt je armaturna plošča, ki bi morala biti tam. Devetinsedemdeset tem. Šestindvajset sestavljivih blokov. Ena bash datoteka. <strong>Izberite nekaj lepega</strong> — ali zgradite svojo.',
     'note.margin': '<em>Uredniška opomba —</em> projekt je odprtokoden pod <em>source-available licenco</em>: berite svobodno, ponovna uporaba zahteva dovoljenje avtorja.',
     'numbers.title': 'Številke',
     'numbers.themes': 'tem',
@@ -1084,7 +1084,7 @@ export const messages = {
 
   it: {
     'meta.title': 'Claude Code Status Line — controllo limiti · 79 temi · CLI',
-    'meta.description': 'Sostituto della status line predefinita di Claude Code. Monitora i limiti 5h / 7g in tempo reale, osserva il riempimento del contesto, vedi il costo della sessione — zero sorprese. 79 temi, 19 blocchi, comando slash /statusline.',
+    'meta.description': 'Sostituto della status line predefinita di Claude Code. Monitora i limiti 5h / 7g in tempo reale, osserva il riempimento del contesto, vedi il costo della sessione — zero sorprese. 79 temi, 26 blocchi, comando slash /statusline.',
     'lang.label': 'Lingua',
     'hero.brand': 'Claude Code · Status Line',
     'hero.issue': 'Numero 01 · 19 lingue · 158 esemplari',
@@ -1113,7 +1113,7 @@ export const messages = {
     'hero.terminal.label': 'Anteprima live · 10 temi a rotazione',
     'note.label': 'Nota dell\'editore',
     'note.body.p1': '<span class="dropcap">C</span>laude Code esce con una status line <strong>scarna</strong>. Un nome di modello. Forse una directory. Tutto qui. Nel frattempo il tuo contesto si riempie, i tuoi <strong>limiti 5h e 7g scendono</strong>, la tua sessione accumula costi in silenzio — e te ne accorgi solo quando hai sfondato.',
-    'note.body.p2': 'Questo progetto è il cruscotto che doveva esserci. Settantanove temi. Diciannove blocchi componibili. Un file bash. <strong>Scegli qualcosa di bello</strong> — o costruisci la tua.',
+    'note.body.p2': 'Questo progetto è il cruscotto che doveva esserci. Settantanove temi. Ventisei blocchi componibili. Un file bash. <strong>Scegli qualcosa di bello</strong> — o costruisci la tua.',
     'note.margin': '<em>Nota editoriale —</em> open source sotto <em>licenza source-available</em>: leggi liberamente, riuso con permesso dell\'autore.',
     'numbers.title': 'In cifre',
     'numbers.themes': 'temi',
@@ -1249,7 +1249,7 @@ export const messages = {
 
   es: {
     'meta.title': 'Claude Code Status Line — control de límites · 79 temas · CLI',
-    'meta.description': 'Reemplazo directo de la línea de estado predeterminada de Claude Code. Monitorea los límites 5h / 7d en tiempo real, observa el llenado del contexto, ve el costo de la sesión — cero sorpresas. 79 temas, 19 bloques, comando slash /statusline.',
+    'meta.description': 'Reemplazo directo de la línea de estado predeterminada de Claude Code. Monitorea los límites 5h / 7d en tiempo real, observa el llenado del contexto, ve el costo de la sesión — cero sorpresas. 79 temas, 26 bloques, comando slash /statusline.',
     'lang.label': 'Idioma',
     'hero.brand': 'Claude Code · Status Line',
     'hero.issue': 'Número 01 · 19 idiomas · 158 especímenes',
@@ -1278,7 +1278,7 @@ export const messages = {
     'hero.terminal.label': 'Vista en vivo · 10 temas en rotación',
     'note.label': 'Nota del editor',
     'note.body.p1': '<span class="dropcap">C</span>laude Code viene con una línea de estado <strong>escasa</strong>. Un nombre de modelo. Quizás un directorio. Eso es todo. Mientras tanto tu contexto se llena, tus <strong>límites 5h y 7d bajan</strong>, tu sesión acumula costo en silencio — y te enteras solo cuando ya pasaste el límite.',
-    'note.body.p2': 'Este proyecto es el panel que debió estar ahí. Setenta y nueve temas. Diecinueve bloques componibles. Un archivo bash. <strong>Elige algo bonito</strong> — o construye el tuyo.',
+    'note.body.p2': 'Este proyecto es el panel que debió estar ahí. Setenta y nueve temas. Veintiséis bloques componibles. Un archivo bash. <strong>Elige algo bonito</strong> — o construye el tuyo.',
     'note.margin': '<em>Nota editorial —</em> open source bajo <em>licencia source-available</em>: lee libremente, reutilizar requiere permiso del autor.',
     'numbers.title': 'En cifras',
     'numbers.themes': 'temas',
@@ -1414,7 +1414,7 @@ export const messages = {
 
   zh: {
     'meta.title': 'Claude Code Status Line — 限额掌控 · 79 主题 · CLI',
-    'meta.description': 'Claude Code 默认状态栏的直接替代品。实时跟踪 5 小时 / 7 天限额，观察上下文填充，查看会话成本 — 绝无意外。79 主题、19 模块、/statusline 斜杠命令。',
+    'meta.description': 'Claude Code 默认状态栏的直接替代品。实时跟踪 5 小时 / 7 天限额，观察上下文填充，查看会话成本 — 绝无意外。79 主题、26 模块、/statusline 斜杠命令。',
     'lang.label': '语言',
     'hero.brand': 'Claude Code · Status Line',
     'hero.issue': '第 01 期 · 19 种语言 · 158 个样本',
@@ -1443,7 +1443,7 @@ export const messages = {
     'hero.terminal.label': '实时预览 · 10 个主题循环',
     'note.label': '编者按',
     'note.body.p1': '<span class="dropcap">C</span>laude Code 自带一条<strong>稀疏的</strong>状态栏。一个模型名。也许还有目录。仅此而已。与此同时你的上下文在填满，<strong>5 小时和 7 天限额在倒数</strong>，会话默默累积成本 — 等你发觉时已经撞穿了上限。',
-    'note.body.p2': '这个项目是本应存在的仪表盘。七十九个主题。十九个可组合模块。一个 bash 文件。<strong>选个漂亮的</strong> — 或者自己搭。',
+    'note.body.p2': '这个项目是本应存在的仪表盘。七十九个主题。二十六个可组合模块。一个 bash 文件。<strong>选个漂亮的</strong> — 或者自己搭。',
     'note.margin': '<em>编辑注 —</em> 开源项目，<em>source-available 协议</em>：可自由阅读，复用需作者许可。',
     'numbers.title': '数据',
     'numbers.themes': '主题',
@@ -1579,7 +1579,7 @@ export const messages = {
 
   ja: {
     'meta.title': 'Claude Code Status Line — リミット管理 · 79テーマ · CLI',
-    'meta.description': 'Claude Code のデフォルトステータスラインを置き換え。5時間 / 7日のリミットをリアルタイムで追跡、コンテキストの埋まり具合を確認、セッション費用を表示 — サプライズなし。79テーマ、19ブロック、/statusline スラッシュコマンド。',
+    'meta.description': 'Claude Code のデフォルトステータスラインを置き換え。5時間 / 7日のリミットをリアルタイムで追跡、コンテキストの埋まり具合を確認、セッション費用を表示 — サプライズなし。79テーマ、26ブロック、/statusline スラッシュコマンド。',
     'lang.label': '言語',
     'hero.brand': 'Claude Code · Status Line',
     'hero.issue': '第01号 · 19言語 · 158サンプル',
@@ -1608,7 +1608,7 @@ export const messages = {
     'hero.terminal.label': 'ライブプレビュー · 10テーマを循環',
     'note.label': '編集者ノート',
     'note.body.p1': '<span class="dropcap">C</span>laude Code には<strong>素っ気ない</strong>ステータスラインが付属しています。モデル名。せいぜいディレクトリ。それだけ。一方であなたのコンテキストは埋まり、<strong>5時間と7日のリミットは減っていき</strong>、セッションは静かにコストを積み上げる — 気づくのは制限を超えたあと。',
-    'note.body.p2': 'このプロジェクトはあるべきだったダッシュボードです。79 のテーマ。19 の組み合わせ可能なブロック。1 つの bash ファイル。<strong>気に入ったものを選ぶ</strong> — か、自分で作る。',
+    'note.body.p2': 'このプロジェクトはあるべきだったダッシュボードです。79 のテーマ。26 の組み合わせ可能なブロック。1 つの bash ファイル。<strong>気に入ったものを選ぶ</strong> — か、自分で作る。',
     'note.margin': '<em>編集注 —</em> オープンソース、<em>source-available ライセンス</em>：自由に読めますが、再利用には著者の許可が必要です。',
     'numbers.title': '数字で見る',
     'numbers.themes': 'テーマ',
@@ -1744,7 +1744,7 @@ export const messages = {
 
   ko: {
     'meta.title': 'Claude Code Status Line — 한도 제어 · 79 테마 · CLI',
-    'meta.description': 'Claude Code 기본 상태줄 대체. 5시간 / 7일 한도를 실시간 추적, 컨텍스트 채움 확인, 세션 비용 표시 — 놀라움 없음. 79 테마, 19 블록, /statusline 슬래시 명령.',
+    'meta.description': 'Claude Code 기본 상태줄 대체. 5시간 / 7일 한도를 실시간 추적, 컨텍스트 채움 확인, 세션 비용 표시 — 놀라움 없음. 79 테마, 26 블록, /statusline 슬래시 명령.',
     'lang.label': '언어',
     'hero.brand': 'Claude Code · Status Line',
     'hero.issue': '01호 · 19개 언어 · 158개 견본',
@@ -1773,7 +1773,7 @@ export const messages = {
     'hero.terminal.label': '실시간 미리보기 · 10개 테마 순환',
     'note.label': '편집자 주',
     'note.body.p1': '<span class="dropcap">C</span>laude Code는 <strong>빈약한</strong> 상태줄로 출시됩니다. 모델 이름. 운이 좋으면 디렉터리. 그게 다입니다. 그동안 컨텍스트는 채워지고, <strong>5시간과 7일 한도는 줄어들고</strong>, 세션은 조용히 비용을 누적합니다 — 한도를 넘긴 뒤에야 알게 되죠.',
-    'note.body.p2': '이 프로젝트는 거기 있었어야 할 대시보드입니다. 79개의 테마. 19개의 조합 가능한 블록. 한 개의 bash 파일. <strong>예쁜 걸 골라보세요</strong> — 아니면 직접 만들어보세요.',
+    'note.body.p2': '이 프로젝트는 거기 있었어야 할 대시보드입니다. 79개의 테마. 26개의 조합 가능한 블록. 한 개의 bash 파일. <strong>예쁜 걸 골라보세요</strong> — 아니면 직접 만들어보세요.',
     'note.margin': '<em>편집자 주 —</em> 오픈소스, <em>source-available 라이선스</em>: 자유롭게 읽되, 재사용은 저자 허가가 필요합니다.',
     'numbers.title': '숫자로',
     'numbers.themes': '테마',
@@ -1909,7 +1909,7 @@ export const messages = {
 
   ar: {
     'meta.title': 'Claude Code Status Line — التحكم في الحدود · 79 سمة · CLI',
-    'meta.description': 'بديل مباشر لشريط حالة Claude Code الافتراضي. تتبع حدود 5 ساعات / 7 أيام في الوقت الفعلي، وراقب امتلاء السياق، ورَ تكلفة الجلسة — بدون مفاجآت. 79 سمة، 19 كتلة، أمر شرطة /statusline.',
+    'meta.description': 'بديل مباشر لشريط حالة Claude Code الافتراضي. تتبع حدود 5 ساعات / 7 أيام في الوقت الفعلي، وراقب امتلاء السياق، ورَ تكلفة الجلسة — بدون مفاجآت. 79 سمة، 26 كتلة، أمر شرطة /statusline.',
 
     'lang.label': 'اللغة',
 
@@ -1944,7 +1944,7 @@ export const messages = {
 
     'note.label': 'ملاحظة المحرر',
     'note.body.p1': '<span class="dropcap">Claude</span> Code يأتي بشريط حالة <strong>متناثر</strong>. اسم نموذج. ربما دليل. هذا كل شيء. في هذه الأثناء يمتلئ سياقك، <strong>تنخفض حدودك 5س و 7ي</strong>، تتراكم تكلفة جلستك بصمت — وتكتشف ذلك فقط عندما تتجاوز النافذة.',
-    'note.body.p2': 'هذا المشروع هو لوحة المعلومات التي كان ينبغي أن تكون موجودة. تسع وسبعون سمة. تسع عشرة كتلة قابلة للتركيب. ملف bash واحد. <strong>اختر شيئًا جميلاً</strong> — أو أنشئ ما يخصك.',
+    'note.body.p2': 'هذا المشروع هو لوحة المعلومات التي كان ينبغي أن تكون موجودة. تسع وسبعون سمة. ست وعشرون كتلة قابلة للتركيب. ملف bash واحد. <strong>اختر شيئًا جميلاً</strong> — أو أنشئ ما يخصك.',
     'note.margin': '<em>ملاحظة تحريرية —</em> المشروع مفتوح المصدر بموجب <em>ترخيص مصدر متاح</em>: اقرأ بحرية، لكن إعادة الاستخدام تتطلب إذن المؤلف.',
 
     'numbers.title': 'بالأرقام',
@@ -2091,7 +2091,7 @@ export const messages = {
   },
   'pt': {
     'meta.title': 'Claude Code Status Line — controle de limites · 79 temas · CLI',
-    'meta.description': 'Substituição direta para a linha de status padrão do Claude Code. Acompanhe os limites de 5h/7d em tempo real, veja o contexto encher, confira o custo da sessão — sem nunca estourar a janela. 79 temas, 19 blocos, comando slash /statusline.',
+    'meta.description': 'Substituição direta para a linha de status padrão do Claude Code. Acompanhe os limites de 5h/7d em tempo real, veja o contexto encher, confira o custo da sessão — sem nunca estourar a janela. 79 temas, 26 blocos, comando slash /statusline.',
     'lang.label': 'Idioma',
     'hero.brand': 'Claude Code · Status Line',
     'hero.issue': 'Edição 01 · 19 idiomas · 158 espécimes',
@@ -2120,7 +2120,7 @@ export const messages = {
     'hero.terminal.label': 'Prévia ao vivo · alternando entre 10 temas',
     'note.label': 'Nota do editor',
     'note.body.p1': '<span class="dropcap">O</span> Claude Code vem com uma linha de status <strong>escassa</strong>. Um nome de modelo. Talvez um diretório. É só isso. Enquanto isso seu contexto enche, seus <strong>limites de 5h e 7d vão diminuindo</strong>, sua sessão acumula custo em silêncio — e você só descobre quando já estourou a janela.',
-    'note.body.p2': 'Este projeto é o painel que deveria estar ali. Setenta e nove temas. Dezenove blocos combináveis. Um arquivo bash. <strong>Escolha algo bonito</strong> — ou monte o seu próprio.',
+    'note.body.p2': 'Este projeto é o painel que deveria estar ali. Setenta e nove temas. Vinte e seis blocos combináveis. Um arquivo bash. <strong>Escolha algo bonito</strong> — ou monte o seu próprio.',
     'note.margin': '<em>Nota editorial —</em> o projeto é open source sob uma <em>licença source-available</em>: leia à vontade, mas reutilizar exige permissão do autor.',
     'numbers.title': 'Em números',
     'numbers.themes': 'temas',
@@ -2255,7 +2255,7 @@ export const messages = {
   },
   'tr': {
     'meta.title': 'Claude Code Status Line — Limit kontrolü · 79 tema · CLI',
-    'meta.description': 'Claude Code varsayılan durum satırı için yerine geçen bir çözüm. 5sa/7g hız limitlerini gerçek zamanlı izleyin, bağlamın doluşunu takip edin, oturum maliyetini görün — pencereyi asla aşmayın. 79 tema, 19 blok, /statusline slash komutu.',
+    'meta.description': 'Claude Code varsayılan durum satırı için yerine geçen bir çözüm. 5sa/7g hız limitlerini gerçek zamanlı izleyin, bağlamın doluşunu takip edin, oturum maliyetini görün — pencereyi asla aşmayın. 79 tema, 26 blok, /statusline slash komutu.',
 
     'lang.label': 'Dil',
 
@@ -2289,7 +2289,7 @@ export const messages = {
 
     'note.label': 'Editörün Notu',
     'note.body.p1': '<span class="dropcap">C</span>laude Code <strong>seyrek</strong> bir durum satırıyla gelir. Bir model adı. Belki bir dizin. Hepsi bu. Bu sırada bağlamınız dolar, <strong>5sa ve 7g limitleriniz geri sayar</strong>, oturumunuz sessizce maliyet biriktirir — ve bunu ancak pencereyi aştığınızda fark edersiniz.',
-    'note.body.p2': 'Bu proje, baştan orada olması gereken panonun ta kendisi. Yetmiş dokuz tema. On dokuz birleştirilebilir blok. Tek bir bash dosyası. <strong>Güzel bir şey seçin</strong> — ya da kendinizinkini kurun.',
+    'note.body.p2': 'Bu proje, baştan orada olması gereken panonun ta kendisi. Yetmiş dokuz tema. Yirmi altı birleştirilebilir blok. Tek bir bash dosyası. <strong>Güzel bir şey seçin</strong> — ya da kendinizinkini kurun.',
     'note.margin': '<em>Editör notu —</em> proje <em>source-available lisans</em> altında açık kaynaktır: serbestçe okuyun, ancak yeniden kullanım yazarın iznini gerektirir.',
 
     'numbers.title': 'Rakamlarla',
@@ -2434,7 +2434,7 @@ export const messages = {
   },
   'id': {
     'meta.title': 'Claude Code Status Line — kontrol limit · 79 tema · CLI',
-    'meta.description': 'Pengganti langsung untuk status line bawaan Claude Code. Pantau limit 5h/7d secara real time, amati pengisian konteks, lihat biaya sesi — jangan pernah lewat dari jendelanya. 79 tema, 19 blok, perintah slash /statusline.',
+    'meta.description': 'Pengganti langsung untuk status line bawaan Claude Code. Pantau limit 5h/7d secara real time, amati pengisian konteks, lihat biaya sesi — jangan pernah lewat dari jendelanya. 79 tema, 26 blok, perintah slash /statusline.',
 
     'lang.label': 'Bahasa',
 
@@ -2468,7 +2468,7 @@ export const messages = {
 
     'note.label': 'Catatan Editor',
     'note.body.p1': '<span class="dropcap">C</span>laude Code hadir dengan status line yang <strong>minim</strong>. Sebuah nama model. Mungkin sebuah direktori. Hanya itu. Sementara itu konteksmu terisi penuh, <strong>limit 5h dan 7d-mu terus berkurang</strong>, sesimu diam-diam menumpuk biaya — dan kamu baru tahu ketika sudah melewati jendelanya.',
-    'note.body.p2': 'Proyek ini adalah dasbor yang seharusnya ada di sana sejak awal. Tujuh puluh sembilan tema. Sembilan belas blok yang bisa disusun. Satu berkas bash. <strong>Pilih sesuatu yang cantik</strong> — atau bangun sendiri.',
+    'note.body.p2': 'Proyek ini adalah dasbor yang seharusnya ada di sana sejak awal. Tujuh puluh sembilan tema. Dua puluh enam blok yang bisa disusun. Satu berkas bash. <strong>Pilih sesuatu yang cantik</strong> — atau bangun sendiri.',
     'note.margin': '<em>Catatan editorial —</em> proyek ini open source di bawah <em>lisensi source-available</em>: baca dengan bebas, tapi penggunaan ulang memerlukan izin penulis.',
 
     'numbers.title': 'Dalam angka',
@@ -2614,7 +2614,7 @@ export const messages = {
   },
   'vi': {
     'meta.title': 'Claude Code Status Line — Kiểm soát giới hạn · 79 chủ đề · CLI',
-    'meta.description': 'Bản thay thế trực tiếp cho thanh trạng thái mặc định của Claude Code. Theo dõi giới hạn 5h/7d theo thời gian thực, quan sát mức lấp đầy ngữ cảnh, xem chi phí phiên — không bao giờ vượt quá cửa sổ. 79 chủ đề, 19 khối, lệnh slash /statusline.',
+    'meta.description': 'Bản thay thế trực tiếp cho thanh trạng thái mặc định của Claude Code. Theo dõi giới hạn 5h/7d theo thời gian thực, quan sát mức lấp đầy ngữ cảnh, xem chi phí phiên — không bao giờ vượt quá cửa sổ. 79 chủ đề, 26 khối, lệnh slash /statusline.',
 
     'lang.label': 'Ngôn ngữ',
 
@@ -2648,7 +2648,7 @@ export const messages = {
 
     'note.label': 'Lời người biên tập',
     'note.body.p1': '<span class="dropcap">C</span>laude Code đi kèm một thanh trạng thái <strong>sơ sài</strong>. Một tên model. Có thể là một thư mục. Chỉ vậy thôi. Trong khi đó ngữ cảnh của bạn lấp đầy dần, các <strong>giới hạn 5h và 7d đếm ngược</strong>, phiên của bạn lặng lẽ tích lũy chi phí — và bạn chỉ phát hiện ra khi đã vượt quá cửa sổ.',
-    'note.body.p2': 'Dự án này là bảng điều khiển lẽ ra phải có ở đó. Bảy mươi chín chủ đề. Mười chín khối có thể kết hợp. Một tệp bash. <strong>Hãy chọn thứ gì đó đẹp</strong> — hoặc tự dựng cái của riêng bạn.',
+    'note.body.p2': 'Dự án này là bảng điều khiển lẽ ra phải có ở đó. Bảy mươi chín chủ đề. Hai mươi sáu khối có thể kết hợp. Một tệp bash. <strong>Hãy chọn thứ gì đó đẹp</strong> — hoặc tự dựng cái của riêng bạn.',
     'note.margin': '<em>Ghi chú biên tập —</em> dự án là mã nguồn mở theo <em>giấy phép source-available</em>: đọc thoải mái, nhưng tái sử dụng cần có sự cho phép của tác giả.',
 
     'numbers.title': 'Qua các con số',
@@ -2794,7 +2794,7 @@ export const messages = {
   },
   'hi': {
     'meta.title': 'Claude Code Status Line — लिमिट कंट्रोल · 79 थीम · CLI',
-    'meta.description': 'Claude Code की डिफ़ॉल्ट status line का ड्रॉप-इन रिप्लेसमेंट। 5h/7d rate limits को real time में ट्रैक करें, context भरते देखें, session cost देखें — कभी window पार न करें। 79 थीम, 19 ब्लॉक, /statusline slash command।',
+    'meta.description': 'Claude Code की डिफ़ॉल्ट status line का ड्रॉप-इन रिप्लेसमेंट। 5h/7d rate limits को real time में ट्रैक करें, context भरते देखें, session cost देखें — कभी window पार न करें। 79 थीम, 26 ब्लॉक, /statusline slash command।',
 
     'lang.label': 'भाषा',
 
@@ -2828,7 +2828,7 @@ export const messages = {
 
     'note.label': 'संपादक की टिप्पणी',
     'note.body.p1': '<span class="dropcap">C</span>laude Code एक <strong>विरल</strong> status line के साथ आता है। एक model नाम। शायद एक directory। बस इतना ही। इस बीच आपका context भरता जाता है, आपकी <strong>5h और 7d limits घटती जाती हैं</strong>, आपका session चुपचाप cost जोड़ता रहता है — और आपको तभी पता चलता है जब आप window पार कर चुके होते हैं।',
-    'note.body.p2': 'यह प्रोजेक्ट वह डैशबोर्ड है जो वहाँ होना चाहिए था। उन्यासी थीम। उन्नीस कंपोज़ेबल ब्लॉक। एक bash फ़ाइल। <strong>कुछ सुंदर चुनें</strong> — या अपना खुद का बनाएँ।',
+    'note.body.p2': 'यह प्रोजेक्ट वह डैशबोर्ड है जो वहाँ होना चाहिए था। उन्यासी थीम। छब्बीस कंपोज़ेबल ब्लॉक। एक bash फ़ाइल। <strong>कुछ सुंदर चुनें</strong> — या अपना खुद का बनाएँ।',
     'note.margin': '<em>संपादकीय टिप्पणी —</em> यह प्रोजेक्ट <em>source-available license</em> के अंतर्गत open source है: स्वतंत्र रूप से पढ़ें, पर पुनः उपयोग के लिए लेखक की अनुमति चाहिए।',
 
     'numbers.title': 'आँकड़ों में',
@@ -2974,7 +2974,7 @@ export const messages = {
   },
   'zh-tw': {
     'meta.title': 'Claude Code Status Line — 額度掌控 · 79 款佈景主題 · CLI',
-    'meta.description': 'Claude Code 預設狀態列的直接替代方案。即時追蹤 5 小時 / 7 天用量限制、觀察脈絡填充情形、查看工作階段成本 — 絕不會在不知情下衝破上限。79 款佈景主題、19 個區塊、/statusline 斜線指令。',
+    'meta.description': 'Claude Code 預設狀態列的直接替代方案。即時追蹤 5 小時 / 7 天用量限制、觀察脈絡填充情形、查看工作階段成本 — 絕不會在不知情下衝破上限。79 款佈景主題、26 個區塊、/statusline 斜線指令。',
 
     'lang.label': '語言',
 
@@ -3008,7 +3008,7 @@ export const messages = {
 
     'note.label': '編輯的話',
     'note.body.p1': '<span class="dropcap">C</span>laude Code 出廠時附帶一條<strong>稀疏的</strong>狀態列。一個模型名稱。或許還有一個目錄。就這樣。與此同時你的脈絡逐漸填滿、<strong>5h 與 7d 限制不斷倒數</strong>、工作階段悄悄累積成本 — 而你往往要等到衝破上限時才發現。',
-    'note.body.p2': '這個專案就是本該存在的儀表板。七十九款佈景主題。十九個可組合的區塊。一個 bash 檔案。<strong>挑個漂亮的</strong> — 或自己打造。',
+    'note.body.p2': '這個專案就是本該存在的儀表板。七十九款佈景主題。二十六個可組合的區塊。一個 bash 檔案。<strong>挑個漂亮的</strong> — 或自己打造。',
     'note.margin': '<em>編輯附註 —</em> 本專案以<em>原始碼可取得授權（source-available license）</em>開源：可自由閱讀，但若要再利用須取得作者許可。',
 
     'numbers.title': '數據一覽',
@@ -3153,7 +3153,7 @@ export const messages = {
   },
   'pl': {
     'meta.title': 'Claude Code Status Line — kontrola limitów · 79 motywów · CLI',
-    'meta.description': 'Zamiennik domyślnego paska stanu Claude Code. Śledź limity 5h / 7d w czasie rzeczywistym, obserwuj zapełnianie kontekstu, widź koszt sesji — bez żadnych niespodzianek. 79 motywów, 19 bloków, komenda slash /statusline.',
+    'meta.description': 'Zamiennik domyślnego paska stanu Claude Code. Śledź limity 5h / 7d w czasie rzeczywistym, obserwuj zapełnianie kontekstu, widź koszt sesji — bez żadnych niespodzianek. 79 motywów, 26 bloków, komenda slash /statusline.',
 
     'lang.label': 'Język',
 
@@ -3187,7 +3187,7 @@ export const messages = {
 
     'note.label': 'Od redakcji',
     'note.body.p1': '<span class="dropcap">C</span>laude Code dostarczany jest z <strong>ubogim</strong> paskiem stanu. Nazwa modelu. Może katalog. To wszystko. Tymczasem twój kontekst się zapełnia, twoje <strong>limity 5h i 7d odliczają w dół</strong>, twoja sesja po cichu nabija koszt — a dowiadujesz się dopiero, gdy przekroczysz okno.',
-    'note.body.p2': 'Ten projekt to panel, który powinien tam być od początku. Siedemdziesiąt dziewięć motywów. Dziewiętnaście składalnych bloków. Jeden plik bash. <strong>Wybierz coś ładnego</strong> — albo zbuduj własny.',
+    'note.body.p2': 'Ten projekt to panel, który powinien tam być od początku. Siedemdziesiąt dziewięć motywów. Dwadzieścia sześć składalnych bloków. Jeden plik bash. <strong>Wybierz coś ładnego</strong> — albo zbuduj własny.',
     'note.margin': '<em>Nota redakcyjna —</em> projekt jest open source na <em>licencji source-available</em>: czytaj swobodnie, ale ponowne użycie wymaga zgody autora.',
 
     'numbers.title': 'W liczbach',

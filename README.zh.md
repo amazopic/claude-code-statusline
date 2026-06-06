@@ -1,6 +1,6 @@
 # 🛰️ Claude Code Status Line — 79 主题、可配置模块、CLI
 
-> 为 Claude Code 打造的精致、可定制状态栏 —— 上下文进度、速率限制、费用、模型等信息全部呈现在一行优雅的彩色文本中。
+> 为 Claude Code 打造的精致、可定制状态栏 —— 上下文进度、速率限制、费用、模型等信息全部呈现在一行优雅的彩色文本中。79 个主题和 26 个模块库，可自由组合专属状态栏。
 
 [![License: Source-Available](https://img.shields.io/badge/license-Source--Available-orange.svg)](LICENSE)
 [![Variants: 158](https://img.shields.io/badge/variants-158-brightgreen.svg)](#)
@@ -351,7 +351,7 @@ chmod +x ~/.claude/status-line.sh
 | 任务用时(active vs wall)| ❌ | ✅ |
 | Thinking / effort 等级 | ❌ | ✅ |
 | 预设主题 | ❌ | ✅ 79 主题 × 2 变体 = **158 现成** |
-| 从命名块组合 | ❌ | ✅ 19 块,见 [BLOCKS.md](BLOCKS.md) |
+| 从命名块组合 | ❌ | ✅ 26 块,见 [BLOCKS.md](BLOCKS.md) |
 | 内置 CLI 配置器 | ❌ | ✅ `statusline-bundle.sh use / custom / list / preview` |
 | Claude Code `/statusline` 斜杠命令 | ❌ | ✅ 可选,见 [`commands/`](commands/) |
 | 依赖 | — | `bash` 4+ 和 `jq`(无 Node、Python、守护进程)|

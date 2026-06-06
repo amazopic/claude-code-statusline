@@ -130,6 +130,13 @@ export const blocks = [
   { id: 'cups',            label: 'cups',            desc: 'cost-derived ☕ count' },
   { id: 'level',           label: 'level',           desc: 'cost-derived RPG level' },
   { id: 'mood-icon',       label: 'mood-icon',       desc: 'emoji that changes with context %' },
+  { id: 'lines',           label: 'lines',           desc: 'Lines ± (added / removed)' },
+  { id: 'pr',              label: 'pr',              desc: 'Pull request number + review state' },
+  { id: 'worktree',        label: 'worktree',        desc: 'Worktree name' },
+  { id: 'vim',             label: 'vim',             desc: 'Vim mode' },
+  { id: 'agent',           label: 'agent',           desc: 'Agent name' },
+  { id: 'repo',            label: 'repo',            desc: 'Repository owner/name' },
+  { id: 'api-time',        label: 'api-time',        desc: 'API time (total duration)' },
 ];
 
 /** FAQ data — keys reference i18n.js. The limits Q&A is FIRST = #1 SEO/feature. */
@@ -164,7 +171,7 @@ export const compare = [
   { fKey: 'cmp.f.time',   def: false, ours: 'active vs wall' },
   { fKey: 'cmp.f.think',  def: false, ours: '🤖 indicator' },
   { fKey: 'cmp.f.themes', def: false, ours: '79 themes × 2 variants = 158' },
-  { fKey: 'cmp.f.blocks', def: false, ours: '19 blocks, BLOCKS.md' },
+  { fKey: 'cmp.f.blocks', def: false, ours: '26 blocks, BLOCKS.md' },
   { fKey: 'cmp.f.cli',    def: false, ours: 'use / custom / list / preview / update' },
   { fKey: 'cmp.f.slash',  def: false, ours: 'optional, drop-in' },
   { fKey: 'cmp.f.deps',   def: '—',  ours: 'bash + jq' },

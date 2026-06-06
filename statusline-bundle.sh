@@ -82,16 +82,39 @@
 #
 #  ─────────────────────────  BLOCKS  ──────────────────────────
 #
+#  26 blocks total:
 #    model · context · context-pct · context-bar · cost · folder
 #    git · git-branch · tokens-msg · tokens-session · limits
 #    thinking · time-active · time-wall · turns · host · cups
-#    level · mood-icon
+#    level · mood-icon · lines · pr · worktree · vim · agent · repo
+#    api-time
 #
 #  The `limits` block shows the 5h / 7d subscription usage meters. When
 #  Claude Code supplies a `resets_at` epoch for a window, a reset countdown
 #  is appended to its label as 5h{1.1h}: / 7d{1.1d}: — decimal hours for the
 #  5-hour window, decimal days for the 7-day window. With no resets_at the
 #  label stays bare (5h:) for backward compatibility.
+#
+#  The newest blocks read fields Claude Code added to the stdin payload:
+#    lines    — .cost.total_lines_added / .total_lines_removed ("+156 −23")
+#    pr       — .pr.number + .pr.review_state ("✅ PR #1234 approved")
+#    worktree — .worktree.name // .workspace.git_worktree ("⧉ name")
+#    vim      — .vim.mode ("-- NORMAL --")
+#    agent    — .agent.name ("⚙ name")
+#    repo     — .workspace.repo.owner + .name ("owner/name")
+#    api-time — .cost.total_api_duration_ms ("⚡ api 1.2s" / "⚡ api 1m20s")
+#  Each hides completely when its source data is absent.
+#
+#  ─────────────────────────  PAYLOAD-FIRST CONTEXT  ───────────
+#
+#  When Claude Code supplies a `.context_window` object on stdin the renderer
+#  trusts it verbatim — context %, window size, and per-message token counts
+#  come straight from the payload, so NO transcript file is read (fast even
+#  with huge transcripts). Likewise `.context_window.total_input_tokens` +
+#  `.total_output_tokens` feed the session-tokens fallback, and
+#  `.cost.total_duration_ms` feeds the wall-clock time. Older Claude Code
+#  versions that omit these fields fall back to the historical transcript
+#  scan + [1m]/1M/exceeds_200k heuristic with no change in behavior.
 #
 # ─────────────────────────────────────────────────────────────────────────
 
@@ -122,7 +145,7 @@ export LC_NUMERIC=C
 # ─────────────────────────  CONFIG  ───────────────────────────────────
 # Calendar versioning: YYYY.MM.DD — bump on every release. Compared by
 # `statusline update` against the upstream copy on GitHub.
-VERSION="2026.06.06"
+VERSION="2026.06.07"
 UPSTREAM_URL="https://raw.githubusercontent.com/amazopic/claude-code-statusline/main/statusline-bundle.sh"
 
 CONFIG_FILE="${HOME}/.claude/statusline.conf"
@@ -164,7 +187,8 @@ THEMES=(
 # ─────────────────────────  ALL BLOCKS  ───────────────────────────────
 BLOCKS_LIST=(model context context-pct context-bar cost folder
              git git-branch tokens-msg tokens-session limits thinking
-             time-active time-wall turns host cups level mood-icon)
+             time-active time-wall turns host cups level mood-icon
+             lines pr worktree vim agent repo api-time)
 
 is_known_theme() {
   local t="${1%-compact}"
@@ -401,7 +425,7 @@ render_with_fixture() {
   now=$(date +%s)
   r5=$(( now + 3960 ))    # +1.1h → preview shows 5h{1.1h}
   r7=$(( now + 95040 ))   # +1.1d → preview shows 7d{1.1d}
-  fixture='{"model":{"display_name":"Opus 4.7 (1M context)","id":"claude-opus-4-7[1m]"},"workspace":{"current_dir":"'"$PWD"'"},"cost":{"total_cost_usd":0.42},"transcript_path":"","rate_limits":{"five_hour":{"used_percentage":15,"resets_at":'"$r5"'},"seven_day":{"used_percentage":4,"resets_at":'"$r7"'}}}'
+  fixture='{"model":{"display_name":"Opus 4.7 (1M context)","id":"claude-opus-4-7[1m]"},"workspace":{"current_dir":"'"$PWD"'"},"cost":{"total_cost_usd":0.42},"transcript_path":"","context_window":{"used_percentage":12,"context_window_size":1000000,"current_usage":{"input_tokens":8400,"output_tokens":1200,"cache_read_input_tokens":96000,"cache_creation_input_tokens":17000}},"rate_limits":{"five_hour":{"used_percentage":15,"resets_at":'"$r5"'},"seven_day":{"used_percentage":4,"resets_at":'"$r7"'}}}'
   printf '%s' "$fixture" | render_main
 }
 
@@ -629,24 +653,53 @@ parse_input() {
 
   transcript=$(j '.transcript_path')
   exceeds_200k=$(j '.exceeds_200k_tokens')
-  if [[ "$model_id" == *"[1m]"* || "$model_disp" == *"1M"* || "$exceeds_200k" == "true" ]]; then
-    ctx_max=1000000
-  else
-    ctx_max=200000
-  fi
 
+  # ── Context window: payload-first ──────────────────────────────────
+  # When Claude Code supplies a .context_window object on stdin we trust it
+  # verbatim — no transcript scan needed (single jq call pulls all 7 fields
+  # via @tsv). Older Claude Code versions omit the object: fall back to the
+  # historical heuristic ([1m]/1M/exceeds_200k → ctx_max) + last-usage grep.
+  ctx_window_present=$(j 'if .context_window then "1" else "" end')
   in_tok=0; out_tok=0; cr=0; cc=0
-  if [[ -n "$transcript" && -f "$transcript" ]]; then
-    last=$(grep '"usage"' "$transcript" 2>/dev/null | tail -1)
-    if [[ -n "$last" ]]; then
-      in_tok=$(jq  -r '.message.usage.input_tokens // 0'                <<<"$last" 2>/dev/null || echo 0)
-      out_tok=$(jq -r '.message.usage.output_tokens // 0'               <<<"$last" 2>/dev/null || echo 0)
-      cr=$(jq      -r '.message.usage.cache_read_input_tokens // 0'     <<<"$last" 2>/dev/null || echo 0)
-      cc=$(jq      -r '.message.usage.cache_creation_input_tokens // 0' <<<"$last" 2>/dev/null || echo 0)
+  ctx_max=""; ctx_pct=""
+
+  if [[ -n "$ctx_window_present" ]]; then
+    local cw_size cw_pct
+    IFS=$'\t' read -r cw_size cw_pct in_tok out_tok cr cc < <(
+      jq -r '.context_window as $w
+             | [ ($w.context_window_size // 0),
+                 ($w.used_percentage // 0),
+                 ($w.current_usage.input_tokens // 0),
+                 ($w.current_usage.output_tokens // 0),
+                 ($w.current_usage.cache_read_input_tokens // 0),
+                 ($w.current_usage.cache_creation_input_tokens // 0) ]
+             | @tsv' 2>/dev/null <<<"$_INPUT")
+    in_tok=${in_tok:-0}; out_tok=${out_tok:-0}; cr=${cr:-0}; cc=${cc:-0}
+    ctx_max=${cw_size:-0}; (( ctx_max == 0 )) && ctx_max=200000
+    # used_percentage may be fractional — keep the integer part only.
+    ctx_pct=${cw_pct%%.*}; ctx_pct=${ctx_pct:-0}
+  else
+    if [[ "$model_id" == *"[1m]"* || "$model_disp" == *"1M"* || "$exceeds_200k" == "true" ]]; then
+      ctx_max=1000000
+    else
+      ctx_max=200000
+    fi
+    if [[ -n "$transcript" && -f "$transcript" ]]; then
+      last=$(grep '"usage"' "$transcript" 2>/dev/null | tail -1)
+      if [[ -n "$last" ]]; then
+        in_tok=$(jq  -r '.message.usage.input_tokens // 0'                <<<"$last" 2>/dev/null || echo 0)
+        out_tok=$(jq -r '.message.usage.output_tokens // 0'               <<<"$last" 2>/dev/null || echo 0)
+        cr=$(jq      -r '.message.usage.cache_read_input_tokens // 0'     <<<"$last" 2>/dev/null || echo 0)
+        cc=$(jq      -r '.message.usage.cache_creation_input_tokens // 0' <<<"$last" 2>/dev/null || echo 0)
+      fi
     fi
   fi
+
   ctx_used=$(( in_tok + cr + cc ))
-  ctx_pct=$(awk -v u="$ctx_used" -v m="$ctx_max" 'BEGIN { if (m>0) printf "%d", u*100/m; else print 0 }')
+  # If the payload didn't carry a percentage, derive it from used/max.
+  if [[ -z "$ctx_pct" ]]; then
+    ctx_pct=$(awk -v u="$ctx_used" -v m="$ctx_max" 'BEGIN { if (m>0) printf "%d", u*100/m; else print 0 }')
+  fi
   ctx_used_k=$(awk -v v="$ctx_used" 'BEGIN { printf "%.1f", v/1000 }')
   ctx_max_k=$(awk  -v v="$ctx_max"  'BEGIN { printf "%d",   v/1000 }')
 
@@ -701,15 +754,28 @@ block_tokens_msg()  { local ok ik
   ok=$(awk -v v="$out_tok" 'BEGIN { printf "%.1f", v/1000 }')
   ik=$(awk -v v="$ctx_used" 'BEGIN { printf "%.1f", v/1000 }')
   line+="${CD}↑${C}${ok}${CD}K ${CD}↓${C}${ik}${CD}K${N}"; }
-block_tokens_session() {
+# Session token total — payload-first. When .context_window carries the
+# running totals (total_input_tokens / total_output_tokens) we sum those and
+# skip the transcript entirely; otherwise we scan the transcript usage lines.
+_session_tokens() {
+  if [[ -n "${ctx_window_present:-}" ]]; then
+    jq -r '(.context_window.total_input_tokens // 0)
+           + (.context_window.total_output_tokens // 0)' 2>/dev/null <<<"$_INPUT"
+    return
+  fi
   local total=0
-  if [[ -n "$transcript" && -f "$transcript" ]]; then
+  if [[ -n "${transcript:-}" && -f "$transcript" ]]; then
     total=$(grep '"usage"' "$transcript" 2>/dev/null \
       | jq -s '[.[] | select(.message.usage) | .message.usage
                | ((.input_tokens // 0) + (.output_tokens // 0)
                   + (.cache_creation_input_tokens // 0)
                   + (.cache_read_input_tokens // 0))] | add // 0' 2>/dev/null)
   fi
+  printf '%s' "${total:-0}"
+}
+block_tokens_session() {
+  local total
+  total=$(_session_tokens)
   local k=$(( ${total:-0} / 1000 ))
   line+="${GRD}tokens: ${C}$(fmt_thin "$k")${CD}K${N}"
 }
@@ -740,10 +806,21 @@ block_mood_icon()   { local m
   fi
   line+="$m"; }
 
-# Time-tracking blocks (computed lazily)
-_TIME_COMPUTED=0
-_compute_time() {
-  (( _TIME_COMPUTED == 1 )) && return
+# Time-tracking blocks (computed lazily, split so each block only pays for
+# the data it needs).
+#
+# _scan_transcript_time does the expensive line-by-line timestamp walk and is
+# the ONLY source of active_s / turns / first / last. It is invoked solely by
+# blocks that actually need those numbers (time-active, turns) and by
+# _compute_wall when it has to fall back to first→last for the wall clock.
+#
+# _compute_wall is payload-first and cheap: when .cost.total_duration_ms is in
+# the payload it derives wall_s straight from it and NEVER reads the
+# transcript — so a huge transcript stays untouched for the common case.
+_TIME_SCANNED=0
+_WALL_COMPUTED=0
+_scan_transcript_time() {
+  (( _TIME_SCANNED == 1 )) && return
   active_s=0; first=0; last=0; turns=0
   if [[ -n "$transcript" && -f "$transcript" ]]; then
     local prev=0 ts e gap
@@ -758,12 +835,105 @@ _compute_time() {
       prev=$e; turns=$(( turns + 1 ))
     done < <(jq -r '.timestamp // .created_at // .message.created_at // empty' "$transcript" 2>/dev/null)
   fi
-  wall_s=$(( last > 0 && first > 0 ? last - first : 0 ))
-  _TIME_COMPUTED=1
+  _TIME_SCANNED=1
 }
-block_time_active() { _compute_time; line+="${C}⏱ active $(format_duration "$active_s")${N}"; }
-block_time_wall()   { _compute_time; line+="${C}⏱ wall $(format_duration "$wall_s")${N}"; }
-block_turns()       { _compute_time; line+="${B}${turns}${D} turns${N}"; }
+_compute_wall() {
+  (( _WALL_COMPUTED == 1 )) && return
+  local dur_ms; dur_ms=$(j '.cost.total_duration_ms')
+  if [[ -n "$dur_ms" && "$dur_ms" =~ ^[0-9]+([.][0-9]+)?$ ]]; then
+    wall_s=$(awk -v m="$dur_ms" 'BEGIN { printf "%d", m/1000 }')
+  else
+    _scan_transcript_time
+    wall_s=$(( last > 0 && first > 0 ? last - first : 0 ))
+  fi
+  _WALL_COMPUTED=1
+}
+# Combined entry point for the detailed themes that print active+wall+turns
+# together (render_time, etc.). Keeps wall_s payload-first.
+_compute_time() { _scan_transcript_time; _compute_wall; }
+block_time_active() { _scan_transcript_time; line+="${C}⏱ active $(format_duration "$active_s")${N}"; }
+block_time_wall()   { _compute_wall;         line+="${C}⏱ wall $(format_duration "$wall_s")${N}"; }
+block_turns()       { _scan_transcript_time; line+="${B}${turns}${D} turns${N}"; }
+
+# ── New payload-driven blocks (all hide-when-absent) ─────────────────
+# Each leaves $line untouched when its source data is missing so render_custom
+# never joins an empty slot (no stray separators). Dispatched automatically:
+# "api-time" → block_api_time, "tokens-session" → block_tokens_session, etc.
+
+# lines — diff churn from .cost.total_lines_added / .total_lines_removed.
+# "+156 −23" with the plus green and the minus red. Hidden when both are
+# absent or both zero.
+block_lines()       {
+  local add rem
+  add=$(j '.cost.total_lines_added'); rem=$(j '.cost.total_lines_removed')
+  add=${add%.*}; rem=${rem%.*}; add=${add:-0}; rem=${rem:-0}
+  (( add == 0 && rem == 0 )) && return
+  line+="${GR}+${add}${N} ${R}−${rem}${N}"
+}
+# pr — .pr.number + .pr.review_state → "PR #1234 <state>". Icon by state:
+# approved → ✅, changes_requested → ❌, anything else → ⏳. Number bright,
+# state muted. Hidden when there's no PR number.
+block_pr()          {
+  local num st icon
+  num=$(j '.pr.number'); [[ -z "$num" ]] && return
+  st=$(j '.pr.review_state')
+  case "$st" in
+    approved)          icon="✅" ;;
+    changes_requested) icon="❌" ;;
+    *)                 icon="⏳" ;;
+  esac
+  line+="${icon} ${B}PR #${num}${N}"
+  [[ -n "$st" ]] && line+=" ${D}${st}${N}"
+}
+# worktree — .worktree.name (falls back to .workspace.git_worktree) → "⧉ <name>".
+block_worktree()    {
+  local wt
+  wt=$(j '.worktree.name // .workspace.git_worktree')
+  [[ -z "$wt" ]] && return
+  line+="${B}⧉ ${wt}${N}"
+}
+# vim — .vim.mode → "-- NORMAL --" vim-style, yellow.
+block_vim()         {
+  local m
+  m=$(j '.vim.mode'); [[ -z "$m" ]] && return
+  local up; up=$(printf '%s' "$m" | tr '[:lower:]' '[:upper:]')
+  line+="${Y}-- ${up} --${N}"
+}
+# agent — .agent.name → "⚙ <name>", magenta.
+block_agent()       {
+  local a
+  a=$(j '.agent.name'); [[ -z "$a" ]] && return
+  line+="${M}⚙ ${a}${N}"
+}
+# repo — .workspace.repo.owner + .name → "owner/name". Owner muted, name bright.
+block_repo()        {
+  local owner name
+  owner=$(j '.workspace.repo.owner'); name=$(j '.workspace.repo.name')
+  [[ -z "$owner" && -z "$name" ]] && return
+  if [[ -n "$owner" && -n "$name" ]]; then
+    line+="${D}${owner}${N}${D}/${N}${B}${name}${N}"
+  elif [[ -n "$name" ]]; then
+    line+="${B}${name}${N}"
+  else
+    line+="${D}${owner}${N}"
+  fi
+}
+# api-time — .cost.total_api_duration_ms → "⚡ api <dur>". Under 60s shows
+# "X.Xs" (awk %.1f, LC_NUMERIC=C already set globally); ≥ 60s uses
+# format_duration on whole seconds.
+block_api_time()    {
+  local ms
+  ms=$(j '.cost.total_api_duration_ms')
+  [[ -z "$ms" || ! "$ms" =~ ^[0-9]+([.][0-9]+)?$ ]] && return
+  local dur
+  if awk -v m="$ms" 'BEGIN { exit !(m < 60000) }'; then
+    dur=$(awk -v m="$ms" 'BEGIN { printf "%.1fs", m/1000 }')
+  else
+    local s; s=$(awk -v m="$ms" 'BEGIN { printf "%d", m/1000 }')
+    dur=$(format_duration "$s")
+  fi
+  line+="${C}⚡ api ${dur}${N}"
+}
 
 # Block dispatcher (turns "context-bar" into block_context_bar)
 call_block() {
@@ -817,15 +987,11 @@ _lim_default() {
   l5=$(j '.rate_limits.five_hour.used_percentage // .rate_limits.session.percent_used'); l5=${l5%.*}
   l7=$(j '.rate_limits.seven_day.used_percentage // .rate_limits.weekly.percent_used'); l7=${l7%.*}
   if [[ -z "$l5" && -z "$l7" ]]; then
-    # API mode (no subscription limits in payload) — show session tokens
-    local total=0
-    if [[ -n "${transcript:-}" && -f "$transcript" ]]; then
-      total=$(grep '"usage"' "$transcript" 2>/dev/null \
-        | jq -s '[.[] | select(.message.usage) | .message.usage
-                 | ((.input_tokens // 0) + (.output_tokens // 0)
-                    + (.cache_creation_input_tokens // 0)
-                    + (.cache_read_input_tokens // 0))] | add // 0' 2>/dev/null)
-    fi
+    # API mode (no subscription limits in payload) — show session tokens.
+    # _session_tokens is payload-first (.context_window totals) with a
+    # transcript-scan fallback for older Claude Code versions.
+    local total
+    total=$(_session_tokens)
     local k=$(( ${total:-0} / 1000 ))
     line+="${SEP}${GRD}tokens: ${GR}$(fmt_thin "$k")${GRD}K${N}"
     return

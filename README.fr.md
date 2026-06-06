@@ -1,6 +1,6 @@
 # 🛰️ Claude Code Status Line — 79 thèmes, blocs configurables, CLI
 
-> Une ligne d'état soignée et hackable pour Claude Code — barre de contexte, limites, coûts, modèle et bien plus, le tout sur une seule ligne colorée.
+> Une ligne d'état soignée et hackable pour Claude Code — barre de contexte, limites, coûts, modèle et bien plus, le tout sur une seule ligne colorée. 79 thèmes et une bibliothèque de 26 blocs pour composer la vôtre.
 
 [![License: Source-Available](https://img.shields.io/badge/license-Source--Available-orange.svg)](LICENSE)
 [![Variants: 158](https://img.shields.io/badge/variants-158-brightgreen.svg)](#)
@@ -365,7 +365,7 @@ Redémarrez Claude Code (ou `/config` reload). Terminé.
 | Temps sur tâche (actif vs wall) | ❌ | ✅ |
 | Niveau de thinking / effort | ❌ | ✅ |
 | Thèmes prédéfinis | ❌ | ✅ 79 thèmes × 2 variantes = **158 prêts à l'emploi** |
-| Composition à partir de blocs nommés | ❌ | ✅ 19 blocs, voir [BLOCKS.md](BLOCKS.md) |
+| Composition à partir de blocs nommés | ❌ | ✅ 26 blocs, voir [BLOCKS.md](BLOCKS.md) |
 | Configurateur CLI intégré | ❌ | ✅ `statusline-bundle.sh use / custom / list / preview` |
 | Commande slash `/statusline` Claude Code | ❌ | ✅ optionnel, voir [`commands/`](commands/) |
 | Dépendances | — | `bash` 4+ et `jq` (pas de Node, pas de Python, pas de daemon) |

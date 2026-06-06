@@ -5,7 +5,7 @@ for question-answering about the project. It contains the full README, BLOCKS gu
 examples index, and license, concatenated in priority order.
 
 Author: Yevgeniy Achin <amazopic@gmail.com>
-Version: 2026.06.06 (CalVer)
+Version: 2026.06.07 (CalVer)
 License: Source-Available (Reuse-by-Permission)
 Site: https://amazopic.github.io/claude-code-statusline/
 Repo: https://github.com/amazopic/claude-code-statusline
@@ -14,7 +14,7 @@ Repo: https://github.com/amazopic/claude-code-statusline
 
 # 🛰️ Claude Code Status Line — 79 themes, configurable blocks, CLI
 
-> Drop-in replacement for the **Claude Code** default status line: live **context window** usage with a smooth progress bar, **session cost** in USD, **5h / 7d rate-limit** warnings, **git branch** with dirty / ahead / behind counts, **time-on-task tracking**, and the active **model name** (with `(1M)` indicator for 1M-context variants) — all in one colorful Bash line. Ships with **79 ready-made themes** — top picks (cyberpunk, hacker, dragonball, naruto, pokemon, ironman, spiderman, einstein, tesla, ferrari), classics (minimal, developer, time, zen, rainbow, anime, love, cat, christmas, space, retro, fire, ocean, weather, coffee, music, game, pirate), auto brands (porsche, mercedes, bmw, volvo, ford, chevy, jeep, cadillac, toyota, honda, nissan, hyundai, kia, byd, nio, geely), more scientists (newton, curie, darwin, hawking, galileo, feynman, turing, davinci), more anime (onepiece, ghibli), more Marvel (hulk, thor, captain-america, wolverine, deadpool, blackwidow, strange, wanda), OS themes (macos, windows, linux, ubuntu, arch, debian, fedora, kali, mint, nixos), and world religions (christianity, islam, hinduism, buddhism, judaism, sikhism, shinto) and a **19-block library** to compose your own. Includes an all-in-one CLI configurator and a `/statusline` slash command for Claude Code.
+> Drop-in replacement for the **Claude Code** default status line: live **context window** usage with a smooth progress bar, **session cost** in USD, **5h / 7d rate-limit** warnings, **git branch** with dirty / ahead / behind counts, **time-on-task tracking**, and the active **model name** (with `(1M)` indicator for 1M-context variants) — all in one colorful Bash line. Ships with **79 ready-made themes** — top picks (cyberpunk, hacker, dragonball, naruto, pokemon, ironman, spiderman, einstein, tesla, ferrari), classics (minimal, developer, time, zen, rainbow, anime, love, cat, christmas, space, retro, fire, ocean, weather, coffee, music, game, pirate), auto brands (porsche, mercedes, bmw, volvo, ford, chevy, jeep, cadillac, toyota, honda, nissan, hyundai, kia, byd, nio, geely), more scientists (newton, curie, darwin, hawking, galileo, feynman, turing, davinci), more anime (onepiece, ghibli), more Marvel (hulk, thor, captain-america, wolverine, deadpool, blackwidow, strange, wanda), OS themes (macos, windows, linux, ubuntu, arch, debian, fedora, kali, mint, nixos), and world religions (christianity, islam, hinduism, buddhism, judaism, sikhism, shinto) and a **26-block library** to compose your own. Includes an all-in-one CLI configurator and a `/statusline` slash command for Claude Code.
 
 [![License: Source-Available](https://img.shields.io/badge/license-Source--Available-orange.svg)](LICENSE)
 [![Made for Claude Code](https://img.shields.io/badge/made%20for-Claude%20Code-7c3aed.svg)](https://claude.com/claude-code)
@@ -76,6 +76,7 @@ All in **one line**, color-coded, with smart icons that signal urgency.
 ## ✨ Features
 
 - 🪐 **Live context bar** — 10-cell progress bar with sub-cell precision (quadrant or vertical fractional glyphs)
+- 🛰️ **Payload-first** — context window is read from the official `context_window.*` payload, with the transcript used only as a fallback
 - 🧠 **Model name** — with `(1M)` indicator for 1M-context variants
 - 💸 **Session cost** in USD, updated every render
 - ⬆️⬇️ **Per-message token counters** (input / output)
@@ -389,7 +390,7 @@ Edit constants near the top of `statusline.sh`:
 | **Time-on-task** (active vs wall clock) | ❌ | ✅ |
 | **Thinking / effort level** display | ❌ | ✅ |
 | Themed presets | ❌ | ✅ 79 themes × 2 variants = **158 ready-made** |
-| Compose from named blocks | ❌ | ✅ 19 blocks, see [BLOCKS.md](BLOCKS.md) |
+| Compose from named blocks | ❌ | ✅ 26 blocks, see [BLOCKS.md](BLOCKS.md) |
 | Built-in CLI configurator | ❌ | ✅ `statusline-bundle.sh use / custom / list / preview` |
 | Claude Code `/statusline` slash command | ❌ | ✅ optional, see [`commands/`](commands/) |
 | External dependencies | — | `bash` 4+ and `jq` (no Node, no Python, no daemon) |
@@ -516,7 +517,7 @@ Made by **Yevgeniy Achin** · ✉ [amazopic@gmail.com](mailto:amazopic@gmail.com
 
 # Compose your own status line — block library
 
-This is a catalog of **blocks** (segments) you can mix and match to build
+This is a catalog of **26 blocks** (segments) you can mix and match to build
 your own custom Claude Code status line. Pick a style pack, list the
 blocks you want, paste them into a script — done.
 
@@ -930,6 +931,74 @@ fi
 line+="${SEP}${mood}"
 ```
 
+### `lines` — added / removed line counts (`+156 −23`)
+
+```bash
+ladd=$(j '.cost.total_lines_added'); lrem=$(j '.cost.total_lines_removed')
+if [[ -n "$ladd" || -n "$lrem" ]] && (( ${ladd:-0} + ${lrem:-0} > 0 )); then
+  line+="${SEP}${GR}+${ladd:-0}${N} ${R}−${lrem:-0}${N}"
+fi
+```
+
+### `pr` — pull-request number + review state (icon by state)
+
+```bash
+pr_num=$(j '.pr.number'); pr_state=$(j '.pr.review_state')
+if [[ -n "$pr_num" ]]; then
+  case "$pr_state" in
+    approved)          pr_icon="✅" ;;
+    changes_requested) pr_icon="❌" ;;
+    *)                 pr_icon="⏳" ;;
+  esac
+  line+="${SEP}${pr_icon} ${B}PR #${pr_num}${N} ${D}${pr_state}${N}"
+fi
+```
+
+### `worktree` — git worktree name (`⧉ <name>`)
+
+```bash
+wt=$(j '.worktree.name'); [[ -z "$wt" ]] && wt=$(j '.workspace.git_worktree')
+[[ -n "$wt" ]] && line+="${SEP}${B}⧉ ${wt}${N}"
+```
+
+### `vim` — current vim mode (`-- NORMAL --`)
+
+```bash
+vmode=$(j '.vim.mode')
+[[ -n "$vmode" ]] && line+="${SEP}${Y}-- ${vmode} --${N}"
+```
+
+### `agent` — active agent name (`⚙ <name>`)
+
+```bash
+agent=$(j '.agent.name')
+[[ -n "$agent" ]] && line+="${SEP}${M}⚙ ${agent}${N}"
+```
+
+### `repo` — repository owner / name (`owner/name`)
+
+```bash
+repo_owner=$(j '.workspace.repo.owner'); repo_name=$(j '.workspace.repo.name')
+if [[ -n "$repo_owner" || -n "$repo_name" ]]; then
+  line+="${SEP}${D}${repo_owner}${N}${D}/${N}${B}${repo_name}${N}"
+fi
+```
+
+### `api-time` — total API duration (`⚡ api <dur>`)
+
+```bash
+api_ms=$(j '.cost.total_api_duration_ms')
+if [[ -n "$api_ms" ]]; then
+  api_s=$(( api_ms / 1000 ))
+  if (( api_s < 60 )); then
+    api_dur=$(awk -v ms="$api_ms" 'BEGIN { printf "%.1fs", ms/1000 }')
+  else
+    api_dur=$(fmt_dur "$api_s")
+  fi
+  line+="${SEP}${C}⚡ api ${api_dur}${N}"
+fi
+```
+
 ---
 
 ## Footer
@@ -1143,9 +1212,9 @@ status line.
 ## Build your own from blocks
 
 Don't see a layout you want? See [`../BLOCKS.md`](../BLOCKS.md) — a
-catalog of 19 named blocks (model, context-bar, cost, tokens, git,
-time, thinking, …) that you can paste into a script in any order to
-build a custom line.
+catalog of 26 named blocks (model, context-bar, cost, tokens, git,
+time, thinking, lines, pr, worktree, vim, agent, repo, api-time, …)
+that you can paste into a script in any order to build a custom line.
 
 ## About `statusline-time.sh` (human-hours tracker)
 

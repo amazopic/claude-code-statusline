@@ -1,6 +1,6 @@
 # 🛰️ Claude Code Status Line — 79 Themes, konfigurierbare Blöcke, CLI
 
-> Eine durchdachte, hackbare Statuszeile für Claude Code — Kontextbalken, Rate Limits, Kosten, Modell und mehr — alles in einer schön gefärbten Zeile.
+> Eine durchdachte, hackbare Statuszeile für Claude Code — Kontextbalken, Rate Limits, Kosten, Modell und mehr — alles in einer schön gefärbten Zeile. 79 Themes und eine Bibliothek aus 26 Blöcken zum Selberbauen.
 
 [![License: Source-Available](https://img.shields.io/badge/license-Source--Available-orange.svg)](LICENSE)
 [![Variants: 158](https://img.shields.io/badge/variants-158-brightgreen.svg)](#)
@@ -356,7 +356,7 @@ Claude Code neu starten (oder `/config` reload). Fertig.
 | Zeit-am-Task (active vs wall) | ❌ | ✅ |
 | Thinking / Effort-Level | ❌ | ✅ |
 | Vorgefertigte Themes | ❌ | ✅ 79 Themes × 2 Varianten = **158 fertig** |
-| Komposition aus benannten Blöcken | ❌ | ✅ 19 Blöcke, siehe [BLOCKS.md](BLOCKS.md) |
+| Komposition aus benannten Blöcken | ❌ | ✅ 26 Blöcke, siehe [BLOCKS.md](BLOCKS.md) |
 | Eingebauter CLI-Konfigurator | ❌ | ✅ `statusline-bundle.sh use / custom / list / preview` |
 | Claude Code `/statusline` Slash-Befehl | ❌ | ✅ optional, siehe [`commands/`](commands/) |
 | Abhängigkeiten | — | `bash` 4+ und `jq` (kein Node, Python, Daemon) |

@@ -1,6 +1,6 @@
 # 🛰️ Claude Code Status Line — 79 테마, 구성 가능한 블록, CLI
 
-> Claude Code를 위한 세련되고 해킹 가능한 상태 표시줄 — 컨텍스트 바, 사용량 한도, 비용, 모델 등을 아름답게 색상 코딩된 한 줄에 모두 담았습니다.
+> Claude Code를 위한 세련되고 해킹 가능한 상태 표시줄 — 컨텍스트 바, 사용량 한도, 비용, 모델 등을 아름답게 색상 코딩된 한 줄에 모두 담았습니다. 79개 테마와 26개 블록 라이브러리로 나만의 상태줄을 구성할 수 있습니다.
 
 [![License: Source-Available](https://img.shields.io/badge/license-Source--Available-orange.svg)](LICENSE)
 [![Variants: 158](https://img.shields.io/badge/variants-158-brightgreen.svg)](#)
@@ -359,7 +359,7 @@ Claude Code를 재시작 (또는 `/config` reload). 완료.
 | 작업 시간 (active vs wall) | ❌ | ✅ |
 | Thinking / effort 레벨 | ❌ | ✅ |
 | 사전 설정 테마 | ❌ | ✅ 79 테마 × 2 변형 = **158개 준비** |
-| 명명된 블록으로 구성 | ❌ | ✅ 19 블록, [BLOCKS.md](BLOCKS.md) 참조 |
+| 명명된 블록으로 구성 | ❌ | ✅ 26 블록, [BLOCKS.md](BLOCKS.md) 참조 |
 | 내장 CLI 설정 도구 | ❌ | ✅ `statusline-bundle.sh use / custom / list / preview` |
 | Claude Code `/statusline` 슬래시 명령 | ❌ | ✅ 선택, [`commands/`](commands/) 참조 |
 | 의존성 | — | `bash` 4+ 및 `jq` (Node, Python, 데몬 불필요) |

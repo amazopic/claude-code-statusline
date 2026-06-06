@@ -1,6 +1,6 @@
 # Compose your own status line — block library
 
-This is a catalog of **blocks** (segments) you can mix and match to build
+This is a catalog of **26 blocks** (segments) you can mix and match to build
 your own custom Claude Code status line. Pick a style pack, list the
 blocks you want, paste them into a script — done.
 
@@ -112,6 +112,14 @@ Every block below relies on the variables it sets. The locale guard keeps
 every number (`0.42$`, `87.5K`, `{1.1h}`) formatted with a decimal **dot**
 even when the shell runs under a comma-decimal locale (de_DE, ru_RU, …).
 
+The context-window setup is **payload-first**: when Claude Code supplies a
+`.context_window` object on stdin we trust it verbatim (one `jq` call pulls
+`context_window_size`, `used_percentage`, and the four `current_usage.*`
+token counts) and skip the transcript scan entirely. Older Claude Code
+versions omit that object, so the snippet gracefully falls back to the
+historical heuristic (`[1m]`/`1M`/`exceeds_200k` → `ctx_max`) plus a
+last-`usage` grep of the transcript file.
+
 ```bash
 set -uo pipefail
 
@@ -139,25 +147,48 @@ cost_fmt=$(awk -v c="$cost" 'BEGIN { printf "%.2f", c+0 }')
 transcript=$(j '.transcript_path')
 exceeds_200k=$(j '.exceeds_200k_tokens')
 
-if [[ "$model_id" == *"[1m]"* ]] || [[ "$model_disp" == *"1M"* ]] \
-   || [[ "$exceeds_200k" == "true" ]]; then
-  ctx_max=1000000
-else
-  ctx_max=200000
-fi
-
+# Context window — payload-first, transcript fallback.
+ctx_window_present=$(j 'if .context_window then "1" else "" end')
 in_tok=0; out_tok=0; cr=0; cc=0
-if [[ -n "$transcript" && -f "$transcript" ]]; then
-  last=$(grep '"usage"' "$transcript" 2>/dev/null | tail -1)
-  if [[ -n "$last" ]]; then
-    in_tok=$(jq  -r '.message.usage.input_tokens // 0'                <<<"$last" 2>/dev/null || echo 0)
-    out_tok=$(jq -r '.message.usage.output_tokens // 0'               <<<"$last" 2>/dev/null || echo 0)
-    cr=$(jq      -r '.message.usage.cache_read_input_tokens // 0'     <<<"$last" 2>/dev/null || echo 0)
-    cc=$(jq      -r '.message.usage.cache_creation_input_tokens // 0' <<<"$last" 2>/dev/null || echo 0)
+ctx_max=""; ctx_pct=""
+
+if [[ -n "$ctx_window_present" ]]; then
+  # New schema: read all six fields in one jq call.
+  IFS=$'\t' read -r cw_size cw_pct in_tok out_tok cr cc < <(
+    jq -r '.context_window as $w
+           | [ ($w.context_window_size // 0),
+               ($w.used_percentage // 0),
+               ($w.current_usage.input_tokens // 0),
+               ($w.current_usage.output_tokens // 0),
+               ($w.current_usage.cache_read_input_tokens // 0),
+               ($w.current_usage.cache_creation_input_tokens // 0) ]
+           | @tsv' 2>/dev/null <<<"$input")
+  in_tok=${in_tok:-0}; out_tok=${out_tok:-0}; cr=${cr:-0}; cc=${cc:-0}
+  ctx_max=${cw_size:-0}; (( ctx_max == 0 )) && ctx_max=200000
+  ctx_pct=${cw_pct%%.*}; ctx_pct=${ctx_pct:-0}
+else
+  # Legacy fallback: heuristic ctx_max + last-usage grep of the transcript.
+  if [[ "$model_id" == *"[1m]"* ]] || [[ "$model_disp" == *"1M"* ]] \
+     || [[ "$exceeds_200k" == "true" ]]; then
+    ctx_max=1000000
+  else
+    ctx_max=200000
+  fi
+  if [[ -n "$transcript" && -f "$transcript" ]]; then
+    last=$(grep '"usage"' "$transcript" 2>/dev/null | tail -1)
+    if [[ -n "$last" ]]; then
+      in_tok=$(jq  -r '.message.usage.input_tokens // 0'                <<<"$last" 2>/dev/null || echo 0)
+      out_tok=$(jq -r '.message.usage.output_tokens // 0'               <<<"$last" 2>/dev/null || echo 0)
+      cr=$(jq      -r '.message.usage.cache_read_input_tokens // 0'     <<<"$last" 2>/dev/null || echo 0)
+      cc=$(jq      -r '.message.usage.cache_creation_input_tokens // 0' <<<"$last" 2>/dev/null || echo 0)
+    fi
   fi
 fi
+
 ctx_used=$(( in_tok + cr + cc ))
-ctx_pct=$(awk -v u="$ctx_used" -v m="$ctx_max" 'BEGIN { if (m>0) printf "%d", u*100/m; else print 0 }')
+if [[ -z "$ctx_pct" ]]; then
+  ctx_pct=$(awk -v u="$ctx_used" -v m="$ctx_max" 'BEGIN { if (m>0) printf "%d", u*100/m; else print 0 }')
+fi
 
 line=""
 ```
@@ -441,6 +472,113 @@ elif (( ctx_pct < 80 )); then mood="🌧"
 else                          mood="⛈"
 fi
 line+="${SEP}${mood}"
+```
+
+### `lines` — diff churn `+added −removed` (green plus, red minus)
+
+Reads `.cost.total_lines_added` / `.total_lines_removed`. Hidden when both
+fields are absent or both are zero.
+
+```bash
+add=$(j '.cost.total_lines_added'); rem=$(j '.cost.total_lines_removed')
+add=${add%.*}; rem=${rem%.*}; add=${add:-0}; rem=${rem:-0}
+if (( add != 0 || rem != 0 )); then
+  line+="${SEP}${GR}+${add}${N} ${R}−${rem}${N}"
+fi
+```
+
+### `pr` — pull-request number + review state (`✅`/`❌`/`⏳`)
+
+Reads `.pr.number` + `.pr.review_state`. Icon by state: `approved` → ✅,
+`changes_requested` → ❌, anything else → ⏳. Number bright, state muted.
+Hidden when there's no PR number.
+
+```bash
+pr_num=$(j '.pr.number')
+if [[ -n "$pr_num" ]]; then
+  pr_st=$(j '.pr.review_state')
+  case "$pr_st" in
+    approved)          pr_icon="✅" ;;
+    changes_requested) pr_icon="❌" ;;
+    *)                 pr_icon="⏳" ;;
+  esac
+  line+="${SEP}${pr_icon} ${B}PR #${pr_num}${N}"
+  [[ -n "$pr_st" ]] && line+=" ${D}${pr_st}${N}"
+fi
+```
+
+### `worktree` — git worktree name (`⧉ <name>`)
+
+Reads `.worktree.name`, falling back to `.workspace.git_worktree`. Hidden
+when neither is present.
+
+```bash
+wt=$(j '.worktree.name // .workspace.git_worktree')
+if [[ -n "$wt" ]]; then
+  line+="${SEP}${B}⧉ ${wt}${N}"
+fi
+```
+
+### `vim` — vim editing mode (`-- NORMAL --`)
+
+Reads `.vim.mode` and upper-cases it, vim-style. Hidden when absent.
+
+```bash
+vim_mode=$(j '.vim.mode')
+if [[ -n "$vim_mode" ]]; then
+  vim_up=$(printf '%s' "$vim_mode" | tr '[:lower:]' '[:upper:]')
+  line+="${SEP}${Y}-- ${vim_up} --${N}"
+fi
+```
+
+### `agent` — active subagent name (`⚙ <name>`)
+
+Reads `.agent.name`, rendered in magenta. Hidden when absent.
+
+```bash
+agent_name=$(j '.agent.name')
+if [[ -n "$agent_name" ]]; then
+  line+="${SEP}${M}⚙ ${agent_name}${N}"
+fi
+```
+
+### `repo` — `owner/name` of the workspace repo (owner muted, name bright)
+
+Reads `.workspace.repo.owner` + `.workspace.repo.name`. Hidden when both are
+absent; degrades gracefully to whichever single part is present.
+
+```bash
+repo_owner=$(j '.workspace.repo.owner'); repo_name=$(j '.workspace.repo.name')
+if [[ -n "$repo_owner" || -n "$repo_name" ]]; then
+  if [[ -n "$repo_owner" && -n "$repo_name" ]]; then
+    line+="${SEP}${D}${repo_owner}${N}${D}/${N}${B}${repo_name}${N}"
+  elif [[ -n "$repo_name" ]]; then
+    line+="${SEP}${B}${repo_name}${N}"
+  else
+    line+="${SEP}${D}${repo_owner}${N}"
+  fi
+fi
+```
+
+### `api-time` — cumulative API time (`⚡ api <dur>`)
+
+Reads `.cost.total_api_duration_ms`. Under 60 s shows `X.Xs` (awk `%.1f`,
+relying on the header's global `LC_NUMERIC=C` for the decimal dot); 60 s and
+over uses `fmt_dur` on whole seconds (define it from the `time-active` block,
+or use the equivalent `format_duration`). Hidden when the field is absent or
+non-numeric.
+
+```bash
+api_ms=$(j '.cost.total_api_duration_ms')
+if [[ -n "$api_ms" && "$api_ms" =~ ^[0-9]+([.][0-9]+)?$ ]]; then
+  if awk -v m="$api_ms" 'BEGIN { exit !(m < 60000) }'; then
+    api_dur=$(awk -v m="$api_ms" 'BEGIN { printf "%.1fs", m/1000 }')
+  else
+    api_s=$(awk -v m="$api_ms" 'BEGIN { printf "%d", m/1000 }')
+    api_dur=$(fmt_dur "$api_s")
+  fi
+  line+="${SEP}${C}⚡ api ${api_dur}${N}"
+fi
 ```
 
 ---

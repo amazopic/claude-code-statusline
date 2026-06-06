@@ -1,6 +1,6 @@
 # 🛰️ Claude Code Status Line — 79 tem, nastavljivi bloki, CLI
 
-> Dovršena, prilagodljiva statusna vrstica za Claude Code — kontekst, omejitve, stroški, model in več — vse v eni lepo obarvani vrstici.
+> Dovršena, prilagodljiva statusna vrstica za Claude Code — kontekst, omejitve, stroški, model in več — vse v eni lepo obarvani vrstici. 79 tem in knjižnica 26 blokov za sestavljanje lastne vrstice.
 
 [![License: Source-Available](https://img.shields.io/badge/license-Source--Available-orange.svg)](LICENSE)
 [![Variants: 158](https://img.shields.io/badge/variants-158-brightgreen.svg)](#)
@@ -366,7 +366,7 @@ Ponovno zaženite Claude Code (ali `/config` reload). Končano.
 | Čas na nalogi (active vs wall) | ❌ | ✅ |
 | Raven thinking / effort | ❌ | ✅ |
 | Pripravljene teme | ❌ | ✅ 79 tem × 2 različici = **158 pripravljenih** |
-| Sestavljanje iz imenovanih blokov | ❌ | ✅ 19 blokov, glej [BLOCKS.md](BLOCKS.md) |
+| Sestavljanje iz imenovanih blokov | ❌ | ✅ 26 blokov, glej [BLOCKS.md](BLOCKS.md) |
 | Vgrajen CLI konfigurator | ❌ | ✅ `statusline-bundle.sh use / custom / list / preview` |
 | Slash ukaz `/statusline` Claude Code | ❌ | ✅ neobvezno, glej [`commands/`](commands/) |
 | Odvisnosti | — | `bash` 4+ in `jq` (brez Node, Python, demonov) |

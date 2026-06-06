@@ -1,6 +1,6 @@
 # 🛰️ Claude Code Status Line — 79 тем, настраиваемые блоки, CLI
 
-> Красивая, расширяемая статусная строка для Claude Code — контекст, лимиты, стоимость, модель и многое другое — всё в одной цветной линии.
+> Красивая, расширяемая статусная строка для Claude Code — контекст, лимиты, стоимость, модель и многое другое — всё в одной цветной линии. 79 тем и библиотека из 26 блоков для сборки собственной строки.
 
 [![License: Source-Available](https://img.shields.io/badge/license-Source--Available-orange.svg)](LICENSE)
 [![Variants: 158](https://img.shields.io/badge/variants-158-brightgreen.svg)](#)
@@ -356,7 +356,7 @@ chmod +x ~/.claude/status-line.sh
 | Время на задаче (active vs wall) | ❌ | ✅ |
 | Уровень thinking / effort | ❌ | ✅ |
 | Готовые темы | ❌ | ✅ 79 тем × 2 варианта = **158 вариантов** |
-| Сборка из именованных блоков | ❌ | ✅ 19 блоков, см. [BLOCKS.md](BLOCKS.md) |
+| Сборка из именованных блоков | ❌ | ✅ 26 блоков, см. [BLOCKS.md](BLOCKS.md) |
 | Встроенный CLI-конфигуратор | ❌ | ✅ `statusline-bundle.sh use / custom / list / preview` |
 | Slash-команда `/statusline` для Claude Code | ❌ | ✅ опционально, см. [`commands/`](commands/) |
 | Зависимости | — | `bash` 4+ и `jq` (без Node, Python, демонов) |

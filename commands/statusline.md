@@ -75,5 +75,6 @@ Append `-compact` to any name for the compact (model · context · branch) varia
 model · context · context-pct · context-bar · cost · folder
 git · git-branch · tokens-msg · tokens-session · limits
 thinking · time-active · time-wall · turns · host · cups
-level · mood-icon
+level · mood-icon · lines · pr · worktree · vim
+agent · repo · api-time
 ```

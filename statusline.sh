@@ -158,27 +158,49 @@ lim7d_reset=$(j '.rate_limits.seven_day.resets_at')
 thinking=$(j '.effort.level // .thinking.level // .thinking // .model.thinking_level // .output_style.name')
 [[ -z "$thinking" ]] && thinking="default"
 
-# Context window size
-if [[ "$model_id" == *"[1m]"* ]] || [[ "$model_disp" == *"1M"* ]] || [[ "$model_disp" == *"1m"* ]] || [[ "$exceeds_200k" == "true" ]]; then
-  ctx_max=1000000
-else
-  ctx_max=200000
-fi
-
-# Token usage from latest transcript line
+# Context window — payload-first.
+# When Claude Code supplies a .context_window object on stdin we trust it
+# verbatim (one jq call → all 6 fields via @tsv) and skip the transcript scan.
+# Older Claude Code versions omit it: fall back to the historical heuristic
+# ([1m]/1M/exceeds_200k → ctx_max) plus a last-usage grep of the transcript.
+ctx_window_present=$(j 'if .context_window then "1" else "" end')
 in_tok=0; out_tok=0; cr=0; cc=0
-if [[ -n "$transcript" && -f "$transcript" ]]; then
-  last=$(grep '"usage"' "$transcript" 2>/dev/null | tail -1)
-  if [[ -n "$last" ]]; then
-    in_tok=$(jq  -r '.message.usage.input_tokens // 0'                <<<"$last" 2>/dev/null || echo 0)
-    out_tok=$(jq -r '.message.usage.output_tokens // 0'               <<<"$last" 2>/dev/null || echo 0)
-    cr=$(jq      -r '.message.usage.cache_read_input_tokens // 0'     <<<"$last" 2>/dev/null || echo 0)
-    cc=$(jq      -r '.message.usage.cache_creation_input_tokens // 0' <<<"$last" 2>/dev/null || echo 0)
+ctx_max=""; ctx_pct=""
+
+if [[ -n "$ctx_window_present" ]]; then
+  IFS=$'\t' read -r cw_size cw_pct in_tok out_tok cr cc < <(
+    jq -r '.context_window as $w
+           | [ ($w.context_window_size // 0),
+               ($w.used_percentage // 0),
+               ($w.current_usage.input_tokens // 0),
+               ($w.current_usage.output_tokens // 0),
+               ($w.current_usage.cache_read_input_tokens // 0),
+               ($w.current_usage.cache_creation_input_tokens // 0) ]
+           | @tsv' 2>/dev/null <<<"$input")
+  in_tok=${in_tok:-0}; out_tok=${out_tok:-0}; cr=${cr:-0}; cc=${cc:-0}
+  ctx_max=${cw_size:-0}; (( ctx_max == 0 )) && ctx_max=200000
+  ctx_pct=${cw_pct%%.*}; ctx_pct=${ctx_pct:-0}
+else
+  if [[ "$model_id" == *"[1m]"* ]] || [[ "$model_disp" == *"1M"* ]] || [[ "$model_disp" == *"1m"* ]] || [[ "$exceeds_200k" == "true" ]]; then
+    ctx_max=1000000
+  else
+    ctx_max=200000
+  fi
+  if [[ -n "$transcript" && -f "$transcript" ]]; then
+    last=$(grep '"usage"' "$transcript" 2>/dev/null | tail -1)
+    if [[ -n "$last" ]]; then
+      in_tok=$(jq  -r '.message.usage.input_tokens // 0'                <<<"$last" 2>/dev/null || echo 0)
+      out_tok=$(jq -r '.message.usage.output_tokens // 0'               <<<"$last" 2>/dev/null || echo 0)
+      cr=$(jq      -r '.message.usage.cache_read_input_tokens // 0'     <<<"$last" 2>/dev/null || echo 0)
+      cc=$(jq      -r '.message.usage.cache_creation_input_tokens // 0' <<<"$last" 2>/dev/null || echo 0)
+    fi
   fi
 fi
 
 ctx_used=$(( in_tok + cr + cc ))
-ctx_pct=$(awk    -v u="$ctx_used" -v m="$ctx_max" 'BEGIN { if (m>0) printf "%d", u*100/m; else print 0 }')
+if [[ -z "$ctx_pct" ]]; then
+  ctx_pct=$(awk -v u="$ctx_used" -v m="$ctx_max" 'BEGIN { if (m>0) printf "%d", u*100/m; else print 0 }')
+fi
 ctx_used_k=$(awk -v v="$ctx_used" 'BEGIN { printf "%.1f", v/1000 }')
 ctx_max_k=$(awk  -v v="$ctx_max"  'BEGIN { printf "%d",   v/1000 }')
 
@@ -212,9 +234,15 @@ fmt_thin() {
 }
 
 if [[ -z "$lim5h" && -z "$lim7d" ]]; then
-  # API mode (no 5h/7d limits) — show total spent tokens for the session
+  # API mode (no 5h/7d limits) — show total spent tokens for the session.
+  # Payload-first: when .context_window carries running totals, sum those and
+  # skip the transcript; otherwise scan the transcript usage lines as before.
   sess_total=0
-  if [[ -n "$transcript" && -f "$transcript" ]]; then
+  if [[ -n "$ctx_window_present" ]]; then
+    sess_total=$(jq -r '(.context_window.total_input_tokens // 0)
+                        + (.context_window.total_output_tokens // 0)' <<<"$input" 2>/dev/null)
+    [[ -z "$sess_total" ]] && sess_total=0
+  elif [[ -n "$transcript" && -f "$transcript" ]]; then
     sess_total=$(grep '"usage"' "$transcript" 2>/dev/null \
       | jq -s '[.[] | select(.message.usage) | .message.usage
                | ((.input_tokens // 0) + (.output_tokens // 0)

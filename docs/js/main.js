@@ -3,9 +3,9 @@
 //        i18n (19 locales), language switcher, hero limits visualization
 // ─────────────────────────────────────────────────────────────────────
 
-import { themes, blocks, faq, compare } from './themes.js?v=20';
-import { ansiToHtml, specimenHtml, loadSpecimen } from './ansi.js?v=20';
-import { messages, supportedLocales, defaultLocale, t as tBase, detectLocale, persistLocale } from './i18n.js?v=20';
+import { themes, blocks, faq, compare } from './themes.js?v=21';
+import { ansiToHtml, specimenHtml, loadSpecimen } from './ansi.js?v=21';
+import { messages, supportedLocales, defaultLocale, t as tBase, detectLocale, persistLocale } from './i18n.js?v=21';
 
 document.documentElement.classList.add('has-cursor');
 
@@ -516,6 +516,13 @@ function mockRender(ids) {
     cups: '☕ <span style="color:#FFD700">2</span>',
     level: '<span style="color:#C04AFF">LV 1</span>',
     'mood-icon': '☀',
+    lines: '<span style="color:#46DA46">+156</span> <span style="color:#EF4444">−23</span>',
+    pr: '<span style="color:#22D3EE;font-weight:600">PR #1234</span> <span style="color:#7A7A78">⏳</span>',
+    worktree: '<span style="color:#22D3EE">⧉ my-feature</span>',
+    vim: '<span style="color:#FFD700">-- NORMAL --</span>',
+    agent: '<span style="color:#C04AFF">⚙ reviewer</span>',
+    repo: '<span style="color:#7A7A78">amazopic</span><span style="color:#7A7A78">/</span><span style="color:#F5F2EA;font-weight:600">statusline</span>',
+    'api-time': '<span style="color:#22D3EE">⚡ api 2.3s</span>',
   };
   return ids.map(id => sample[id] || `[${id}]`).join('<span style="color:#4A4A48"> · </span>');
 }

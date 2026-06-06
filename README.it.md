@@ -1,6 +1,6 @@
 # 🛰️ Claude Code Status Line — 79 temi, blocchi configurabili, CLI
 
-> Una status line raffinata e personalizzabile per Claude Code — barra del contesto, limiti, costi, modello e altro — tutto in una singola riga colorata.
+> Una status line raffinata e personalizzabile per Claude Code — barra del contesto, limiti, costi, modello e altro — tutto in una singola riga colorata. 79 temi e una libreria di 26 blocchi per comporre la tua.
 
 [![License: Source-Available](https://img.shields.io/badge/license-Source--Available-orange.svg)](LICENSE)
 [![Variants: 158](https://img.shields.io/badge/variants-158-brightgreen.svg)](#)
@@ -357,7 +357,7 @@ Installa claude-code-statusline di amazopic per me. Prima assicurati che jq sia 
 | Tempo sull'attività (active vs wall) | ❌ | ✅ |
 | Livello thinking / effort | ❌ | ✅ |
 | Temi predefiniti | ❌ | ✅ 79 temi × 2 varianti = **158 pronti** |
-| Composizione da blocchi nominati | ❌ | ✅ 19 blocchi, vedi [BLOCKS.md](BLOCKS.md) |
+| Composizione da blocchi nominati | ❌ | ✅ 26 blocchi, vedi [BLOCKS.md](BLOCKS.md) |
 | Configuratore CLI integrato | ❌ | ✅ `statusline-bundle.sh use / custom / list / preview` |
 | Comando slash `/statusline` Claude Code | ❌ | ✅ opzionale, vedi [`commands/`](commands/) |
 | Dipendenze | — | `bash` 4+ e `jq` (no Node, Python, daemon) |
