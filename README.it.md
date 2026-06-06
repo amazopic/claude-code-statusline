@@ -357,7 +357,7 @@ Installa claude-code-statusline di amazopic per me. Prima assicurati che jq sia 
 | Tempo sull'attività (active vs wall) | ❌ | ✅ |
 | Livello thinking / effort | ❌ | ✅ |
 | Temi predefiniti | ❌ | ✅ 79 temi × 2 varianti = **158 pronti** |
-| Composizione da blocchi nominati | ❌ | ✅ 18 blocchi, vedi [BLOCKS.md](BLOCKS.md) |
+| Composizione da blocchi nominati | ❌ | ✅ 19 blocchi, vedi [BLOCKS.md](BLOCKS.md) |
 | Configuratore CLI integrato | ❌ | ✅ `statusline-bundle.sh use / custom / list / preview` |
 | Comando slash `/statusline` Claude Code | ❌ | ✅ opzionale, vedi [`commands/`](commands/) |
 | Dipendenze | — | `bash` 4+ e `jq` (no Node, Python, daemon) |

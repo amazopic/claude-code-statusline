@@ -1,6 +1,6 @@
 # 🛰️ Claude Code Status Line — 79 款主題、可設定區塊、CLI
 
-> **Claude Code** 預設狀態列的隨插即用替代方案：即時顯示 **context window** 使用量並搭配平滑的進度條、以美元計算的 **工作階段花費**、**5h / 7d 速率限制** 警告、含 dirty / ahead / behind 計數的 **git 分支**、**任務耗時追蹤**，以及目前的 **模型名稱**（1M context 版本會標示 `(1M)`）——全部濃縮在同一條色彩繽紛的 Bash 狀態列裡。內建 **79 款現成主題** —— 熱門精選（cyberpunk、hacker、dragonball、naruto、pokemon、ironman、spiderman、einstein、tesla、ferrari）、經典款（minimal、developer、time、zen、rainbow、anime、love、cat、christmas、space、retro、fire、ocean、weather、coffee、music、game、pirate）、汽車品牌（porsche、mercedes、bmw、volvo、ford、chevy、jeep、cadillac、toyota、honda、nissan、hyundai、kia、byd、nio、geely）、更多科學家（newton、curie、darwin、hawking、galileo、feynman、turing、davinci）、更多動漫（onepiece、ghibli）、更多漫威（hulk、thor、captain-america、wolverine、deadpool、blackwidow、strange、wanda）、作業系統主題（macos、windows、linux、ubuntu、arch、debian、fedora、kali、mint、nixos），以及世界宗教（christianity、islam、hinduism、buddhism、judaism、sikhism、shinto），再加上一個 **18 區塊函式庫** 讓你自由組合。隨附一個一站式的 CLI 設定工具，以及一個給 Claude Code 用的 `/statusline` 斜線指令。
+> **Claude Code** 預設狀態列的隨插即用替代方案：即時顯示 **context window** 使用量並搭配平滑的進度條、以美元計算的 **工作階段花費**、**5h / 7d 速率限制** 警告、含 dirty / ahead / behind 計數的 **git 分支**、**任務耗時追蹤**，以及目前的 **模型名稱**（1M context 版本會標示 `(1M)`）——全部濃縮在同一條色彩繽紛的 Bash 狀態列裡。內建 **79 款現成主題** —— 熱門精選（cyberpunk、hacker、dragonball、naruto、pokemon、ironman、spiderman、einstein、tesla、ferrari）、經典款（minimal、developer、time、zen、rainbow、anime、love、cat、christmas、space、retro、fire、ocean、weather、coffee、music、game、pirate）、汽車品牌（porsche、mercedes、bmw、volvo、ford、chevy、jeep、cadillac、toyota、honda、nissan、hyundai、kia、byd、nio、geely）、更多科學家（newton、curie、darwin、hawking、galileo、feynman、turing、davinci）、更多動漫（onepiece、ghibli）、更多漫威（hulk、thor、captain-america、wolverine、deadpool、blackwidow、strange、wanda）、作業系統主題（macos、windows、linux、ubuntu、arch、debian、fedora、kali、mint、nixos），以及世界宗教（christianity、islam、hinduism、buddhism、judaism、sikhism、shinto），再加上一個 **19 區塊函式庫** 讓你自由組合。隨附一個一站式的 CLI 設定工具，以及一個給 Claude Code 用的 `/statusline` 斜線指令。
 
 [![License: Source-Available](https://img.shields.io/badge/license-Source--Available-orange.svg)](LICENSE)
 [![Made for Claude Code](https://img.shields.io/badge/made%20for-Claude%20Code-7c3aed.svg)](https://claude.com/claude-code)
@@ -383,7 +383,7 @@ chmod +x ~/.claude/status-line.sh
 | **任務耗時**（active 對 wall clock） | ❌ | ✅ |
 | **Thinking / effort 等級** 顯示 | ❌ | ✅ |
 | 主題預設 | ❌ | ✅ 79 款主題 × 2 變體 = **158 款現成** |
-| 從具名區塊組合 | ❌ | ✅ 18 個區塊，見 [BLOCKS.md](BLOCKS.md) |
+| 從具名區塊組合 | ❌ | ✅ 19 個區塊，見 [BLOCKS.md](BLOCKS.md) |
 | 內建 CLI 設定工具 | ❌ | ✅ `statusline-bundle.sh use / custom / list / preview` |
 | Claude Code `/statusline` 斜線指令 | ❌ | ✅ 選用，見 [`commands/`](commands/) |
 | 外部相依套件 | — | `bash` 4+ 和 `jq`（無 Node、無 Python、無常駐程式） |

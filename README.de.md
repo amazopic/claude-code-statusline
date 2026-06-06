@@ -356,7 +356,7 @@ Claude Code neu starten (oder `/config` reload). Fertig.
 | Zeit-am-Task (active vs wall) | ❌ | ✅ |
 | Thinking / Effort-Level | ❌ | ✅ |
 | Vorgefertigte Themes | ❌ | ✅ 79 Themes × 2 Varianten = **158 fertig** |
-| Komposition aus benannten Blöcken | ❌ | ✅ 18 Blöcke, siehe [BLOCKS.md](BLOCKS.md) |
+| Komposition aus benannten Blöcken | ❌ | ✅ 19 Blöcke, siehe [BLOCKS.md](BLOCKS.md) |
 | Eingebauter CLI-Konfigurator | ❌ | ✅ `statusline-bundle.sh use / custom / list / preview` |
 | Claude Code `/statusline` Slash-Befehl | ❌ | ✅ optional, siehe [`commands/`](commands/) |
 | Abhängigkeiten | — | `bash` 4+ und `jq` (kein Node, Python, Daemon) |

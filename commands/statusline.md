@@ -51,9 +51,20 @@ the current configuration.
 ## Available themes (cheat sheet)
 
 ```
-minimal · developer · time · zen · rainbow · anime · love
-cat · christmas · hacker · cyberpunk · space · retro · fire
-ocean · weather · coffee · music · game · pirate
+Top picks   cyberpunk · hacker · dragonball · naruto · pokemon · ironman
+            spiderman · einstein · tesla · ferrari
+Classic     minimal · developer · time · zen · rainbow · anime · love · cat
+            christmas · space · retro · fire · ocean · weather · coffee
+            music · game · pirate
+Auto        porsche · mercedes · bmw · volvo · ford · chevy · jeep · cadillac
+            toyota · honda · nissan · hyundai · kia · byd · nio · geely
+Scientists  newton · curie · darwin · hawking · galileo · feynman · turing · davinci
+Anime       onepiece · ghibli
+Marvel      hulk · thor · captain-america · wolverine · deadpool · blackwidow
+            strange · wanda
+OS          macos · windows · linux · ubuntu · arch · debian · fedora · kali
+            mint · nixos
+Religions   christianity · islam · hinduism · buddhism · judaism · sikhism · shinto
 ```
 
 Append `-compact` to any name for the compact (model · context · branch) variant.

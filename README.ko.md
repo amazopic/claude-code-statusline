@@ -359,7 +359,7 @@ Claude Code를 재시작 (또는 `/config` reload). 완료.
 | 작업 시간 (active vs wall) | ❌ | ✅ |
 | Thinking / effort 레벨 | ❌ | ✅ |
 | 사전 설정 테마 | ❌ | ✅ 79 테마 × 2 변형 = **158개 준비** |
-| 명명된 블록으로 구성 | ❌ | ✅ 18 블록, [BLOCKS.md](BLOCKS.md) 참조 |
+| 명명된 블록으로 구성 | ❌ | ✅ 19 블록, [BLOCKS.md](BLOCKS.md) 참조 |
 | 내장 CLI 설정 도구 | ❌ | ✅ `statusline-bundle.sh use / custom / list / preview` |
 | Claude Code `/statusline` 슬래시 명령 | ❌ | ✅ 선택, [`commands/`](commands/) 참조 |
 | 의존성 | — | `bash` 4+ 및 `jq` (Node, Python, 데몬 불필요) |

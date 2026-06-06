@@ -356,7 +356,7 @@ chmod +x ~/.claude/status-line.sh
 | Время на задаче (active vs wall) | ❌ | ✅ |
 | Уровень thinking / effort | ❌ | ✅ |
 | Готовые темы | ❌ | ✅ 79 тем × 2 варианта = **158 вариантов** |
-| Сборка из именованных блоков | ❌ | ✅ 18 блоков, см. [BLOCKS.md](BLOCKS.md) |
+| Сборка из именованных блоков | ❌ | ✅ 19 блоков, см. [BLOCKS.md](BLOCKS.md) |
 | Встроенный CLI-конфигуратор | ❌ | ✅ `statusline-bundle.sh use / custom / list / preview` |
 | Slash-команда `/statusline` для Claude Code | ❌ | ✅ опционально, см. [`commands/`](commands/) |
 | Зависимости | — | `bash` 4+ и `jq` (без Node, Python, демонов) |

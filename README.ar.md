@@ -2,7 +2,7 @@
 
 # 🛰️ Claude Code Status Line — 79 سمة، كتل قابلة للتكوين، CLI
 
-> بديل مباشر لشريط حالة **Claude Code** الافتراضي: استخدام مباشر **لنافذة السياق** بشريط تقدم سلس، **تكلفة الجلسة** بالدولار، تحذيرات **حد المعدل 5س / 7ي**، **فرع git** مع عدد dirty / ahead / behind، **تتبع الوقت المستغرق**، واسم **النموذج** النشط (مع مؤشر `(1M)` لمتغيرات سياق 1M) — كل ذلك في سطر Bash ملوّن واحد. يأتي مع **79 سمة جاهزة** — أبرز الاختيارات (cyberpunk, hacker, dragonball, naruto, pokemon, ironman, spiderman, einstein, tesla, ferrari)، الكلاسيكيات (minimal, developer, time, zen, rainbow, anime, love, cat, christmas, space, retro, fire, ocean, weather, coffee, music, game, pirate)، علامات السيارات (porsche, mercedes, bmw, volvo, ford, chevy, jeep, cadillac, toyota, honda, nissan, hyundai, kia, byd, nio, geely)، علماء (newton, curie, darwin, hawking, galileo, feynman, turing, davinci)، أنمي (onepiece, ghibli)، Marvel (hulk, thor, captain-america, wolverine, deadpool, blackwidow, strange, wanda)، وسمات أنظمة التشغيل (macos, windows, linux, ubuntu, arch, debian, fedora, kali, mint, nixos)، ومكتبة من **18 كتلة** لإنشاء سمتك الخاصة. يشمل مكوّن CLI شامل وأمر شرطة `/statusline` لـ Claude Code.
+> بديل مباشر لشريط حالة **Claude Code** الافتراضي: استخدام مباشر **لنافذة السياق** بشريط تقدم سلس، **تكلفة الجلسة** بالدولار، تحذيرات **حد المعدل 5س / 7ي**، **فرع git** مع عدد dirty / ahead / behind، **تتبع الوقت المستغرق**، واسم **النموذج** النشط (مع مؤشر `(1M)` لمتغيرات سياق 1M) — كل ذلك في سطر Bash ملوّن واحد. يأتي مع **79 سمة جاهزة** — أبرز الاختيارات (cyberpunk, hacker, dragonball, naruto, pokemon, ironman, spiderman, einstein, tesla, ferrari)، الكلاسيكيات (minimal, developer, time, zen, rainbow, anime, love, cat, christmas, space, retro, fire, ocean, weather, coffee, music, game, pirate)، علامات السيارات (porsche, mercedes, bmw, volvo, ford, chevy, jeep, cadillac, toyota, honda, nissan, hyundai, kia, byd, nio, geely)، علماء (newton, curie, darwin, hawking, galileo, feynman, turing, davinci)، أنمي (onepiece, ghibli)، Marvel (hulk, thor, captain-america, wolverine, deadpool, blackwidow, strange, wanda)، وسمات أنظمة التشغيل (macos, windows, linux, ubuntu, arch, debian, fedora, kali, mint, nixos)، ومكتبة من **19 كتلة** لإنشاء سمتك الخاصة. يشمل مكوّن CLI شامل وأمر شرطة `/statusline` لـ Claude Code.
 
 [![License: Source-Available](https://img.shields.io/badge/license-Source--Available-orange.svg)](LICENSE)
 [![Made for Claude Code](https://img.shields.io/badge/made%20for-Claude%20Code-7c3aed.svg)](https://claude.com/claude-code)
@@ -187,7 +187,7 @@ chmod +x ~/.claude/status-line.sh
 | **الوقت المستغرق في المهمة** (نشط مقابل ساعة حائط) | ❌ | ✅ |
 | عرض **مستوى التفكير / الجهد** | ❌ | ✅ |
 | سمات جاهزة | ❌ | ✅ 79 سمة × متغيران = **158 جاهزة** |
-| التركيب من كتل مسماة | ❌ | ✅ 18 كتلة، انظر [BLOCKS.md](BLOCKS.md) |
+| التركيب من كتل مسماة | ❌ | ✅ 19 كتلة، انظر [BLOCKS.md](BLOCKS.md) |
 | مكوّن CLI مدمج | ❌ | ✅ `statusline-bundle.sh use / custom / list / preview` |
 | أمر الشرطة `/statusline` في Claude Code | ❌ | ✅ اختياري، انظر [`commands/`](commands/) |
 | اعتماديات خارجية | — | `bash` 4+ و `jq` (بدون Node، بدون Python، بدون daemon) |

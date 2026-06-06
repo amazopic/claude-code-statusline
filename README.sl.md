@@ -366,7 +366,7 @@ Ponovno zaženite Claude Code (ali `/config` reload). Končano.
 | Čas na nalogi (active vs wall) | ❌ | ✅ |
 | Raven thinking / effort | ❌ | ✅ |
 | Pripravljene teme | ❌ | ✅ 79 tem × 2 različici = **158 pripravljenih** |
-| Sestavljanje iz imenovanih blokov | ❌ | ✅ 18 blokov, glej [BLOCKS.md](BLOCKS.md) |
+| Sestavljanje iz imenovanih blokov | ❌ | ✅ 19 blokov, glej [BLOCKS.md](BLOCKS.md) |
 | Vgrajen CLI konfigurator | ❌ | ✅ `statusline-bundle.sh use / custom / list / preview` |
 | Slash ukaz `/statusline` Claude Code | ❌ | ✅ neobvezno, glej [`commands/`](commands/) |
 | Odvisnosti | — | `bash` 4+ in `jq` (brez Node, Python, demonov) |

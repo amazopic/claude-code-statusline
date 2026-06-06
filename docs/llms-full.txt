@@ -14,7 +14,7 @@ Repo: https://github.com/amazopic/claude-code-statusline
 
 # 🛰️ Claude Code Status Line — 79 themes, configurable blocks, CLI
 
-> Drop-in replacement for the **Claude Code** default status line: live **context window** usage with a smooth progress bar, **session cost** in USD, **5h / 7d rate-limit** warnings, **git branch** with dirty / ahead / behind counts, **time-on-task tracking**, and the active **model name** (with `(1M)` indicator for 1M-context variants) — all in one colorful Bash line. Ships with **79 ready-made themes** — top picks (cyberpunk, hacker, dragonball, naruto, pokemon, ironman, spiderman, einstein, tesla, ferrari), classics (minimal, developer, time, zen, rainbow, anime, love, cat, christmas, space, retro, fire, ocean, weather, coffee, music, game, pirate), auto brands (porsche, mercedes, bmw, volvo, ford, chevy, jeep, cadillac, toyota, honda, nissan, hyundai, kia, byd, nio, geely), more scientists (newton, curie, darwin, hawking, galileo, feynman, turing, davinci), more anime (onepiece, ghibli), more Marvel (hulk, thor, captain-america, wolverine, deadpool, blackwidow, strange, wanda), OS themes (macos, windows, linux, ubuntu, arch, debian, fedora, kali, mint, nixos), and world religions (christianity, islam, hinduism, buddhism, judaism, sikhism, shinto) and an **18-block library** to compose your own. Includes an all-in-one CLI configurator and a `/statusline` slash command for Claude Code.
+> Drop-in replacement for the **Claude Code** default status line: live **context window** usage with a smooth progress bar, **session cost** in USD, **5h / 7d rate-limit** warnings, **git branch** with dirty / ahead / behind counts, **time-on-task tracking**, and the active **model name** (with `(1M)` indicator for 1M-context variants) — all in one colorful Bash line. Ships with **79 ready-made themes** — top picks (cyberpunk, hacker, dragonball, naruto, pokemon, ironman, spiderman, einstein, tesla, ferrari), classics (minimal, developer, time, zen, rainbow, anime, love, cat, christmas, space, retro, fire, ocean, weather, coffee, music, game, pirate), auto brands (porsche, mercedes, bmw, volvo, ford, chevy, jeep, cadillac, toyota, honda, nissan, hyundai, kia, byd, nio, geely), more scientists (newton, curie, darwin, hawking, galileo, feynman, turing, davinci), more anime (onepiece, ghibli), more Marvel (hulk, thor, captain-america, wolverine, deadpool, blackwidow, strange, wanda), OS themes (macos, windows, linux, ubuntu, arch, debian, fedora, kali, mint, nixos), and world religions (christianity, islam, hinduism, buddhism, judaism, sikhism, shinto) and a **19-block library** to compose your own. Includes an all-in-one CLI configurator and a `/statusline` slash command for Claude Code.
 
 [![License: Source-Available](https://img.shields.io/badge/license-Source--Available-orange.svg)](LICENSE)
 [![Made for Claude Code](https://img.shields.io/badge/made%20for-Claude%20Code-7c3aed.svg)](https://claude.com/claude-code)
@@ -249,7 +249,7 @@ See [**BLOCKS.md**](BLOCKS.md) for:
 
 ## 📦 All-in-one bundle (`statusline-bundle.sh`)
 
-If you don't want to manage 40+ files, grab the **single bundled
+If you don't want to manage 150+ files, grab the **single bundled
 script** [`statusline-bundle.sh`](statusline-bundle.sh) — it contains
 every theme + every block + a CLI configurator in one file.
 
@@ -389,7 +389,7 @@ Edit constants near the top of `statusline.sh`:
 | **Time-on-task** (active vs wall clock) | ❌ | ✅ |
 | **Thinking / effort level** display | ❌ | ✅ |
 | Themed presets | ❌ | ✅ 79 themes × 2 variants = **158 ready-made** |
-| Compose from named blocks | ❌ | ✅ 18 blocks, see [BLOCKS.md](BLOCKS.md) |
+| Compose from named blocks | ❌ | ✅ 19 blocks, see [BLOCKS.md](BLOCKS.md) |
 | Built-in CLI configurator | ❌ | ✅ `statusline-bundle.sh use / custom / list / preview` |
 | Claude Code `/statusline` slash command | ❌ | ✅ optional, see [`commands/`](commands/) |
 | External dependencies | — | `bash` 4+ and `jq` (no Node, no Python, no daemon) |
@@ -1047,7 +1047,7 @@ Each theme ships in **two variants**:
 - **Detailed** — full feature set (model, context, cost, tokens, git, time, theme accents, …)
 - **Compact** — minimal three-segment layout: `model · context % + bar · git branch`
 
-Both are **standalone** — copy any one to `~/.claude/statusline.sh`,
+Both are **standalone** — copy any one to `~/.claude/status-line.sh`,
 `chmod +x`, and you're done.
 
 > 💡 **One-file alternative**: see [`../statusline-bundle.sh`](../statusline-bundle.sh) —
@@ -1107,8 +1107,8 @@ Both are **standalone** — copy any one to `~/.claude/statusline.sh`,
 
 ```bash
 # pick a variant — detailed or compact
-cp examples/statusline-cyberpunk-compact.sh ~/.claude/statusline.sh
-chmod +x ~/.claude/statusline.sh
+cp examples/statusline-cyberpunk-compact.sh ~/.claude/status-line.sh
+chmod +x ~/.claude/status-line.sh
 ```
 
 Then make sure `~/.claude/settings.json` points to it:
@@ -1117,7 +1117,7 @@ Then make sure `~/.claude/settings.json` points to it:
 {
   "statusLine": {
     "type": "command",
-    "command": "/Users/<you>/.claude/statusline.sh"
+    "command": "/Users/<you>/.claude/status-line.sh"
   }
 }
 ```
@@ -1143,7 +1143,7 @@ status line.
 ## Build your own from blocks
 
 Don't see a layout you want? See [`../BLOCKS.md`](../BLOCKS.md) — a
-catalog of 18+ named blocks (model, context-bar, cost, tokens, git,
+catalog of 19 named blocks (model, context-bar, cost, tokens, git,
 time, thinking, …) that you can paste into a script in any order to
 build a custom line.
 

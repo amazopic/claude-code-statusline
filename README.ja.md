@@ -355,7 +355,7 @@ amazopic の claude-code-statusline をインストールして。まず jq が�
 | タスク時間(active vs wall)| ❌ | ✅ |
 | Thinking / effort レベル | ❌ | ✅ |
 | プリセットテーマ | ❌ | ✅ 79 テーマ × 2 バリアント = **158 種類** |
-| 名前付きブロックから構成 | ❌ | ✅ 18 ブロック、[BLOCKS.md](BLOCKS.md) 参照 |
+| 名前付きブロックから構成 | ❌ | ✅ 19 ブロック、[BLOCKS.md](BLOCKS.md) 参照 |
 | 内蔵 CLI 設定ツール | ❌ | ✅ `statusline-bundle.sh use / custom / list / preview` |
 | Claude Code `/statusline` スラッシュコマンド | ❌ | ✅ オプション、[`commands/`](commands/) 参照 |
 | 依存関係 | — | `bash` 4+ と `jq`(Node・Python・デーモン不要)|

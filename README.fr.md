@@ -365,7 +365,7 @@ Redémarrez Claude Code (ou `/config` reload). Terminé.
 | Temps sur tâche (actif vs wall) | ❌ | ✅ |
 | Niveau de thinking / effort | ❌ | ✅ |
 | Thèmes prédéfinis | ❌ | ✅ 79 thèmes × 2 variantes = **158 prêts à l'emploi** |
-| Composition à partir de blocs nommés | ❌ | ✅ 18 blocs, voir [BLOCKS.md](BLOCKS.md) |
+| Composition à partir de blocs nommés | ❌ | ✅ 19 blocs, voir [BLOCKS.md](BLOCKS.md) |
 | Configurateur CLI intégré | ❌ | ✅ `statusline-bundle.sh use / custom / list / preview` |
 | Commande slash `/statusline` Claude Code | ❌ | ✅ optionnel, voir [`commands/`](commands/) |
 | Dépendances | — | `bash` 4+ et `jq` (pas de Node, pas de Python, pas de daemon) |

@@ -356,7 +356,7 @@ chmod +x ~/.claude/status-line.sh
 | Час на задачі (active vs wall) | ❌ | ✅ |
 | Рівень thinking / effort | ❌ | ✅ |
 | Готові теми | ❌ | ✅ 79 тем × 2 варіанти = **158 варіантів** |
-| Збірка з іменованих блоків | ❌ | ✅ 18 блоків, див. [BLOCKS.md](BLOCKS.md) |
+| Збірка з іменованих блоків | ❌ | ✅ 19 блоків, див. [BLOCKS.md](BLOCKS.md) |
 | Вбудований CLI-конфігуратор | ❌ | ✅ `statusline-bundle.sh use / custom / list / preview` |
 | Slash-команда `/statusline` | ❌ | ✅ опціонально, див. [`commands/`](commands/) |
 | Залежності | — | `bash` 4+ і `jq` (без Node, Python, демонів) |

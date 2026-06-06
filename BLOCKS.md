@@ -226,6 +226,13 @@ line+="${SEP}${GR}${ctx_bar}${N}"
 
 ### `context-bar-quadrant` — bar with quadrant glyphs (4 levels = 2.5% step)
 
+> **Style variant of `context-bar`, for hand-rolled scripts only.** This is
+> a higher-resolution rendering of `context-bar` you can paste into your own
+> self-assembled status line. It is **not** part of the engine's block list
+> (`BLOCKS_LIST`) and is **not** available via
+> `~/.claude/status-line.sh custom` — the bundle exposes the standard
+> `context-bar` block instead.
+
 ```bash
 quarters=$(( (ctx_pct * 4 + 5) / 10 ))
 full=$(( quarters / 4 )); part=$(( quarters % 4 ))
