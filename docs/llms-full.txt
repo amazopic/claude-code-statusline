@@ -1107,7 +1107,7 @@ printf '%s\n' "$line"
 ## See also
 
 - [`statusline.sh`](statusline.sh) — full reference implementation
-- [`examples/`](examples/) — 158 ready-made variants (79 detailed + 79 compact)
+- [`examples/`](examples/) — 40 standalone scripts (20 classic themes × 2); all 79 themes available via the bundle
 - [`screenshots/`](screenshots/) — pre-rendered ANSI previews
 - [`README.md`](README.md) — main project documentation
 
