@@ -357,6 +357,7 @@ Fetches the latest bundle from GitHub, creates a timestamped backup
 theme config (`~/.claude/statusline.conf`). Restart Claude Code afterwards.
 
 Check what you have installed: `~/.claude/status-line.sh version`.
+Release history: [CHANGELOG.md](CHANGELOG.md) (CalVer `YYYY.MM.DD`; same-day re-releases append `.N`).
 
 ### Requirements
 

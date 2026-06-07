@@ -17,6 +17,7 @@ Claude Code's default status line is sparse — just a model name, maybe a direc
 
 - [README](https://github.com/amazopic/claude-code-statusline/blob/main/README.md): Overview, install, all 79 themes (with category groupings), build-your-own guide.
 - [BLOCKS.md](https://github.com/amazopic/claude-code-statusline/blob/main/BLOCKS.md): Library of 26 named blocks (model, context, context-pct, context-bar, cost, folder, git, git-branch, tokens-msg, tokens-session, limits, thinking, time-active, time-wall, turns, host, cups, level, mood-icon, lines, pr, worktree, vim, agent, repo, api-time) with a 3-step recipe for composing a custom status line.
+- [CHANGELOG.md](https://github.com/amazopic/claude-code-statusline/blob/main/CHANGELOG.md): Release history (CalVer YYYY.MM.DD; git tags vYYYY.MM.DD + GitHub Releases).
 - [LICENSE](https://github.com/amazopic/claude-code-statusline/blob/main/LICENSE): Source-Available License (reuse-by-permission).
 - [examples/README.md](https://github.com/amazopic/claude-code-statusline/blob/main/examples/README.md): Standalone scripts for the 20 classic themes (40 files); the other 59 themes ship inside the bundle — preview them with `~/.claude/status-line.sh preview <theme>`.
 - [commands/statusline.md](https://github.com/amazopic/claude-code-statusline/blob/main/commands/statusline.md): Template Claude Code slash command — drop into `~/.claude/commands/`.
