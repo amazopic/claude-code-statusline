@@ -1,9 +1,9 @@
-# 🛰️ Claude Code Status Line — 79 테마, 구성 가능한 블록, CLI
+# 🛰️ Claude Code Status Line — 81 테마, 구성 가능한 블록, CLI
 
-> Claude Code를 위한 세련되고 해킹 가능한 상태 표시줄 — 컨텍스트 바, 사용량 한도, 비용, 모델 등을 아름답게 색상 코딩된 한 줄에 모두 담았습니다. 79개 테마와 26개 블록 라이브러리로 나만의 상태줄을 구성할 수 있습니다.
+> Claude Code를 위한 세련되고 해킹 가능한 상태 표시줄 — 컨텍스트 바, 사용량 한도, 비용, 모델 등을 아름답게 색상 코딩된 한 줄에 모두 담았습니다. 81개 테마와 26개 블록 라이브러리로 나만의 상태줄을 구성할 수 있습니다.
 
 [![License: Source-Available](https://img.shields.io/badge/license-Source--Available-orange.svg)](LICENSE)
-[![Variants: 158](https://img.shields.io/badge/variants-158-brightgreen.svg)](#)
+[![Variants: 162](https://img.shields.io/badge/variants-162-brightgreen.svg)](#)
 [![Author](https://img.shields.io/badge/author-Yevgeniy%20Achin-blue.svg)](mailto:amazopic@gmail.com)
 [![Made for Claude Code](https://img.shields.io/badge/made%20for-Claude%20Code-7c3aed.svg)](https://claude.com/claude-code)
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](#-기여)
@@ -24,16 +24,16 @@ Opus 4.7 (1M) │ 🚀 12% █▌░░░░░░░░ 121.4K/1000K │ 0.42$
 
 **설계부터 예측 가능** — 모든 표시기가 자신의 리셋까지 카운트다운하므로, 벽에 부딪히는 대신 작업의 속도를 조절할 수 있습니다. 일의 예측 가능성 — 자신의 생산성을 분산하세요.
 
-## 🎨 158개 변형 — 선택해서 적용
+## 🎨 162개 변형 — 선택해서 적용
 
-79개 테마 × 2개 변형 (`detailed` + `-compact`). `~/.claude/status-line.sh use <name>`로 적용.
+81개 테마 × 2개 변형 (`detailed` + `-compact`). `~/.claude/status-line.sh use <name>`로 적용.
 
 ### 🔝 Top 10 — 가장 많이 요청되는, 국제적
 `cyberpunk` · `hacker` · `dragonball` · `naruto` · `pokemon` · `ironman` · `spiderman` · `einstein` · `tesla` · `ferrari`
 
-### 🛠 클래식 (18): `minimal` `developer` `time` `zen` `rainbow` `anime` `love` `cat` `christmas` `space` `retro` `fire` `ocean` `weather` `coffee` `music` `game` `pirate`
+### 🛠 클래식 (20): `minimal` `developer` `muted` `mono` `time` `zen` `rainbow` `anime` `love` `cat` `christmas` `space` `retro` `fire` `ocean` `weather` `coffee` `music` `game` `pirate`
 
-### 🚗 자동차 브랜드 (15)
+### 🚗 자동차 브랜드 (16)
 - 🇪🇺 유럽: `porsche` · `mercedes` · `bmw` · `volvo`
 - 🇺🇸 미국: `ford` · `chevy` · `jeep` · `cadillac`
 - 🇯🇵 일본: `toyota` · `honda` · `nissan`
@@ -365,7 +365,7 @@ Claude Code를 재시작 (또는 `/config` reload). 완료.
 | Git 브랜치 + dirty + ahead/behind | ❌ | ✅ |
 | 작업 시간 (active vs wall) | ❌ | ✅ |
 | Thinking / effort 레벨 | ❌ | ✅ |
-| 사전 설정 테마 | ❌ | ✅ 79 테마 × 2 변형 = **158개 준비** |
+| 사전 설정 테마 | ❌ | ✅ 81 테마 × 2 변형 = **162개 준비** |
 | 명명된 블록으로 구성 | ❌ | ✅ 26 블록, [BLOCKS.md](BLOCKS.md) 참조 |
 | 내장 CLI 설정 도구 | ❌ | ✅ `statusline-bundle.sh use / custom / list / preview` |
 | Claude Code `/statusline` 슬래시 명령 | ❌ | ✅ 선택, [`commands/`](commands/) 참조 |

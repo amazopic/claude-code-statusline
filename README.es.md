@@ -1,9 +1,9 @@
-# 🛰️ Claude Code Status Line — 79 temas, bloques configurables, CLI
+# 🛰️ Claude Code Status Line — 81 temas, bloques configurables, CLI
 
-> Una barra de estado pulida y hackeable para Claude Code — barra de contexto, límites de uso, costos, modelo y más, todo en una sola línea bellamente coloreada. 79 temas y una biblioteca de 26 bloques para componer la tuya.
+> Una barra de estado pulida y hackeable para Claude Code — barra de contexto, límites de uso, costos, modelo y más, todo en una sola línea bellamente coloreada. 81 temas y una biblioteca de 26 bloques para componer la tuya.
 
 [![License: Source-Available](https://img.shields.io/badge/license-Source--Available-orange.svg)](LICENSE)
-[![Variants: 158](https://img.shields.io/badge/variants-158-brightgreen.svg)](#)
+[![Variants: 162](https://img.shields.io/badge/variants-162-brightgreen.svg)](#)
 [![Author](https://img.shields.io/badge/author-Yevgeniy%20Achin-blue.svg)](mailto:amazopic@gmail.com)
 [![Made for Claude Code](https://img.shields.io/badge/made%20for-Claude%20Code-7c3aed.svg)](https://claude.com/claude-code)
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](#-contribuir)
@@ -47,16 +47,16 @@ Todo en **una sola línea**, con código de colores e iconos inteligentes que in
 
 > 💡 **Consejo pro — Control del contexto**: cuanto más llena esté tu ventana de contexto, **menos eficaz** será tu conversación con Claude — y **más rápido** se queman tus límites de 5h / 7d. Limpia o `/compact` cuando cruces el **60%** para trabajar eficientemente.
 
-## 🎨 158 variantes listas — elige y aplica
+## 🎨 162 variantes listas — elige y aplica
 
-79 temas × 2 variantes (`detailed` + `-compact`). Aplica con `~/.claude/status-line.sh use <name>`.
+81 temas × 2 variantes (`detailed` + `-compact`). Aplica con `~/.claude/status-line.sh use <name>`.
 
 ### 🔝 Top 10 — los más pedidos, interculturales
 `cyberpunk` · `hacker` · `dragonball` · `naruto` · `pokemon` · `ironman` · `spiderman` · `einstein` · `tesla` · `ferrari`
 
-### 🛠 Clásicos (18): `minimal` `developer` `time` `zen` `rainbow` `anime` `love` `cat` `christmas` `space` `retro` `fire` `ocean` `weather` `coffee` `music` `game` `pirate`
+### 🛠 Clásicos (20): `minimal` `developer` `muted` `mono` `time` `zen` `rainbow` `anime` `love` `cat` `christmas` `space` `retro` `fire` `ocean` `weather` `coffee` `music` `game` `pirate`
 
-### 🚗 Marcas de coches (15)
+### 🚗 Marcas de coches (16)
 - 🇪🇺 Europa: `porsche` · `mercedes` · `bmw` · `volvo`
 - 🇺🇸 América: `ford` · `chevy` · `jeep` · `cadillac`
 - 🇯🇵 Japón: `toyota` · `honda` · `nissan`
@@ -361,7 +361,7 @@ Instálame claude-code-statusline de amazopic. Primero asegúrate de que jq est�
 | Rama git + dirty + ahead/behind | ❌ | ✅ |
 | Tiempo en tarea (active vs wall) | ❌ | ✅ |
 | Nivel de thinking / effort | ❌ | ✅ |
-| Temas predefinidos | ❌ | ✅ 79 temas × 2 variantes = **158 listos** |
+| Temas predefinidos | ❌ | ✅ 81 temas × 2 variantes = **162 listos** |
 | Composición desde bloques nombrados | ❌ | ✅ 26 bloques, ver [BLOCKS.md](BLOCKS.md) |
 | Configurador CLI integrado | ❌ | ✅ `statusline-bundle.sh use / custom / list / preview` |
 | Comando slash `/statusline` Claude Code | ❌ | ✅ opcional, ver [`commands/`](commands/) |

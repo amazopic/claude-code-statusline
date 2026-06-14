@@ -117,8 +117,8 @@ echo "$INPUT" | bash statusline.sh > screenshots/statusline.ansi
 cp screenshots/*.ansi docs/assets/specimens/
 ```
 
-> Note: the gallery on the site renders all 79 themes (× detailed/compact =
-> 158, plus `statusline.ansi` = **159** specimens) directly from
+> Note: the gallery on the site renders all 81 themes (× detailed/compact =
+> 162, plus `statusline.ansi` = **163** specimens) directly from
 > `statusline-bundle.sh` under a throwaway `HOME`, so the product bundle is
 > the single source of truth. The `examples/*.sh` → `screenshots/*.ansi`
 > path above (40 + 1) is the standalone-script gallery.

@@ -1,10 +1,10 @@
-# 🛰️ Claude Code Status Line — 79 ธีม, บล็อกที่ปรับแต่งได้, CLI
+# 🛰️ Claude Code Status Line — 81 ธีม, บล็อกที่ปรับแต่งได้, CLI
 
-> ตัวแทนแบบ drop-in สำหรับสเตตัสไลน์เริ่มต้นของ **Claude Code**: แสดงการใช้งาน **context window** แบบสดพร้อมแถบความคืบหน้าที่ลื่นไหล, **ค่าใช้จ่ายต่อเซสชัน** เป็นดอลลาร์สหรัฐ, คำเตือน **5h / 7d rate-limit**, **git branch** พร้อมตัวนับ dirty / ahead / behind, **การติดตามเวลาที่ใช้กับงาน**, และ **ชื่อโมเดล** ที่กำลังใช้งาน (พร้อมตัวบ่งชี้ `(1M)` สำหรับรุ่นที่มี context 1M) — ทั้งหมดอยู่ในบรรทัด Bash สีสันสดใสบรรทัดเดียว มาพร้อม **79 ธีมสำเร็จรูป** — ตัวเลือกยอดนิยม (cyberpunk, hacker, dragonball, naruto, pokemon, ironman, spiderman, einstein, tesla, ferrari), คลาสสิก (minimal, developer, time, zen, rainbow, anime, love, cat, christmas, space, retro, fire, ocean, weather, coffee, music, game, pirate), แบรนด์รถยนต์ (porsche, mercedes, bmw, volvo, ford, chevy, jeep, cadillac, toyota, honda, nissan, hyundai, kia, byd, nio, geely), นักวิทยาศาสตร์เพิ่มเติม (newton, curie, darwin, hawking, galileo, feynman, turing, davinci), อนิเมะเพิ่มเติม (onepiece, ghibli), Marvel เพิ่มเติม (hulk, thor, captain-america, wolverine, deadpool, blackwidow, strange, wanda), ธีมระบบปฏิบัติการ (macos, windows, linux, ubuntu, arch, debian, fedora, kali, mint, nixos), และศาสนาของโลก (christianity, islam, hinduism, buddhism, judaism, sikhism, shinto) พร้อม **คลังบล็อก 26 บล็อก** ให้คุณประกอบของคุณเอง รวมถึง CLI configurator แบบครบในตัวเดียว และ slash command `/statusline` สำหรับ Claude Code
+> ตัวแทนแบบ drop-in สำหรับสเตตัสไลน์เริ่มต้นของ **Claude Code**: แสดงการใช้งาน **context window** แบบสดพร้อมแถบความคืบหน้าที่ลื่นไหล, **ค่าใช้จ่ายต่อเซสชัน** เป็นดอลลาร์สหรัฐ, คำเตือน **5h / 7d rate-limit**, **git branch** พร้อมตัวนับ dirty / ahead / behind, **การติดตามเวลาที่ใช้กับงาน**, และ **ชื่อโมเดล** ที่กำลังใช้งาน (พร้อมตัวบ่งชี้ `(1M)` สำหรับรุ่นที่มี context 1M) — ทั้งหมดอยู่ในบรรทัด Bash สีสันสดใสบรรทัดเดียว มาพร้อม **81 ธีมสำเร็จรูป** — ตัวเลือกยอดนิยม (cyberpunk, hacker, dragonball, naruto, pokemon, ironman, spiderman, einstein, tesla, ferrari), คลาสสิก (minimal, developer, muted, mono, time, zen, rainbow, anime, love, cat, christmas, space, retro, fire, ocean, weather, coffee, music, game, pirate), แบรนด์รถยนต์ (porsche, mercedes, bmw, volvo, ford, chevy, jeep, cadillac, toyota, honda, nissan, hyundai, kia, byd, nio, geely), นักวิทยาศาสตร์เพิ่มเติม (newton, curie, darwin, hawking, galileo, feynman, turing, davinci), อนิเมะเพิ่มเติม (onepiece, ghibli), Marvel เพิ่มเติม (hulk, thor, captain-america, wolverine, deadpool, blackwidow, strange, wanda), ธีมระบบปฏิบัติการ (macos, windows, linux, ubuntu, arch, debian, fedora, kali, mint, nixos), และศาสนาของโลก (christianity, islam, hinduism, buddhism, judaism, sikhism, shinto) พร้อม **คลังบล็อก 26 บล็อก** ให้คุณประกอบของคุณเอง รวมถึง CLI configurator แบบครบในตัวเดียว และ slash command `/statusline` สำหรับ Claude Code
 
 [![License: Source-Available](https://img.shields.io/badge/license-Source--Available-orange.svg)](LICENSE)
 [![Made for Claude Code](https://img.shields.io/badge/made%20for-Claude%20Code-7c3aed.svg)](https://claude.com/claude-code)
-[![Variants: 158](https://img.shields.io/badge/variants-158-brightgreen.svg)](#-158-ธีมสำเร็จรูป--เลือกแล้วใช้ได้เลย)
+[![Variants: 162](https://img.shields.io/badge/variants-162-brightgreen.svg)](#-162-ธีมสำเร็จรูป--เลือกแล้วใช้ได้เลย)
 [![Bash + jq](https://img.shields.io/badge/runs%20on-bash%20%2B%20jq-yellow.svg)](#ความต้องการของระบบ)
 [![Author](https://img.shields.io/badge/author-Yevgeniy%20Achin-blue.svg)](mailto:amazopic@gmail.com)
 
@@ -85,7 +85,7 @@ Install claude-code-statusline by amazopic for me. First make sure jq is install
 - 🧩 **สไตล์แถบแบบ pluggable** — เลือก `quadrant` (▖▄▙█) หรือ `vertical` (▏▎▍▌▋▊▉█) หรือสร้างของคุณเองใน bash 10 บรรทัด
 - ⚡ **เบา** — `bash` + `jq` ล้วน ไม่มี Node ไม่มี Python ไม่มี daemon ไม่มี telemetry
 
-## 🎨 158 ธีมสำเร็จรูป — เลือกแล้วใช้ได้เลย
+## 🎨 162 ธีมสำเร็จรูป — เลือกแล้วใช้ได้เลย
 
 แต่ละธีมมาพร้อม **สองแบบ**:
 
@@ -109,12 +109,14 @@ Install claude-code-statusline by amazopic for me. First make sure jq is install
 | `tesla`      | ⚡ สีม่วงไฟฟ้า + สีเหลืองสายฟ้า · `AC ~` |
 | `ferrari`    | 🐎 rosso corsa + สีเหลือง Modena |
 
-### 🛠 ใช้งานจริง / คลาสสิก (18 ธีม)
+### 🛠 ใช้งานจริง / คลาสสิก (20 ธีม)
 
 | ธีม | ไฟล์ / การใช้งาน |
 |---|---|
 | 🛠 minimal       | [`statusline-minimal.sh`](examples/statusline-minimal.sh) · `use minimal` |
 | 🛠 developer     | [`statusline-developer.sh`](examples/statusline-developer.sh) · `use developer` |
+| 🛠 muted         | `use muted` |
+| 🛠 mono          | `use mono` |
 | 🛠 time          | [`statusline-time.sh`](examples/statusline-time.sh) · `use time` |
 | 🛠 zen           | [`statusline-zen.sh`](examples/statusline-zen.sh) · `use zen` |
 | 🌈 rainbow       | [`statusline-rainbow.sh`](examples/statusline-rainbow.sh) · `use rainbow` |
@@ -140,7 +142,7 @@ cp examples/statusline-cyberpunk-compact.sh ~/.claude/status-line.sh
 chmod +x ~/.claude/status-line.sh
 ```
 
-### 🚗 แบรนด์รถยนต์ (อีก 15 ตัวเลือกยอดนิยมมี `ferrari`)
+### 🚗 แบรนด์รถยนต์ (อีก 16 ตัวเลือกยอดนิยมมี `ferrari`)
 
 มาพร้อมใน `statusline-bundle.sh` เท่านั้น — เลือกตัวใดก็ได้ด้วย `~/.claude/status-line.sh use <name>`
 
@@ -203,7 +205,7 @@ chmod +x ~/.claude/status-line.sh
 ```bash
 ~/.claude/status-line.sh use macos            # detailed
 ~/.claude/status-line.sh use porsche-compact  # compact
-~/.claude/status-line.sh use einstein         # any of the 79 themes works
+~/.claude/status-line.sh use einstein         # any of the 81 themes works
 ```
 
 **เรียกดูทั้งหมดในเทอร์มินัลของคุณก่อน** — ทุกแบบมี
@@ -213,7 +215,7 @@ chmod +x ~/.claude/status-line.sh
 # preview a single one
 cat screenshots/statusline-cyberpunk.ansi
 
-# or browse the whole gallery (158 variants + main)
+# or browse the whole gallery (162 variants + main)
 for f in screenshots/*.ansi; do
   printf "\n=== %s ===\n" "$(basename "$f" .ansi)"
   cat "$f"
@@ -391,7 +393,7 @@ chmod +x ~/.claude/status-line.sh
 | **Git branch** + dirty + ahead/behind | ❌ | ✅ |
 | **เวลาที่ใช้กับงาน** (active เทียบกับ wall clock) | ❌ | ✅ |
 | การแสดง **ระดับการคิด / effort** | ❌ | ✅ |
-| พรีเซ็ตธีม | ❌ | ✅ 79 ธีม × 2 แบบ = **158 สำเร็จรูป** |
+| พรีเซ็ตธีม | ❌ | ✅ 81 ธีม × 2 แบบ = **162 สำเร็จรูป** |
 | ประกอบจากบล็อกที่มีชื่อ | ❌ | ✅ 26 บล็อก ดู [BLOCKS.md](BLOCKS.md) |
 | CLI configurator ในตัว | ❌ | ✅ `statusline-bundle.sh use / custom / list / preview` |
 | slash command `/statusline` ของ Claude Code | ❌ | ✅ ทางเลือก ดู [`commands/`](commands/) |
@@ -441,7 +443,7 @@ Claude Code เรนเดอร์ใหม่เมื่อมีเหต�
 
 ได้ — สามวิธี:
 
-1. เลือกหนึ่งใน **79 ธีม** (158 แบบทั้งหมด) — ใช้ `~/.claude/status-line.sh use <name>` หรือเรียกดู [`examples/`](examples/) สำหรับสคริปต์แบบ standalone
+1. เลือกหนึ่งใน **81 ธีม** (162 แบบทั้งหมด) — ใช้ `~/.claude/status-line.sh use <name>` หรือเรียกดู [`examples/`](examples/) สำหรับสคริปต์แบบ standalone
 2. ประกอบของคุณเองจาก **บล็อกที่มีชื่อ** — ดู [BLOCKS.md](BLOCKS.md)
 3. แก้ไขค่าคงที่สีและสไตล์แถบใน `statusline.sh` โดยตรง
 

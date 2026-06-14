@@ -1,12 +1,12 @@
 <div dir="rtl">
 
-# 🛰️ Claude Code Status Line — 79 themes, configurable blocks, CLI
+# 🛰️ Claude Code Status Line — 81 themes, configurable blocks, CLI
 
-> תחליף drop-in לשורת המצב (status line) הברירת-מחדל של **Claude Code**: שימוש חי **בחלון ההקשר (context window)** עם פס התקדמות חלק, **עלות הסשן (session cost)** בדולרים, אזהרות **5h / 7d rate-limit**, **ענף git** עם ספירת dirty / ahead / behind, **מעקב זמן-על-משימה (time-on-task)**, ושם **המודל (model name)** הפעיל (עם מחוון `(1M)` לגרסאות בעלות הקשר 1M) — הכול בשורת Bash צבעונית אחת. מגיע עם **79 themes מוכנות** — הבחירות המובילות (cyberpunk, hacker, dragonball, naruto, pokemon, ironman, spiderman, einstein, tesla, ferrari), קלאסיקות (minimal, developer, time, zen, rainbow, anime, love, cat, christmas, space, retro, fire, ocean, weather, coffee, music, game, pirate), מותגי רכב (porsche, mercedes, bmw, volvo, ford, chevy, jeep, cadillac, toyota, honda, nissan, hyundai, kia, byd, nio, geely), עוד מדענים (newton, curie, darwin, hawking, galileo, feynman, turing, davinci), עוד anime (onepiece, ghibli), עוד Marvel (hulk, thor, captain-america, wolverine, deadpool, blackwidow, strange, wanda), themes של מערכות הפעלה (macos, windows, linux, ubuntu, arch, debian, fedora, kali, mint, nixos), ודתות העולם (christianity, islam, hinduism, buddhism, judaism, sikhism, shinto) ו**ספריית 26-block** להרכבת שורה משלך. כולל מגדיר CLI כולל-בכול ופקודת slash בשם `/statusline` עבור Claude Code.
+> תחליף drop-in לשורת המצב (status line) הברירת-מחדל של **Claude Code**: שימוש חי **בחלון ההקשר (context window)** עם פס התקדמות חלק, **עלות הסשן (session cost)** בדולרים, אזהרות **5h / 7d rate-limit**, **ענף git** עם ספירת dirty / ahead / behind, **מעקב זמן-על-משימה (time-on-task)**, ושם **המודל (model name)** הפעיל (עם מחוון `(1M)` לגרסאות בעלות הקשר 1M) — הכול בשורת Bash צבעונית אחת. מגיע עם **81 themes מוכנות** — הבחירות המובילות (cyberpunk, hacker, dragonball, naruto, pokemon, ironman, spiderman, einstein, tesla, ferrari), קלאסיקות (minimal, developer, muted, mono, time, zen, rainbow, anime, love, cat, christmas, space, retro, fire, ocean, weather, coffee, music, game, pirate), מותגי רכב (porsche, mercedes, bmw, volvo, ford, chevy, jeep, cadillac, toyota, honda, nissan, hyundai, kia, byd, nio, geely), עוד מדענים (newton, curie, darwin, hawking, galileo, feynman, turing, davinci), עוד anime (onepiece, ghibli), עוד Marvel (hulk, thor, captain-america, wolverine, deadpool, blackwidow, strange, wanda), themes של מערכות הפעלה (macos, windows, linux, ubuntu, arch, debian, fedora, kali, mint, nixos), ודתות העולם (christianity, islam, hinduism, buddhism, judaism, sikhism, shinto) ו**ספריית 26-block** להרכבת שורה משלך. כולל מגדיר CLI כולל-בכול ופקודת slash בשם `/statusline` עבור Claude Code.
 
 [![License: Source-Available](https://img.shields.io/badge/license-Source--Available-orange.svg)](LICENSE)
 [![Made for Claude Code](https://img.shields.io/badge/made%20for-Claude%20Code-7c3aed.svg)](https://claude.com/claude-code)
-[![Variants: 158](https://img.shields.io/badge/variants-158-brightgreen.svg)](#-158-variants-מוכנות--בחרו-אחת-וצאו-לדרך)
+[![Variants: 162](https://img.shields.io/badge/variants-162-brightgreen.svg)](#-162-variants-מוכנות--בחרו-אחת-וצאו-לדרך)
 [![Bash + jq](https://img.shields.io/badge/runs%20on-bash%20%2B%20jq-yellow.svg)](#requirements)
 [![Author](https://img.shields.io/badge/author-Yevgeniy%20Achin-blue.svg)](mailto:amazopic@gmail.com)
 
@@ -107,7 +107,7 @@ Install claude-code-statusline by amazopic for me. First make sure jq is install
 - 🧩 **סגנונות פס ניתנים לחיבור (Pluggable bar styles)** — בחרו `quadrant` (▖▄▙█) או `vertical` (▏▎▍▌▋▊▉█), או צרו משלכם ב-10 שורות bash
 - ⚡ **קליל** — `bash` + `jq` טהורים. ללא Node, ללא Python, ללא daemon, ללא טלמטריה
 
-## 🎨 158 variants מוכנות — בחרו אחת וצאו לדרך
+## 🎨 162 variants מוכנות — בחרו אחת וצאו לדרך
 
 כל theme מגיעה ב**שני variants**:
 
@@ -131,12 +131,14 @@ Install claude-code-statusline by amazopic for me. First make sure jq is install
 | `tesla`      | ⚡ electric purple + lightning yellow · `AC ~` |
 | `ferrari`    | 🐎 rosso corsa + Modena yellow |
 
-### 🛠 מעשיות / קלאסיות (18 themes)
+### 🛠 מעשיות / קלאסיות (20 themes)
 
 | Theme | File / Apply |
 |---|---|
 | 🛠 minimal       | [`statusline-minimal.sh`](examples/statusline-minimal.sh) · `use minimal` |
 | 🛠 developer     | [`statusline-developer.sh`](examples/statusline-developer.sh) · `use developer` |
+| 🛠 muted         | `use muted` |
+| 🛠 mono          | `use mono` |
 | 🛠 time          | [`statusline-time.sh`](examples/statusline-time.sh) · `use time` |
 | 🛠 zen           | [`statusline-zen.sh`](examples/statusline-zen.sh) · `use zen` |
 | 🌈 rainbow       | [`statusline-rainbow.sh`](examples/statusline-rainbow.sh) · `use rainbow` |
@@ -166,7 +168,7 @@ chmod +x ~/.claude/status-line.sh
 
 </div>
 
-### 🚗 מותגי רכב (15 נוספים, הבחירות המובילות כוללות את `ferrari`)
+### 🚗 מותגי רכב (16 נוספים, הבחירות המובילות כוללות את `ferrari`)
 
 מגיעים ב-`statusline-bundle.sh` בלבד — בחרו כל אחד עם `~/.claude/status-line.sh use <name>`.
 
@@ -231,7 +233,7 @@ chmod +x ~/.claude/status-line.sh
 ```bash
 ~/.claude/status-line.sh use macos            # detailed
 ~/.claude/status-line.sh use porsche-compact  # compact
-~/.claude/status-line.sh use einstein         # any of the 79 themes works
+~/.claude/status-line.sh use einstein         # any of the 81 themes works
 ```
 
 </div>
@@ -245,7 +247,7 @@ chmod +x ~/.claude/status-line.sh
 # preview a single one
 cat screenshots/statusline-cyberpunk.ansi
 
-# or browse the whole gallery (158 variants + main)
+# or browse the whole gallery (162 variants + main)
 for f in screenshots/*.ansi; do
   printf "\n=== %s ===\n" "$(basename "$f" .ansi)"
   cat "$f"
@@ -457,7 +459,7 @@ chmod +x ~/.claude/status-line.sh
 | **ענף Git** + dirty + ahead/behind | ❌ | ✅ |
 | **זמן-על-משימה (Time-on-task)** (active לעומת wall clock) | ❌ | ✅ |
 | תצוגת **רמת thinking / effort** | ❌ | ✅ |
-| presets ערוכות מראש (Themed) | ❌ | ✅ 79 themes × 2 variants = **158 מוכנות** |
+| presets ערוכות מראש (Themed) | ❌ | ✅ 81 themes × 2 variants = **162 מוכנות** |
 | הרכבה מ-blocks בעלי שם | ❌ | ✅ 26 blocks, ראו [BLOCKS.md](BLOCKS.md) |
 | מגדיר CLI מובנה | ❌ | ✅ `statusline-bundle.sh use / custom / list / preview` |
 | פקודת slash `/statusline` של Claude Code | ❌ | ✅ אופציונלי, ראו [`commands/`](commands/) |
@@ -507,7 +509,7 @@ Claude Code מעבד מחדש על אירועים — הודעת assistant חד�
 
 כן — בשלוש דרכים:
 
-1. בחרו אחת מתוך **79 ה-themes** (158 variants בסך הכול) — השתמשו ב-`~/.claude/status-line.sh use <name>` או עיינו ב-[`examples/`](examples/) עבור הסקריפטים העצמאיים.
+1. בחרו אחת מתוך **81 ה-themes** (162 variants בסך הכול) — השתמשו ב-`~/.claude/status-line.sh use <name>` או עיינו ב-[`examples/`](examples/) עבור הסקריפטים העצמאיים.
 2. הרכיבו משלכם מ-**blocks בעלי שם** — ראו [BLOCKS.md](BLOCKS.md).
 3. ערכו ישירות את קבועי הצבע ואת סגנון הפס ב-`statusline.sh`.
 

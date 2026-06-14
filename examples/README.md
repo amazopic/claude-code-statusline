@@ -11,9 +11,9 @@ Both are **standalone** — copy any one to `~/.claude/status-line.sh`,
 `chmod +x`, and you're done. These are kept as plain, self-contained
 files so you can study or fork a single theme without the bundle.
 
-> 💡 **Want all 79 themes?** The other 59 themes live in the all-in-one
-> [`../statusline-bundle.sh`](../statusline-bundle.sh) (79 themes ×
-> detailed/compact = 158 variants) — preview any of them with
+> 💡 **Want all 81 themes?** The other 61 themes live in the all-in-one
+> [`../statusline-bundle.sh`](../statusline-bundle.sh) (81 themes ×
+> detailed/compact = 162 variants) — preview any of them with
 > `~/.claude/status-line.sh preview <theme>`, or browse the full gallery
 > on the project site. The bundle also adds all blocks and a CLI
 > configurator (`use`, `custom`, `preview`, `list`). Pair with
@@ -93,7 +93,7 @@ Restart Claude Code (or `/config` reload).
 
 The `../screenshots/` folder has pre-rendered ANSI captures of the
 classic-theme variants shown here (20 themes × 2 = 40 specimens + the
-main reference). For the full 79-theme gallery, use
+main reference). For the full 81-theme gallery, use
 `~/.claude/status-line.sh preview <theme>` or the project site. To browse
 the captures in this repo:
 
@@ -111,7 +111,7 @@ status line.
 ## Build your own from blocks
 
 Don't see a layout you want? See [`../BLOCKS.md`](../BLOCKS.md) — a
-catalog of 19 named blocks (model, context-bar, cost, tokens, git,
+catalog of 26 named blocks (model, context-bar, cost, tokens, git,
 time, thinking, …), plus 1 context-bar style variant
 (context-bar-quadrant), that you can paste into a script in any order to
 build a custom line.

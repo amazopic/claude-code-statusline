@@ -2,7 +2,7 @@
 // Theme & block metadata for the landing page
 // ─────────────────────────────────────────────────────────────────────
 
-/** All 79 themes — Top 10 picks first, then Classic, Auto, Scientists,
+/** All 81 themes — Top 10 picks first, then Classic, Auto, Scientists,
  *  Anime, Marvel, OS. Each ships with a detailed and a compact variant. */
 export const themes = [
   // ── Top picks (cross-cultural recognition) ────────────────────────
@@ -20,6 +20,8 @@ export const themes = [
   // ── Practical / Classic ──────────────────────────────────────────
   { id: 'minimal',         name: 'Minimal',         vibe: 'Just the essentials. Model · context · cost. Nothing else.',                       palette: ['#DCBC02','#46DA46','#244A78','#F5F2EA','#0E0E10'], group: 'Practical' },
   { id: 'developer',       name: 'Developer',       vibe: 'Git-aware. Branch, dirty, ahead, behind — all in one breath.',                     palette: ['#DCBC02','#46DA46','#E2D200','#244A78','#0E0E10'], group: 'Practical' },
+  { id: 'muted',           name: 'Muted',           vibe: 'The developer dashboard, dialed down. Soft desaturated palette, calm gauge glyphs (◔◑◕●) — same data, easy on the eyes.', palette: ['#D7AF87','#87AF87','#D78787','#87AFD7','#0E0E10'], group: 'Practical' },
+  { id: 'mono',            name: 'Mono',            vibe: 'The whole developer dashboard in calm grayscale — brightness alone tracks the load. No color, no emoji. Screenshot-ready.', palette: ['#EEEEEE','#BCBCBC','#8A8A8A','#585858','#0E0E10'], group: 'Practical' },
   { id: 'time',            name: 'Time',            vibe: 'Human-hours tracker. Active vs wall. The only honest count.',                      palette: ['#DCBC02','#46DA46','#22D3EE','#A855F7','#0E0E10'], group: 'Practical' },
   { id: 'zen',             name: 'Zen',             vibe: 'Monochrome ASCII. No colors. No emojis. Recording-ready.',                         palette: ['#0E0E10','#4A4A48','#7A7A78','#E5E0D0','#F5F2EA'], group: 'Practical' },
   { id: 'rainbow',         name: 'Rainbow',         vibe: 'Each cell a different color. Pure joy.',                                           palette: ['#FF0000','#FFA500','#FFFF00','#00FF00','#0000FF'], group: 'Themed' },
@@ -171,7 +173,7 @@ export const compare = [
   { fKey: 'cmp.f.git',    def: false, ours: 'in one block' },
   { fKey: 'cmp.f.time',   def: false, ours: 'active vs wall' },
   { fKey: 'cmp.f.think',  def: false, ours: '🤖 indicator' },
-  { fKey: 'cmp.f.themes', def: false, ours: '79 themes × 2 variants = 158' },
+  { fKey: 'cmp.f.themes', def: false, ours: '81 themes × 2 variants = 162' },
   { fKey: 'cmp.f.blocks', def: false, ours: '26 blocks, BLOCKS.md' },
   { fKey: 'cmp.f.cli',    def: false, ours: 'use / custom / list / preview / update' },
   { fKey: 'cmp.f.slash',  def: false, ours: 'optional, drop-in' },

@@ -46,12 +46,12 @@
 #    cyberpunk · hacker · dragonball · naruto · pokemon
 #    ironman · spiderman · einstein · tesla · ferrari
 #
-#  Classic (19):
-#    minimal · developer · time · zen · rainbow · anime · love
-#    cat · christmas · space · retro · fire · ocean · weather
-#    coffee · music · game · pirate
+#  Classic (20):
+#    minimal · developer · muted · mono · time · zen · rainbow
+#    anime · love · cat · christmas · space · retro · fire · ocean
+#    weather · coffee · music · game · pirate
 #
-#  Auto brands (15 more):
+#  Auto brands (16 more):
 #    Europe   — porsche · mercedes · bmw · volvo
 #    America  — ford · chevy · jeep · cadillac
 #    Japan    — toyota · honda · nissan
@@ -62,7 +62,7 @@
 #    newton · curie · darwin · hawking · galileo
 #    feynman · turing · davinci
 #
-#  Anime (3 more):
+#  Anime (2 more):
 #    onepiece · ghibli
 #
 #  Marvel superheroes (8 more):
@@ -145,7 +145,7 @@ export LC_NUMERIC=C
 # ─────────────────────────  CONFIG  ───────────────────────────────────
 # Calendar versioning: YYYY.MM.DD — bump on every release. Compared by
 # `statusline update` against the upstream copy on GitHub.
-VERSION="2026.06.07"
+VERSION="2026.06.14"
 UPSTREAM_URL="https://raw.githubusercontent.com/amazopic/claude-code-statusline/main/statusline-bundle.sh"
 
 CONFIG_FILE="${HOME}/.claude/statusline.conf"
@@ -160,7 +160,7 @@ THEMES=(
   # — Top picks (cross-cultural recognition) —
   cyberpunk hacker dragonball naruto pokemon ironman spiderman einstein tesla ferrari
   # — Practical / Classic —
-  minimal developer time zen rainbow anime love cat christmas
+  minimal developer muted mono time zen rainbow anime love cat christmas
   space retro fire ocean weather coffee music game pirate
   # — Auto: Europe —
   porsche mercedes bmw volvo
@@ -472,6 +472,12 @@ W=$'\e[1;38;5;255m';   W2=$'\e[1;38;5;231m';  WD=$'\e[38;5;250m'
 BR=$'\e[1;38;5;94m';   BRD=$'\e[38;5;58m';   BG=$'\e[38;5;130m'
 D=$'\e[38;5;244m';     D2=$'\e[38;5;238m'
 N=$'\e[0m'
+
+# Theme-overridable glyphs. The calm themes (muted/mono) set these `local`
+# before rendering so the shared blocks stay emoji-free; every other theme
+# keeps the expressive emoji defaults.
+THINK_ICON="🤖"   # effort marker in block_thinking
+LIM_WARN="⚠️ "    # over-50% attention marker in the limits blocks
 
 # ─── Helpers ─────────────────────────────────────────────────────────
 j() { jq -r "$1 // empty" 2>/dev/null <<<"$_INPUT"; }
@@ -790,11 +796,11 @@ block_limits()      {
   fi
   r5=$(j '.rate_limits.five_hour.resets_at'); t5=$(_lim_eta "$r5" h); b5=""; [[ -n "$t5" ]] && b5="{$t5}"
   r7=$(j '.rate_limits.seven_day.resets_at'); t7=$(_lim_eta "$r7" d); b7=""; [[ -n "$t7" ]] && b7="{$t7}"
-  w5=""; (( ${l5:-0} > 50 )) && w5="⚠️ "
-  w7=""; (( ${l7:-0} > 50 )) && w7="⚠️ "
+  w5=""; (( ${l5:-0} > 50 )) && w5="$LIM_WARN"
+  w7=""; (( ${l7:-0} > 50 )) && w7="$LIM_WARN"
   line+="${GRD}5h${b5}:${N} ${w5}${GR}${l5:-—}${GRD}%${N} ${GRD}7d${b7}:${N} ${w7}${GR}${l7:-—}${GRD}%${N}"
 }
-block_thinking()    { line+="🤖 ${C}${thinking}${N}"; }
+block_thinking()    { line+="${THINK_ICON} ${C}${thinking}${N}"; }
 block_host()        { line+="${C}$(hostname -s 2>/dev/null || echo localhost)${N}"; }
 block_cups()        { local n; n=$(awk -v c="$cost" 'BEGIN { printf "%d", c*4 }'); line+="☕ ${G}${n}${N}"; }
 block_level()       { local l; l=$(awk -v c="$cost" 'BEGIN { printf "%d", c+1 }'); line+="${M}LV ${l}${N}"; }
@@ -998,8 +1004,8 @@ _lim_default() {
   fi
   r5=$(j '.rate_limits.five_hour.resets_at'); t5=$(_lim_eta "$r5" h); b5=""; [[ -n "$t5" ]] && b5="{$t5}"
   r7=$(j '.rate_limits.seven_day.resets_at'); t7=$(_lim_eta "$r7" d); b7=""; [[ -n "$t7" ]] && b7="{$t7}"
-  w5=""; (( ${l5:-0} > 50 )) && w5="⚠️ "
-  w7=""; (( ${l7:-0} > 50 )) && w7="⚠️ "
+  w5=""; (( ${l5:-0} > 50 )) && w5="$LIM_WARN"
+  w7=""; (( ${l7:-0} > 50 )) && w7="$LIM_WARN"
   line+="${SEP}${GRD}5h${b5}:${N} ${w5}${GR}${l5:-—}${GRD}%${N} ${GRD}7d${b7}:${N} ${w7}${GR}${l7:-—}${GRD}%${N}"
 }
 
@@ -1023,24 +1029,63 @@ render_minimal() {
   _lim_default
 }
 
-render_developer() {
-  # Full developer dashboard: model · ctx-icon + % + bar + tokens · cost ·
-  # tokens-msg · folder · git · 5h/7d limits · thinking
-  local cc=$(pct_color "$ctx_pct") cd=$(pct_color_dim "$ctx_pct")
-  local icn
-  if   (( ctx_pct < 40 )); then icn="🚀"
-  elif (( ctx_pct < 50 )); then icn="🚗"
-  elif (( ctx_pct < 70 )); then icn="⚠️"
-  else                          icn="🔥"
+# Shared developer-style dashboard — reused by `developer`, `muted` and `mono`.
+# $1-$4 are the context-load glyphs for the <40 / <50 / <70 / else bands; $5 is
+# an optional ANSI color for that glyph (empty → it inherits the terminal
+# default, which is what the emoji-based developer theme wants). The muted/mono
+# variants set a `local` palette before calling in, so bash dynamic scoping
+# recolors every shared block (tokens, git, limits, thinking) with no
+# duplication and developer's output stays byte-for-byte unchanged.
+_dev_body() {
+  local i1=$1 i2=$2 i3=$3 i4=$4 ic="${5:-}"
+  local cc cd icn
+  cc=$(pct_color "$ctx_pct"); cd=$(pct_color_dim "$ctx_pct")
+  if   (( ctx_pct < 40 )); then icn="$i1"
+  elif (( ctx_pct < 50 )); then icn="$i2"
+  elif (( ctx_pct < 70 )); then icn="$i3"
+  else                          icn="$i4"
   fi
   line="${G}${model_name}${N}"
-  line+="${SEP}${icn} ${cc}${ctx_pct}${cd}% ${cc}$(bar_vertical "$ctx_pct") ${ctx_used_k}${cd}K${D}/${cc}${ctx_max_k}${cd}K${N}"
+  line+="${SEP}${ic}${icn} ${cc}${ctx_pct}${cd}% ${cc}$(bar_vertical "$ctx_pct") ${ctx_used_k}${cd}K${D}/${cc}${ctx_max_k}${cd}K${N}"
   line+="${SEP}${G}${cost_fmt}${GD}\$${N}"
   line+="${SEP}"; block_tokens_msg
   line+="${SEP}${B}$(basename "$cwd")${N}"
   line+="${SEP}"; if [[ -n "$br" ]]; then block_git; else line+="${RD}no git${N}"; fi
   _lim_default
   line+="${SEP}"; block_thinking
+}
+
+# Full developer dashboard: model · ctx-icon + % + bar + tokens · cost ·
+# tokens-msg · folder · git · 5h/7d limits · thinking
+render_developer() { _dev_body "🚀" "🚗" "⚠️" "🔥"; }
+
+# `muted` — the developer dashboard in a calm, desaturated palette: soft pastel
+# hues, no bold weight, emoji-free gauge glyphs (◔◑◕●) and a quiet ◇ effort
+# marker. Same information, easier on the eyes.
+render_muted() {
+  local G=$'\e[38;5;179m'  GD=$'\e[38;5;137m'
+  local B=$'\e[38;5;110m'
+  local GR=$'\e[38;5;108m' GRD=$'\e[38;5;65m'
+  local Y=$'\e[38;5;179m'  YD=$'\e[38;5;137m'
+  local R=$'\e[38;5;174m'  RU=$'\e[38;5;131m'  RD=$'\e[38;5;131m'
+  local C=$'\e[38;5;109m'  CD=$'\e[38;5;66m'
+  local LIM_WARN="${R}▲ "
+  local THINK_ICON="${C}◇"
+  _dev_body "◔" "◑" "◕" "●" $'\e[38;5;109m'
+}
+
+# `mono` — the same dashboard with no color at all: a calm grayscale ramp where
+# brightness encodes load (dim while idle, near-white as the context fills).
+render_mono() {
+  local G=$'\e[38;5;253m'  GD=$'\e[38;5;245m'
+  local B=$'\e[38;5;247m'
+  local GR=$'\e[38;5;248m' GRD=$'\e[38;5;243m'
+  local Y=$'\e[38;5;252m'  YD=$'\e[38;5;246m'
+  local R=$'\e[38;5;255m'  RU=$'\e[38;5;250m'  RD=$'\e[38;5;240m'
+  local C=$'\e[38;5;247m'  CD=$'\e[38;5;243m'
+  local LIM_WARN="${R}▲ "
+  local THINK_ICON="${C}◇"
+  _dev_body "◔" "◑" "◕" "●" $'\e[38;5;250m'
 }
 
 render_time() {
@@ -1706,6 +1751,20 @@ render_compact() {
   local theme="${1#}"
   case "$theme" in
     minimal|developer|time|rainbow)
+      line="${G}${model_name}${N} ${D}·${N} ${GR}${ctx_pct}%${N}"
+      [[ -n "$br" ]] && line+=" ${D}·${N} ${B}${br}${N}"
+      _lim_default
+      ;;
+    muted)
+      local G=$'\e[38;5;179m' GR=$'\e[38;5;108m' GRD=$'\e[38;5;65m' B=$'\e[38;5;110m'
+      local LIM_WARN=$'\e[38;5;174m▲ '
+      line="${G}${model_name}${N} ${D}·${N} ${GR}${ctx_pct}%${N}"
+      [[ -n "$br" ]] && line+=" ${D}·${N} ${B}${br}${N}"
+      _lim_default
+      ;;
+    mono)
+      local G=$'\e[38;5;253m' GR=$'\e[38;5;248m' GRD=$'\e[38;5;243m' B=$'\e[38;5;247m'
+      local LIM_WARN=$'\e[38;5;255m▲ '
       line="${G}${model_name}${N} ${D}·${N} ${GR}${ctx_pct}%${N}"
       [[ -n "$br" ]] && line+=" ${D}·${N} ${B}${br}${N}"
       _lim_default

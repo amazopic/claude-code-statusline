@@ -11,6 +11,28 @@ tag `vYYYY.MM.DD` and a [GitHub Release](https://github.com/amazopic/claude-code
 
 ---
 
+## [2026.06.14] — 2026-06-14
+
+### Added
+- **Two calm themes (81 total)** — `muted` and `mono`: the git-aware
+  `developer` dashboard, recolored. `muted` keeps every block but swaps the
+  bright bold palette for soft desaturated tones; `mono` drops color entirely
+  for a grayscale ramp where **brightness encodes context load** (dim while
+  idle, near-white as the window fills). Both go emoji-free — calm gauge glyphs
+  (`◔◑◕●`) and a quiet `◇` effort marker instead of 🚀/🔥/🤖. Each ships a
+  detailed and a compact variant (**162 specimens**).
+
+### Changed
+- The `developer` dashboard body was factored into a shared `_dev_body` helper
+  reused by `developer`/`muted`/`mono`; `developer`'s output is byte-for-byte
+  unchanged. Two render globals (`THINK_ICON`, `LIM_WARN`) let calm themes go
+  emoji-free without affecting any existing theme.
+
+### Fixed
+- Stale counts: og-image social card said **19 BLOCKS** (now 26); bundle header
+  subcounts (Auto 15→16, Anime 3→2, Practical/Classic 19→20) brought in line
+  with the actual theme arrays.
+
 ## [2026.06.07] — 2026-06-07
 
 ### Added
@@ -85,6 +107,7 @@ tag `vYYYY.MM.DD` and a [GitHub Release](https://github.com/amazopic/claude-code
   standalone example scripts + pre-rendered ANSI previews.
 - Editorial-style landing page (GitHub Pages) in 11 languages with live specimens.
 
+[2026.06.14]: https://github.com/amazopic/claude-code-statusline/compare/v2026.06.07...v2026.06.14
 [2026.06.07]: https://github.com/amazopic/claude-code-statusline/releases/tag/v2026.06.07
 [2026.06.06]: https://github.com/amazopic/claude-code-statusline/compare/v2026.05.09...v2026.06.06
 [2026.05.09]: https://github.com/amazopic/claude-code-statusline/compare/v2026.05.02...v2026.05.09

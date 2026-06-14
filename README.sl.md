@@ -1,9 +1,9 @@
-# 🛰️ Claude Code Status Line — 79 tem, nastavljivi bloki, CLI
+# 🛰️ Claude Code Status Line — 81 tem, nastavljivi bloki, CLI
 
-> Dovršena, prilagodljiva statusna vrstica za Claude Code — kontekst, omejitve, stroški, model in več — vse v eni lepo obarvani vrstici. 79 tem in knjižnica 26 blokov za sestavljanje lastne vrstice.
+> Dovršena, prilagodljiva statusna vrstica za Claude Code — kontekst, omejitve, stroški, model in več — vse v eni lepo obarvani vrstici. 81 tem in knjižnica 26 blokov za sestavljanje lastne vrstice.
 
 [![License: Source-Available](https://img.shields.io/badge/license-Source--Available-orange.svg)](LICENSE)
-[![Variants: 158](https://img.shields.io/badge/variants-158-brightgreen.svg)](#)
+[![Variants: 162](https://img.shields.io/badge/variants-162-brightgreen.svg)](#)
 [![Author](https://img.shields.io/badge/author-Yevgeniy%20Achin-blue.svg)](mailto:amazopic@gmail.com)
 [![Made for Claude Code](https://img.shields.io/badge/made%20for-Claude%20Code-7c3aed.svg)](https://claude.com/claude-code)
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](#-prispevanje)
@@ -14,16 +14,16 @@
 Opus 4.7 (1M) │ 🚀 12% █▌░░░░░░░░ 121.4K/1000K │ 0.42$ │ ↑0.5K ↓1.2K │ project │ ⎇ main │ 5h{1.1h}: 15% 7d{1.1d}: 4% │ tokens: 87 K │ 🤖 xhigh
 ```
 
-## 🎨 158 pripravljenih variant — izberite in uporabite
+## 🎨 162 pripravljenih variant — izberite in uporabite
 
-79 tem × 2 varianti (`detailed` + `-compact`). Uporabite z `~/.claude/status-line.sh use <name>`.
+81 tem × 2 varianti (`detailed` + `-compact`). Uporabite z `~/.claude/status-line.sh use <name>`.
 
 ### 🔝 Top 10 — najbolj iskane, mednarodne
 `cyberpunk` · `hacker` · `dragonball` · `naruto` · `pokemon` · `ironman` · `spiderman` · `einstein` · `tesla` · `ferrari`
 
-### 🛠 Klasika (18): `minimal` `developer` `time` `zen` `rainbow` `anime` `love` `cat` `christmas` `space` `retro` `fire` `ocean` `weather` `coffee` `music` `game` `pirate`
+### 🛠 Klasika (20): `minimal` `developer` `muted` `mono` `time` `zen` `rainbow` `anime` `love` `cat` `christmas` `space` `retro` `fire` `ocean` `weather` `coffee` `music` `game` `pirate`
 
-### 🚗 Avtomobilske znamke (15)
+### 🚗 Avtomobilske znamke (16)
 - 🇪🇺 Evropa: `porsche` · `mercedes` · `bmw` · `volvo`
 - 🇺🇸 Amerika: `ford` · `chevy` · `jeep` · `cadillac`
 - 🇯🇵 Japonska: `toyota` · `honda` · `nissan`
@@ -372,7 +372,7 @@ Ponovno zaženite Claude Code (ali `/config` reload). Končano.
 | Git veja + dirty + ahead/behind | ❌ | ✅ |
 | Čas na nalogi (active vs wall) | ❌ | ✅ |
 | Raven thinking / effort | ❌ | ✅ |
-| Pripravljene teme | ❌ | ✅ 79 tem × 2 različici = **158 pripravljenih** |
+| Pripravljene teme | ❌ | ✅ 81 tem × 2 različici = **162 pripravljenih** |
 | Sestavljanje iz imenovanih blokov | ❌ | ✅ 26 blokov, glej [BLOCKS.md](BLOCKS.md) |
 | Vgrajen CLI konfigurator | ❌ | ✅ `statusline-bundle.sh use / custom / list / preview` |
 | Slash ukaz `/statusline` Claude Code | ❌ | ✅ neobvezno, glej [`commands/`](commands/) |

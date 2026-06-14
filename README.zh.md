@@ -1,9 +1,9 @@
-# 🛰️ Claude Code Status Line — 79 主题、可配置模块、CLI
+# 🛰️ Claude Code Status Line — 81 主题、可配置模块、CLI
 
-> 为 Claude Code 打造的精致、可定制状态栏 —— 上下文进度、速率限制、费用、模型等信息全部呈现在一行优雅的彩色文本中。79 个主题和 26 个模块库，可自由组合专属状态栏。
+> 为 Claude Code 打造的精致、可定制状态栏 —— 上下文进度、速率限制、费用、模型等信息全部呈现在一行优雅的彩色文本中。81 个主题和 26 个模块库，可自由组合专属状态栏。
 
 [![License: Source-Available](https://img.shields.io/badge/license-Source--Available-orange.svg)](LICENSE)
-[![Variants: 158](https://img.shields.io/badge/variants-158-brightgreen.svg)](#)
+[![Variants: 162](https://img.shields.io/badge/variants-162-brightgreen.svg)](#)
 [![Author](https://img.shields.io/badge/author-Yevgeniy%20Achin-blue.svg)](mailto:amazopic@gmail.com)
 [![Made for Claude Code](https://img.shields.io/badge/made%20for-Claude%20Code-7c3aed.svg)](https://claude.com/claude-code)
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](#-贡献)
@@ -14,16 +14,16 @@
 Opus 4.7 (1M) │ 🚀 12% █▌░░░░░░░░ 121.4K/1000K │ 0.42$ │ ↑0.5K ↓1.2K │ project │ ⎇ main │ 5h{1.1h}: 15% 7d{1.1d}: 4% │ 🤖 xhigh
 ```
 
-## 🎨 158 个现成变体 — 选择并应用
+## 🎨 162 个现成变体 — 选择并应用
 
-79 个主题 × 2 个变体（`detailed` + `-compact`）。使用 `~/.claude/status-line.sh use <name>` 应用。
+81 个主题 × 2 个变体（`detailed` + `-compact`）。使用 `~/.claude/status-line.sh use <name>` 应用。
 
 ### 🔝 Top 10 — 最受欢迎，跨文化
 `cyberpunk` · `hacker` · `dragonball` · `naruto` · `pokemon` · `ironman` · `spiderman` · `einstein` · `tesla` · `ferrari`
 
-### 🛠 经典（18）：`minimal` `developer` `time` `zen` `rainbow` `anime` `love` `cat` `christmas` `space` `retro` `fire` `ocean` `weather` `coffee` `music` `game` `pirate`
+### 🛠 经典（20）：`minimal` `developer` `muted` `mono` `time` `zen` `rainbow` `anime` `love` `cat` `christmas` `space` `retro` `fire` `ocean` `weather` `coffee` `music` `game` `pirate`
 
-### 🚗 汽车品牌（15）
+### 🚗 汽车品牌（16）
 - 🇪🇺 欧洲：`porsche` · `mercedes` · `bmw` · `volvo`
 - 🇺🇸 美国：`ford` · `chevy` · `jeep` · `cadillac`
 - 🇯🇵 日本：`toyota` · `honda` · `nissan`
@@ -357,7 +357,7 @@ chmod +x ~/.claude/status-line.sh
 | Git 分支 + dirty + ahead/behind | ❌ | ✅ |
 | 任务用时(active vs wall)| ❌ | ✅ |
 | Thinking / effort 等级 | ❌ | ✅ |
-| 预设主题 | ❌ | ✅ 79 主题 × 2 变体 = **158 现成** |
+| 预设主题 | ❌ | ✅ 81 主题 × 2 变体 = **162 现成** |
 | 从命名块组合 | ❌ | ✅ 26 块,见 [BLOCKS.md](BLOCKS.md) |
 | 内置 CLI 配置器 | ❌ | ✅ `statusline-bundle.sh use / custom / list / preview` |
 | Claude Code `/statusline` 斜杠命令 | ❌ | ✅ 可选,见 [`commands/`](commands/) |

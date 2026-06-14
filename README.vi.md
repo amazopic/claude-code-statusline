@@ -1,10 +1,10 @@
-# 🛰️ Claude Code Status Line — 79 chủ đề, khối tùy chỉnh, CLI
+# 🛰️ Claude Code Status Line — 81 chủ đề, khối tùy chỉnh, CLI
 
-> Bản thay thế cắm-là-chạy cho thanh trạng thái mặc định của **Claude Code**: mức sử dụng **cửa sổ ngữ cảnh** theo thời gian thực với thanh tiến trình mượt mà, **chi phí phiên** tính bằng USD, cảnh báo **giới hạn tốc độ 5h / 7d**, **nhánh git** kèm số đếm dirty / ahead / behind, **theo dõi thời gian làm việc**, và tên **mô hình** đang hoạt động (với chỉ báo `(1M)` cho các biến thể ngữ cảnh 1M) — tất cả trong một dòng Bash đầy màu sắc. Đi kèm **79 chủ đề dựng sẵn** — lựa chọn hàng đầu (cyberpunk, hacker, dragonball, naruto, pokemon, ironman, spiderman, einstein, tesla, ferrari), kinh điển (minimal, developer, time, zen, rainbow, anime, love, cat, christmas, space, retro, fire, ocean, weather, coffee, music, game, pirate), thương hiệu xe hơi (porsche, mercedes, bmw, volvo, ford, chevy, jeep, cadillac, toyota, honda, nissan, hyundai, kia, byd, nio, geely), thêm các nhà khoa học (newton, curie, darwin, hawking, galileo, feynman, turing, davinci), thêm anime (onepiece, ghibli), thêm Marvel (hulk, thor, captain-america, wolverine, deadpool, blackwidow, strange, wanda), chủ đề hệ điều hành (macos, windows, linux, ubuntu, arch, debian, fedora, kali, mint, nixos), và các tôn giáo trên thế giới (christianity, islam, hinduism, buddhism, judaism, sikhism, shinto) cùng một **thư viện 26 khối** để bạn tự dựng dòng riêng. Bao gồm trình cấu hình CLI tất-cả-trong-một và lệnh slash `/statusline` cho Claude Code.
+> Bản thay thế cắm-là-chạy cho thanh trạng thái mặc định của **Claude Code**: mức sử dụng **cửa sổ ngữ cảnh** theo thời gian thực với thanh tiến trình mượt mà, **chi phí phiên** tính bằng USD, cảnh báo **giới hạn tốc độ 5h / 7d**, **nhánh git** kèm số đếm dirty / ahead / behind, **theo dõi thời gian làm việc**, và tên **mô hình** đang hoạt động (với chỉ báo `(1M)` cho các biến thể ngữ cảnh 1M) — tất cả trong một dòng Bash đầy màu sắc. Đi kèm **81 chủ đề dựng sẵn** — lựa chọn hàng đầu (cyberpunk, hacker, dragonball, naruto, pokemon, ironman, spiderman, einstein, tesla, ferrari), kinh điển (minimal, developer, muted, mono, time, zen, rainbow, anime, love, cat, christmas, space, retro, fire, ocean, weather, coffee, music, game, pirate), thương hiệu xe hơi (porsche, mercedes, bmw, volvo, ford, chevy, jeep, cadillac, toyota, honda, nissan, hyundai, kia, byd, nio, geely), thêm các nhà khoa học (newton, curie, darwin, hawking, galileo, feynman, turing, davinci), thêm anime (onepiece, ghibli), thêm Marvel (hulk, thor, captain-america, wolverine, deadpool, blackwidow, strange, wanda), chủ đề hệ điều hành (macos, windows, linux, ubuntu, arch, debian, fedora, kali, mint, nixos), và các tôn giáo trên thế giới (christianity, islam, hinduism, buddhism, judaism, sikhism, shinto) cùng một **thư viện 26 khối** để bạn tự dựng dòng riêng. Bao gồm trình cấu hình CLI tất-cả-trong-một và lệnh slash `/statusline` cho Claude Code.
 
 [![License: Source-Available](https://img.shields.io/badge/license-Source--Available-orange.svg)](LICENSE)
 [![Made for Claude Code](https://img.shields.io/badge/made%20for-Claude%20Code-7c3aed.svg)](https://claude.com/claude-code)
-[![Variants: 158](https://img.shields.io/badge/variants-158-brightgreen.svg)](#-158-biến-thể-dựng-sẵn--chọn-một-cái-và-chạy)
+[![Variants: 162](https://img.shields.io/badge/variants-162-brightgreen.svg)](#-162-biến-thể-dựng-sẵn--chọn-một-cái-và-chạy)
 [![Bash + jq](https://img.shields.io/badge/runs%20on-bash%20%2B%20jq-yellow.svg)](#yêu-cầu)
 [![Author](https://img.shields.io/badge/author-Yevgeniy%20Achin-blue.svg)](mailto:amazopic@gmail.com)
 
@@ -85,7 +85,7 @@ Tất cả trong **một dòng**, có mã màu, với các biểu tượng thôn
 - 🧩 **Kiểu thanh dạng plugin** — chọn `quadrant` (▖▄▙█) hoặc `vertical` (▏▎▍▌▋▊▉█), hoặc tự tạo kiểu của riêng bạn trong 10 dòng bash
 - ⚡ **Nhẹ nhàng** — thuần `bash` + `jq`. Không Node, không Python, không daemon, không telemetry
 
-## 🎨 158 biến thể dựng sẵn — chọn một cái và chạy
+## 🎨 162 biến thể dựng sẵn — chọn một cái và chạy
 
 Mỗi chủ đề có **hai biến thể**:
 
@@ -109,12 +109,14 @@ Mỗi chủ đề có **hai biến thể**:
 | `tesla`      | ⚡ tím điện + vàng tia chớp · `AC ~` |
 | `ferrari`    | 🐎 rosso corsa + vàng Modena |
 
-### 🛠 Thực dụng / Kinh điển (18 chủ đề)
+### 🛠 Thực dụng / Kinh điển (20 chủ đề)
 
 | Chủ đề | Tệp / Áp dụng |
 |---|---|
 | 🛠 minimal       | [`statusline-minimal.sh`](examples/statusline-minimal.sh) · `use minimal` |
 | 🛠 developer     | [`statusline-developer.sh`](examples/statusline-developer.sh) · `use developer` |
+| 🛠 muted         | `use muted` |
+| 🛠 mono          | `use mono` |
 | 🛠 time          | [`statusline-time.sh`](examples/statusline-time.sh) · `use time` |
 | 🛠 zen           | [`statusline-zen.sh`](examples/statusline-zen.sh) · `use zen` |
 | 🌈 rainbow       | [`statusline-rainbow.sh`](examples/statusline-rainbow.sh) · `use rainbow` |
@@ -140,7 +142,7 @@ cp examples/statusline-cyberpunk-compact.sh ~/.claude/status-line.sh
 chmod +x ~/.claude/status-line.sh
 ```
 
-### 🚗 Thương hiệu xe hơi (thêm 15, lựa chọn hàng đầu đã có `ferrari`)
+### 🚗 Thương hiệu xe hơi (thêm 16, lựa chọn hàng đầu đã có `ferrari`)
 
 Chỉ đi kèm trong `statusline-bundle.sh` — chọn bất kỳ cái nào với `~/.claude/status-line.sh use <name>`.
 
@@ -203,7 +205,7 @@ Chỉ đi kèm trong `statusline-bundle.sh` — chọn bất kỳ cái nào vớ
 ```bash
 ~/.claude/status-line.sh use macos            # detailed
 ~/.claude/status-line.sh use porsche-compact  # compact
-~/.claude/status-line.sh use einstein         # any of the 79 themes works
+~/.claude/status-line.sh use einstein         # any of the 81 themes works
 ```
 
 **Hãy xem qua tất cả ngay trong terminal trước** — mỗi biến thể đều có bản
@@ -213,7 +215,7 @@ xem trước được dựng sẵn trong [`screenshots/`](screenshots/):
 # preview a single one
 cat screenshots/statusline-cyberpunk.ansi
 
-# or browse the whole gallery (158 variants + main)
+# or browse the whole gallery (162 variants + main)
 for f in screenshots/*.ansi; do
   printf "\n=== %s ===\n" "$(basename "$f" .ansi)"
   cat "$f"
@@ -392,7 +394,7 @@ Chỉnh sửa các hằng số gần đầu tệp `statusline.sh`:
 | **Nhánh git** + dirty + ahead/behind | ❌ | ✅ |
 | **Thời gian làm việc** (active so với đồng hồ thực) | ❌ | ✅ |
 | Hiển thị mức **thinking / effort** | ❌ | ✅ |
-| Preset theo chủ đề | ❌ | ✅ 79 chủ đề × 2 biến thể = **158 dựng sẵn** |
+| Preset theo chủ đề | ❌ | ✅ 81 chủ đề × 2 biến thể = **162 dựng sẵn** |
 | Soạn từ các khối có tên | ❌ | ✅ 26 khối, xem [BLOCKS.md](BLOCKS.md) |
 | Trình cấu hình CLI tích hợp | ❌ | ✅ `statusline-bundle.sh use / custom / list / preview` |
 | Lệnh slash `/statusline` của Claude Code | ❌ | ✅ tùy chọn, xem [`commands/`](commands/) |
@@ -442,7 +444,7 @@ Bất kỳ mô hình nào Claude Code hỗ trợ — Opus 4.7, Sonnet 4.6, Haiku
 
 Có — ba cách:
 
-1. Chọn một trong **79 chủ đề** (tổng cộng 158 biến thể) — dùng `~/.claude/status-line.sh use <name>` hoặc duyệt [`examples/`](examples/) để lấy các script độc lập.
+1. Chọn một trong **81 chủ đề** (tổng cộng 162 biến thể) — dùng `~/.claude/status-line.sh use <name>` hoặc duyệt [`examples/`](examples/) để lấy các script độc lập.
 2. Tự soạn từ **các khối có tên** — xem [BLOCKS.md](BLOCKS.md).
 3. Chỉnh trực tiếp các hằng số màu và kiểu thanh trong `statusline.sh`.
 

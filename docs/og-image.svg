@@ -19,7 +19,7 @@
     <tspan font-weight="500">CLAUDE CODE</tspan> · STATUS LINE
   </text>
   <text x="1140" y="68" font-family="ui-monospace, 'Geist Mono', monospace" font-size="14" fill="#4A4A48" letter-spacing="2" text-anchor="end">
-    ISSUE 01 · 158 SPECIMENS
+    ISSUE 01 · 162 SPECIMENS
   </text>
 
   <!-- Nameplate -->
@@ -60,7 +60,7 @@
   <!-- Bottom meta -->
   <line x1="60" y1="600" x2="1140" y2="600" stroke="#0E0E10" stroke-opacity="0.12"/>
   <text x="60" y="595" font-family="ui-monospace, 'Geist Mono', monospace" font-size="13" fill="#4A4A48" letter-spacing="2">
-    SOURCE-AVAILABLE · BASH + jq · 79 THEMES · 19 BLOCKS · /statusline SLASH COMMAND
+    SOURCE-AVAILABLE · BASH + jq · 81 THEMES · 26 BLOCKS · /statusline SLASH COMMAND
   </text>
   <text x="1140" y="595" font-family="ui-monospace, 'Geist Mono', monospace" font-size="13" fill="#4A4A48" text-anchor="end" letter-spacing="2">
     BY YEVGENIY ACHIN

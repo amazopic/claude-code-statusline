@@ -56,9 +56,9 @@ the current configuration.
 ```
 Top picks   cyberpunk · hacker · dragonball · naruto · pokemon · ironman
             spiderman · einstein · tesla · ferrari
-Classic     minimal · developer · time · zen · rainbow · anime · love · cat
-            christmas · space · retro · fire · ocean · weather · coffee
-            music · game · pirate
+Classic     minimal · developer · muted · mono · time · zen · rainbow · anime
+            love · cat · christmas · space · retro · fire · ocean · weather
+            coffee · music · game · pirate
 Auto        porsche · mercedes · bmw · volvo · ford · chevy · jeep · cadillac
             toyota · honda · nissan · hyundai · kia · byd · nio · geely
 Scientists  newton · curie · darwin · hawking · galileo · feynman · turing · davinci

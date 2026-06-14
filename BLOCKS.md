@@ -684,7 +684,7 @@ printf '%s\n' "$line"
 ## See also
 
 - [`statusline.sh`](statusline.sh) — full reference implementation
-- [`examples/`](examples/) — 158 ready-made variants (79 detailed + 79 compact)
+- [`examples/`](examples/) — 162 ready-made variants (81 detailed + 81 compact)
 - [`screenshots/`](screenshots/) — pre-rendered ANSI previews
 - [`README.md`](README.md) — main project documentation
 
