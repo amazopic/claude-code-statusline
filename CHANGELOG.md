@@ -11,6 +11,17 @@ tag `vYYYY.MM.DD` and a [GitHub Release](https://github.com/amazopic/claude-code
 
 ---
 
+## [2026.07.21] — 2026-07-21
+
+### Added
+- **`hard-worker` theme (82 total)** — a heads-down productivity dashboard:
+  model · context · folder, then a **verbose git block** spelling out staged
+  vs modified files and the commit direction (`●2 staged · ✚3 modified · ↑2 to
+  push · ↓1 to pull`), the 5h/7d limits, a **gold-highlighted effort /
+  output-style** marker, and the **session LOC accepted** (`LOC +512 −128`,
+  from `cost.total_lines_*`). Drops the cost and per-message-token blocks.
+  Detailed + compact → **164 specimens**.
+
 ## [2026.06.14] — 2026-06-14
 
 ### Added
@@ -107,6 +118,7 @@ tag `vYYYY.MM.DD` and a [GitHub Release](https://github.com/amazopic/claude-code
   standalone example scripts + pre-rendered ANSI previews.
 - Editorial-style landing page (GitHub Pages) in 11 languages with live specimens.
 
+[2026.07.21]: https://github.com/amazopic/claude-code-statusline/compare/v2026.06.14...v2026.07.21
 [2026.06.14]: https://github.com/amazopic/claude-code-statusline/compare/v2026.06.07...v2026.06.14
 [2026.06.07]: https://github.com/amazopic/claude-code-statusline/releases/tag/v2026.06.07
 [2026.06.06]: https://github.com/amazopic/claude-code-statusline/compare/v2026.05.09...v2026.06.06

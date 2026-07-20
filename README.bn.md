@@ -1,10 +1,10 @@
-# 🛰️ Claude Code Status Line — ৮১টি থিম, কনফিগারযোগ্য ব্লক, CLI
+# 🛰️ Claude Code Status Line — ৮২টি থিম, কনফিগারযোগ্য ব্লক, CLI
 
-> **Claude Code**-এর ডিফল্ট স্ট্যাটাস লাইনের ড্রপ-ইন বিকল্প: মসৃণ প্রোগ্রেস বার সহ লাইভ **context window** ব্যবহার, USD-তে **session cost**, **5h / 7d rate-limit** সতর্কতা, dirty / ahead / behind গণনা সহ **git branch**, **time-on-task tracking**, এবং সক্রিয় **model name** (1M-context ভ্যারিয়েন্টের জন্য `(1M)` ইন্ডিকেটর সহ) — সব একটি রঙিন Bash লাইনে। **৮১টি তৈরি থিম** সহ আসে — শীর্ষ পছন্দ (cyberpunk, hacker, dragonball, naruto, pokemon, ironman, spiderman, einstein, tesla, ferrari), ক্লাসিক (minimal, developer, muted, mono, time, zen, rainbow, anime, love, cat, christmas, space, retro, fire, ocean, weather, coffee, music, game, pirate), গাড়ির ব্র্যান্ড (porsche, mercedes, bmw, volvo, ford, chevy, jeep, cadillac, toyota, honda, nissan, hyundai, kia, byd, nio, geely), আরও বিজ্ঞানী (newton, curie, darwin, hawking, galileo, feynman, turing, davinci), আরও anime (onepiece, ghibli), আরও Marvel (hulk, thor, captain-america, wolverine, deadpool, blackwidow, strange, wanda), OS থিম (macos, windows, linux, ubuntu, arch, debian, fedora, kali, mint, nixos), এবং বিশ্ব ধর্ম (christianity, islam, hinduism, buddhism, judaism, sikhism, shinto) — আর নিজের লাইন তৈরির জন্য একটি **26-block library**। একটি অল-ইন-ওয়ান CLI কনফিগারেটর এবং Claude Code-এর জন্য একটি `/statusline` স্ল্যাশ কমান্ড অন্তর্ভুক্ত।
+> **Claude Code**-এর ডিফল্ট স্ট্যাটাস লাইনের ড্রপ-ইন বিকল্প: মসৃণ প্রোগ্রেস বার সহ লাইভ **context window** ব্যবহার, USD-তে **session cost**, **5h / 7d rate-limit** সতর্কতা, dirty / ahead / behind গণনা সহ **git branch**, **time-on-task tracking**, এবং সক্রিয় **model name** (1M-context ভ্যারিয়েন্টের জন্য `(1M)` ইন্ডিকেটর সহ) — সব একটি রঙিন Bash লাইনে। **৮২টি তৈরি থিম** সহ আসে — শীর্ষ পছন্দ (cyberpunk, hacker, dragonball, naruto, pokemon, ironman, spiderman, einstein, tesla, ferrari), ক্লাসিক (minimal, developer, muted, mono, hard-worker, time, zen, rainbow, anime, love, cat, christmas, space, retro, fire, ocean, weather, coffee, music, game, pirate), গাড়ির ব্র্যান্ড (porsche, mercedes, bmw, volvo, ford, chevy, jeep, cadillac, toyota, honda, nissan, hyundai, kia, byd, nio, geely), আরও বিজ্ঞানী (newton, curie, darwin, hawking, galileo, feynman, turing, davinci), আরও anime (onepiece, ghibli), আরও Marvel (hulk, thor, captain-america, wolverine, deadpool, blackwidow, strange, wanda), OS থিম (macos, windows, linux, ubuntu, arch, debian, fedora, kali, mint, nixos), এবং বিশ্ব ধর্ম (christianity, islam, hinduism, buddhism, judaism, sikhism, shinto) — আর নিজের লাইন তৈরির জন্য একটি **26-block library**। একটি অল-ইন-ওয়ান CLI কনফিগারেটর এবং Claude Code-এর জন্য একটি `/statusline` স্ল্যাশ কমান্ড অন্তর্ভুক্ত।
 
 [![License: Source-Available](https://img.shields.io/badge/license-Source--Available-orange.svg)](LICENSE)
 [![Made for Claude Code](https://img.shields.io/badge/made%20for-Claude%20Code-7c3aed.svg)](https://claude.com/claude-code)
-[![Variants: 162](https://img.shields.io/badge/variants-162-brightgreen.svg)](#-162-ready-made-variants--pick-one-and-go)
+[![Variants: 164](https://img.shields.io/badge/variants-164-brightgreen.svg)](#-164-ready-made-variants--pick-one-and-go)
 [![Bash + jq](https://img.shields.io/badge/runs%20on-bash%20%2B%20jq-yellow.svg)](#requirements)
 [![Author](https://img.shields.io/badge/author-Yevgeniy%20Achin-blue.svg)](mailto:amazopic@gmail.com)
 
@@ -85,7 +85,7 @@ Claude Code-এর ডিফল্ট স্ট্যাটাস লাইন �
 - 🧩 **প্লাগেবল বার স্টাইল** — `quadrant` (▖▄▙█) বা `vertical` (▏▎▍▌▋▊▉█) বেছে নিন, অথবা 10 লাইন bash-এ নিজের তৈরি করুন
 - ⚡ **হালকা** — খাঁটি `bash` + `jq`। কোনো Node নেই, কোনো Python নেই, কোনো daemon নেই, কোনো telemetry নেই
 
-## 🎨 162 ready-made variants — একটি বেছে নিন আর শুরু করুন
+## 🎨 164 ready-made variants — একটি বেছে নিন আর শুরু করুন
 
 প্রতিটি থিম **দুটি ভ্যারিয়েন্টে** আসে:
 
@@ -109,7 +109,7 @@ Claude Code-এর ডিফল্ট স্ট্যাটাস লাইন �
 | `tesla`      | ⚡ electric purple + lightning yellow · `AC ~` |
 | `ferrari`    | 🐎 rosso corsa + Modena yellow |
 
-### 🛠 Practical / Classic (20 themes)
+### 🛠 Practical / Classic (21 themes)
 
 | Theme | File / Apply |
 |---|---|
@@ -117,6 +117,7 @@ Claude Code-এর ডিফল্ট স্ট্যাটাস লাইন �
 | 🛠 developer     | [`statusline-developer.sh`](examples/statusline-developer.sh) · `use developer` |
 | 🛠 muted         | `use muted` |
 | 🛠 mono          | `use mono` |
+| 🛠 hard-worker   | `use hard-worker` |
 | 🛠 time          | [`statusline-time.sh`](examples/statusline-time.sh) · `use time` |
 | 🛠 zen           | [`statusline-zen.sh`](examples/statusline-zen.sh) · `use zen` |
 | 🌈 rainbow       | [`statusline-rainbow.sh`](examples/statusline-rainbow.sh) · `use rainbow` |
@@ -205,7 +206,7 @@ chmod +x ~/.claude/status-line.sh
 ```bash
 ~/.claude/status-line.sh use macos            # detailed
 ~/.claude/status-line.sh use porsche-compact  # compact
-~/.claude/status-line.sh use einstein         # any of the 81 themes works
+~/.claude/status-line.sh use einstein         # any of the 82 themes works
 ```
 
 **প্রথমে আপনার টার্মিনালে সবগুলি ব্রাউজ করুন** — প্রতিটি ভ্যারিয়েন্টের
@@ -215,7 +216,7 @@ chmod +x ~/.claude/status-line.sh
 # preview a single one
 cat screenshots/statusline-cyberpunk.ansi
 
-# or browse the whole gallery (162 variants + main)
+# or browse the whole gallery (164 variants + main)
 for f in screenshots/*.ansi; do
   printf "\n=== %s ===\n" "$(basename "$f" .ansi)"
   cat "$f"
@@ -391,7 +392,7 @@ GitHub থেকে সর্বশেষ বান্ডেল আনে, এ�
 | **Git branch** + dirty + ahead/behind | ❌ | ✅ |
 | **Time-on-task** (active vs wall clock) | ❌ | ✅ |
 | **Thinking / effort level** প্রদর্শন | ❌ | ✅ |
-| থিমড প্রিসেট | ❌ | ✅ 81 থিম × 2 ভ্যারিয়েন্ট = **162 ready-made** |
+| থিমড প্রিসেট | ❌ | ✅ 82 থিম × 2 ভ্যারিয়েন্ট = **164 ready-made** |
 | নামকরা ব্লক থেকে রচনা | ❌ | ✅ 26 ব্লক, দেখুন [BLOCKS.md](BLOCKS.md) |
 | বিল্ট-ইন CLI কনফিগারেটর | ❌ | ✅ `statusline-bundle.sh use / custom / list / preview` |
 | Claude Code `/statusline` স্ল্যাশ কমান্ড | ❌ | ✅ ঐচ্ছিক, দেখুন [`commands/`](commands/) |
@@ -441,7 +442,7 @@ Claude Code যে কোনো মডেল সমর্থন করে — Op
 
 হ্যাঁ — তিনটি উপায়:
 
-1. **81টি থিমের** একটি বেছে নিন (মোট 162 ভ্যারিয়েন্ট) — `~/.claude/status-line.sh use <name>` ব্যবহার করুন অথবা স্ট্যান্ডঅ্যালোন স্ক্রিপ্টের জন্য [`examples/`](examples/) ব্রাউজ করুন।
+1. **82টি থিমের** একটি বেছে নিন (মোট 164 ভ্যারিয়েন্ট) — `~/.claude/status-line.sh use <name>` ব্যবহার করুন অথবা স্ট্যান্ডঅ্যালোন স্ক্রিপ্টের জন্য [`examples/`](examples/) ব্রাউজ করুন।
 2. **নামকরা ব্লক** থেকে নিজের রচনা করুন — দেখুন [BLOCKS.md](BLOCKS.md)।
 3. সরাসরি `statusline.sh`-এ রঙের ধ্রুবক এবং বার স্টাইল সম্পাদনা করুন।
 

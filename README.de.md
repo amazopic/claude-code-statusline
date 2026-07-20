@@ -1,9 +1,9 @@
-# 🛰️ Claude Code Status Line — 81 Themes, konfigurierbare Blöcke, CLI
+# 🛰️ Claude Code Status Line — 82 Themes, konfigurierbare Blöcke, CLI
 
-> Eine durchdachte, hackbare Statuszeile für Claude Code — Kontextbalken, Rate Limits, Kosten, Modell und mehr — alles in einer schön gefärbten Zeile. 81 Themes und eine Bibliothek aus 26 Blöcken zum Selberbauen.
+> Eine durchdachte, hackbare Statuszeile für Claude Code — Kontextbalken, Rate Limits, Kosten, Modell und mehr — alles in einer schön gefärbten Zeile. 82 Themes und eine Bibliothek aus 26 Blöcken zum Selberbauen.
 
 [![License: Source-Available](https://img.shields.io/badge/license-Source--Available-orange.svg)](LICENSE)
-[![Variants: 162](https://img.shields.io/badge/variants-162-brightgreen.svg)](#)
+[![Variants: 164](https://img.shields.io/badge/variants-164-brightgreen.svg)](#)
 [![Author](https://img.shields.io/badge/author-Yevgeniy%20Achin-blue.svg)](mailto:amazopic@gmail.com)
 [![Made for Claude Code](https://img.shields.io/badge/made%20for-Claude%20Code-7c3aed.svg)](https://claude.com/claude-code)
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](#-mitwirken)
@@ -20,14 +20,14 @@ Opus 4.7 (1M) │ 🚀 12% █▌░░░░░░░░ 121.4K/1000K │ 0.42$
 
 Die 5h- / 7d-Anzeigen enthalten einen Live-Countdown bis zu dem Moment, in dem jedes Fenster zurückgesetzt wird: `5h{1.1h}: 1%` — das 5-Stunden-Fenster wird in 1,1 Stunden zurückgesetzt; `7d{1.1d}: 0%` — das Wochenfenster wird in 1,1 Tagen zurückgesetzt. Du weißt jederzeit, wann du wieder bei 0 % bist, kannst also schwere Aufgaben direkt nach einem Reset einplanen und deine Produktivität verteilen, statt mitten in der Aufgabe gegen das Limit zu prallen. Angetrieben von `rate_limits.*.resets_at`, das Claude Code mitsendet; wenn dein Build keine Reset-Zeitstempel sendet, fallen die Anzeigen elegant auf das schlichte `5h: 1%` zurück.
 
-## 🎨 162 fertige Varianten — wählen und anwenden
+## 🎨 164 fertige Varianten — wählen und anwenden
 
-81 Themes × 2 Varianten (`detailed` + `-compact`). Anwenden mit `~/.claude/status-line.sh use <name>`.
+82 Themes × 2 Varianten (`detailed` + `-compact`). Anwenden mit `~/.claude/status-line.sh use <name>`.
 
 ### 🔝 Top 10 — meistgefragt, kulturübergreifend
 `cyberpunk` · `hacker` · `dragonball` · `naruto` · `pokemon` · `ironman` · `spiderman` · `einstein` · `tesla` · `ferrari`
 
-### 🛠 Klassisch (20): `minimal` `developer` `muted` `mono` `time` `zen` `rainbow` `anime` `love` `cat` `christmas` `space` `retro` `fire` `ocean` `weather` `coffee` `music` `game` `pirate`
+### 🛠 Klassisch (21): `minimal` `developer` `muted` `mono` `hard-worker` `time` `zen` `rainbow` `anime` `love` `cat` `christmas` `space` `retro` `fire` `ocean` `weather` `coffee` `music` `game` `pirate`
 
 ### 🚗 Automarken (16)
 - 🇪🇺 Europa: `porsche` · `mercedes` · `bmw` · `volvo`
@@ -362,7 +362,7 @@ Claude Code neu starten (oder `/config` reload). Fertig.
 | Git-Branch + dirty + ahead/behind | ❌ | ✅ |
 | Zeit-am-Task (active vs wall) | ❌ | ✅ |
 | Thinking / Effort-Level | ❌ | ✅ |
-| Vorgefertigte Themes | ❌ | ✅ 81 Themes × 2 Varianten = **162 fertig** |
+| Vorgefertigte Themes | ❌ | ✅ 82 Themes × 2 Varianten = **164 fertig** |
 | Komposition aus benannten Blöcken | ❌ | ✅ 26 Blöcke, siehe [BLOCKS.md](BLOCKS.md) |
 | Eingebauter CLI-Konfigurator | ❌ | ✅ `statusline-bundle.sh use / custom / list / preview` |
 | Claude Code `/statusline` Slash-Befehl | ❌ | ✅ optional, siehe [`commands/`](commands/) |

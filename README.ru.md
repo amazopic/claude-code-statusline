@@ -1,9 +1,9 @@
-# 🛰️ Claude Code Status Line — 81 тема, настраиваемые блоки, CLI
+# 🛰️ Claude Code Status Line — 82 темы, настраиваемые блоки, CLI
 
-> Красивая, расширяемая статусная строка для Claude Code — контекст, лимиты, стоимость, модель и многое другое — всё в одной цветной линии. 81 тема и библиотека из 26 блоков для сборки собственной строки.
+> Красивая, расширяемая статусная строка для Claude Code — контекст, лимиты, стоимость, модель и многое другое — всё в одной цветной линии. 82 темы и библиотека из 26 блоков для сборки собственной строки.
 
 [![License: Source-Available](https://img.shields.io/badge/license-Source--Available-orange.svg)](LICENSE)
-[![Variants: 162](https://img.shields.io/badge/variants-162-brightgreen.svg)](#)
+[![Variants: 164](https://img.shields.io/badge/variants-164-brightgreen.svg)](#)
 [![Author](https://img.shields.io/badge/author-Yevgeniy%20Achin-blue.svg)](mailto:amazopic@gmail.com)
 [![Made for Claude Code](https://img.shields.io/badge/made%20for-Claude%20Code-7c3aed.svg)](https://claude.com/claude-code)
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](#-как-внести-вклад)
@@ -47,14 +47,14 @@ Opus 4.7 (1M) │ 🚀 12% █▌░░░░░░░░ 121.4K/1000K │ 0.42$
 
 Индикаторы 5h / 7d включают живой обратный отсчёт до момента сброса каждого окна: `5h{1.1h}: 1%` — 5-часовое окно сбросится через 1.1 часа; `7d{1.1d}: 0%` — недельное окно сбросится через 1.1 дня. Ты всегда знаешь, когда снова окажешься на 0%, поэтому можешь запланировать тяжёлую работу сразу после сброса и распределить свою продуктивность вместо того, чтобы врезаться в потолок посреди задачи. Питается от `rate_limits.*.resets_at`, который присылает Claude Code; если твоя сборка не присылает таймстемпы сброса, индикаторы плавно откатываются к обычному `5h: 1%`.
 
-## 🎨 162 готовых варианта — выбирайте и применяйте
+## 🎨 164 готовых варианта — выбирайте и применяйте
 
-81 тема × 2 варианта (`detailed` + `-compact`). Применяйте через `~/.claude/status-line.sh use <name>`.
+82 темы × 2 варианта (`detailed` + `-compact`). Применяйте через `~/.claude/status-line.sh use <name>`.
 
 ### 🔝 Топ-10 — самые популярные, кросс-культурные
 `cyberpunk` · `hacker` · `dragonball` · `naruto` · `pokemon` · `ironman` · `spiderman` · `einstein` · `tesla` · `ferrari`
 
-### 🛠 Классика (20): `minimal` `developer` `muted` `mono` `time` `zen` `rainbow` `anime` `love` `cat` `christmas` `space` `retro` `fire` `ocean` `weather` `coffee` `music` `game` `pirate`
+### 🛠 Классика (21): `minimal` `developer` `muted` `mono` `hard-worker` `time` `zen` `rainbow` `anime` `love` `cat` `christmas` `space` `retro` `fire` `ocean` `weather` `coffee` `music` `game` `pirate`
 
 ### 🚗 Автомобильные бренды (16)
 - 🇪🇺 Европа: `porsche` · `mercedes` · `bmw` · `volvo`
@@ -362,7 +362,7 @@ chmod +x ~/.claude/status-line.sh
 | Git-ветка + dirty + ahead/behind | ❌ | ✅ |
 | Время на задаче (active vs wall) | ❌ | ✅ |
 | Уровень thinking / effort | ❌ | ✅ |
-| Готовые темы | ❌ | ✅ 81 тема × 2 варианта = **162 варианта** |
+| Готовые темы | ❌ | ✅ 82 темы × 2 варианта = **164 варианта** |
 | Сборка из именованных блоков | ❌ | ✅ 26 блоков, см. [BLOCKS.md](BLOCKS.md) |
 | Встроенный CLI-конфигуратор | ❌ | ✅ `statusline-bundle.sh use / custom / list / preview` |
 | Slash-команда `/statusline` для Claude Code | ❌ | ✅ опционально, см. [`commands/`](commands/) |
@@ -407,7 +407,7 @@ Claude Code перерисовывает строку по событиям — 
 
 ### Можно ли кастомизировать темы и цвета?
 
-Да, тремя способами: (1) выбрать из **162 готовых вариантов** в [`examples/`](examples/), (2) собрать свою из именованных блоков — см. [BLOCKS.md](BLOCKS.md), (3) править цветовые константы в `statusline.sh` напрямую.
+Да, тремя способами: (1) выбрать из **164 готовых вариантов** в [`examples/`](examples/), (2) собрать свою из именованных блоков — см. [BLOCKS.md](BLOCKS.md), (3) править цветовые константы в `statusline.sh` напрямую.
 
 ### Замедлит ли Claude Code?
 

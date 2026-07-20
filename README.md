@@ -1,10 +1,10 @@
-# 🛰️ Claude Code Status Line — 81 themes, configurable blocks, CLI
+# 🛰️ Claude Code Status Line — 82 themes, configurable blocks, CLI
 
-> Drop-in replacement for the **Claude Code** default status line: live **context window** usage with a smooth progress bar, **session cost** in USD, **5h / 7d rate-limit** warnings, **git branch** with dirty / ahead / behind counts, **time-on-task tracking**, and the active **model name** (with `(1M)` indicator for 1M-context variants) — all in one colorful Bash line. Ships with **81 ready-made themes** — top picks (cyberpunk, hacker, dragonball, naruto, pokemon, ironman, spiderman, einstein, tesla, ferrari), classics (minimal, developer, muted, mono, time, zen, rainbow, anime, love, cat, christmas, space, retro, fire, ocean, weather, coffee, music, game, pirate), auto brands (porsche, mercedes, bmw, volvo, ford, chevy, jeep, cadillac, toyota, honda, nissan, hyundai, kia, byd, nio, geely), more scientists (newton, curie, darwin, hawking, galileo, feynman, turing, davinci), more anime (onepiece, ghibli), more Marvel (hulk, thor, captain-america, wolverine, deadpool, blackwidow, strange, wanda), OS themes (macos, windows, linux, ubuntu, arch, debian, fedora, kali, mint, nixos), and world religions (christianity, islam, hinduism, buddhism, judaism, sikhism, shinto) and a **26-block library** to compose your own. Includes an all-in-one CLI configurator and a `/statusline` slash command for Claude Code.
+> Drop-in replacement for the **Claude Code** default status line: live **context window** usage with a smooth progress bar, **session cost** in USD, **5h / 7d rate-limit** warnings, **git branch** with dirty / ahead / behind counts, **time-on-task tracking**, and the active **model name** (with `(1M)` indicator for 1M-context variants) — all in one colorful Bash line. Ships with **82 ready-made themes** — top picks (cyberpunk, hacker, dragonball, naruto, pokemon, ironman, spiderman, einstein, tesla, ferrari), classics (minimal, developer, muted, mono, hard-worker, time, zen, rainbow, anime, love, cat, christmas, space, retro, fire, ocean, weather, coffee, music, game, pirate), auto brands (porsche, mercedes, bmw, volvo, ford, chevy, jeep, cadillac, toyota, honda, nissan, hyundai, kia, byd, nio, geely), more scientists (newton, curie, darwin, hawking, galileo, feynman, turing, davinci), more anime (onepiece, ghibli), more Marvel (hulk, thor, captain-america, wolverine, deadpool, blackwidow, strange, wanda), OS themes (macos, windows, linux, ubuntu, arch, debian, fedora, kali, mint, nixos), and world religions (christianity, islam, hinduism, buddhism, judaism, sikhism, shinto) and a **26-block library** to compose your own. Includes an all-in-one CLI configurator and a `/statusline` slash command for Claude Code.
 
 [![License: Source-Available](https://img.shields.io/badge/license-Source--Available-orange.svg)](LICENSE)
 [![Made for Claude Code](https://img.shields.io/badge/made%20for-Claude%20Code-7c3aed.svg)](https://claude.com/claude-code)
-[![Variants: 162](https://img.shields.io/badge/variants-162-brightgreen.svg)](#-162-ready-made-variants--pick-one-and-go)
+[![Variants: 164](https://img.shields.io/badge/variants-164-brightgreen.svg)](#-164-ready-made-variants--pick-one-and-go)
 [![Bash + jq](https://img.shields.io/badge/runs%20on-bash%20%2B%20jq-yellow.svg)](#requirements)
 [![Author](https://img.shields.io/badge/author-Yevgeniy%20Achin-blue.svg)](mailto:amazopic@gmail.com)
 
@@ -85,7 +85,7 @@ All in **one line**, color-coded, with smart icons that signal urgency.
 - 🧩 **Pluggable bar styles** — pick `quadrant` (▖▄▙█) or `vertical` (▏▎▍▌▋▊▉█), or roll your own in 10 lines of bash
 - ⚡ **Lightweight** — pure `bash` + `jq`. No Node, no Python, no daemon, no telemetry
 
-## 🎨 162 ready-made variants — pick one and go
+## 🎨 164 ready-made variants — pick one and go
 
 Each theme ships in **two variants**:
 
@@ -109,7 +109,7 @@ Apply with `~/.claude/status-line.sh use <name>` (append `-compact` for the comp
 | `tesla`      | ⚡ electric purple + lightning yellow · `AC ~` |
 | `ferrari`    | 🐎 rosso corsa + Modena yellow |
 
-### 🛠 Practical / Classic (20 themes)
+### 🛠 Practical / Classic (21 themes)
 
 | Theme | File / Apply |
 |---|---|
@@ -117,6 +117,7 @@ Apply with `~/.claude/status-line.sh use <name>` (append `-compact` for the comp
 | 🛠 developer     | [`statusline-developer.sh`](examples/statusline-developer.sh) · `use developer` |
 | 🛠 muted         | `use muted` |
 | 🛠 mono          | `use mono` |
+| 🛠 hard-worker   | `use hard-worker` |
 | 🛠 time          | [`statusline-time.sh`](examples/statusline-time.sh) · `use time` |
 | 🛠 zen           | [`statusline-zen.sh`](examples/statusline-zen.sh) · `use zen` |
 | 🌈 rainbow       | [`statusline-rainbow.sh`](examples/statusline-rainbow.sh) · `use rainbow` |
@@ -205,7 +206,7 @@ Ship in `statusline-bundle.sh` only — pick any with `~/.claude/status-line.sh 
 ```bash
 ~/.claude/status-line.sh use macos            # detailed
 ~/.claude/status-line.sh use porsche-compact  # compact
-~/.claude/status-line.sh use einstein         # any of the 81 themes works
+~/.claude/status-line.sh use einstein         # any of the 82 themes works
 ```
 
 **Browse them all in your terminal first** — every variant has a
@@ -215,7 +216,7 @@ pre-rendered preview in [`screenshots/`](screenshots/):
 # preview a single one
 cat screenshots/statusline-cyberpunk.ansi
 
-# or browse the whole gallery (162 variants + main)
+# or browse the whole gallery (164 variants + main)
 for f in screenshots/*.ansi; do
   printf "\n=== %s ===\n" "$(basename "$f" .ansi)"
   cat "$f"
@@ -394,7 +395,7 @@ Edit constants near the top of `statusline.sh`:
 | **Git branch** + dirty + ahead/behind | ❌ | ✅ |
 | **Time-on-task** (active vs wall clock) | ❌ | ✅ |
 | **Thinking / effort level** display | ❌ | ✅ |
-| Themed presets | ❌ | ✅ 81 themes × 2 variants = **162 ready-made** |
+| Themed presets | ❌ | ✅ 82 themes × 2 variants = **164 ready-made** |
 | Compose from named blocks | ❌ | ✅ 26 blocks, see [BLOCKS.md](BLOCKS.md) |
 | Built-in CLI configurator | ❌ | ✅ `statusline-bundle.sh use / custom / list / preview` |
 | Claude Code `/statusline` slash command | ❌ | ✅ optional, see [`commands/`](commands/) |
@@ -444,7 +445,7 @@ Any model Claude Code supports — Opus 4.7, Sonnet 4.6, Haiku 4.5, Opus 4.6, et
 
 Yes — three ways:
 
-1. Pick one of the **81 themes** (162 variants total) — use `~/.claude/status-line.sh use <name>` or browse [`examples/`](examples/) for the standalone scripts.
+1. Pick one of the **82 themes** (164 variants total) — use `~/.claude/status-line.sh use <name>` or browse [`examples/`](examples/) for the standalone scripts.
 2. Compose your own from **named blocks** — see [BLOCKS.md](BLOCKS.md).
 3. Edit color constants and bar style in `statusline.sh` directly.
 

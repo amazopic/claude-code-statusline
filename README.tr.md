@@ -1,10 +1,10 @@
-# 🛰️ Claude Code Status Line — 81 tema, yapılandırılabilir bloklar, CLI
+# 🛰️ Claude Code Status Line — 82 tema, yapılandırılabilir bloklar, CLI
 
-> **Claude Code** varsayılan durum çubuğunun yerine doğrudan kullanılabilen alternatif: yumuşak bir ilerleme çubuğuyla canlı **bağlam penceresi** kullanımı, USD cinsinden **oturum maliyeti**, **5sa / 7g hız limiti** uyarıları, kirli / önde / geride sayaçlarıyla **git dalı**, **göreve harcanan süre takibi** ve etkin **model adı** (1M bağlamlı varyantlar için `(1M)` göstergesiyle) — hepsi tek bir renkli Bash satırında. **81 hazır temayla** birlikte gelir — en çok tercih edilenler (cyberpunk, hacker, dragonball, naruto, pokemon, ironman, spiderman, einstein, tesla, ferrari), klasikler (minimal, developer, muted, mono, time, zen, rainbow, anime, love, cat, christmas, space, retro, fire, ocean, weather, coffee, music, game, pirate), otomobil markaları (porsche, mercedes, bmw, volvo, ford, chevy, jeep, cadillac, toyota, honda, nissan, hyundai, kia, byd, nio, geely), daha fazla bilim insanı (newton, curie, darwin, hawking, galileo, feynman, turing, davinci), daha fazla anime (onepiece, ghibli), daha fazla Marvel (hulk, thor, captain-america, wolverine, deadpool, blackwidow, strange, wanda), işletim sistemi temaları (macos, windows, linux, ubuntu, arch, debian, fedora, kali, mint, nixos) ve dünya dinleri (christianity, islam, hinduism, buddhism, judaism, sikhism, shinto) ve kendinizinkini oluşturmanız için **26 bloktan oluşan bir kütüphane**. Hepsi bir arada CLI yapılandırıcısı ve Claude Code için bir `/statusline` slash komutu içerir.
+> **Claude Code** varsayılan durum çubuğunun yerine doğrudan kullanılabilen alternatif: yumuşak bir ilerleme çubuğuyla canlı **bağlam penceresi** kullanımı, USD cinsinden **oturum maliyeti**, **5sa / 7g hız limiti** uyarıları, kirli / önde / geride sayaçlarıyla **git dalı**, **göreve harcanan süre takibi** ve etkin **model adı** (1M bağlamlı varyantlar için `(1M)` göstergesiyle) — hepsi tek bir renkli Bash satırında. **82 hazır temayla** birlikte gelir — en çok tercih edilenler (cyberpunk, hacker, dragonball, naruto, pokemon, ironman, spiderman, einstein, tesla, ferrari), klasikler (minimal, developer, muted, mono, hard-worker, time, zen, rainbow, anime, love, cat, christmas, space, retro, fire, ocean, weather, coffee, music, game, pirate), otomobil markaları (porsche, mercedes, bmw, volvo, ford, chevy, jeep, cadillac, toyota, honda, nissan, hyundai, kia, byd, nio, geely), daha fazla bilim insanı (newton, curie, darwin, hawking, galileo, feynman, turing, davinci), daha fazla anime (onepiece, ghibli), daha fazla Marvel (hulk, thor, captain-america, wolverine, deadpool, blackwidow, strange, wanda), işletim sistemi temaları (macos, windows, linux, ubuntu, arch, debian, fedora, kali, mint, nixos) ve dünya dinleri (christianity, islam, hinduism, buddhism, judaism, sikhism, shinto) ve kendinizinkini oluşturmanız için **26 bloktan oluşan bir kütüphane**. Hepsi bir arada CLI yapılandırıcısı ve Claude Code için bir `/statusline` slash komutu içerir.
 
 [![License: Source-Available](https://img.shields.io/badge/license-Source--Available-orange.svg)](LICENSE)
 [![Made for Claude Code](https://img.shields.io/badge/made%20for-Claude%20Code-7c3aed.svg)](https://claude.com/claude-code)
-[![Variants: 162](https://img.shields.io/badge/variants-162-brightgreen.svg)](#-162-hazır-varyant--birini-seç-ve-başla)
+[![Variants: 164](https://img.shields.io/badge/variants-164-brightgreen.svg)](#-164-hazır-varyant--birini-seç-ve-başla)
 [![Bash + jq](https://img.shields.io/badge/runs%20on-bash%20%2B%20jq-yellow.svg)](#gereksinimler)
 [![Author](https://img.shields.io/badge/author-Yevgeniy%20Achin-blue.svg)](mailto:amazopic@gmail.com)
 
@@ -85,7 +85,7 @@ Hepsi **tek satırda**, renk kodlu ve aciliyeti işaret eden akıllı simgelerle
 - 🧩 **Takılabilir çubuk stilleri** — `quadrant` (▖▄▙█) veya `vertical` (▏▎▍▌▋▊▉█) seçin ya da 10 satır bash ile kendinizinkini yazın
 - ⚡ **Hafif** — saf `bash` + `jq`. Node yok, Python yok, daemon yok, telemetri yok
 
-## 🎨 162 hazır varyant — birini seç ve başla
+## 🎨 164 hazır varyant — birini seç ve başla
 
 Her tema **iki varyantla** gelir:
 
@@ -109,7 +109,7 @@ Her tema **iki varyantla** gelir:
 | `tesla`      | ⚡ elektrik moru + şimşek sarısı · `AC ~` |
 | `ferrari`    | 🐎 rosso corsa + Modena sarısı |
 
-### 🛠 Pratik / Klasik (20 tema)
+### 🛠 Pratik / Klasik (21 tema)
 
 | Tema | Dosya / Uygulama |
 |---|---|
@@ -117,6 +117,7 @@ Her tema **iki varyantla** gelir:
 | 🛠 developer     | [`statusline-developer.sh`](examples/statusline-developer.sh) · `use developer` |
 | 🛠 muted         | `use muted` |
 | 🛠 mono          | `use mono` |
+| 🛠 hard-worker   | `use hard-worker` |
 | 🛠 time          | [`statusline-time.sh`](examples/statusline-time.sh) · `use time` |
 | 🛠 zen           | [`statusline-zen.sh`](examples/statusline-zen.sh) · `use zen` |
 | 🌈 rainbow       | [`statusline-rainbow.sh`](examples/statusline-rainbow.sh) · `use rainbow` |
@@ -204,7 +205,7 @@ Yalnızca `statusline-bundle.sh` içinde gelir — herhangi birini `~/.claude/st
 ```bash
 ~/.claude/status-line.sh use macos            # detailed
 ~/.claude/status-line.sh use porsche-compact  # compact
-~/.claude/status-line.sh use einstein         # any of the 81 themes works
+~/.claude/status-line.sh use einstein         # any of the 82 themes works
 ```
 
 **Önce hepsine terminalinizde göz atın** — her varyantın
@@ -214,7 +215,7 @@ Yalnızca `statusline-bundle.sh` içinde gelir — herhangi birini `~/.claude/st
 # preview a single one
 cat screenshots/statusline-cyberpunk.ansi
 
-# or browse the whole gallery (162 variants + main)
+# or browse the whole gallery (164 variants + main)
 for f in screenshots/*.ansi; do
   printf "\n=== %s ===\n" "$(basename "$f" .ansi)"
   cat "$f"
@@ -390,7 +391,7 @@ Neyin kurulu olduğunu kontrol edin: `~/.claude/status-line.sh version`.
 | **Git dalı** + kirli + önde/geride | ❌ | ✅ |
 | **Göreve harcanan süre** (etkin vs duvar saati) | ❌ | ✅ |
 | **Düşünme / çaba seviyesi** gösterimi | ❌ | ✅ |
-| Temalı hazır ayarlar | ❌ | ✅ 81 tema × 2 varyant = **162 hazır** |
+| Temalı hazır ayarlar | ❌ | ✅ 82 tema × 2 varyant = **164 hazır** |
 | Adlandırılmış bloklardan oluşturma | ❌ | ✅ 26 blok, bkz. [BLOCKS.md](BLOCKS.md) |
 | Yerleşik CLI yapılandırıcı | ❌ | ✅ `statusline-bundle.sh use / custom / list / preview` |
 | Claude Code `/statusline` slash komutu | ❌ | ✅ isteğe bağlı, bkz. [`commands/`](commands/) |
@@ -440,7 +441,7 @@ Claude Code'un desteklediği herhangi bir model — Opus 4.7, Sonnet 4.6, Haiku 
 
 Evet — üç yolla:
 
-1. **81 temadan** birini seçin (toplam 162 varyant) — `~/.claude/status-line.sh use <name>` kullanın ya da bağımsız betikler için [`examples/`](examples/) klasörüne göz atın.
+1. **82 temadan** birini seçin (toplam 164 varyant) — `~/.claude/status-line.sh use <name>` kullanın ya da bağımsız betikler için [`examples/`](examples/) klasörüne göz atın.
 2. **Adlandırılmış bloklardan** kendinizinkini oluşturun — bkz. [BLOCKS.md](BLOCKS.md).
 3. `statusline.sh` içindeki renk sabitlerini ve çubuk stilini doğrudan düzenleyin.
 

@@ -1,12 +1,12 @@
 <div dir="rtl">
 
-# 🛰️ Claude Code Status Line — 81 themes، قابلِ ترتیب blocks، CLI
+# 🛰️ Claude Code Status Line — 82 themes، قابلِ ترتیب blocks، CLI
 
-> **Claude Code** کی ڈیفالٹ status line کا ڈراپ-اِن متبادل: ایک ہموار پروگریس بار کے ساتھ لائیو **context window** استعمال، USD میں **session cost**، **5h / 7d rate-limit** انتباہات، dirty / ahead / behind گنتی کے ساتھ **git branch**، **time-on-task tracking**، اور فعال **model name** (1M-context ویریئنٹس کے لیے `(1M)` انڈیکیٹر کے ساتھ) — یہ سب ایک رنگین Bash لائن میں۔ **81 تیار-شدہ themes** کے ساتھ آتی ہے — ٹاپ پکس (cyberpunk, hacker, dragonball, naruto, pokemon, ironman, spiderman, einstein, tesla, ferrari)، کلاسیکس (minimal, developer, muted, mono, time, zen, rainbow, anime, love, cat, christmas, space, retro, fire, ocean, weather, coffee, music, game, pirate)، آٹو برانڈز (porsche, mercedes, bmw, volvo, ford, chevy, jeep, cadillac, toyota, honda, nissan, hyundai, kia, byd, nio, geely)، مزید سائنسدان (newton, curie, darwin, hawking, galileo, feynman, turing, davinci)، مزید anime (onepiece, ghibli)، مزید Marvel (hulk, thor, captain-america, wolverine, deadpool, blackwidow, strange, wanda)، OS themes (macos, windows, linux, ubuntu, arch, debian, fedora, kali, mint, nixos)، اور دنیا کے مذاہب (christianity, islam, hinduism, buddhism, judaism, sikhism, shinto) اور اپنی لائن خود بنانے کے لیے ایک **26-block لائبریری**۔ اس میں ایک آل-اِن-وَن CLI configurator اور Claude Code کے لیے ایک `/statusline` slash command شامل ہے۔
+> **Claude Code** کی ڈیفالٹ status line کا ڈراپ-اِن متبادل: ایک ہموار پروگریس بار کے ساتھ لائیو **context window** استعمال، USD میں **session cost**، **5h / 7d rate-limit** انتباہات، dirty / ahead / behind گنتی کے ساتھ **git branch**، **time-on-task tracking**، اور فعال **model name** (1M-context ویریئنٹس کے لیے `(1M)` انڈیکیٹر کے ساتھ) — یہ سب ایک رنگین Bash لائن میں۔ **82 تیار-شدہ themes** کے ساتھ آتی ہے — ٹاپ پکس (cyberpunk, hacker, dragonball, naruto, pokemon, ironman, spiderman, einstein, tesla, ferrari)، کلاسیکس (minimal, developer, muted, mono, hard-worker, time, zen, rainbow, anime, love, cat, christmas, space, retro, fire, ocean, weather, coffee, music, game, pirate)، آٹو برانڈز (porsche, mercedes, bmw, volvo, ford, chevy, jeep, cadillac, toyota, honda, nissan, hyundai, kia, byd, nio, geely)، مزید سائنسدان (newton, curie, darwin, hawking, galileo, feynman, turing, davinci)، مزید anime (onepiece, ghibli)، مزید Marvel (hulk, thor, captain-america, wolverine, deadpool, blackwidow, strange, wanda)، OS themes (macos, windows, linux, ubuntu, arch, debian, fedora, kali, mint, nixos)، اور دنیا کے مذاہب (christianity, islam, hinduism, buddhism, judaism, sikhism, shinto) اور اپنی لائن خود بنانے کے لیے ایک **26-block لائبریری**۔ اس میں ایک آل-اِن-وَن CLI configurator اور Claude Code کے لیے ایک `/statusline` slash command شامل ہے۔
 
 [![License: Source-Available](https://img.shields.io/badge/license-Source--Available-orange.svg)](LICENSE)
 [![Made for Claude Code](https://img.shields.io/badge/made%20for-Claude%20Code-7c3aed.svg)](https://claude.com/claude-code)
-[![Variants: 162](https://img.shields.io/badge/variants-162-brightgreen.svg)](#-162-تیار-شدہ-ویریئنٹس--ایک-منتخب-کریں-اور-چل-پڑیں)
+[![Variants: 164](https://img.shields.io/badge/variants-164-brightgreen.svg)](#-164-تیار-شدہ-ویریئنٹس--ایک-منتخب-کریں-اور-چل-پڑیں)
 [![Bash + jq](https://img.shields.io/badge/runs%20on-bash%20%2B%20jq-yellow.svg)](#requirements)
 [![Author](https://img.shields.io/badge/author-Yevgeniy%20Achin-blue.svg)](mailto:amazopic@gmail.com)
 
@@ -107,7 +107,7 @@ Claude Code کی ڈیفالٹ status line بہت سادہ ہے۔ یہ ڈراپ-�
 - 🧩 **پلگ ایبل بار اسٹائلز** — `quadrant` (▖▄▙█) یا `vertical` (▏▎▍▌▋▊▉█) منتخب کریں، یا 10 لائن bash میں اپنا خود بنائیں
 - ⚡ **ہلکا پھلکا** — خالص `bash` + `jq`۔ نہ Node، نہ Python، نہ daemon، نہ telemetry
 
-## 🎨 162 تیار-شدہ ویریئنٹس — ایک منتخب کریں اور چل پڑیں
+## 🎨 164 تیار-شدہ ویریئنٹس — ایک منتخب کریں اور چل پڑیں
 
 ہر theme **دو ویریئنٹس** میں آتی ہے:
 
@@ -131,7 +131,7 @@ Claude Code کی ڈیفالٹ status line بہت سادہ ہے۔ یہ ڈراپ-�
 | `tesla`      | ⚡ برقی جامنی + بجلی کا پیلا · `AC ~` |
 | `ferrari`    | 🐎 rosso corsa + Modena پیلا |
 
-### 🛠 عملی / کلاسک (20 themes)
+### 🛠 عملی / کلاسک (21 themes)
 
 | Theme | فائل / لاگو کریں |
 |---|---|
@@ -139,6 +139,7 @@ Claude Code کی ڈیفالٹ status line بہت سادہ ہے۔ یہ ڈراپ-�
 | 🛠 developer     | [`statusline-developer.sh`](examples/statusline-developer.sh) · `use developer` |
 | 🛠 muted         | `use muted` |
 | 🛠 mono          | `use mono` |
+| 🛠 hard-worker   | `use hard-worker` |
 | 🛠 time          | [`statusline-time.sh`](examples/statusline-time.sh) · `use time` |
 | 🛠 zen           | [`statusline-zen.sh`](examples/statusline-zen.sh) · `use zen` |
 | 🌈 rainbow       | [`statusline-rainbow.sh`](examples/statusline-rainbow.sh) · `use rainbow` |
@@ -233,7 +234,7 @@ chmod +x ~/.claude/status-line.sh
 ```bash
 ~/.claude/status-line.sh use macos            # detailed
 ~/.claude/status-line.sh use porsche-compact  # compact
-~/.claude/status-line.sh use einstein         # any of the 81 themes works
+~/.claude/status-line.sh use einstein         # any of the 82 themes works
 ```
 
 </div>
@@ -247,7 +248,7 @@ chmod +x ~/.claude/status-line.sh
 # preview a single one
 cat screenshots/statusline-cyberpunk.ansi
 
-# or browse the whole gallery (162 variants + main)
+# or browse the whole gallery (164 variants + main)
 for f in screenshots/*.ansi; do
   printf "\n=== %s ===\n" "$(basename "$f" .ansi)"
   cat "$f"
@@ -457,7 +458,7 @@ theme ترتیب (`~/.claude/statusline.conf`) محفوظ رکھتا ہے۔ اس
 | **Git branch** + dirty + ahead/behind | ❌ | ✅ |
 | **Time-on-task** (فعال بمقابلہ وال کلاک) | ❌ | ✅ |
 | **Thinking / effort لیول** ڈسپلے | ❌ | ✅ |
-| تھیمڈ پری سیٹس | ❌ | ✅ 81 themes × 2 ویریئنٹس = **162 تیار-شدہ** |
+| تھیمڈ پری سیٹس | ❌ | ✅ 82 themes × 2 ویریئنٹس = **164 تیار-شدہ** |
 | نامزد blocks سے ترتیب | ❌ | ✅ 26 blocks، دیکھیں [BLOCKS.md](BLOCKS.md) |
 | بِلٹ-اِن CLI configurator | ❌ | ✅ `statusline-bundle.sh use / custom / list / preview` |
 | Claude Code `/statusline` slash command | ❌ | ✅ اختیاری، دیکھیں [`commands/`](commands/) |
@@ -507,7 +508,7 @@ Claude Code ایونٹس پر دوبارہ رینڈر کرتا ہے — نیا �
 
 ہاں — تین طریقوں سے:
 
-1. **81 themes** میں سے ایک منتخب کریں (کل 162 ویریئنٹس) — `~/.claude/status-line.sh use <name>` استعمال کریں یا اسٹینڈ اَلون اسکرپٹس کے لیے [`examples/`](examples/) براؤز کریں۔
+1. **82 themes** میں سے ایک منتخب کریں (کل 164 ویریئنٹس) — `~/.claude/status-line.sh use <name>` استعمال کریں یا اسٹینڈ اَلون اسکرپٹس کے لیے [`examples/`](examples/) براؤز کریں۔
 2. **نامزد blocks** سے اپنی خود ترتیب دیں — دیکھیں [BLOCKS.md](BLOCKS.md)۔
 3. `statusline.sh` میں رنگ ثوابت اور بار اسٹائل براہِ راست ترمیم کریں۔
 

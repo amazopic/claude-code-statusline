@@ -46,10 +46,10 @@
 #    cyberpunk · hacker · dragonball · naruto · pokemon
 #    ironman · spiderman · einstein · tesla · ferrari
 #
-#  Classic (20):
-#    minimal · developer · muted · mono · time · zen · rainbow
-#    anime · love · cat · christmas · space · retro · fire · ocean
-#    weather · coffee · music · game · pirate
+#  Classic (21):
+#    minimal · developer · muted · mono · hard-worker · time · zen
+#    rainbow · anime · love · cat · christmas · space · retro · fire
+#    ocean · weather · coffee · music · game · pirate
 #
 #  Auto brands (16 more):
 #    Europe   — porsche · mercedes · bmw · volvo
@@ -145,7 +145,7 @@ export LC_NUMERIC=C
 # ─────────────────────────  CONFIG  ───────────────────────────────────
 # Calendar versioning: YYYY.MM.DD — bump on every release. Compared by
 # `statusline update` against the upstream copy on GitHub.
-VERSION="2026.06.14"
+VERSION="2026.07.21"
 UPSTREAM_URL="https://raw.githubusercontent.com/amazopic/claude-code-statusline/main/statusline-bundle.sh"
 
 CONFIG_FILE="${HOME}/.claude/statusline.conf"
@@ -160,7 +160,7 @@ THEMES=(
   # — Top picks (cross-cultural recognition) —
   cyberpunk hacker dragonball naruto pokemon ironman spiderman einstein tesla ferrari
   # — Practical / Classic —
-  minimal developer muted mono time zen rainbow anime love cat christmas
+  minimal developer muted mono hard-worker time zen rainbow anime love cat christmas
   space retro fire ocean weather coffee music game pirate
   # — Auto: Europe —
   porsche mercedes bmw volvo
@@ -1086,6 +1086,71 @@ render_mono() {
   local LIM_WARN="${R}▲ "
   local THINK_ICON="${C}◇"
   _dev_body "◔" "◑" "◕" "●" $'\e[38;5;250m'
+}
+
+# `hard-worker` — a focused productivity dashboard: model · context (tokens
+# inline) · folder, then a VERBOSE git block (index vs working-tree changes and
+# the commit direction spelled out), the 5h/7d limits, a gold-highlighted
+# effort / output-style indicator, and the session's accepted LOC. Drops the
+# cost block and the separate per-message token block.
+render_hard_worker() {
+  local cc=$(pct_color "$ctx_pct") cd=$(pct_color_dim "$ctx_pct")
+  local icn
+  if   (( ctx_pct < 40 )); then icn="🚀"
+  elif (( ctx_pct < 50 )); then icn="🚗"
+  elif (( ctx_pct < 70 )); then icn="⚠️"
+  else                          icn="🔥"
+  fi
+  line="${G}${model_name}${N}"
+  line+="${SEP}${icn} ${cc}${ctx_pct}${cd}% ${cc}$(bar_vertical "$ctx_pct") ${ctx_used_k}${cd}K${D}/${cc}${ctx_max_k}${cd}K${N}"
+  line+="${SEP}${B}$(basename "$cwd")${N}"
+  _hw_git
+  _lim_default
+  _hw_effort
+  _hw_lines
+}
+
+# Verbose git for hard-worker: branch, then staged (index) vs modified
+# (working-tree) file counts and the ahead/behind commit direction spelled out.
+# Each part is hidden when its count is zero; falls back to "no git" off-repo.
+_hw_git() {
+  if [[ -z "$br" ]]; then line+="${SEP}${RD}no git${N}"; return; fi
+  line+="${SEP}${B}⎇ ${br}${N}"
+  local porc staged mod ahead=0 behind=0 up cnt
+  porc=$(git -C "$cwd" status --porcelain 2>/dev/null)
+  staged=$(grep -cE '^[MADRCU]'      <<<"$porc")
+  mod=$(grep -cE '^.[MDU]|^\?\?'     <<<"$porc")
+  up=$(git -C "$cwd" rev-parse --abbrev-ref --symbolic-full-name '@{u}' 2>/dev/null)
+  if [[ -n "$up" ]]; then
+    cnt=$(git -C "$cwd" rev-list --left-right --count HEAD...@{u} 2>/dev/null)
+    read -r ahead behind <<<"$cnt"
+  fi
+  (( ${staged:-0} > 0 )) && line+="${SEP}${GR}●${staged} staged${N}"
+  (( ${mod:-0}    > 0 )) && line+="${SEP}${Y}✚${mod} modified${N}"
+  (( ${ahead:-0}  > 0 )) && line+="${SEP}${GR}↑${ahead} to push${N}"
+  (( ${behind:-0} > 0 )) && line+="${SEP}${R}↓${behind} to pull${N}"
+}
+
+# Gold-highlighted reasoning indicator: the effort level when set, plus the
+# output style when it's not the plain "default". Falls back to the merged
+# `thinking` value so the slot is never empty on older payloads.
+_hw_effort() {
+  local eff sty shown=""
+  eff=$(j '.effort.level')
+  sty=$(j '.output_style.name')
+  if [[ -n "$eff" && "$eff" != "null" ]];                       then line+="${SEP}${G}🤖 ${eff}${N}"; shown=1; fi
+  if [[ -n "$sty" && "$sty" != "null" && "$sty" != "default" ]]; then line+="${SEP}${G}✎ ${sty}${N}"; shown=1; fi
+  if [[ -z "$shown" && -n "$thinking" ]];                       then line+="${SEP}${G}🤖 ${thinking}${N}"; fi
+}
+
+# Session LOC accepted — .cost.total_lines_added / total_lines_removed.
+# Hidden when the payload carries no line churn (both zero / absent).
+_hw_lines() {
+  local add rem
+  add=$(j '.cost.total_lines_added'); rem=$(j '.cost.total_lines_removed')
+  add=${add%.*}; rem=${rem%.*}; add=${add:-0}; rem=${rem:-0}
+  (( add == 0 && rem == 0 )) && return
+  line+="${SEP}${GD}LOC ${GR}+${add} ${R}−${rem}${N}"
 }
 
 render_time() {

@@ -1,10 +1,10 @@
-# 🛰️ Claude Code Status Line — 81 款主題、可設定區塊、CLI
+# 🛰️ Claude Code Status Line — 82 款主題、可設定區塊、CLI
 
-> **Claude Code** 預設狀態列的隨插即用替代方案：即時顯示 **context window** 使用量並搭配平滑的進度條、以美元計算的 **工作階段花費**、**5h / 7d 速率限制** 警告、含 dirty / ahead / behind 計數的 **git 分支**、**任務耗時追蹤**，以及目前的 **模型名稱**（1M context 版本會標示 `(1M)`）——全部濃縮在同一條色彩繽紛的 Bash 狀態列裡。內建 **81 款現成主題** —— 熱門精選（cyberpunk、hacker、dragonball、naruto、pokemon、ironman、spiderman、einstein、tesla、ferrari）、經典款（minimal、developer、muted、mono、time、zen、rainbow、anime、love、cat、christmas、space、retro、fire、ocean、weather、coffee、music、game、pirate）、汽車品牌（porsche、mercedes、bmw、volvo、ford、chevy、jeep、cadillac、toyota、honda、nissan、hyundai、kia、byd、nio、geely）、更多科學家（newton、curie、darwin、hawking、galileo、feynman、turing、davinci）、更多動漫（onepiece、ghibli）、更多漫威（hulk、thor、captain-america、wolverine、deadpool、blackwidow、strange、wanda）、作業系統主題（macos、windows、linux、ubuntu、arch、debian、fedora、kali、mint、nixos），以及世界宗教（christianity、islam、hinduism、buddhism、judaism、sikhism、shinto），再加上一個 **26 區塊函式庫** 讓你自由組合。隨附一個一站式的 CLI 設定工具，以及一個給 Claude Code 用的 `/statusline` 斜線指令。
+> **Claude Code** 預設狀態列的隨插即用替代方案：即時顯示 **context window** 使用量並搭配平滑的進度條、以美元計算的 **工作階段花費**、**5h / 7d 速率限制** 警告、含 dirty / ahead / behind 計數的 **git 分支**、**任務耗時追蹤**，以及目前的 **模型名稱**（1M context 版本會標示 `(1M)`）——全部濃縮在同一條色彩繽紛的 Bash 狀態列裡。內建 **82 款現成主題** —— 熱門精選（cyberpunk、hacker、dragonball、naruto、pokemon、ironman、spiderman、einstein、tesla、ferrari）、經典款（minimal、developer、muted、mono、hard-worker、time、zen、rainbow、anime、love、cat、christmas、space、retro、fire、ocean、weather、coffee、music、game、pirate）、汽車品牌（porsche、mercedes、bmw、volvo、ford、chevy、jeep、cadillac、toyota、honda、nissan、hyundai、kia、byd、nio、geely）、更多科學家（newton、curie、darwin、hawking、galileo、feynman、turing、davinci）、更多動漫（onepiece、ghibli）、更多漫威（hulk、thor、captain-america、wolverine、deadpool、blackwidow、strange、wanda）、作業系統主題（macos、windows、linux、ubuntu、arch、debian、fedora、kali、mint、nixos），以及世界宗教（christianity、islam、hinduism、buddhism、judaism、sikhism、shinto），再加上一個 **26 區塊函式庫** 讓你自由組合。隨附一個一站式的 CLI 設定工具，以及一個給 Claude Code 用的 `/statusline` 斜線指令。
 
 [![License: Source-Available](https://img.shields.io/badge/license-Source--Available-orange.svg)](LICENSE)
 [![Made for Claude Code](https://img.shields.io/badge/made%20for-Claude%20Code-7c3aed.svg)](https://claude.com/claude-code)
-[![Variants: 162](https://img.shields.io/badge/variants-162-brightgreen.svg)](#-162-款現成變體--選一個直接上)
+[![Variants: 164](https://img.shields.io/badge/variants-164-brightgreen.svg)](#-164-款現成變體--選一個直接上)
 [![Bash + jq](https://img.shields.io/badge/runs%20on-bash%20%2B%20jq-yellow.svg)](#系統需求)
 [![Author](https://img.shields.io/badge/author-Yevgeniy%20Achin-blue.svg)](mailto:amazopic@gmail.com)
 
@@ -85,7 +85,7 @@ Claude Code 的預設狀態列相當陽春。這個隨插即用的替代方案�
 - 🧩 **可插拔的進度條樣式** —— 選 `quadrant`（▖▄▙█）或 `vertical`（▏▎▍▌▋▊▉█），或用 10 行 bash 自己寫一個
 - ⚡ **輕量** —— 純 `bash` + `jq`。沒有 Node、沒有 Python、沒有常駐程式、沒有遙測
 
-## 🎨 162 款現成變體 — 選一個直接上
+## 🎨 164 款現成變體 — 選一個直接上
 
 每款主題都附 **兩種變體**：
 
@@ -109,7 +109,7 @@ Claude Code 的預設狀態列相當陽春。這個隨插即用的替代方案�
 | `tesla`      | ⚡ 電光紫 + 閃電黃 · `AC ~` |
 | `ferrari`    | 🐎 賽車紅 + 摩德納黃 |
 
-### 🛠 實用／經典（20 款主題）
+### 🛠 實用／經典（21 款主題）
 
 | 主題 | 檔案 / 套用 |
 |---|---|
@@ -117,6 +117,7 @@ Claude Code 的預設狀態列相當陽春。這個隨插即用的替代方案�
 | 🛠 developer     | [`statusline-developer.sh`](examples/statusline-developer.sh) · `use developer` |
 | 🛠 muted         | 只在 bundle 裡 · `use muted` |
 | 🛠 mono          | 只在 bundle 裡 · `use mono` |
+| 🛠 hard-worker   | 只在 bundle 裡 · `use hard-worker` |
 | 🛠 time          | [`statusline-time.sh`](examples/statusline-time.sh) · `use time` |
 | 🛠 zen           | [`statusline-zen.sh`](examples/statusline-zen.sh) · `use zen` |
 | 🌈 rainbow       | [`statusline-rainbow.sh`](examples/statusline-rainbow.sh) · `use rainbow` |
@@ -205,7 +206,7 @@ chmod +x ~/.claude/status-line.sh
 ```bash
 ~/.claude/status-line.sh use macos            # detailed
 ~/.claude/status-line.sh use porsche-compact  # compact
-~/.claude/status-line.sh use einstein         # any of the 81 themes works
+~/.claude/status-line.sh use einstein         # any of the 82 themes works
 ```
 
 **先在你的終端機裡逐一瀏覽** —— 每個變體在 [`screenshots/`](screenshots/) 裡都有
@@ -215,7 +216,7 @@ chmod +x ~/.claude/status-line.sh
 # 預覽單一一個
 cat screenshots/statusline-cyberpunk.ansi
 
-# 或瀏覽整個藝廊（162 個變體 + 主版本）
+# 或瀏覽整個藝廊（164 個變體 + 主版本）
 for f in screenshots/*.ansi; do
   printf "\n=== %s ===\n" "$(basename "$f" .ansi)"
   cat "$f"
@@ -390,7 +391,7 @@ chmod +x ~/.claude/status-line.sh
 | **Git 分支** + dirty + ahead/behind | ❌ | ✅ |
 | **任務耗時**（active 對 wall clock） | ❌ | ✅ |
 | **Thinking / effort 等級** 顯示 | ❌ | ✅ |
-| 主題預設 | ❌ | ✅ 81 款主題 × 2 變體 = **162 款現成** |
+| 主題預設 | ❌ | ✅ 82 款主題 × 2 變體 = **164 款現成** |
 | 從具名區塊組合 | ❌ | ✅ 26 個區塊，見 [BLOCKS.md](BLOCKS.md) |
 | 內建 CLI 設定工具 | ❌ | ✅ `statusline-bundle.sh use / custom / list / preview` |
 | Claude Code `/statusline` 斜線指令 | ❌ | ✅ 選用，見 [`commands/`](commands/) |
@@ -440,7 +441,7 @@ Claude Code 會在事件發生時重新算繪 —— 新的助理訊息、`/comp
 
 可以 —— 有三種方式：
 
-1. 從 **81 款主題**（共 162 個變體）中挑一個 —— 用 `~/.claude/status-line.sh use <name>`，或瀏覽 [`examples/`](examples/) 裡的獨立腳本。
+1. 從 **82 款主題**（共 164 個變體）中挑一個 —— 用 `~/.claude/status-line.sh use <name>`，或瀏覽 [`examples/`](examples/) 裡的獨立腳本。
 2. 從 **具名區塊** 組出你自己的 —— 見 [BLOCKS.md](BLOCKS.md)。
 3. 直接編輯 `statusline.sh` 裡的顏色常數與進度條樣式。
 

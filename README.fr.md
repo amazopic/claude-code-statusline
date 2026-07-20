@@ -1,9 +1,9 @@
-# 🛰️ Claude Code Status Line — 81 thèmes, blocs configurables, CLI
+# 🛰️ Claude Code Status Line — 82 thèmes, blocs configurables, CLI
 
-> Une ligne d'état soignée et hackable pour Claude Code — barre de contexte, limites, coûts, modèle et bien plus, le tout sur une seule ligne colorée. 81 thèmes et une bibliothèque de 26 blocs pour composer la vôtre.
+> Une ligne d'état soignée et hackable pour Claude Code — barre de contexte, limites, coûts, modèle et bien plus, le tout sur une seule ligne colorée. 82 thèmes et une bibliothèque de 26 blocs pour composer la vôtre.
 
 [![License: Source-Available](https://img.shields.io/badge/license-Source--Available-orange.svg)](LICENSE)
-[![Variants: 162](https://img.shields.io/badge/variants-162-brightgreen.svg)](#)
+[![Variants: 164](https://img.shields.io/badge/variants-164-brightgreen.svg)](#)
 [![Author](https://img.shields.io/badge/author-Yevgeniy%20Achin-blue.svg)](mailto:amazopic@gmail.com)
 [![Made for Claude Code](https://img.shields.io/badge/made%20for-Claude%20Code-7c3aed.svg)](https://claude.com/claude-code)
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](#-contribuer)
@@ -57,14 +57,14 @@ Le tout en **une seule ligne**, avec code couleur et icônes intelligentes signa
 
 > 💡 **Astuce — Contrôle du contexte** : plus votre fenêtre de contexte est pleine, **moins** votre conversation avec Claude est efficace — et **plus vite** vos limites 5h / 7j brûlent. Videz ou `/compact` dès que vous dépassez les **60%** pour rester productif.
 
-## 🎨 162 variantes prêtes — choisissez et appliquez
+## 🎨 164 variantes prêtes — choisissez et appliquez
 
-81 thèmes × 2 variantes (`detailed` + `-compact`). Appliquez via `~/.claude/status-line.sh use <name>`.
+82 thèmes × 2 variantes (`detailed` + `-compact`). Appliquez via `~/.claude/status-line.sh use <name>`.
 
 ### 🔝 Top 10 — les plus demandés, internationaux
 `cyberpunk` · `hacker` · `dragonball` · `naruto` · `pokemon` · `ironman` · `spiderman` · `einstein` · `tesla` · `ferrari`
 
-### 🛠 Classique (20) : `minimal` `developer` `muted` `mono` `time` `zen` `rainbow` `anime` `love` `cat` `christmas` `space` `retro` `fire` `ocean` `weather` `coffee` `music` `game` `pirate`
+### 🛠 Classique (21) : `minimal` `developer` `muted` `mono` `hard-worker` `time` `zen` `rainbow` `anime` `love` `cat` `christmas` `space` `retro` `fire` `ocean` `weather` `coffee` `music` `game` `pirate`
 
 ### 🚗 Marques auto (16)
 - 🇪🇺 Europe : `porsche` · `mercedes` · `bmw` · `volvo`
@@ -371,7 +371,7 @@ Redémarrez Claude Code (ou `/config` reload). Terminé.
 | Branche git + dirty + ahead/behind | ❌ | ✅ |
 | Temps sur tâche (actif vs wall) | ❌ | ✅ |
 | Niveau de thinking / effort | ❌ | ✅ |
-| Thèmes prédéfinis | ❌ | ✅ 81 thèmes × 2 variantes = **162 prêts à l'emploi** |
+| Thèmes prédéfinis | ❌ | ✅ 82 thèmes × 2 variantes = **164 prêts à l'emploi** |
 | Composition à partir de blocs nommés | ❌ | ✅ 26 blocs, voir [BLOCKS.md](BLOCKS.md) |
 | Configurateur CLI intégré | ❌ | ✅ `statusline-bundle.sh use / custom / list / preview` |
 | Commande slash `/statusline` Claude Code | ❌ | ✅ optionnel, voir [`commands/`](commands/) |

@@ -3,7 +3,7 @@
 // All other locales are lazy-loaded per-code chunks from ./locales/<code>.js
 // ─────────────────────────────────────────────────────────────────────
 
-export const ASSET_V = '24';
+export const ASSET_V = '25';
 
 export const supportedLocales = [
   { code: 'en',   label: 'English',     native: 'English'    },
@@ -35,11 +35,11 @@ export const defaultLocale = 'en';
 
 // ─── English dictionary — eternal fallback, always resident ──────────────
 const en = {
-    "meta.title": "Claude Code Status Line — Limit control · 81 themes · CLI",
-    "meta.description": "Drop-in replacement for the Claude Code default status line. Track 5h/7d rate limits in real time, watch context fill, see session cost — never blow past the window. 81 themes, 26 blocks, /statusline slash command.",
+    "meta.title": "Claude Code Status Line — Limit control · 82 themes · CLI",
+    "meta.description": "Drop-in replacement for the Claude Code default status line. Track 5h/7d rate limits in real time, watch context fill, see session cost — never blow past the window. 82 themes, 26 blocks, /statusline slash command.",
     "lang.label": "Language",
     "hero.brand": "Claude Code · Status Line",
-    "hero.issue": "Issue 01 · 23 languages · 162 specimens",
+    "hero.issue": "Issue 01 · 23 languages · 164 specimens",
     "hero.nameplate.sup": "A catalog of terminal status lines for Claude Code",
     "hero.limits.badge": "★ NEW · The #1 reason people install this",
     "hero.limits.title": "Limit control.<br/>Maximum productivity.<br/><em>Zero surprises.</em>",
@@ -59,13 +59,13 @@ const en = {
     "hero.context.tip_critical": "🚨 Critical — every reply now wastes tokens.",
     "hero.context.tip_compacted": "✓ Just compacted — sharp again.",
     "hero.cta.install": "Install in 30s",
-    "hero.cta.specimens": "See 162 specimens",
+    "hero.cta.specimens": "See 164 specimens",
     "hero.cta.github": "View on GitHub",
     "hero.meta.github": "GitHub",
     "hero.terminal.label": "Live preview · cycling through 10 themes",
     "note.label": "Editor's Note",
     "note.body.p1": "<span class=\"dropcap\">C</span>laude Code ships with a <strong>sparse</strong> status line. A model name. Maybe a directory. That's it. Meanwhile your context fills up, your <strong>5h and 7d limits tick down</strong>, your session quietly accrues cost — and you find out only when you've blown past the window.",
-    "note.body.p2": "This project is the dashboard that should have been there. Eighty-one themes. Twenty-six composable blocks. One bash file. <strong>Pick something pretty</strong> — or build your own.",
+    "note.body.p2": "This project is the dashboard that should have been there. Eighty-two themes. Twenty-six composable blocks. One bash file. <strong>Pick something pretty</strong> — or build your own.",
     "note.margin": "<em>Editorial note —</em> the project is open source under a <em>source-available license</em>: read freely, but reuse requires the author's permission.",
     "numbers.title": "By the numbers",
     "numbers.themes": "themes",
@@ -75,9 +75,9 @@ const en = {
     "numbers.languages": "documented languages",
     "numbers.limits": "limit warnings (5h + 7d)",
     "numbers.deps": "runtime deps (just bash + jq)",
-    "catalog.meta": "Contents · 162 specimens",
+    "catalog.meta": "Contents · 164 specimens",
     "catalog.title": "The Catalog<br/><em>in two volumes — detailed &amp; compact</em>",
-    "catalog.intro": "Eighty-one themes, each in two trims — detailed and compact. Tap a name to jump to its specimen page.",
+    "catalog.intro": "Eighty-two themes, each in two trims — detailed and compact. Tap a name to jump to its specimen page.",
     "specimens.title": "Specimens",
     "specimens.prev": "Previous specimen",
     "specimens.next": "Next specimen",
@@ -146,7 +146,7 @@ const en = {
     "faq.q.models": "What models does it work with?",
     "faq.a.models": "Any model Claude Code supports — Opus 4.7, Sonnet 4.6, Haiku 4.5, Opus 4.6, etc. The script reads <code>model.display_name</code> and <code>model.id</code> from stdin JSON; it doesn't hardcode model names.",
     "faq.q.customize": "Can I customize colors, themes, or add my own?",
-    "faq.a.customize": "Yes — three ways: (1) pick one of the <strong>162 ready-made variants</strong> in the Specimens section, (2) compose your own from <strong>named blocks</strong> using the Recipe builder above, (3) edit color constants and bar style in <code>statusline.sh</code> directly.",
+    "faq.a.customize": "Yes — three ways: (1) pick one of the <strong>164 ready-made variants</strong> in the Specimens section, (2) compose your own from <strong>named blocks</strong> using the Recipe builder above, (3) edit color constants and bar style in <code>statusline.sh</code> directly.",
     "faq.q.perf": "Will it slow down Claude Code?",
     "faq.a.perf": "No. Each render runs once per status redraw, parses the piped JSON with <code>jq</code>, optionally <code>grep</code>s the latest line of the transcript, and prints. Typical render is ≤ 50 ms even with the time-tracker enabled.",
     "faq.q.jq": "Does it work without jq?",
@@ -175,7 +175,7 @@ const en = {
     "colo.links.repo": "GitHub repo ↗",
     "colo.links.readme": "Read README ↗",
     "colo.links.blocks": "Blocks library",
-    "colo.links.examples": "All 81 themes",
+    "colo.links.examples": "All 82 themes",
     "colo.links.cc": "Claude Code ↗",
     "colo.meta.copyright": "© 2026 Yevgeniy Achin · Source-Available",
     "colo.meta.made": "Made for the Claude Code community",

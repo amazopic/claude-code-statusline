@@ -1,9 +1,9 @@
-# 🛰️ Claude Code Status Line — 81 temi, blocchi configurabili, CLI
+# 🛰️ Claude Code Status Line — 82 temi, blocchi configurabili, CLI
 
-> Una status line raffinata e personalizzabile per Claude Code — barra del contesto, limiti, costi, modello e altro — tutto in una singola riga colorata. 81 temi e una libreria di 26 blocchi per comporre la tua.
+> Una status line raffinata e personalizzabile per Claude Code — barra del contesto, limiti, costi, modello e altro — tutto in una singola riga colorata. 82 temi e una libreria di 26 blocchi per comporre la tua.
 
 [![License: Source-Available](https://img.shields.io/badge/license-Source--Available-orange.svg)](LICENSE)
-[![Variants: 162](https://img.shields.io/badge/variants-162-brightgreen.svg)](#)
+[![Variants: 164](https://img.shields.io/badge/variants-164-brightgreen.svg)](#)
 [![Author](https://img.shields.io/badge/author-Yevgeniy%20Achin-blue.svg)](mailto:amazopic@gmail.com)
 [![Made for Claude Code](https://img.shields.io/badge/made%20for-Claude%20Code-7c3aed.svg)](https://claude.com/claude-code)
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](#-contribuire)
@@ -22,14 +22,14 @@ Prevedibile per design — ogni indicatore conta alla rovescia fino al suo reset
 
 Gli indicatori 5h / 7d includono un conto alla rovescia live fino al momento in cui ciascuna finestra si azzera: `5h{1.1h}: 1%` — la finestra di 5 ore si resetta tra 1,1 ore; `7d{1.1d}: 0%` — la finestra settimanale si resetta tra 1,1 giorni. Sai sempre quando torni a 0%, così puoi programmare il lavoro pesante subito dopo un reset e distribuire la tua produttività invece di schiantarti contro il limite a metà di un'attività. Alimentato da `rate_limits.*.resets_at` inviato da Claude Code; se la tua build non invia i timestamp di reset, gli indicatori ricadono con eleganza sul semplice `5h: 1%`.
 
-## 🎨 162 varianti pronte — scegli e applica
+## 🎨 164 varianti pronte — scegli e applica
 
-81 temi × 2 varianti (`detailed` + `-compact`). Applica con `~/.claude/status-line.sh use <name>`.
+82 temi × 2 varianti (`detailed` + `-compact`). Applica con `~/.claude/status-line.sh use <name>`.
 
 ### 🔝 Top 10 — i più richiesti, interculturali
 `cyberpunk` · `hacker` · `dragonball` · `naruto` · `pokemon` · `ironman` · `spiderman` · `einstein` · `tesla` · `ferrari`
 
-### 🛠 Classici (20): `minimal` `developer` `muted` `mono` `time` `zen` `rainbow` `anime` `love` `cat` `christmas` `space` `retro` `fire` `ocean` `weather` `coffee` `music` `game` `pirate`
+### 🛠 Classici (21): `minimal` `developer` `muted` `mono` `hard-worker` `time` `zen` `rainbow` `anime` `love` `cat` `christmas` `space` `retro` `fire` `ocean` `weather` `coffee` `music` `game` `pirate`
 
 ### 🚗 Marchi auto (16)
 - 🇪🇺 Europa: `porsche` · `mercedes` · `bmw` · `volvo`
@@ -364,7 +364,7 @@ Installa claude-code-statusline di amazopic per me. Prima assicurati che jq sia 
 | Branch git + dirty + ahead/behind | ❌ | ✅ |
 | Tempo sull'attività (active vs wall) | ❌ | ✅ |
 | Livello thinking / effort | ❌ | ✅ |
-| Temi predefiniti | ❌ | ✅ 81 temi × 2 varianti = **162 pronti** |
+| Temi predefiniti | ❌ | ✅ 82 temi × 2 varianti = **164 pronti** |
 | Composizione da blocchi nominati | ❌ | ✅ 26 blocchi, vedi [BLOCKS.md](BLOCKS.md) |
 | Configuratore CLI integrato | ❌ | ✅ `statusline-bundle.sh use / custom / list / preview` |
 | Comando slash `/statusline` Claude Code | ❌ | ✅ opzionale, vedi [`commands/`](commands/) |

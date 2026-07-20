@@ -1,10 +1,10 @@
-# 🛰️ Claude Code Status Line — 81 tema, blok yang dapat dikonfigurasi, CLI
+# 🛰️ Claude Code Status Line — 82 tema, blok yang dapat dikonfigurasi, CLI
 
-> Pengganti langsung untuk status line bawaan **Claude Code**: penggunaan **jendela konteks** secara langsung dengan progress bar yang mulus, **biaya sesi** dalam USD, peringatan **batas penggunaan 5 jam / 7 hari**, **branch git** dengan hitungan dirty / ahead / behind, **pelacakan waktu pengerjaan**, dan **nama model** aktif (dengan indikator `(1M)` untuk varian konteks 1M) — semuanya dalam satu baris Bash yang penuh warna. Hadir dengan **81 tema siap pakai** — pilihan teratas (cyberpunk, hacker, dragonball, naruto, pokemon, ironman, spiderman, einstein, tesla, ferrari), klasik (minimal, developer, muted, mono, time, zen, rainbow, anime, love, cat, christmas, space, retro, fire, ocean, weather, coffee, music, game, pirate), merek mobil (porsche, mercedes, bmw, volvo, ford, chevy, jeep, cadillac, toyota, honda, nissan, hyundai, kia, byd, nio, geely), lebih banyak ilmuwan (newton, curie, darwin, hawking, galileo, feynman, turing, davinci), lebih banyak anime (onepiece, ghibli), lebih banyak Marvel (hulk, thor, captain-america, wolverine, deadpool, blackwidow, strange, wanda), tema OS (macos, windows, linux, ubuntu, arch, debian, fedora, kali, mint, nixos), dan agama-agama dunia (christianity, islam, hinduism, buddhism, judaism, sikhism, shinto) serta **pustaka 26 blok** untuk menyusun status line Anda sendiri. Termasuk konfigurator CLI lengkap dalam satu perintah dan slash command `/statusline` untuk Claude Code.
+> Pengganti langsung untuk status line bawaan **Claude Code**: penggunaan **jendela konteks** secara langsung dengan progress bar yang mulus, **biaya sesi** dalam USD, peringatan **batas penggunaan 5 jam / 7 hari**, **branch git** dengan hitungan dirty / ahead / behind, **pelacakan waktu pengerjaan**, dan **nama model** aktif (dengan indikator `(1M)` untuk varian konteks 1M) — semuanya dalam satu baris Bash yang penuh warna. Hadir dengan **82 tema siap pakai** — pilihan teratas (cyberpunk, hacker, dragonball, naruto, pokemon, ironman, spiderman, einstein, tesla, ferrari), klasik (minimal, developer, muted, mono, hard-worker, time, zen, rainbow, anime, love, cat, christmas, space, retro, fire, ocean, weather, coffee, music, game, pirate), merek mobil (porsche, mercedes, bmw, volvo, ford, chevy, jeep, cadillac, toyota, honda, nissan, hyundai, kia, byd, nio, geely), lebih banyak ilmuwan (newton, curie, darwin, hawking, galileo, feynman, turing, davinci), lebih banyak anime (onepiece, ghibli), lebih banyak Marvel (hulk, thor, captain-america, wolverine, deadpool, blackwidow, strange, wanda), tema OS (macos, windows, linux, ubuntu, arch, debian, fedora, kali, mint, nixos), dan agama-agama dunia (christianity, islam, hinduism, buddhism, judaism, sikhism, shinto) serta **pustaka 26 blok** untuk menyusun status line Anda sendiri. Termasuk konfigurator CLI lengkap dalam satu perintah dan slash command `/statusline` untuk Claude Code.
 
 [![License: Source-Available](https://img.shields.io/badge/license-Source--Available-orange.svg)](LICENSE)
 [![Made for Claude Code](https://img.shields.io/badge/made%20for-Claude%20Code-7c3aed.svg)](https://claude.com/claude-code)
-[![Variants: 162](https://img.shields.io/badge/variants-162-brightgreen.svg)](#-162-varian-siap-pakai--pilih-satu-dan-jalankan)
+[![Variants: 164](https://img.shields.io/badge/variants-164-brightgreen.svg)](#-164-varian-siap-pakai--pilih-satu-dan-jalankan)
 [![Bash + jq](https://img.shields.io/badge/runs%20on-bash%20%2B%20jq-yellow.svg)](#persyaratan)
 [![Author](https://img.shields.io/badge/author-Yevgeniy%20Achin-blue.svg)](mailto:amazopic@gmail.com)
 
@@ -85,7 +85,7 @@ Semuanya dalam **satu baris**, dengan kode warna, lengkap dengan ikon pintar yan
 - 🧩 **Gaya bar yang dapat dipasang** — pilih `quadrant` (▖▄▙█) atau `vertical` (▏▎▍▌▋▊▉█), atau buat sendiri dalam 10 baris bash
 - ⚡ **Ringan** — murni `bash` + `jq`. Tanpa Node, tanpa Python, tanpa daemon, tanpa telemetri
 
-## 🎨 162 varian siap pakai — pilih satu dan jalankan
+## 🎨 164 varian siap pakai — pilih satu dan jalankan
 
 Setiap tema hadir dalam **dua varian**:
 
@@ -109,7 +109,7 @@ Terapkan dengan `~/.claude/status-line.sh use <name>` (tambahkan `-compact` untu
 | `tesla`      | ⚡ ungu listrik + kuning petir · `AC ~` |
 | `ferrari`    | 🐎 rosso corsa + kuning Modena |
 
-### 🛠 Praktis / Klasik (20 tema)
+### 🛠 Praktis / Klasik (21 tema)
 
 | Tema | File / Terapkan |
 |---|---|
@@ -117,6 +117,7 @@ Terapkan dengan `~/.claude/status-line.sh use <name>` (tambahkan `-compact` untu
 | 🛠 developer     | [`statusline-developer.sh`](examples/statusline-developer.sh) · `use developer` |
 | 🛠 muted         | `use muted` |
 | 🛠 mono          | `use mono` |
+| 🛠 hard-worker   | `use hard-worker` |
 | 🛠 time          | [`statusline-time.sh`](examples/statusline-time.sh) · `use time` |
 | 🛠 zen           | [`statusline-zen.sh`](examples/statusline-zen.sh) · `use zen` |
 | 🌈 rainbow       | [`statusline-rainbow.sh`](examples/statusline-rainbow.sh) · `use rainbow` |
@@ -205,7 +206,7 @@ Hanya hadir di `statusline-bundle.sh` — pilih mana saja dengan `~/.claude/stat
 ```bash
 ~/.claude/status-line.sh use macos            # detailed
 ~/.claude/status-line.sh use porsche-compact  # compact
-~/.claude/status-line.sh use einstein         # salah satu dari 81 tema mana pun berfungsi
+~/.claude/status-line.sh use einstein         # salah satu dari 82 tema mana pun berfungsi
 ```
 
 **Lihat semuanya di terminal Anda lebih dulu** — setiap varian punya
@@ -215,7 +216,7 @@ preview yang sudah dirender di [`screenshots/`](screenshots/):
 # preview satu saja
 cat screenshots/statusline-cyberpunk.ansi
 
-# atau jelajahi seluruh galeri (162 varian + main)
+# atau jelajahi seluruh galeri (164 varian + main)
 for f in screenshots/*.ansi; do
   printf "\n=== %s ===\n" "$(basename "$f" .ansi)"
   cat "$f"
@@ -394,7 +395,7 @@ Sunting konstanta di dekat bagian atas `statusline.sh`:
 | **Branch git** + dirty + ahead/behind | ❌ | ✅ |
 | **Waktu pengerjaan** (active vs jam dinding) | ❌ | ✅ |
 | Tampilan level **thinking / effort** | ❌ | ✅ |
-| Preset bertema | ❌ | ✅ 81 tema × 2 varian = **162 siap pakai** |
+| Preset bertema | ❌ | ✅ 82 tema × 2 varian = **164 siap pakai** |
 | Susun dari blok bernama | ❌ | ✅ 26 blok, lihat [BLOCKS.md](BLOCKS.md) |
 | Konfigurator CLI bawaan | ❌ | ✅ `statusline-bundle.sh use / custom / list / preview` |
 | Slash command `/statusline` Claude Code | ❌ | ✅ opsional, lihat [`commands/`](commands/) |
@@ -444,7 +445,7 @@ Model apa pun yang didukung Claude Code — Opus 4.7, Sonnet 4.6, Haiku 4.5, Opu
 
 Ya — tiga cara:
 
-1. Pilih salah satu dari **81 tema** (total 162 varian) — gunakan `~/.claude/status-line.sh use <name>` atau jelajahi [`examples/`](examples/) untuk skrip mandirinya.
+1. Pilih salah satu dari **82 tema** (total 164 varian) — gunakan `~/.claude/status-line.sh use <name>` atau jelajahi [`examples/`](examples/) untuk skrip mandirinya.
 2. Susun sendiri dari **blok bernama** — lihat [BLOCKS.md](BLOCKS.md).
 3. Sunting konstanta warna dan gaya bar di `statusline.sh` secara langsung.
 

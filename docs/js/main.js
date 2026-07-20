@@ -3,9 +3,9 @@
 //        i18n (23 locales), language switcher, hero limits visualization
 // ─────────────────────────────────────────────────────────────────────
 
-import { themes, blocks, faq, compare } from './themes.js?v=24';
-import { ansiToHtml, specimenHtml, loadSpecimen } from './ansi.js?v=24';
-import { supportedLocales, defaultLocale, t as tBase, detectLocale, persistLocale, ensureLocale, registerEnCanon } from './i18n.js?v=24';
+import { themes, blocks, faq, compare } from './themes.js?v=25';
+import { ansiToHtml, specimenHtml, loadSpecimen } from './ansi.js?v=25';
+import { supportedLocales, defaultLocale, t as tBase, detectLocale, persistLocale, ensureLocale, registerEnCanon } from './i18n.js?v=25';
 
 document.documentElement.classList.add('has-cursor');
 
@@ -427,7 +427,7 @@ function isInViewport(el) {
 }
 
 // ═════════════════════════════════════════════════════════════════════
-//  CATALOG — render all 81 themes as TOC, click to jump to specimen
+//  CATALOG — render all 82 themes as TOC, click to jump to specimen
 // ═════════════════════════════════════════════════════════════════════
 
 function buildCatalog() {
