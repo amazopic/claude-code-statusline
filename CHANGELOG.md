@@ -11,6 +11,12 @@ tag `vYYYY.MM.DD` and a [GitHub Release](https://github.com/amazopic/claude-code
 
 ---
 
+## [2026.07.26.1] — 2026-07-26
+
+### Changed
+- Default theme is now `hard-worker` (was `minimal`) — fresh installs and
+  `~/.claude/status-line.sh reset` fall back to it.
+
 ## [2026.07.26] — 2026-07-26
 
 ### Changed
@@ -125,6 +131,7 @@ tag `vYYYY.MM.DD` and a [GitHub Release](https://github.com/amazopic/claude-code
   standalone example scripts + pre-rendered ANSI previews.
 - Editorial-style landing page (GitHub Pages) in 11 languages with live specimens.
 
+[2026.07.26.1]: https://github.com/amazopic/claude-code-statusline/compare/v2026.07.26...v2026.07.26.1
 [2026.07.26]: https://github.com/amazopic/claude-code-statusline/compare/v2026.07.21...v2026.07.26
 [2026.07.21]: https://github.com/amazopic/claude-code-statusline/compare/v2026.06.14...v2026.07.21
 [2026.06.14]: https://github.com/amazopic/claude-code-statusline/compare/v2026.06.07...v2026.06.14

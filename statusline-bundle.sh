@@ -145,11 +145,11 @@ export LC_NUMERIC=C
 # ─────────────────────────  CONFIG  ───────────────────────────────────
 # Calendar versioning: YYYY.MM.DD — bump on every release. Compared by
 # `statusline update` against the upstream copy on GitHub.
-VERSION="2026.07.26"
+VERSION="2026.07.26.1"
 UPSTREAM_URL="https://raw.githubusercontent.com/amazopic/claude-code-statusline/main/statusline-bundle.sh"
 
 CONFIG_FILE="${HOME}/.claude/statusline.conf"
-DEFAULT_THEME="minimal"
+DEFAULT_THEME="hard-worker"
 THEME=""
 BLOCKS=""
 [[ -f "$CONFIG_FILE" ]] && source "$CONFIG_FILE" 2>/dev/null
