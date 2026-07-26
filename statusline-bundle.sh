@@ -145,7 +145,7 @@ export LC_NUMERIC=C
 # ─────────────────────────  CONFIG  ───────────────────────────────────
 # Calendar versioning: YYYY.MM.DD — bump on every release. Compared by
 # `statusline update` against the upstream copy on GitHub.
-VERSION="2026.07.21"
+VERSION="2026.07.26"
 UPSTREAM_URL="https://raw.githubusercontent.com/amazopic/claude-code-statusline/main/statusline-bundle.sh"
 
 CONFIG_FILE="${HOME}/.claude/statusline.conf"
@@ -1089,10 +1089,10 @@ render_mono() {
 }
 
 # `hard-worker` — a focused productivity dashboard: model · context (tokens
-# inline) · folder, then a VERBOSE git block (index vs working-tree changes and
-# the commit direction spelled out), the 5h/7d limits, a gold-highlighted
-# effort / output-style indicator, and the session's accepted LOC. Drops the
-# cost block and the separate per-message token block.
+# inline) · folder, then a verbose git block (index vs working-tree changes and
+# the commit direction, abbreviated cmt/mdf/psh/pll), the 5h/7d limits, a
+# gold-highlighted effort / output-style indicator, the session's accepted LOC,
+# and the session cost at the end. Drops only the per-message token block.
 render_hard_worker() {
   local cc=$(pct_color "$ctx_pct") cd=$(pct_color_dim "$ctx_pct")
   local icn
@@ -1108,11 +1108,12 @@ render_hard_worker() {
   _lim_default
   _hw_effort
   _hw_lines
+  line+="${SEP}${G}${cost_fmt}${GD}\$${N}"
 }
 
 # Verbose git for hard-worker: branch, then staged (index) vs modified
-# (working-tree) file counts and the ahead/behind commit direction spelled out.
-# Each part is hidden when its count is zero; falls back to "no git" off-repo.
+# (working-tree) file counts and the ahead/behind direction, abbreviated
+# cmt/mdf/psh/pll. Each part is hidden when its count is zero; "no git" off-repo.
 _hw_git() {
   if [[ -z "$br" ]]; then line+="${SEP}${RD}no git${N}"; return; fi
   line+="${SEP}${B}⎇ ${br}${N}"
@@ -1125,10 +1126,10 @@ _hw_git() {
     cnt=$(git -C "$cwd" rev-list --left-right --count HEAD...@{u} 2>/dev/null)
     read -r ahead behind <<<"$cnt"
   fi
-  (( ${staged:-0} > 0 )) && line+="${SEP}${GR}●${staged} staged${N}"
-  (( ${mod:-0}    > 0 )) && line+="${SEP}${Y}✚${mod} modified${N}"
-  (( ${ahead:-0}  > 0 )) && line+="${SEP}${GR}↑${ahead} to push${N}"
-  (( ${behind:-0} > 0 )) && line+="${SEP}${R}↓${behind} to pull${N}"
+  (( ${staged:-0} > 0 )) && line+="${SEP}${GR}●${staged} cmt${N}"
+  (( ${mod:-0}    > 0 )) && line+="${SEP}${Y}✚${mod} mdf${N}"
+  (( ${ahead:-0}  > 0 )) && line+="${SEP}${GR}↑${ahead} psh${N}"
+  (( ${behind:-0} > 0 )) && line+="${SEP}${R}↓${behind} pll${N}"
 }
 
 # Gold-highlighted reasoning indicator: the effort level when set, plus the

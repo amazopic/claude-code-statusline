@@ -3,9 +3,9 @@
 //        i18n (23 locales), language switcher, hero limits visualization
 // ─────────────────────────────────────────────────────────────────────
 
-import { themes, blocks, faq, compare } from './themes.js?v=25';
-import { ansiToHtml, specimenHtml, loadSpecimen } from './ansi.js?v=25';
-import { supportedLocales, defaultLocale, t as tBase, detectLocale, persistLocale, ensureLocale, registerEnCanon } from './i18n.js?v=25';
+import { themes, blocks, faq, compare } from './themes.js?v=26';
+import { ansiToHtml, specimenHtml, loadSpecimen } from './ansi.js?v=26';
+import { supportedLocales, defaultLocale, t as tBase, detectLocale, persistLocale, ensureLocale, registerEnCanon } from './i18n.js?v=26';
 
 document.documentElement.classList.add('has-cursor');
 

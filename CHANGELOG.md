@@ -11,6 +11,13 @@ tag `vYYYY.MM.DD` and a [GitHub Release](https://github.com/amazopic/claude-code
 
 ---
 
+## [2026.07.26] — 2026-07-26
+
+### Changed
+- `hard-worker`: the verbose git labels are now three-letter abbreviations
+  (`●N cmt · ✚N mdf · ↑N psh · ↓N pll`), and the **session cost** (`0.42$`) is
+  shown again at the end of the line.
+
 ## [2026.07.21] — 2026-07-21
 
 ### Added
@@ -118,6 +125,7 @@ tag `vYYYY.MM.DD` and a [GitHub Release](https://github.com/amazopic/claude-code
   standalone example scripts + pre-rendered ANSI previews.
 - Editorial-style landing page (GitHub Pages) in 11 languages with live specimens.
 
+[2026.07.26]: https://github.com/amazopic/claude-code-statusline/compare/v2026.07.21...v2026.07.26
 [2026.07.21]: https://github.com/amazopic/claude-code-statusline/compare/v2026.06.14...v2026.07.21
 [2026.06.14]: https://github.com/amazopic/claude-code-statusline/compare/v2026.06.07...v2026.06.14
 [2026.06.07]: https://github.com/amazopic/claude-code-statusline/releases/tag/v2026.06.07
