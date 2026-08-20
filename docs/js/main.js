@@ -3,9 +3,9 @@
 //        i18n (23 locales), language switcher, hero limits visualization
 // ─────────────────────────────────────────────────────────────────────
 
-import { themes, blocks, faq, compare } from './themes.js?v=26';
-import { ansiToHtml, specimenHtml, loadSpecimen } from './ansi.js?v=26';
-import { supportedLocales, defaultLocale, t as tBase, detectLocale, persistLocale, ensureLocale, registerEnCanon } from './i18n.js?v=26';
+import { themes, blocks, faq, compare } from './themes.js?v=27';
+import { ansiToHtml, specimenHtml, loadSpecimen } from './ansi.js?v=27';
+import { supportedLocales, defaultLocale, t as tBase, detectLocale, persistLocale, ensureLocale, registerEnCanon } from './i18n.js?v=27';
 
 document.documentElement.classList.add('has-cursor');
 
@@ -43,8 +43,8 @@ const t = (key) => tBase(key, currentLocale);
 //  dictionary. Localized strings can be backfilled into chunks later.
 // ─────────────────────────────────────────────────────────────────────
 registerEnCanon({
-  'install.refreshTip': 'refreshInterval: 30 re-runs the line every 30 seconds even while the session is idle — keeps the reset countdown (5h{1.1h}), the time tracker and post-reset flips live. 30 is a sensible default; 60 is battery-frugal; omit to refresh on events only (new assistant message, /compact, vim toggle).',
-  'faq.q.refresh': 'Does the status line update by itself? My {1.1h} countdown looks frozen.',
+  'install.refreshTip': 'refreshInterval: 30 re-runs the line every 30 seconds even while the session is idle — keeps the reset countdown (5h{1h 6m}), the time tracker and post-reset flips live. 30 is a sensible default; 60 is battery-frugal; omit to refresh on events only (new assistant message, /compact, vim toggle).',
+  'faq.q.refresh': 'Does the status line update by itself? My {1h 6m} countdown looks frozen.',
   'faq.a.refresh': 'Claude Code re-renders on events — new assistant message, /compact, permission-mode or vim-mode change (debounced at 300 ms) — so between events the line freezes. Add "refreshInterval": 30 to the statusLine block in ~/.claude/settings.json and it also re-runs on a fixed 30-second timer, keeping the countdown and time tracker ticking while idle. A render costs ~0.1 s, so 30 s is negligible; use 60 on battery or in huge repos (git status runs each render); minimum is 1.',
 });
 
@@ -208,17 +208,17 @@ document.addEventListener('click', (e) => {
 
 // Each frame carries the meter % plus a live reset countdown (eta) that
 // ticks down toward 0 — 5h in decimal hours, 7d in decimal days — exactly
-// like rate_limits.*.resets_at rendered by the bundle (e.g. 5h{1.1h}).
-// First frame is {1.1h}/{1.1d} to match the marketing copy verbatim.
+// like rate_limits.*.resets_at rendered by the bundle (e.g. 5h{1h 6m}).
+// First frame is {1h 6m}/{1d 2h} to match the marketing copy verbatim.
 const limitsCycle = [
-  { '5h': 8,  '7d': 4,  eta5: '1.1h', eta7: '1.1d' },
-  { '5h': 22, '7d': 10, eta5: '3.2h', eta7: '4.6d' },
-  { '5h': 35, '7d': 18, eta5: '2.7h', eta7: '4.4d' },
-  { '5h': 47, '7d': 27, eta5: '2.1h', eta7: '4.2d' },
-  { '5h': 62, '7d': 38, eta5: '1.6h', eta7: '3.5d' },  // first warn
-  { '5h': 78, '7d': 51, eta5: '0.9h', eta7: '2.4d' },  // both warn
-  { '5h': 91, '7d': 64, eta5: '0.4h', eta7: '1.3d' },
-  { '5h': 10, '7d': 5,  eta5: '5.0h', eta7: '7.0d' },  // session reset (the "after restart" relief)
+  { '5h': 8,  '7d': 4,  eta5: '1h 6m', eta7: '1d 2h' },
+  { '5h': 22, '7d': 10, eta5: '3h 12m', eta7: '4d 14h' },
+  { '5h': 35, '7d': 18, eta5: '2h 42m', eta7: '4d 9h' },
+  { '5h': 47, '7d': 27, eta5: '2h 6m', eta7: '4d 4h' },
+  { '5h': 62, '7d': 38, eta5: '1h 36m', eta7: '3d 12h' },  // first warn
+  { '5h': 78, '7d': 51, eta5: '54m', eta7: '2d 9h' },  // both warn
+  { '5h': 91, '7d': 64, eta5: '24m', eta7: '1d 7h' },
+  { '5h': 10, '7d': 5,  eta5: '5h', eta7: '7d' },  // session reset (the "after restart" relief)
 ];
 
 function setLimit(which, pct, eta) {

@@ -11,14 +11,14 @@
 **Idiomas:** [English](README.md) · [Русский](README.ru.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Українська](README.uk.md) · [Slovenščina](README.sl.md) · [Italiano](README.it.md) · Español · [中文](README.zh.md) · [日本語](README.ja.md) · [한국어](README.ko.md) · [العربية](README.ar.md) · [Português](README.pt.md) · [Türkçe](README.tr.md) · [Bahasa Indonesia](README.id.md) · [Tiếng Việt](README.vi.md) · [हिन्दी](README.hi.md) · [繁體中文](README.zh-tw.md) · [Polski](README.pl.md) · [ไทย](README.th.md) · [עברית](README.he.md) · [বাংলা](README.bn.md) · [اردو](README.ur.md)
 
 ```text
-Opus 4.7 (1M) │ 🚀 12% █▌░░░░░░░░ 121.4K/1000K │ 0.42$ │ ↑0.5K ↓1.2K │ 5h{1.1h}: 15% 7d{1.1d}: 4% │ project │ ⎇ main │ 🤖 xhigh
+Opus 4.7 (1M) │ 🚀 12% █▌░░░░░░░░ 121.4K/1000K │ 0.42$ │ ↑0.5K ↓1.2K │ 5h{1h 6m}: 15% 7d{1d 2h}: 4% │ project │ ⎇ main │ 🤖 xhigh
 ```
 
 ### ⏳ Reset countdown — planifica en torno a tus límites
 
 **Predecible por diseño — cada medidor cuenta atrás hasta su reinicio, para que dosifiques tu trabajo en lugar de chocar contra el muro.**
 
-Predecibilidad del trabajo: distribuye tu productividad. Los medidores de 5h / 7d incluyen una cuenta atrás en vivo hasta el momento en que cada ventana se reinicia: `5h{1.1h}: 1%` — la ventana de 5 horas se reinicia en 1,1 horas; `7d{1.1d}: 0%` — la ventana semanal se reinicia en 1,1 días. Siempre sabes cuándo vuelves a 0 %, así que puedes programar el trabajo pesado justo después de un reinicio y distribuir tu productividad en vez de estrellarte contra el tope a mitad de tarea. Funciona gracias a `rate_limits.*.resets_at` enviado por Claude Code; si tu build no envía marcas de tiempo de reinicio, los medidores recurren con elegancia al simple `5h: 1%`.
+Predecibilidad del trabajo: distribuye tu productividad. Los medidores de 5h / 7d incluyen una cuenta atrás en vivo hasta el momento en que cada ventana se reinicia: `5h{1h 6m}: 1%` — la ventana de 5 horas se reinicia en 1 hora 6 minutos; `7d{1d 2h}: 0%` — la ventana semanal se reinicia en 1 día 2 horas. Siempre sabes cuándo vuelves a 0 %, así que puedes programar el trabajo pesado justo después de un reinicio y distribuir tu productividad en vez de estrellarte contra el tope a mitad de tarea. Funciona gracias a `rate_limits.*.resets_at` enviado por Claude Code; si tu build no envía marcas de tiempo de reinicio, los medidores recurren con elegancia al simple `5h: 1%`.
 
 ## ¿Por qué?
 
@@ -101,7 +101,7 @@ Luego añade a `~/.claude/settings.json`:
 }
 ```
 
-> 💡 `refreshInterval: 30` vuelve a ejecutar la línea cada 30 segundos incluso mientras la sesión está inactiva — mantiene en vivo la cuenta atrás de reinicio (5h{1.1h}), el tracker de tiempo y los cambios posteriores al reinicio. 30 es un valor por defecto sensato; 60 ahorra batería; omítelo para refrescar solo en eventos (nuevo mensaje del asistente, /compact, toggle de vim).
+> 💡 `refreshInterval: 30` vuelve a ejecutar la línea cada 30 segundos incluso mientras la sesión está inactiva — mantiene en vivo la cuenta atrás de reinicio (5h{1h 6m}), el tracker de tiempo y los cambios posteriores al reinicio. 30 es un valor por defecto sensato; 60 ahorra batería; omítelo para refrescar solo en eventos (nuevo mensaje del asistente, /compact, toggle de vim).
 
 Reinicia Claude Code (o ejecuta `/config` reload).
 
@@ -331,7 +331,7 @@ Luego añade a `~/.claude/settings.json`:
   "refreshInterval": 30 } }
 ```
 
-> 💡 `refreshInterval: 30` vuelve a ejecutar la línea cada 30 segundos incluso mientras la sesión está inactiva — mantiene en vivo la cuenta atrás de reinicio (5h{1.1h}), el tracker de tiempo y los cambios posteriores al reinicio. 30 es un valor por defecto sensato; 60 ahorra batería; omítelo para refrescar solo en eventos (nuevo mensaje del asistente, /compact, toggle de vim).
+> 💡 `refreshInterval: 30` vuelve a ejecutar la línea cada 30 segundos incluso mientras la sesión está inactiva — mantiene en vivo la cuenta atrás de reinicio (5h{1h 6m}), el tracker de tiempo y los cambios posteriores al reinicio. 30 es un valor por defecto sensato; 60 ahorra batería; omítelo para refrescar solo en eventos (nuevo mensaje del asistente, /compact, toggle de vim).
 
 Reinicia Claude Code (o `/config` reload). Listo.
 
@@ -357,7 +357,7 @@ Instálame claude-code-statusline de amazopic. Primero asegúrate de que jq est�
 | Contadores de tokens entrada/salida | ❌ | ✅ |
 | Total de tokens de sesión (fallback en modo API) | ❌ | ✅ |
 | Indicadores de límites 5h / 7d con ⚠️ a > 50 % | ❌ | ✅ |
-| Cuenta atrás de reinicio en los medidores de límites (5h{1.1h}) | ❌ | ✅ |
+| Cuenta atrás de reinicio en los medidores de límites (5h{1h 6m}) | ❌ | ✅ |
 | Rama git + dirty + ahead/behind | ❌ | ✅ |
 | Tiempo en tarea (active vs wall) | ❌ | ✅ |
 | Nivel de thinking / effort | ❌ | ✅ |
@@ -383,11 +383,11 @@ Instálame claude-code-statusline de amazopic. Primero asegúrate de que jq est�
 
 Un reemplazo bash de la barra de estado predeterminada en [Claude Code](https://claude.com/claude-code) (CLI de Anthropic). Convierte la línea inferior en un dashboard real: modelo, contexto %, barra de progreso, costo de sesión, límites, git, tiempo y más.
 
-### ¿Qué significa `5h{1.1h}: 1%`?
+### ¿Qué significa `5h{1h 6m}: 1%`?
 
-Has usado el 1 % de la ventana de 5 horas, y `{1.1h}` es una cuenta atrás en vivo: la ventana se reinicia en 1,1 horas (`7d{1.1d}`: la ventana semanal se reinicia en 1,1 días). Se lee de `rate_limits.*.resets_at` en cada render. ¿Tu build no incluye marca de tiempo de reinicio? El medidor recurre al simple `5h: 1%`.
+Has usado el 1 % de la ventana de 5 horas, y `{1h 6m}` es una cuenta atrás en vivo: la ventana se reinicia en 1 hora 6 minutos (`7d{1d 2h}`: la ventana semanal se reinicia en 1 día 2 horas). Se lee de `rate_limits.*.resets_at` en cada render. ¿Tu build no incluye marca de tiempo de reinicio? El medidor recurre al simple `5h: 1%`.
 
-### ¿La barra de estado se actualiza sola? Mi cuenta atrás {1.1h} parece congelada.
+### ¿La barra de estado se actualiza sola? Mi cuenta atrás {1h 6m} parece congelada.
 
 Claude Code re-renderiza en eventos — nuevo mensaje del asistente, /compact, cambio de modo de permisos o de modo vim (con debounce de 300 ms) — así que entre eventos la línea se queda congelada. Añade `"refreshInterval": 30` al bloque `statusLine` en `~/.claude/settings.json` y también se volverá a ejecutar con un temporizador fijo de 30 segundos, manteniendo la cuenta atrás y el tracker de tiempo en marcha mientras está inactiva. Un render cuesta ~0,1 s, así que 30 s es insignificante; usa 60 con batería o en repos enormes (`git status` se ejecuta en cada render); el mínimo es 1.
 

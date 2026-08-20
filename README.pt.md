@@ -11,17 +11,17 @@
 **Languages:** [English](README.md) · [Русский](README.ru.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Українська](README.uk.md) · [Slovenščina](README.sl.md) · [Italiano](README.it.md) · [Español](README.es.md) · [中文](README.zh.md) · [日本語](README.ja.md) · [한국어](README.ko.md) · [العربية](README.ar.md) · Português · [Türkçe](README.tr.md) · [Bahasa Indonesia](README.id.md) · [Tiếng Việt](README.vi.md) · [हिन्दी](README.hi.md) · [繁體中文](README.zh-tw.md) · [Polski](README.pl.md) · [ไทย](README.th.md) · [עברית](README.he.md) · [বাংলা](README.bn.md) · [اردو](README.ur.md)
 
 ```text
-Opus 4.7 (1M) │ 🚀 12% █▌░░░░░░░░ 121.4K/1000K │ 0.42$ │ ↑0.5K ↓1.2K │ project │ ⎇ main │ 5h{1.1h}: 15% 7d{1.1d}: 4% │ 🤖 xhigh
+Opus 4.7 (1M) │ 🚀 12% █▌░░░░░░░░ 121.4K/1000K │ 0.42$ │ ↑0.5K ↓1.2K │ project │ ⎇ main │ 5h{1h 6m}: 15% 7d{1d 2h}: 4% │ 🤖 xhigh
 ```
 
 > 💡 **Dica pro — Controle de contexto**: quanto mais cheia a sua janela de contexto, **menos eficaz** se torna a sua conversa com o Claude — e **mais rápido** você queima seus limites de 5h/7d. Limpe ou use `/compact` sempre que ultrapassar os **60%** para continuar trabalhando com eficiência.
 
 ### ⏳ Contagem regressiva de reset — planeje em torno dos seus limites
 
-Os medidores de 5h / 7d incluem uma contagem regressiva ao vivo até o momento em que cada janela é resetada: `5h{1.1h}: 1%` — a janela de 5 horas reseta em 1,1 horas; `7d{1.1d}: 0%` — a janela semanal reseta em 1,1 dias. Você sempre sabe quando volta a 0%, então pode agendar o trabalho pesado logo após um reset e distribuir sua produtividade em vez de bater no limite no meio de uma tarefa. Funciona graças a `rate_limits.*.resets_at` enviado pelo Claude Code; se a sua build não enviar os timestamps de reset, os medidores recorrem com elegância ao simples `5h: 1%`.
+Os medidores de 5h / 7d incluem uma contagem regressiva ao vivo até o momento em que cada janela é resetada: `5h{1h 6m}: 1%` — a janela de 5 horas reseta em 1 hora e 6 minutos; `7d{1d 2h}: 0%` — a janela semanal reseta em 1 dia e 2 horas. Você sempre sabe quando volta a 0%, então pode agendar o trabalho pesado logo após um reset e distribuir sua produtividade em vez de bater no limite no meio de uma tarefa. Funciona graças a `rate_limits.*.resets_at` enviado pelo Claude Code; se a sua build não enviar os timestamps de reset, os medidores recorrem com elegância ao simples `5h: 1%`.
 
 ```text
-… ⎇ main │ 5h{1.1h}: 1% 7d{1.1d}: 0% │ 🤖 xhigh
+… ⎇ main │ 5h{1h 6m}: 1% 7d{1d 2h}: 0% │ 🤖 xhigh
 ```
 
 **Previsível por design** — cada medidor faz contagem regressiva até o seu reset, então você controla o ritmo do trabalho em vez de bater no muro.
@@ -45,7 +45,7 @@ Depois adicione ao `~/.claude/settings.json`:
   "refreshInterval": 30 } }
 ```
 
-> 💡 `refreshInterval: 30` re-executa a linha a cada 30 segundos mesmo enquanto a sessão está ociosa — mantém a contagem regressiva de reset (5h{1.1h}), o rastreador de tempo e as viradas pós-reset ao vivo. 30 é um padrão sensato; 60 é econômico em bateria; omita para atualizar apenas em eventos (nova mensagem do assistente, /compact, alternância do vim).
+> 💡 `refreshInterval: 30` re-executa a linha a cada 30 segundos mesmo enquanto a sessão está ociosa — mantém a contagem regressiva de reset (5h{1h 6m}), o rastreador de tempo e as viradas pós-reset ao vivo. 30 é um padrão sensato; 60 é econômico em bateria; omita para atualizar apenas em eventos (nova mensagem do assistente, /compact, alternância do vim).
 
 Reinicie o Claude Code (ou execute o reload com `/config`). Pronto.
 
@@ -328,7 +328,7 @@ Depois adicione ao `~/.claude/settings.json`:
 }
 ```
 
-> 💡 `refreshInterval: 30` re-executa a linha a cada 30 segundos mesmo enquanto a sessão está ociosa — mantém a contagem regressiva de reset (5h{1.1h}), o rastreador de tempo e as viradas pós-reset ao vivo. 30 é um padrão sensato; 60 é econômico em bateria; omita para atualizar apenas em eventos (nova mensagem do assistente, /compact, alternância do vim).
+> 💡 `refreshInterval: 30` re-executa a linha a cada 30 segundos mesmo enquanto a sessão está ociosa — mantém a contagem regressiva de reset (5h{1h 6m}), o rastreador de tempo e as viradas pós-reset ao vivo. 30 é um padrão sensato; 60 é econômico em bateria; omita para atualizar apenas em eventos (nova mensagem do assistente, /compact, alternância do vim).
 
 Reinicie o Claude Code (ou execute o reload com `/config`).
 
@@ -391,7 +391,7 @@ Edite as constantes próximas ao topo de `statusline.sh`:
 | Contadores de tokens de entrada/saída **por mensagem** | ❌ | ✅ |
 | **Total de tokens da sessão** (fallback em modo API) | ❌ | ✅ |
 | Indicadores de **limite de uso 5h / 7d** com ⚠️ a > 50% | ❌ | ✅ |
-| Contagem regressiva de reset nos medidores de limite (`5h{1.1h}`) | ❌ | ✅ |
+| Contagem regressiva de reset nos medidores de limite (`5h{1h 6m}`) | ❌ | ✅ |
 | **Branch do git** + dirty + ahead/behind | ❌ | ✅ |
 | **Tempo em tarefa** (ativo vs relógio de parede) | ❌ | ✅ |
 | Exibição de **nível de thinking / effort** | ❌ | ✅ |
@@ -421,11 +421,11 @@ Cenários concretos em que este projeto se paga:
 
 Uma substituição em bash para a status line padrão do [Claude Code](https://claude.com/claude-code) (a CLI da Anthropic). Ela transforma a linha do rodapé da tela em um dashboard de verdade: modelo, contexto %, barra de progresso, custo da sessão, limites de uso, status do git, tempo em tarefa e mais.
 
-### O que significa `5h{1.1h}: 1%`?
+### O que significa `5h{1h 6m}: 1%`?
 
-Você usou 1% da janela de 5 horas, e `{1.1h}` é uma contagem regressiva ao vivo — a janela reseta em 1,1 horas (`7d{1.1d}`: a janela semanal reseta em 1,1 dias). Lido de `rate_limits.*.resets_at` a cada render. Sem timestamp de reset na sua build? O medidor recorre ao simples `5h: 1%`.
+Você usou 1% da janela de 5 horas, e `{1h 6m}` é uma contagem regressiva ao vivo — a janela reseta em 1 hora e 6 minutos (`7d{1d 2h}`: a janela semanal reseta em 1 dia e 2 horas). Lido de `rate_limits.*.resets_at` a cada render. Sem timestamp de reset na sua build? O medidor recorre ao simples `5h: 1%`.
 
-### A status line se atualiza sozinha? Minha contagem regressiva `{1.1h}` parece congelada.
+### A status line se atualiza sozinha? Minha contagem regressiva `{1h 6m}` parece congelada.
 
 O Claude Code re-renderiza em eventos — nova mensagem do assistente, `/compact`, mudança de modo de permissão ou de modo vim (com debounce de 300 ms) — então entre os eventos a linha congela. Adicione `"refreshInterval": 30` ao bloco `statusLine` em `~/.claude/settings.json` e ela também passa a re-executar num temporizador fixo de 30 segundos, mantendo a contagem regressiva e o rastreador de tempo correndo enquanto ociosa. Um render custa ~0,1 s, então 30 s é negligível; use 60 na bateria ou em repositórios enormes (o `git status` roda a cada render); o mínimo é 1.
 

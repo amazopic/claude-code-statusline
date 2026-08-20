@@ -13,7 +13,7 @@ set -uo pipefail
 unset LC_ALL
 export LC_NUMERIC=C
 input=$(cat)
-LIM=$' \e[38;5;240m⚔\e[0m \e[1;38;5;196m5h{1.1h}:\e[0m \e[1;38;5;220m15%\e[0m \e[38;5;240m⚔\e[0m \e[1;38;5;196m7d{1.1d}:\e[0m \e[1;38;5;220m5%\e[0m'
+LIM=$' \e[38;5;240m⚔\e[0m \e[1;38;5;196m5h{1h 6m}:\e[0m \e[1;38;5;220m15%\e[0m \e[38;5;240m⚔\e[0m \e[1;38;5;196m7d{1d 2h}:\e[0m \e[1;38;5;220m5%\e[0m'
 
 R=$'\e[1;38;5;196m'    # HP red
 RD=$'\e[38;5;88m'

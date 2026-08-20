@@ -97,9 +97,9 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@300;400;500;600&display=swap" />
 
     <!-- Styles -->
-    <link rel="stylesheet" href="css/tokens.css?v=26" />
-    <link rel="stylesheet" href="css/base.css?v=26" />
-    <link rel="stylesheet" href="css/sections.css?v=26" />
+    <link rel="stylesheet" href="css/tokens.css?v=27" />
+    <link rel="stylesheet" href="css/base.css?v=27" />
+    <link rel="stylesheet" href="css/sections.css?v=27" />
 
     <!-- Google Analytics (GA4) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-GN8ZDLTY1D"></script>
@@ -134,7 +134,7 @@
       "keywords": "claude code statusline, claude code status bar, anthropic claude statusline, claude rate limit monitor, 5h limit, 7d limit, context window monitor, bash statusline, terminal dashboard, dotfiles",
       "featureList": [
         "Live 5-hour and 7-day rate-limit meters with ⚠️ alert above 50%",
-        "Limit reset countdown (5h{1.1h})",
+        "Limit reset countdown (5h{1h 6m})",
         "Context window % with 1.25% precision progress bar",
         "Session cost in USD",
         "Git branch, dirty, ahead/behind",
@@ -156,8 +156,8 @@
       "@type": "FAQPage",
       "mainEntity": [
         { "@type": "Question", "name": "Why is the 5h / 7d limit display the headline feature?", "acceptedAnswer": { "@type": "Answer", "text": "Because it's the #1 thing users complain about after buying a Claude plan: the default Claude Code status line gives you zero visibility into your 5-hour and 7-day rate limits. You only find out you hit them when Claude refuses to respond mid-task. This script reads limits data from the live JSON, renders both meters in real time, and triggers a visual alert when you cross 50% — so you can plan your session before you crash into the wall." }},
-        { "@type": "Question", "name": "What does 5h{1.1h}: 1% mean?", "acceptedAnswer": { "@type": "Answer", "text": "You've used 1% of the 5-hour window, and {1.1h} is a live countdown — the window resets in 1.1 hours (7d{1.1d}: the weekly window resets in 1.1 days). Read from rate_limits.*.resets_at on every render. No reset timestamp in your build? The meter falls back to plain 5h: 1%." }},
-        { "@type": "Question", "name": "Does the status line update by itself? My {1.1h} countdown looks frozen.", "acceptedAnswer": { "@type": "Answer", "text": "Claude Code re-renders on events — new assistant message, /compact, permission-mode or vim-mode change (debounced at 300 ms) — so between events the line freezes. Add \"refreshInterval\": 30 to the statusLine block in ~/.claude/settings.json and it also re-runs on a fixed 30-second timer, keeping the countdown and time tracker ticking while idle. A render costs ~0.1 s, so 30 s is negligible; use 60 on battery or in huge repos (git status runs each render); minimum is 1." }},
+        { "@type": "Question", "name": "What does 5h{1h 6m}: 1% mean?", "acceptedAnswer": { "@type": "Answer", "text": "You've used 1% of the 5-hour window, and {1h 6m} is a live countdown — the window resets in 1 hour 6 minutes (7d{1d 2h}: the weekly window resets in 1 day 2 hours). Read from rate_limits.*.resets_at on every render. No reset timestamp in your build? The meter falls back to plain 5h: 1%." }},
+        { "@type": "Question", "name": "Does the status line update by itself? My {1h 6m} countdown looks frozen.", "acceptedAnswer": { "@type": "Answer", "text": "Claude Code re-renders on events — new assistant message, /compact, permission-mode or vim-mode change (debounced at 300 ms) — so between events the line freezes. Add \"refreshInterval\": 30 to the statusLine block in ~/.claude/settings.json and it also re-runs on a fixed 30-second timer, keeping the countdown and time tracker ticking while idle. A render costs ~0.1 s, so 30 s is negligible; use 60 on battery or in huge repos (git status runs each render); minimum is 1." }},
         { "@type": "Question", "name": "What is Claude Code Status Line?", "acceptedAnswer": { "@type": "Answer", "text": "A bash-based replacement for the default status line in Claude Code (Anthropic's CLI). Turns the bottom-of-screen line into a real dashboard: model, context %, progress bar, session cost, 5h/7d rate limits, git status, time-on-task, and more." }},
         { "@type": "Question", "name": "How do I update to the latest version?", "acceptedAnswer": { "@type": "Answer", "text": "Run ~/.claude/status-line.sh update. The command fetches the latest bundle from GitHub, creates a timestamped backup at ~/.claude/status-line.sh.bak.<YYYYMMDD-HHMMSS>, and preserves your theme config in ~/.claude/statusline.conf. Restart Claude Code afterwards. Check what version you have with ~/.claude/status-line.sh version." }},
         { "@type": "Question", "name": "Does it support the 1M context window models?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. The script detects [1m] in the model id and 1M in the display name and adjusts the bar's denominator to 1,000,000 tokens." }},
@@ -262,7 +262,7 @@
                   <div class="hero-limits__meter">
                     <span class="hero-limits__fill" data-fill="5h" style="--w: 0%"></span>
                   </div>
-                  <span class="hero-limits__eta" data-eta="5h" aria-hidden="true">{1.1h}</span>
+                  <span class="hero-limits__eta" data-eta="5h" aria-hidden="true">{1h 6m}</span>
                   <span class="hero-limits__pct" data-pct="5h">0%</span>
                 </div>
                 <div class="hero-limits__row" data-limit-row>
@@ -270,7 +270,7 @@
                   <div class="hero-limits__meter">
                     <span class="hero-limits__fill" data-fill="7d" style="--w: 0%"></span>
                   </div>
-                  <span class="hero-limits__eta" data-eta="7d" aria-hidden="true">{1.1d}</span>
+                  <span class="hero-limits__eta" data-eta="7d" aria-hidden="true">{1d 2h}</span>
                   <span class="hero-limits__pct" data-pct="7d">0%</span>
                 </div>
                 <p class="hero-limits__tagline" data-i18n="hero.limits.tagline">Predictable by design — every meter counts down to its reset, so you pace your work instead of hitting the wall.</p>
@@ -669,7 +669,7 @@ chmod +x ~/.claude/status-line.sh
 <span class="cmt">#   "refreshInterval": 30 } }</span>
 
 <span class="cmt"># 4 — restart Claude Code (or /config reload)</span></pre>
-                <p class="install__refresh-tip" data-i18n="install.refreshTip">refreshInterval: 30 re-runs the line every 30 seconds even while the session is idle — keeps the reset countdown (5h{1.1h}), the time tracker and post-reset flips live. 30 is a sensible default; 60 is battery-frugal; omit to refresh on events only (new assistant message, /compact, vim toggle).</p>
+                <p class="install__refresh-tip" data-i18n="install.refreshTip">refreshInterval: 30 re-runs the line every 30 seconds even while the session is idle — keeps the reset countdown (5h{1h 6m}), the time tracker and post-reset flips live. 30 is a sensible default; 60 is battery-frugal; omit to refresh on events only (new assistant message, /compact, vim toggle).</p>
               </div>
 
               <div class="install__code-wrap">
@@ -769,6 +769,6 @@ cp claude-code-statusline/commands/statusline.md \
       <p style="padding:2rem;text-align:center;">This page is enhanced with JavaScript. The full project is documented in the <a href="https://github.com/amazopic/claude-code-statusline">GitHub repository</a>.</p>
     </noscript>
 
-    <script type="module" src="js/main.js?v=26"></script>
+    <script type="module" src="js/main.js?v=27"></script>
   </body>
 </html>

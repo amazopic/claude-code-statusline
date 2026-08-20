@@ -13,7 +13,7 @@ set -uo pipefail
 unset LC_ALL
 export LC_NUMERIC=C
 input=$(cat)
-LIM=$' \e[1;38;5;200m✨\e[0m \e[1;38;5;213m5h{1.1h}:\e[0m \e[1;38;5;200m15%\e[0m \e[1;38;5;199m✨\e[0m \e[1;38;5;213m7d{1.1d}:\e[0m \e[1;38;5;200m5%\e[0m'
+LIM=$' \e[1;38;5;200m✨\e[0m \e[1;38;5;213m5h{1h 6m}:\e[0m \e[1;38;5;200m15%\e[0m \e[1;38;5;199m✨\e[0m \e[1;38;5;213m7d{1d 2h}:\e[0m \e[1;38;5;200m5%\e[0m'
 
 P=$'\e[1;38;5;213m'    # bright pink
 PD=$'\e[38;5;218m'     # dim pink

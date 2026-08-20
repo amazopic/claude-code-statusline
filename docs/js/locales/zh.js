@@ -94,7 +94,7 @@ export default {
   "install.claude.prompt2_label": "然后测试：",
   "install.codelabel.main": "macOS / Linux / WSL",
   "install.codelabel.slash": "可选：<code class=\"mono\">/statusline</code> 斜杠命令",
-  "install.refreshTip": "refreshInterval: 30 即使会话处于空闲状态，也会每 30 秒重新运行状态行 —— 让重置倒计时（5h{1.1h}）、时间追踪器和重置后的切换保持实时更新。30 是合理的默认值；60 更省电；省略则仅在事件时刷新（新的助手消息、/compact、vim 切换）。",
+  "install.refreshTip": "refreshInterval: 30 即使会话处于空闲状态，也会每 30 秒重新运行状态行 —— 让重置倒计时（5h{1h 6m}）、时间追踪器和重置后的切换保持实时更新。30 是合理的默认值；60 更省电；省略则仅在事件时刷新（新的助手消息、/compact、vim 切换）。",
   "faq.sub": "问 &amp; 答",
   "faq.title": "常见<br/>问题",
   "faq.q.limits": "为什么 5h / 7d 限额显示是头号功能？",
@@ -125,9 +125,9 @@ export default {
   "faq.a.time": "<strong>time</strong> 主题读取 JSONL 时间戳：<strong>active</strong>（间隔 < 5 分钟）和 <strong>wall</strong>（首末消息总跨度）。",
   "faq.q.revert": "如何恢复默认状态栏？",
   "faq.a.revert": "从 <code>~/.claude/settings.json</code> 移除 <code>statusLine</code> 块。",
-  "faq.q.reset": "5h{1.1h}: 1% 是什么意思？",
-  "faq.a.reset": "你已用掉 5 小时窗口的 1%，而 <code>{1.1h}</code> 是实时倒计时 —— 该窗口将在 1.1 小时后重置（<code>7d{1.1d}</code>：每周窗口将在 1.1 天后重置）。每次渲染都从 <code>rate_limits.*.resets_at</code> 读取。你的构建未发送重置时间戳？仪表会回退为普通的 <code>5h: 1%</code>。",
-  "faq.q.refresh": "状态行会自己更新吗？我的 {1.1h} 倒计时看起来卡住了。",
+  "faq.q.reset": "5h{1h 6m}: 1% 是什么意思？",
+  "faq.a.reset": "你已用掉 5 小时窗口的 1%，而 <code>{1h 6m}</code> 是实时倒计时 —— 该窗口将在 1 小时 6 分钟后重置（<code>7d{1d 2h}</code>：每周窗口将在 1 天 2 小时后重置）。每次渲染都从 <code>rate_limits.*.resets_at</code> 读取。你的构建未发送重置时间戳？仪表会回退为普通的 <code>5h: 1%</code>。",
+  "faq.q.refresh": "状态行会自己更新吗？我的 {1h 6m} 倒计时看起来卡住了。",
   "faq.a.refresh": "Claude Code 在事件时重新渲染 —— 新的助手消息、/compact、权限模式或 vim 模式变更（去抖 300 毫秒）—— 因此在事件之间状态行会冻结。在 <code>~/.claude/settings.json</code> 的 statusLine 块中加入 <code>\"refreshInterval\": 30</code>，它还会按固定的 30 秒计时器重新运行，让倒计时和时间追踪器在空闲时持续跳动。一次渲染约 0.1 秒，所以 30 秒可忽略不计；在使用电池或超大仓库时用 <code>60</code>（每次渲染都会运行 <code>git status</code>）；最小值为 <code>1</code>。",
   "colo.title": "Amazopic",
   "colo.h.author": "作者",
@@ -163,5 +163,5 @@ export default {
   "cmp.f.cli": "内置 CLI 配置工具",
   "cmp.f.slash": "/statusline 斜杠命令",
   "cmp.f.deps": "依赖",
-  "cmp.f.reset": "限额仪表中的重置倒计时 (5h{1.1h})"
+  "cmp.f.reset": "限额仪表中的重置倒计时 (5h{1h 6m})"
 };

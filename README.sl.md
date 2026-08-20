@@ -11,7 +11,7 @@
 **Jeziki:** [English](README.md) · [Русский](README.ru.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Українська](README.uk.md) · Slovenščina · [Italiano](README.it.md) · [Español](README.es.md) · [中文](README.zh.md) · [日本語](README.ja.md) · [한국어](README.ko.md) · [العربية](README.ar.md) · [Português](README.pt.md) · [Türkçe](README.tr.md) · [Bahasa Indonesia](README.id.md) · [Tiếng Việt](README.vi.md) · [हिन्दी](README.hi.md) · [繁體中文](README.zh-tw.md) · [Polski](README.pl.md) · [ไทย](README.th.md) · [עברית](README.he.md) · [বাংলা](README.bn.md) · [اردو](README.ur.md)
 
 ```text
-Opus 4.7 (1M) │ 🚀 12% █▌░░░░░░░░ 121.4K/1000K │ 0.42$ │ ↑0.5K ↓1.2K │ project │ ⎇ main │ 5h{1.1h}: 15% 7d{1.1d}: 4% │ tokens: 87 K │ 🤖 xhigh
+Opus 4.7 (1M) │ 🚀 12% █▌░░░░░░░░ 121.4K/1000K │ 0.42$ │ ↑0.5K ↓1.2K │ project │ ⎇ main │ 5h{1h 6m}: 15% 7d{1d 2h}: 4% │ tokens: 87 K │ 🤖 xhigh
 ```
 
 ## 🎨 164 pripravljenih variant — izberite in uporabite
@@ -80,8 +80,8 @@ zasnovi — vsak merilnik odšteva do svojega ponastavitvenega trenutka, tako
 da delo uravnavate po tempu, namesto da bi treščili v zid.
 
 Merilnika 5h / 7d vključujeta živo odštevanje do trenutka, ko se vsako okno
-ponastavi: `5h{1.1h}: 1%` — 5-urno okno se ponastavi čez 1,1 ure;
-`7d{1.1d}: 0%` — tedensko okno se ponastavi čez 1,1 dneva. Vedno veste, kdaj
+ponastavi: `5h{1h 6m}: 1%` — 5-urno okno se ponastavi čez 1 uro 6 minut;
+`7d{1d 2h}: 0%` — tedensko okno se ponastavi čez 1 dan 2 uri. Vedno veste, kdaj
 boste spet pri 0 %, zato lahko zahtevno delo razporedite takoj po
 ponastavitvi in porazdelite svojo produktivnost, namesto da bi sredi naloge
 treščili v zgornjo mejo. Poganja ga `rate_limits.*.resets_at`, ki ga pošilja
@@ -121,7 +121,7 @@ Nato dodajte v `~/.claude/settings.json`:
 }
 ```
 
-> 💡 `refreshInterval: 30` znova požene vrstico vsakih 30 sekund, tudi ko je seja nedejavna — tako ostanejo živi odštevanje do ponastavitve (5h{1.1h}), sledilnik časa in preklopi po ponastavitvi. 30 je razumna privzeta vrednost; 60 varčuje z baterijo; izpustite jo, da se osvežuje le ob dogodkih (novo sporočilo pomočnika, /compact, preklop vim).
+> 💡 `refreshInterval: 30` znova požene vrstico vsakih 30 sekund, tudi ko je seja nedejavna — tako ostanejo živi odštevanje do ponastavitve (5h{1h 6m}), sledilnik časa in preklopi po ponastavitvi. 30 je razumna privzeta vrednost; 60 varčuje z baterijo; izpustite jo, da se osvežuje le ob dogodkih (novo sporočilo pomočnika, /compact, preklop vim).
 
 Ponovno zaženite Claude Code (ali zaženite `/config` reload).
 
@@ -353,7 +353,7 @@ Nato dodajte v `~/.claude/settings.json`:
   "refreshInterval": 30 } }
 ```
 
-> 💡 `refreshInterval: 30` znova požene vrstico vsakih 30 sekund, tudi ko je seja nedejavna — tako ostanejo živi odštevanje do ponastavitve (5h{1.1h}), sledilnik časa in preklopi po ponastavitvi. 30 je razumna privzeta vrednost; 60 varčuje z baterijo; izpustite jo, da se osvežuje le ob dogodkih (novo sporočilo pomočnika, /compact, preklop vim).
+> 💡 `refreshInterval: 30` znova požene vrstico vsakih 30 sekund, tudi ko je seja nedejavna — tako ostanejo živi odštevanje do ponastavitve (5h{1h 6m}), sledilnik časa in preklopi po ponastavitvi. 30 je razumna privzeta vrednost; 60 varčuje z baterijo; izpustite jo, da se osvežuje le ob dogodkih (novo sporočilo pomočnika, /compact, preklop vim).
 
 Ponovno zaženite Claude Code (ali `/config` reload). Končano.
 
@@ -368,7 +368,7 @@ Ponovno zaženite Claude Code (ali `/config` reload). Končano.
 | Števci žetonov vhod/izhod | ❌ | ✅ |
 | Skupni žetoni seje (rezerva v API načinu) | ❌ | ✅ |
 | Indikatorji omejitev 5h / 7d z ⚠️ pri > 50 % | ❌ | ✅ |
-| Reset countdown v merilnikih omejitev (`5h{1.1h}`) | ❌ | ✅ |
+| Reset countdown v merilnikih omejitev (`5h{1h 6m}`) | ❌ | ✅ |
 | Git veja + dirty + ahead/behind | ❌ | ✅ |
 | Čas na nalogi (active vs wall) | ❌ | ✅ |
 | Raven thinking / effort | ❌ | ✅ |
@@ -394,14 +394,15 @@ Ponovno zaženite Claude Code (ali `/config` reload). Končano.
 
 Bash zamenjava za privzeto statusno vrstico v [Claude Code](https://claude.com/claude-code) (Anthropicov CLI). Spodnjo vrstico spremeni v pravo nadzorno ploščo: model, kontekst %, vrstica napredka, stroški seje, omejitve, git, čas in več.
 
-### Kaj pomeni `5h{1.1h}: 1%`?
+### Kaj pomeni `5h{1h 6m}: 1%`?
 
-Porabili ste 1 % 5-urnega okna, `{1.1h}` pa je živo odštevanje — okno se
-ponastavi čez 1,1 ure (`7d{1.1d}`: tedensko okno se ponastavi čez 1,1 dneva).
+Porabili ste 1 % 5-urnega okna, `{1h 6m}` pa je živo odštevanje — okno se
+ponastavi čez 1 uro 6 minut (`7d{1d 2h}`: tedensko okno se ponastavi čez
+1 dan 2 uri).
 Prebrano iz `rate_limits.*.resets_at` ob vsakem izrisu. V vaši gradnji ni
 ponastavitvenega časovnega žiga? Merilnik se vrne na navadni `5h: 1%`.
 
-### Ali se statusna vrstica posodablja sama od sebe? Moje odštevanje {1.1h} je videti zamrznjeno.
+### Ali se statusna vrstica posodablja sama od sebe? Moje odštevanje {1h 6m} je videti zamrznjeno.
 
 Claude Code se znova izriše ob dogodkih — novo sporočilo pomočnika, `/compact`,
 sprememba načina dovoljenj ali načina vim (z zakasnitvijo 300 ms) — zato se med

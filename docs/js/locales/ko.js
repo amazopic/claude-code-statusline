@@ -94,7 +94,7 @@ export default {
   "install.claude.prompt2_label": "그런 다음 테스트:",
   "install.codelabel.main": "macOS / Linux / WSL",
   "install.codelabel.slash": "선택: <code class=\"mono\">/statusline</code> 슬래시 명령",
-  "install.refreshTip": "refreshInterval: 30 은 세션이 유휴 상태일 때도 30초마다 줄을 다시 실행합니다 — 리셋 카운트다운(5h{1.1h}), 시간 추적기, 리셋 후 전환을 실시간으로 유지합니다. 30 은 합리적인 기본값이고, 60 은 배터리를 아끼며, 생략하면 이벤트 발생 시에만 갱신합니다(새 어시스턴트 메시지, /compact, vim 토글).",
+  "install.refreshTip": "refreshInterval: 30 은 세션이 유휴 상태일 때도 30초마다 줄을 다시 실행합니다 — 리셋 카운트다운(5h{1h 6m}), 시간 추적기, 리셋 후 전환을 실시간으로 유지합니다. 30 은 합리적인 기본값이고, 60 은 배터리를 아끼며, 생략하면 이벤트 발생 시에만 갱신합니다(새 어시스턴트 메시지, /compact, vim 토글).",
   "faq.sub": "Q &amp; A",
   "faq.title": "자주 묻는<br/>질문",
   "faq.q.limits": "왜 5h / 7d 한도 표시가 핵심 기능인가요?",
@@ -125,9 +125,9 @@ export default {
   "faq.a.time": "<strong>time</strong> 테마는 JSONL 타임스탬프 읽음: <strong>active</strong>(5분 미만 간격) 및 <strong>wall</strong>(첫-마지막 메시지 총 범위).",
   "faq.q.revert": "기본 상태줄로 되돌리려면?",
   "faq.a.revert": "<code>~/.claude/settings.json</code>에서 <code>statusLine</code> 블록을 제거.",
-  "faq.q.reset": "5h{1.1h}: 1% 는 무슨 뜻인가요?",
-  "faq.a.reset": "5시간 창의 1%를 사용했고, <code>{1.1h}</code> 는 실시간 카운트다운입니다 — 창은 1.1시간 후에 리셋됩니다 (<code>7d{1.1d}</code>: 주간 창은 1.1일 후에 리셋). 렌더링할 때마다 <code>rate_limits.*.resets_at</code> 에서 읽습니다. 빌드에 리셋 타임스탬프가 없나요? 미터는 단순한 <code>5h: 1%</code> 로 폴백합니다.",
-  "faq.q.refresh": "상태 줄이 스스로 갱신되나요? 제 {1.1h} 카운트다운이 멈춰 보입니다.",
+  "faq.q.reset": "5h{1h 6m}: 1% 는 무슨 뜻인가요?",
+  "faq.a.reset": "5시간 창의 1%를 사용했고, <code>{1h 6m}</code> 는 실시간 카운트다운입니다 — 창은 1시간 6분 후에 리셋됩니다 (<code>7d{1d 2h}</code>: 주간 창은 1일 2시간 후에 리셋). 렌더링할 때마다 <code>rate_limits.*.resets_at</code> 에서 읽습니다. 빌드에 리셋 타임스탬프가 없나요? 미터는 단순한 <code>5h: 1%</code> 로 폴백합니다.",
+  "faq.q.refresh": "상태 줄이 스스로 갱신되나요? 제 {1h 6m} 카운트다운이 멈춰 보입니다.",
   "faq.a.refresh": "Claude Code 는 이벤트 시 다시 렌더링합니다 — 새 어시스턴트 메시지, /compact, 권한 모드 또는 vim 모드 변경(300 ms 디바운스) — 그래서 이벤트 사이에는 줄이 멈춥니다. <code>~/.claude/settings.json</code> 의 statusLine 블록에 <code>\"refreshInterval\": 30</code> 을 추가하면 고정된 30초 타이머로도 다시 실행되어 유휴 상태에서도 카운트다운과 시간 추적기가 계속 돕니다. 렌더링 한 번은 약 0.1초라 30초는 무시할 만합니다. 배터리 사용 시나 거대한 저장소에서는 <code>60</code> 을 쓰고(<code>git status</code> 가 렌더링마다 실행됩니다), 최솟값은 <code>1</code> 입니다.",
   "colo.title": "Amazopic",
   "colo.h.author": "저자",
@@ -163,5 +163,5 @@ export default {
   "cmp.f.cli": "내장 CLI 설정 도구",
   "cmp.f.slash": "/statusline 슬래시 명령",
   "cmp.f.deps": "의존성",
-  "cmp.f.reset": "한도 미터의 리셋 카운트다운 (5h{1.1h})"
+  "cmp.f.reset": "한도 미터의 리셋 카운트다운 (5h{1h 6m})"
 };

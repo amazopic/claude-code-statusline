@@ -49,7 +49,7 @@ Then add to `~/.claude/settings.json`:
   "refreshInterval": 30 } }
 ```
 
-> 💡 `refreshInterval: 30` re-runs the line every 30 seconds even while the session is idle — keeps the reset countdown (`5h{1.1h}`), the time tracker and post-reset flips live. 30 is a sensible default; 60 is battery-frugal; omit to refresh on events only (new assistant message, `/compact`, vim toggle).
+> 💡 `refreshInterval: 30` re-runs the line every 30 seconds even while the session is idle — keeps the reset countdown (`5h{1h 6m}`), the time tracker and post-reset flips live. 30 is a sensible default; 60 is battery-frugal; omit to refresh on events only (new assistant message, `/compact`, vim toggle).
 
 Restart Claude Code (or run `/config` reload). Done.
 
@@ -83,7 +83,7 @@ All in **one line**, color-coded, with smart icons that signal urgency.
 - 🧠 **Model name** — with `(1M)` indicator for 1M-context variants
 - 💸 **Session cost** in USD, updated every render
 - ⬆️⬇️ **Per-message token counters** (input / output)
-- 🚦 **Rate limits** — 5h / 7d with ⚠️ warning when > 50%, plus a live **reset countdown** (`5h{1.1h}: 1% 7d{1.1d}: 0%`) read from `rate_limits.*.resets_at` — predictability of work: distribute your productivity by scheduling heavy work right after a reset (falls back to plain `5h: 1%` when no timestamp is sent)
+- 🚦 **Rate limits** — 5h / 7d with ⚠️ warning when > 50%, plus a live **reset countdown** (`5h{1h 6m}: 1% 7d{1d 2h}: 0%`) read from `rate_limits.*.resets_at` — predictability of work: distribute your productivity by scheduling heavy work right after a reset (falls back to plain `5h: 1%` when no timestamp is sent)
 - 🔄 **API-mode fallback** — when no rate limits are piped, shows total session tokens (`tokens: NNN K`) with thin-space thousand separators
 - 🚀 **Smart status icon** — 🚀 < 40%, 🚗 40–49%, ⚠️ ≥ 50% context fill
 - 🎨 **256-color ANSI** — bright, distinct color per segment
@@ -333,7 +333,7 @@ Then add to `~/.claude/settings.json`:
 }
 ```
 
-> 💡 `refreshInterval: 30` re-runs the line every 30 seconds even while the session is idle — keeps the reset countdown (`5h{1.1h}`), the time tracker and post-reset flips live. 30 is a sensible default; 60 is battery-frugal; omit to refresh on events only (new assistant message, `/compact`, vim toggle).
+> 💡 `refreshInterval: 30` re-runs the line every 30 seconds even while the session is idle — keeps the reset countdown (`5h{1h 6m}`), the time tracker and post-reset flips live. 30 is a sensible default; 60 is battery-frugal; omit to refresh on events only (new assistant message, `/compact`, vim toggle).
 
 Restart Claude Code (or run `/config` reload).
 
@@ -428,7 +428,7 @@ A bash-based replacement for the default status line in [Claude Code](https://cl
 
 Copy `statusline-bundle.sh` to `~/.claude/status-line.sh`, `chmod +x`, then point Claude Code's `~/.claude/settings.json` `statusLine.command` at that path. Full instructions in the [Quick start](#-quick-start) and [Install](#-install) sections.
 
-### Does the status line update by itself? My `{1.1h}` countdown looks frozen.
+### Does the status line update by itself? My `{1h 6m}` countdown looks frozen.
 
 Claude Code re-renders on events — new assistant message, `/compact`, permission-mode or vim-mode change (debounced at 300 ms) — so between events the line freezes. Add `"refreshInterval": 30` to the statusLine block in `~/.claude/settings.json` and it also re-runs on a fixed 30-second timer, keeping the countdown and time tracker ticking while idle. A render costs ~0.1 s, so 30 s is negligible; use 60 on battery or in huge repos (git status runs each render); minimum is 1.
 
@@ -840,9 +840,9 @@ fi
 
 ### `limits` — 5h / 7d rate limits with ⚠️ at > 50 % and reset countdown
 
-Renders `5h{1.1h}: 1% 7d{1.1d}: 0%` — each meter carries a live countdown to the
-moment its window resets, read from `rate_limits.*.resets_at` (`{1.1h}` = 5-hour
-window resets in 1.1 hours, `{1.1d}` = weekly window resets in 1.1 days).
+Renders `5h{1h 6m}: 1% 7d{1d 2h}: 0%` — each meter carries a live countdown to the
+moment its window resets, read from `rate_limits.*.resets_at` (`{1h 6m}` = 5-hour
+window resets in 1 hour 6 minutes, `{1d 2h}` = weekly window resets in 1 day 2 hours).
 Predictability of work — distribute your productivity by scheduling heavy work
 right after a reset. If `resets_at` is missing/null/0, falls back to plain
 `5h: 1% 7d: 0%` (no braces) for backward compatibility.

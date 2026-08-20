@@ -94,7 +94,7 @@ export default {
   "install.claude.prompt2_label": "Depois teste:",
   "install.codelabel.main": "macOS / Linux / WSL",
   "install.codelabel.slash": "Opcional: comando slash <code class=\"mono\">/statusline</code>",
-  "install.refreshTip": "refreshInterval: 30 reexecuta a linha a cada 30 segundos mesmo com a sessão ociosa — mantém ativos a contagem regressiva do reset (5h{1.1h}), o rastreador de tempo e as alternâncias pós-reset. 30 é um padrão sensato; 60 economiza bateria; omita para atualizar apenas em eventos (nova mensagem do assistente, /compact, alternância de vim).",
+  "install.refreshTip": "refreshInterval: 30 reexecuta a linha a cada 30 segundos mesmo com a sessão ociosa — mantém ativos a contagem regressiva do reset (5h{1h 6m}), o rastreador de tempo e as alternâncias pós-reset. 30 é um padrão sensato; 60 economiza bateria; omita para atualizar apenas em eventos (nova mensagem do assistente, /compact, alternância de vim).",
   "faq.sub": "P &amp; R",
   "faq.title": "Perguntas<br/>frequentes",
   "faq.q.limits": "Por que o display de limites 5h / 7d é o recurso principal?",
@@ -125,9 +125,9 @@ export default {
   "faq.a.time": "O tema <strong>time</strong> lê os timestamps do transcript JSONL e reporta duas durações: <strong>active</strong> (soma dos intervalos entre mensagens menores que 5 minutos) e <strong>wall</strong> (intervalo total da primeira à última mensagem). O limiar de inatividade de 5 minutos é configurável.",
   "faq.q.revert": "Como volto para a linha de status padrão do Claude Code?",
   "faq.a.revert": "Remova o bloco <code>statusLine</code> do <code>~/.claude/settings.json</code>, ou rode <code>~/.claude/status-line.sh reset</code> e troque para o tema <code>minimal</code>, que se aproxima bastante do padrão.",
-  "faq.q.reset": "O que significa 5h{1.1h}: 1%?",
-  "faq.a.reset": "Você usou 1% da janela de 5 horas, e <code>{1.1h}</code> é uma contagem regressiva ao vivo — a janela reseta em 1,1 horas (<code>7d{1.1d}</code>: a janela semanal reseta em 1,1 dias). Lido de <code>rate_limits.*.resets_at</code> a cada render. Sem timestamp de reset no seu build? O medidor recorre ao simples <code>5h: 1%</code>.",
-  "faq.q.refresh": "A linha de status se atualiza sozinha? Minha contagem regressiva {1.1h} parece congelada.",
+  "faq.q.reset": "O que significa 5h{1h 6m}: 1%?",
+  "faq.a.reset": "Você usou 1% da janela de 5 horas, e <code>{1h 6m}</code> é uma contagem regressiva ao vivo — a janela reseta em 1 hora e 6 minutos (<code>7d{1d 2h}</code>: a janela semanal reseta em 1 dia e 2 horas). Lido de <code>rate_limits.*.resets_at</code> a cada render. Sem timestamp de reset no seu build? O medidor recorre ao simples <code>5h: 1%</code>.",
+  "faq.q.refresh": "A linha de status se atualiza sozinha? Minha contagem regressiva {1h 6m} parece congelada.",
   "faq.a.refresh": "O Claude Code re-renderiza em eventos — nova mensagem do assistente, /compact, mudança de modo de permissão ou de modo vim (com debounce de 300 ms) — então entre eventos a linha congela. Adicione <code>\"refreshInterval\": 30</code> ao bloco statusLine em <code>~/.claude/settings.json</code> e ela também será reexecutada num temporizador fixo de 30 segundos, mantendo a contagem regressiva e o rastreador de tempo ativos durante a ociosidade. Um render custa ~0,1 s, então 30 s é insignificante; use <code>60</code> na bateria ou em repos enormes (<code>git status</code> roda a cada render); o mínimo é <code>1</code>.",
   "colo.title": "Amazopic",
   "colo.h.author": "Autor",
@@ -163,5 +163,5 @@ export default {
   "cmp.f.cli": "Configurador CLI integrado",
   "cmp.f.slash": "Comando slash /statusline",
   "cmp.f.deps": "Dependências",
-  "cmp.f.reset": "Contagem regressiva de reset nos medidores de limite (5h{1.1h})"
+  "cmp.f.reset": "Contagem regressiva de reset nos medidores de limite (5h{1h 6m})"
 };

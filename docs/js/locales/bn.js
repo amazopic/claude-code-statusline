@@ -94,7 +94,7 @@ export default {
   "install.claude.prompt2_label": "তারপর এটি টেস্ট করুন:",
   "install.codelabel.main": "macOS / Linux / WSL",
   "install.codelabel.slash": "ঐচ্ছিক: <code class=\"mono\">/statusline</code> slash command",
-  "install.refreshTip": "refreshInterval: 30 session নিষ্ক্রিয় থাকলেও প্রতি 30 সেকেন্ডে line আবার চালায় — reset countdown (5h{1.1h}), time tracker এবং reset-পরবর্তী flips লাইভ রাখে। 30 একটি যুক্তিসঙ্গত default; 60 ব্যাটারি সাশ্রয়ী; শুধু events-এ refresh করতে এটি বাদ দিন (নতুন assistant message, /compact, vim toggle)।",
+  "install.refreshTip": "refreshInterval: 30 session নিষ্ক্রিয় থাকলেও প্রতি 30 সেকেন্ডে line আবার চালায় — reset countdown (5h{1h 6m}), time tracker এবং reset-পরবর্তী flips লাইভ রাখে। 30 একটি যুক্তিসঙ্গত default; 60 ব্যাটারি সাশ্রয়ী; শুধু events-এ refresh করতে এটি বাদ দিন (নতুন assistant message, /compact, vim toggle)।",
   "faq.sub": "প্রশ্ন ও উত্তর",
   "faq.title": "প্রায়ই জিজ্ঞাসিত<br/>প্রশ্ন",
   "faq.q.limits": "5h / 7d limit ডিসপ্লে কেন প্রধান ফিচার?",
@@ -125,9 +125,9 @@ export default {
   "faq.a.time": "<strong>time</strong> থিম JSONL transcript থেকে timestamps পড়ে এবং দুটি সময়কাল জানায়: <strong>active</strong> (5 মিনিটের কম আন্তঃ-বার্তা ব্যবধানের যোগফল) এবং <strong>wall</strong> (প্রথম থেকে শেষ বার্তা পর্যন্ত মোট পরিসর)। 5 মিনিটের নিষ্ক্রিয় সীমা configurable।",
   "faq.q.revert": "আমি কীভাবে ডিফল্ট Claude Code status line-এ ফিরে যাব?",
   "faq.a.revert": "হয় <code>~/.claude/settings.json</code> থেকে <code>statusLine</code> ব্লক সরিয়ে দিন, অথবা <code>~/.claude/status-line.sh reset</code> চালান এবং <code>minimal</code> থিমে স্যুইচ করুন যা ডিফল্টের সাথে অনেকটা মিলে যায়।",
-  "faq.q.reset": "5h{1.1h}: 1% মানে কী?",
-  "faq.a.reset": "আপনি 5-ঘণ্টার window-এর 1% ব্যবহার করেছেন, এবং <code>{1.1h}</code> একটি লাইভ উল্টো গণনা — window 1.1 ঘণ্টায় reset হয় (<code>7d{1.1d}</code>: সাপ্তাহিক window 1.1 দিনে reset হয়)। প্রতিটি render-এ <code>rate_limits.*.resets_at</code> থেকে পড়া হয়। আপনার build-এ কোনো reset timestamp নেই? তখন মিটার সাদামাটা <code>5h: 1%</code>-এ ফিরে আসে।",
-  "faq.q.refresh": "status line কি নিজে থেকে update হয়? আমার {1.1h} countdown জমে যাওয়া দেখাচ্ছে।",
+  "faq.q.reset": "5h{1h 6m}: 1% মানে কী?",
+  "faq.a.reset": "আপনি 5-ঘণ্টার window-এর 1% ব্যবহার করেছেন, এবং <code>{1h 6m}</code> একটি লাইভ উল্টো গণনা — window 1 ঘণ্টা 6 মিনিটে reset হয় (<code>7d{1d 2h}</code>: সাপ্তাহিক window 1 দিন 2 ঘণ্টায় reset হয়)। প্রতিটি render-এ <code>rate_limits.*.resets_at</code> থেকে পড়া হয়। আপনার build-এ কোনো reset timestamp নেই? তখন মিটার সাদামাটা <code>5h: 1%</code>-এ ফিরে আসে।",
+  "faq.q.refresh": "status line কি নিজে থেকে update হয়? আমার {1h 6m} countdown জমে যাওয়া দেখাচ্ছে।",
   "faq.a.refresh": "Claude Code events-এ আবার render হয় — নতুন assistant message, /compact, permission-mode বা vim-mode পরিবর্তন (300 ms-এ debounce) — তাই events-এর মধ্যে line থেমে থাকে। <code>~/.claude/settings.json</code>-এর statusLine block-এ <code>\"refreshInterval\": 30</code> যোগ করুন এবং এটি একটি নির্দিষ্ট 30-সেকেন্ড timer-এও আবার চলে, যা নিষ্ক্রিয় থাকা অবস্থায়ও countdown এবং time tracker চালু রাখে। একটি render-এর খরচ ~0.1 s, তাই 30 s নগণ্য; battery-তে বা বিশাল repos-এ <code>60</code> ব্যবহার করুন (<code>git status</code> প্রতি render-এ চলে); সর্বনিম্ন <code>1</code>।",
   "colo.title": "Amazopic",
   "colo.h.author": "লেখক",
@@ -163,5 +163,5 @@ export default {
   "cmp.f.cli": "বিল্ট-ইন CLI configurator",
   "cmp.f.slash": "/statusline slash command",
   "cmp.f.deps": "নির্ভরতা",
-  "cmp.f.reset": "Limit মিটারে reset উল্টো গণনা (5h{1.1h})"
+  "cmp.f.reset": "Limit মিটারে reset উল্টো গণনা (5h{1h 6m})"
 };

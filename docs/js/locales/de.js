@@ -94,7 +94,7 @@ export default {
   "install.claude.prompt2_label": "Dann testen:",
   "install.codelabel.main": "macOS / Linux / WSL",
   "install.codelabel.slash": "Optional: <code class=\"mono\">/statusline</code>-Slash-Befehl",
-  "install.refreshTip": "refreshInterval: 30 führt die Zeile alle 30 Sekunden erneut aus, selbst wenn die Sitzung im Leerlauf ist — hält den Reset-Countdown (5h{1.1h}), den Zeit-Tracker und Umschaltungen nach dem Reset aktuell. 30 ist eine sinnvolle Voreinstellung; 60 schont den Akku; weglassen, um nur bei Ereignissen zu aktualisieren (neue Assistentennachricht, /compact, vim-Umschaltung).",
+  "install.refreshTip": "refreshInterval: 30 führt die Zeile alle 30 Sekunden erneut aus, selbst wenn die Sitzung im Leerlauf ist — hält den Reset-Countdown (5h{1h 6m}), den Zeit-Tracker und Umschaltungen nach dem Reset aktuell. 30 ist eine sinnvolle Voreinstellung; 60 schont den Akku; weglassen, um nur bei Ereignissen zu aktualisieren (neue Assistentennachricht, /compact, vim-Umschaltung).",
   "faq.sub": "F &amp; A",
   "faq.title": "Häufige<br/>Fragen",
   "faq.q.limits": "Warum ist die 5h-/7d-Limit-Anzeige das Headline-Feature?",
@@ -125,9 +125,9 @@ export default {
   "faq.a.time": "Das <strong>time</strong>-Theme liest Timestamps aus dem JSONL-Transcript und meldet zwei Dauern: <strong>active</strong> (Summe der Inter-Message-Lücken < 5 Min) und <strong>wall</strong> (Gesamtspanne erste–letzte Nachricht). Die 5-Min-Schwelle ist konfigurierbar.",
   "faq.q.revert": "Wie zur Standard-Statusleiste zurück?",
   "faq.a.revert": "Entweder den <code>statusLine</code>-Block aus <code>~/.claude/settings.json</code> entfernen, oder <code>~/.claude/status-line.sh reset</code> ausführen und auf <code>minimal</code> umschalten — sehr nah am Standard.",
-  "faq.q.reset": "Was bedeutet 5h{1.1h}: 1%?",
-  "faq.a.reset": "Sie haben 1 % des 5-Stunden-Fensters genutzt, und <code>{1.1h}</code> ist ein Live-Countdown — das Fenster wird in 1,1 Stunden zurückgesetzt (<code>7d{1.1d}</code>: das Wochenfenster wird in 1,1 Tagen zurückgesetzt). Bei jedem Rendering aus <code>rate_limits.*.resets_at</code> gelesen. Kein Reset-Zeitstempel in Ihrem Build? Die Anzeige fällt auf das einfache <code>5h: 1%</code> zurück.",
-  "faq.q.refresh": "Aktualisiert sich die Statuszeile von selbst? Mein {1.1h}-Countdown wirkt eingefroren.",
+  "faq.q.reset": "Was bedeutet 5h{1h 6m}: 1%?",
+  "faq.a.reset": "Sie haben 1 % des 5-Stunden-Fensters genutzt, und <code>{1h 6m}</code> ist ein Live-Countdown — das Fenster wird in 1 Stunde 6 Minuten zurückgesetzt (<code>7d{1d 2h}</code>: das Wochenfenster wird in 1 Tag 2 Stunden zurückgesetzt). Bei jedem Rendering aus <code>rate_limits.*.resets_at</code> gelesen. Kein Reset-Zeitstempel in Ihrem Build? Die Anzeige fällt auf das einfache <code>5h: 1%</code> zurück.",
+  "faq.q.refresh": "Aktualisiert sich die Statuszeile von selbst? Mein {1h 6m}-Countdown wirkt eingefroren.",
   "faq.a.refresh": "Claude Code zeichnet bei Ereignissen neu — neue Assistentennachricht, /compact, Wechsel des Berechtigungsmodus oder vim-Modus (entprellt bei 300 ms) — daher friert die Zeile zwischen Ereignissen ein. Fügen Sie <code>\"refreshInterval\": 30</code> zum statusLine-Block in <code>~/.claude/settings.json</code> hinzu, dann läuft sie auch auf einem festen 30-Sekunden-Timer und hält Countdown und Zeit-Tracker im Leerlauf am Ticken. Ein Rendering kostet ~0,1 s, also ist 30 s vernachlässigbar; nutzen Sie <code>60</code> im Akkubetrieb oder in riesigen Repos (<code>git status</code> läuft bei jedem Rendering); das Minimum ist <code>1</code>.",
   "colo.title": "Amazopic",
   "colo.h.author": "Autor",
@@ -163,5 +163,5 @@ export default {
   "cmp.f.cli": "Eingebauter CLI-Konfigurator",
   "cmp.f.slash": "/statusline-Slash-Befehl",
   "cmp.f.deps": "Abhängigkeiten",
-  "cmp.f.reset": "Reset-Countdown in den Limit-Anzeigen (5h{1.1h})"
+  "cmp.f.reset": "Reset-Countdown in den Limit-Anzeigen (5h{1h 6m})"
 };

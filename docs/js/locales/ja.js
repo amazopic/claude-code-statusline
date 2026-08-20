@@ -94,7 +94,7 @@ export default {
   "install.claude.prompt2_label": "そしてテスト：",
   "install.codelabel.main": "macOS / Linux / WSL",
   "install.codelabel.slash": "オプション：<code class=\"mono\">/statusline</code> スラッシュコマンド",
-  "install.refreshTip": "refreshInterval: 30 はセッションがアイドル状態でも 30 秒ごとに行を再実行します — リセットのカウントダウン（5h{1.1h}）、時間トラッカー、リセット後の切り替えをライブに保ちます。30 は妥当なデフォルト値です。60 はバッテリーに優しく、省略するとイベント時のみ更新します（新しいアシスタントメッセージ、/compact、vim の切り替え）。",
+  "install.refreshTip": "refreshInterval: 30 はセッションがアイドル状態でも 30 秒ごとに行を再実行します — リセットのカウントダウン（5h{1h 6m}）、時間トラッカー、リセット後の切り替えをライブに保ちます。30 は妥当なデフォルト値です。60 はバッテリーに優しく、省略するとイベント時のみ更新します（新しいアシスタントメッセージ、/compact、vim の切り替え）。",
   "faq.sub": "Q &amp; A",
   "faq.title": "よくある<br/>質問",
   "faq.q.limits": "なぜ 5h / 7d リミット表示が目玉機能なのですか？",
@@ -125,9 +125,9 @@ export default {
   "faq.a.time": "<strong>time</strong> テーマは JSONL のタイムスタンプを読み、<strong>active</strong>（5 分未満のギャップ）と <strong>wall</strong>（最初から最後の総スパン）を報告します。",
   "faq.q.revert": "デフォルトのステータスラインに戻すには？",
   "faq.a.revert": "<code>~/.claude/settings.json</code> から <code>statusLine</code> ブロックを削除します。",
-  "faq.q.reset": "5h{1.1h}: 1% とはどういう意味ですか？",
-  "faq.a.reset": "5 時間ウィンドウの 1% を使用しており、<code>{1.1h}</code> はライブのカウントダウンです — ウィンドウは 1.1 時間後にリセットされます（<code>7d{1.1d}</code>：週間ウィンドウは 1.1 日後にリセット）。レンダリングのたびに <code>rate_limits.*.resets_at</code> から読み取ります。お使いのビルドがリセットのタイムスタンプを送らない場合、メーターはシンプルな <code>5h: 1%</code> にフォールバックします。",
-  "faq.q.refresh": "ステータス行は自動で更新されますか？私の {1.1h} カウントダウンが止まって見えます。",
+  "faq.q.reset": "5h{1h 6m}: 1% とはどういう意味ですか？",
+  "faq.a.reset": "5 時間ウィンドウの 1% を使用しており、<code>{1h 6m}</code> はライブのカウントダウンです — ウィンドウは 1 時間 6 分後にリセットされます（<code>7d{1d 2h}</code>：週間ウィンドウは 1 日 2 時間後にリセット）。レンダリングのたびに <code>rate_limits.*.resets_at</code> から読み取ります。お使いのビルドがリセットのタイムスタンプを送らない場合、メーターはシンプルな <code>5h: 1%</code> にフォールバックします。",
+  "faq.q.refresh": "ステータス行は自動で更新されますか？私の {1h 6m} カウントダウンが止まって見えます。",
   "faq.a.refresh": "Claude Code はイベント時に再描画します — 新しいアシスタントメッセージ、/compact、権限モードや vim モードの変更（300 ms でデバウンス）— そのためイベントの合間は行が固まります。<code>~/.claude/settings.json</code> の statusLine ブロックに <code>\"refreshInterval\": 30</code> を追加すると、固定の 30 秒タイマーでも再実行され、アイドル時もカウントダウンと時間トラッカーが動き続けます。1 回の描画は約 0.1 秒なので 30 秒は無視できます。バッテリー駆動時や巨大なリポジトリでは <code>60</code> を使い（<code>git status</code> が描画ごとに実行されます）、最小値は <code>1</code> です。",
   "colo.title": "Amazopic",
   "colo.h.author": "著者",
@@ -163,5 +163,5 @@ export default {
   "cmp.f.cli": "組み込み CLI 設定ツール",
   "cmp.f.slash": "/statusline スラッシュコマンド",
   "cmp.f.deps": "依存",
-  "cmp.f.reset": "リミットメーターのリセットカウントダウン (5h{1.1h})"
+  "cmp.f.reset": "リミットメーターのリセットカウントダウン (5h{1h 6m})"
 };

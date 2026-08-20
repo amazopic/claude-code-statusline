@@ -11,7 +11,7 @@
 **Lingue:** [English](README.md) · [Русский](README.ru.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Українська](README.uk.md) · [Slovenščina](README.sl.md) · Italiano · [Español](README.es.md) · [中文](README.zh.md) · [日本語](README.ja.md) · [한국어](README.ko.md) · [العربية](README.ar.md) · [Português](README.pt.md) · [Türkçe](README.tr.md) · [Bahasa Indonesia](README.id.md) · [Tiếng Việt](README.vi.md) · [हिन्दी](README.hi.md) · [繁體中文](README.zh-tw.md) · [Polski](README.pl.md) · [ไทย](README.th.md) · [עברית](README.he.md) · [বাংলা](README.bn.md) · [اردو](README.ur.md)
 
 ```text
-Opus 4.7 (1M) │ 🚀 12% █▌░░░░░░░░ 121.4K/1000K │ 0.42$ │ ↑0.5K ↓1.2K │ 5h{1.1h}: 15% 7d{1.1d}: 4% │ project │ ⎇ main │ tokens: 87 K │ 🤖 xhigh
+Opus 4.7 (1M) │ 🚀 12% █▌░░░░░░░░ 121.4K/1000K │ 0.42$ │ ↑0.5K ↓1.2K │ 5h{1h 6m}: 15% 7d{1d 2h}: 4% │ project │ ⎇ main │ tokens: 87 K │ 🤖 xhigh
 ```
 
 ### ⏳ Reset countdown — pianifica intorno ai tuoi limiti
@@ -20,7 +20,7 @@ Opus 4.7 (1M) │ 🚀 12% █▌░░░░░░░░ 121.4K/1000K │ 0.42$
 
 Prevedibile per design — ogni indicatore conta alla rovescia fino al suo reset, così dosi il lavoro invece di sbattere contro il muro.
 
-Gli indicatori 5h / 7d includono un conto alla rovescia live fino al momento in cui ciascuna finestra si azzera: `5h{1.1h}: 1%` — la finestra di 5 ore si resetta tra 1,1 ore; `7d{1.1d}: 0%` — la finestra settimanale si resetta tra 1,1 giorni. Sai sempre quando torni a 0%, così puoi programmare il lavoro pesante subito dopo un reset e distribuire la tua produttività invece di schiantarti contro il limite a metà di un'attività. Alimentato da `rate_limits.*.resets_at` inviato da Claude Code; se la tua build non invia i timestamp di reset, gli indicatori ricadono con eleganza sul semplice `5h: 1%`.
+Gli indicatori 5h / 7d includono un conto alla rovescia live fino al momento in cui ciascuna finestra si azzera: `5h{1h 6m}: 1%` — la finestra di 5 ore si resetta tra 1 ora e 6 minuti; `7d{1d 2h}: 0%` — la finestra settimanale si resetta tra 1 giorno e 2 ore. Sai sempre quando torni a 0%, così puoi programmare il lavoro pesante subito dopo un reset e distribuire la tua produttività invece di schiantarti contro il limite a metà di un'attività. Alimentato da `rate_limits.*.resets_at` inviato da Claude Code; se la tua build non invia i timestamp di reset, gli indicatori ricadono con eleganza sul semplice `5h: 1%`.
 
 ## 🎨 164 varianti pronte — scegli e applica
 
@@ -103,7 +103,7 @@ Poi aggiungi a `~/.claude/settings.json`:
 }
 ```
 
-> 💡 `refreshInterval: 30` riesegue la linea ogni 30 secondi anche mentre la sessione è inattiva — mantiene live il conto alla rovescia del reset (5h{1.1h}), il tracker del tempo e i passaggi post-reset. 30 è un default sensato; 60 è più parco di batteria; ometti per aggiornare solo agli eventi (nuovo messaggio dell'assistente, /compact, toggle vim).
+> 💡 `refreshInterval: 30` riesegue la linea ogni 30 secondi anche mentre la sessione è inattiva — mantiene live il conto alla rovescia del reset (5h{1h 6m}), il tracker del tempo e i passaggi post-reset. 30 è un default sensato; 60 è più parco di batteria; ometti per aggiornare solo agli eventi (nuovo messaggio dell'assistente, /compact, toggle vim).
 
 Riavvia Claude Code (o esegui `/config` reload).
 
@@ -334,7 +334,7 @@ Poi aggiungi a `~/.claude/settings.json`:
   "refreshInterval": 30 } }
 ```
 
-> 💡 `refreshInterval: 30` riesegue la linea ogni 30 secondi anche mentre la sessione è inattiva — mantiene live il conto alla rovescia del reset (5h{1.1h}), il tracker del tempo e i passaggi post-reset. 30 è un default sensato; 60 è più parco di batteria; ometti per aggiornare solo agli eventi (nuovo messaggio dell'assistente, /compact, toggle vim).
+> 💡 `refreshInterval: 30` riesegue la linea ogni 30 secondi anche mentre la sessione è inattiva — mantiene live il conto alla rovescia del reset (5h{1h 6m}), il tracker del tempo e i passaggi post-reset. 30 è un default sensato; 60 è più parco di batteria; ometti per aggiornare solo agli eventi (nuovo messaggio dell'assistente, /compact, toggle vim).
 
 Riavvia Claude Code (o `/config` reload). Fatto.
 
@@ -360,7 +360,7 @@ Installa claude-code-statusline di amazopic per me. Prima assicurati che jq sia 
 | Contatori token input/output | ❌ | ✅ |
 | Token totali della sessione (fallback API) | ❌ | ✅ |
 | Indicatori limiti 5h / 7d con ⚠️ a > 50 % | ❌ | ✅ |
-| Conto alla rovescia del reset negli indicatori limiti (5h{1.1h}) | ❌ | ✅ |
+| Conto alla rovescia del reset negli indicatori limiti (5h{1h 6m}) | ❌ | ✅ |
 | Branch git + dirty + ahead/behind | ❌ | ✅ |
 | Tempo sull'attività (active vs wall) | ❌ | ✅ |
 | Livello thinking / effort | ❌ | ✅ |
@@ -386,11 +386,11 @@ Installa claude-code-statusline di amazopic per me. Prima assicurati che jq sia 
 
 Un sostituto bash della status line predefinita in [Claude Code](https://claude.com/claude-code) (CLI di Anthropic). Trasforma la linea in basso in una vera dashboard: modello, contesto %, barra di progresso, costo sessione, limiti, git, tempo e altro.
 
-### Cosa significa `5h{1.1h}: 1%`?
+### Cosa significa `5h{1h 6m}: 1%`?
 
-Hai usato l'1% della finestra di 5 ore, e `{1.1h}` è un conto alla rovescia live — la finestra si resetta tra 1,1 ore (`7d{1.1d}`: la finestra settimanale si resetta tra 1,1 giorni). Letto da `rate_limits.*.resets_at` a ogni rendering. Nessun timestamp di reset nella tua build? L'indicatore ricade sul semplice `5h: 1%`.
+Hai usato l'1% della finestra di 5 ore, e `{1h 6m}` è un conto alla rovescia live — la finestra si resetta tra 1 ora e 6 minuti (`7d{1d 2h}`: la finestra settimanale si resetta tra 1 giorno e 2 ore). Letto da `rate_limits.*.resets_at` a ogni rendering. Nessun timestamp di reset nella tua build? L'indicatore ricade sul semplice `5h: 1%`.
 
-### La status line si aggiorna da sola? Il mio conto alla rovescia `{1.1h}` sembra bloccato.
+### La status line si aggiorna da sola? Il mio conto alla rovescia `{1h 6m}` sembra bloccato.
 
 Claude Code ri-renderizza agli eventi — nuovo messaggio dell'assistente, `/compact`, cambio di modalità permessi o modalità vim (con debounce a 300 ms) — quindi tra un evento e l'altro la linea si congela. Aggiungi `"refreshInterval": 30` al blocco `statusLine` in `~/.claude/settings.json` e verrà rieseguita anche su un timer fisso di 30 secondi, mantenendo il conto alla rovescia e il tracker del tempo in movimento mentre sei inattivo. Un rendering costa ~0,1 s, quindi 30 s è trascurabile; usa 60 a batteria o in repo enormi (`git status` viene eseguito a ogni rendering); il minimo è 1.
 

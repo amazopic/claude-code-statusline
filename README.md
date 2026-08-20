@@ -11,17 +11,17 @@
 **Languages:** English · [Русский](README.ru.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Українська](README.uk.md) · [Slovenščina](README.sl.md) · [Italiano](README.it.md) · [Español](README.es.md) · [中文](README.zh.md) · [日本語](README.ja.md) · [한국어](README.ko.md) · [العربية](README.ar.md) · [Português](README.pt.md) · [Türkçe](README.tr.md) · [Bahasa Indonesia](README.id.md) · [Tiếng Việt](README.vi.md) · [हिन्दी](README.hi.md) · [繁體中文](README.zh-tw.md) · [Polski](README.pl.md) · [ไทย](README.th.md) · [עברית](README.he.md) · [বাংলা](README.bn.md) · [اردو](README.ur.md)
 
 ```text
-Opus 4.7 (1M) │ 🚀 12% █▌░░░░░░░░ 121.4K/1000K │ 0.42$ │ ↑0.5K ↓1.2K │ project │ ⎇ main │ 5h{1.1h}: 15% 7d{1.1d}: 4% │ 🤖 xhigh
+Opus 4.7 (1M) │ 🚀 12% █▌░░░░░░░░ 121.4K/1000K │ 0.42$ │ ↑0.5K ↓1.2K │ project │ ⎇ main │ 5h{1h 6m}: 15% 7d{1d 2h}: 4% │ 🤖 xhigh
 ```
 
 > 💡 **Pro tip — Context control**: The fuller your context window, the **less effective** your conversation with Claude becomes — and the **faster** you burn through your 5h/7d limits. Clear or `/compact` whenever you cross **60%** to keep working efficiently.
 
 ### ⏳ Reset countdown — plan around your limits
 
-The 5h / 7d meters include a live countdown to the moment each window resets: `5h{1.1h}: 1%` — the 5-hour window resets in 1.1 hours; `7d{1.1d}: 0%` — the weekly window resets in 1.1 days. You always know when you're back at 0%, so you can schedule heavy work right after a reset and distribute your productivity instead of slamming into the cap mid-task. Powered by `rate_limits.*.resets_at` sent by Claude Code; if your build doesn't send reset timestamps, the meters gracefully fall back to plain `5h: 1%`.
+The 5h / 7d meters include a live countdown to the moment each window resets: `5h{1h 6m}: 1%` — the 5-hour window resets in 1 hour 6 minutes; `7d{1d 2h}: 0%` — the weekly window resets in 1 day 2 hours. You always know when you're back at 0%, so you can schedule heavy work right after a reset and distribute your productivity instead of slamming into the cap mid-task. Powered by `rate_limits.*.resets_at` sent by Claude Code; if your build doesn't send reset timestamps, the meters gracefully fall back to plain `5h: 1%`.
 
 ```text
-… ⎇ main │ 5h{1.1h}: 1% 7d{1.1d}: 0% │ 🤖 xhigh
+… ⎇ main │ 5h{1h 6m}: 1% 7d{1d 2h}: 0% │ 🤖 xhigh
 ```
 
 **Predictable by design** — every meter counts down to its reset, so you pace your work instead of hitting the wall.
@@ -45,7 +45,7 @@ Then add to `~/.claude/settings.json`:
   "refreshInterval": 30 } }
 ```
 
-> 💡 `refreshInterval: 30` re-runs the line every 30 seconds even while the session is idle — keeps the reset countdown (`5h{1.1h}`), the time tracker and post-reset flips live. 30 is a sensible default; 60 is battery-frugal; omit to refresh on events only (new assistant message, `/compact`, vim toggle).
+> 💡 `refreshInterval: 30` re-runs the line every 30 seconds even while the session is idle — keeps the reset countdown (`5h{1h 6m}`), the time tracker and post-reset flips live. 30 is a sensible default; 60 is battery-frugal; omit to refresh on events only (new assistant message, `/compact`, vim toggle).
 
 Restart Claude Code (or run `/config` reload). Done.
 
@@ -328,7 +328,7 @@ Then add to `~/.claude/settings.json`:
 }
 ```
 
-> 💡 `refreshInterval: 30` re-runs the line every 30 seconds even while the session is idle — keeps the reset countdown (`5h{1.1h}`), the time tracker and post-reset flips live. 30 is a sensible default; 60 is battery-frugal; omit to refresh on events only (new assistant message, `/compact`, vim toggle).
+> 💡 `refreshInterval: 30` re-runs the line every 30 seconds even while the session is idle — keeps the reset countdown (`5h{1h 6m}`), the time tracker and post-reset flips live. 30 is a sensible default; 60 is battery-frugal; omit to refresh on events only (new assistant message, `/compact`, vim toggle).
 
 Restart Claude Code (or run `/config` reload).
 
@@ -391,7 +391,7 @@ Edit constants near the top of `statusline.sh`:
 | **Per-message** input/output token counters | ❌ | ✅ |
 | **Total session tokens** (API mode fallback) | ❌ | ✅ |
 | **5h / 7d rate-limit** indicators with ⚠️ at > 50 % | ❌ | ✅ |
-| Reset countdown in limit meters (`5h{1.1h}`) | ❌ | ✅ |
+| Reset countdown in limit meters (`5h{1h 6m}`) | ❌ | ✅ |
 | **Git branch** + dirty + ahead/behind | ❌ | ✅ |
 | **Time-on-task** (active vs wall clock) | ❌ | ✅ |
 | **Thinking / effort level** display | ❌ | ✅ |
@@ -421,11 +421,11 @@ Concrete scenarios where this project pays for itself:
 
 A bash-based replacement for the default status line in [Claude Code](https://claude.com/claude-code) (Anthropic's CLI). It turns the bottom-of-screen line into a real dashboard: model, context %, progress bar, session cost, rate limits, git status, time-on-task, and more.
 
-### What does `5h{1.1h}: 1%` mean?
+### What does `5h{1h 6m}: 1%` mean?
 
-You've used 1% of the 5-hour window, and `{1.1h}` is a live countdown — the window resets in 1.1 hours (`7d{1.1d}`: the weekly window resets in 1.1 days). Read from `rate_limits.*.resets_at` on every render. No reset timestamp in your build? The meter falls back to plain `5h: 1%`.
+You've used 1% of the 5-hour window, and `{1h 6m}` is a live countdown — the window resets in 1 hour 6 minutes (`7d{1d 2h}`: the weekly window resets in 1 day 2 hours). Read from `rate_limits.*.resets_at` on every render. No reset timestamp in your build? The meter falls back to plain `5h: 1%`.
 
-### Does the status line update by itself? My `{1.1h}` countdown looks frozen.
+### Does the status line update by itself? My `{1h 6m}` countdown looks frozen.
 
 Claude Code re-renders on events — new assistant message, `/compact`, permission-mode or vim-mode change (debounced at 300 ms) — so between events the line freezes. Add `"refreshInterval": 30` to the statusLine block in `~/.claude/settings.json` and it also re-runs on a fixed 30-second timer, keeping the countdown and time tracker ticking while idle. A render costs ~0.1 s, so 30 s is negligible; use 60 on battery or in huge repos (git status runs each render); minimum is 1.
 

@@ -94,7 +94,7 @@ export default {
   "install.claude.prompt2_label": "Rồi kiểm tra nó:",
   "install.codelabel.main": "macOS / Linux / WSL",
   "install.codelabel.slash": "Tùy chọn: lệnh slash <code class=\"mono\">/statusline</code>",
-  "install.refreshTip": "refreshInterval: 30 chạy lại dòng mỗi 30 giây ngay cả khi phiên đang nhàn rỗi — giữ cho đồng hồ đếm ngược đặt lại (5h{1.1h}), trình theo dõi thời gian và các chuyển đổi sau khi đặt lại luôn sống. 30 là mặc định hợp lý; 60 tiết kiệm pin; bỏ qua để chỉ làm mới khi có sự kiện (tin nhắn trợ lý mới, /compact, bật/tắt vim).",
+  "install.refreshTip": "refreshInterval: 30 chạy lại dòng mỗi 30 giây ngay cả khi phiên đang nhàn rỗi — giữ cho đồng hồ đếm ngược đặt lại (5h{1h 6m}), trình theo dõi thời gian và các chuyển đổi sau khi đặt lại luôn sống. 30 là mặc định hợp lý; 60 tiết kiệm pin; bỏ qua để chỉ làm mới khi có sự kiện (tin nhắn trợ lý mới, /compact, bật/tắt vim).",
   "faq.sub": "Hỏi &amp; Đáp",
   "faq.title": "Câu hỏi<br/>thường gặp",
   "faq.q.limits": "Tại sao màn hình giới hạn 5h / 7d là tính năng nổi bật?",
@@ -125,9 +125,9 @@ export default {
   "faq.a.time": "Chủ đề <strong>time</strong> đọc các dấu thời gian từ transcript JSONL và báo cáo hai khoảng thời lượng: <strong>active</strong> (tổng các khoảng nghỉ giữa tin nhắn ngắn hơn 5 phút) và <strong>wall</strong> (tổng khoảng từ tin nhắn đầu tới tin nhắn cuối). Ngưỡng nhàn rỗi 5 phút có thể cấu hình.",
   "faq.q.revert": "Làm sao để quay về thanh trạng thái Claude Code mặc định?",
   "faq.a.revert": "Hoặc xóa khối <code>statusLine</code> khỏi <code>~/.claude/settings.json</code>, hoặc chạy <code>~/.claude/status-line.sh reset</code> và chuyển sang chủ đề <code>minimal</code> vốn gần giống với mặc định.",
-  "faq.q.reset": "5h{1.1h}: 1% nghĩa là gì?",
-  "faq.a.reset": "Bạn đã dùng 1% cửa sổ 5 giờ, và <code>{1.1h}</code> là một đồng hồ đếm ngược trực tiếp — cửa sổ sẽ đặt lại sau 1,1 giờ (<code>7d{1.1d}</code>: cửa sổ hàng tuần đặt lại sau 1,1 ngày). Được đọc từ <code>rate_limits.*.resets_at</code> ở mỗi lần render. Bản dựng của bạn không có dấu thời gian đặt lại? Đồng hồ sẽ quay về dạng đơn giản <code>5h: 1%</code>.",
-  "faq.q.refresh": "Dòng trạng thái có tự cập nhật không? Đồng hồ đếm ngược {1.1h} của tôi trông như bị đứng.",
+  "faq.q.reset": "5h{1h 6m}: 1% nghĩa là gì?",
+  "faq.a.reset": "Bạn đã dùng 1% cửa sổ 5 giờ, và <code>{1h 6m}</code> là một đồng hồ đếm ngược trực tiếp — cửa sổ sẽ đặt lại sau 1 giờ 6 phút (<code>7d{1d 2h}</code>: cửa sổ hàng tuần đặt lại sau 1 ngày 2 giờ). Được đọc từ <code>rate_limits.*.resets_at</code> ở mỗi lần render. Bản dựng của bạn không có dấu thời gian đặt lại? Đồng hồ sẽ quay về dạng đơn giản <code>5h: 1%</code>.",
+  "faq.q.refresh": "Dòng trạng thái có tự cập nhật không? Đồng hồ đếm ngược {1h 6m} của tôi trông như bị đứng.",
   "faq.a.refresh": "Claude Code render lại theo sự kiện — tin nhắn trợ lý mới, /compact, thay đổi chế độ quyền hoặc chế độ vim (chống dội ở 300 ms) — nên giữa các sự kiện dòng bị đứng. Thêm <code>\"refreshInterval\": 30</code> vào khối statusLine trong <code>~/.claude/settings.json</code> và nó cũng chạy lại theo bộ hẹn giờ cố định 30 giây, giữ cho đồng hồ đếm ngược và trình theo dõi thời gian tiếp tục chạy khi nhàn rỗi. Một lần render tốn ~0,1 giây, nên 30 giây là không đáng kể; dùng <code>60</code> khi chạy pin hoặc trong kho lưu trữ khổng lồ (<code>git status</code> chạy mỗi lần render); giá trị nhỏ nhất là <code>1</code>.",
   "colo.title": "Amazopic",
   "colo.h.author": "Tác giả",
@@ -163,5 +163,5 @@ export default {
   "cmp.f.cli": "Trình cấu hình CLI tích hợp",
   "cmp.f.slash": "Lệnh slash /statusline",
   "cmp.f.deps": "Phụ thuộc",
-  "cmp.f.reset": "Đếm ngược đặt lại trong các đồng hồ giới hạn (5h{1.1h})"
+  "cmp.f.reset": "Đếm ngược đặt lại trong các đồng hồ giới hạn (5h{1h 6m})"
 };

@@ -11,7 +11,7 @@
 **语言:** [English](README.md) · [Русский](README.ru.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Українська](README.uk.md) · [Slovenščina](README.sl.md) · [Italiano](README.it.md) · [Español](README.es.md) · 中文 · [日本語](README.ja.md) · [한국어](README.ko.md) · [العربية](README.ar.md) · [Português](README.pt.md) · [Türkçe](README.tr.md) · [Bahasa Indonesia](README.id.md) · [Tiếng Việt](README.vi.md) · [हिन्दी](README.hi.md) · [繁體中文](README.zh-tw.md) · [Polski](README.pl.md) · [ไทย](README.th.md) · [עברית](README.he.md) · [বাংলা](README.bn.md) · [اردو](README.ur.md)
 
 ```text
-Opus 4.7 (1M) │ 🚀 12% █▌░░░░░░░░ 121.4K/1000K │ 0.42$ │ ↑0.5K ↓1.2K │ project │ ⎇ main │ 5h{1.1h}: 15% 7d{1.1d}: 4% │ 🤖 xhigh
+Opus 4.7 (1M) │ 🚀 12% █▌░░░░░░░░ 121.4K/1000K │ 0.42$ │ ↑0.5K ↓1.2K │ project │ ⎇ main │ 5h{1h 6m}: 15% 7d{1d 2h}: 4% │ 🤖 xhigh
 ```
 
 ## 🎨 164 个现成变体 — 选择并应用
@@ -77,7 +77,7 @@ Claude Code 自带的状态栏过于简陋。这个替换方案把它升级为�
 
 **工作的可预测性 —— 合理分配你的产能。** 天生可预测：每个仪表都会倒数到自己的重置时刻，让你按节奏推进工作，而不是迎头撞上墙壁。
 
-5h / 7d 仪表内置了一个实时倒计时,精确到每个时间窗重置的那一刻:`5h{1.1h}: 1%` —— 5 小时窗口将在 1.1 小时后重置;`7d{1.1d}: 0%` —— 每周窗口将在 1.1 天后重置。你随时都清楚自己什么时候回到 0%,因此可以把重活安排在刚刚重置之后,把产能分散开来,而不是在任务进行到一半时撞上上限。由 Claude Code 发送的 `rate_limits.*.resets_at` 驱动;如果你的构建没有发送重置时间戳,这些仪表会优雅地回退为普通的 `5h: 1%`。
+5h / 7d 仪表内置了一个实时倒计时,精确到每个时间窗重置的那一刻:`5h{1h 6m}: 1%` —— 5 小时窗口将在 1 小时 6 分钟后重置;`7d{1d 2h}: 0%` —— 每周窗口将在 1 天 2 小时后重置。你随时都清楚自己什么时候回到 0%,因此可以把重活安排在刚刚重置之后,把产能分散开来,而不是在任务进行到一半时撞上上限。由 Claude Code 发送的 `rate_limits.*.resets_at` 驱动;如果你的构建没有发送重置时间戳,这些仪表会优雅地回退为普通的 `5h: 1%`。
 
 ## 🚀 安装
 
@@ -112,7 +112,7 @@ chmod +x ~/.claude/status-line.sh
 }
 ```
 
-> 💡 `refreshInterval: 30` 每 30 秒重新渲染一次状态行，即使会话处于空闲状态 —— 让重置倒计时(5h{1.1h})、时间跟踪和重置后翻转保持实时更新。30 是合理的默认值；60 更省电；省略则仅在事件发生时刷新(新的助手消息、`/compact`、vim 切换)。
+> 💡 `refreshInterval: 30` 每 30 秒重新渲染一次状态行，即使会话处于空闲状态 —— 让重置倒计时(5h{1h 6m})、时间跟踪和重置后翻转保持实时更新。30 是合理的默认值；60 更省电；省略则仅在事件发生时刷新(新的助手消息、`/compact`、vim 切换)。
 
 重启 Claude Code(或运行 `/config` 重新加载)。
 
@@ -338,7 +338,7 @@ chmod +x ~/.claude/status-line.sh
   "refreshInterval": 30 } }
 ```
 
-> 💡 `refreshInterval: 30` 每 30 秒重新渲染一次状态行，即使会话处于空闲状态 —— 让重置倒计时(5h{1.1h})、时间跟踪和重置后翻转保持实时更新。30 是合理的默认值；60 更省电；省略则仅在事件发生时刷新(新的助手消息、`/compact`、vim 切换)。
+> 💡 `refreshInterval: 30` 每 30 秒重新渲染一次状态行，即使会话处于空闲状态 —— 让重置倒计时(5h{1h 6m})、时间跟踪和重置后翻转保持实时更新。30 是合理的默认值；60 更省电；省略则仅在事件发生时刷新(新的助手消息、`/compact`、vim 切换)。
 
 重启 Claude Code(或 `/config` reload)。完成。
 
@@ -353,7 +353,7 @@ chmod +x ~/.claude/status-line.sh
 | 输入/输出 token 计数 | ❌ | ✅ |
 | 会话总 token(API 模式回退)| ❌ | ✅ |
 | 5h / 7d 速率限制指示器(>50% 显示 ⚠️)| ❌ | ✅ |
-| 限额仪表中的重置倒计时(`5h{1.1h}`)| ❌ | ✅ |
+| 限额仪表中的重置倒计时(`5h{1h 6m}`)| ❌ | ✅ |
 | Git 分支 + dirty + ahead/behind | ❌ | ✅ |
 | 任务用时(active vs wall)| ❌ | ✅ |
 | Thinking / effort 等级 | ❌ | ✅ |
@@ -379,11 +379,11 @@ chmod +x ~/.claude/status-line.sh
 
 [Claude Code](https://claude.com/claude-code)(Anthropic 的 CLI)默认状态栏的 bash 替代品。把底部状态行变成真正的仪表盘:模型、上下文 %、进度条、会话费用、限制、git、时间等。
 
-### `5h{1.1h}: 1%` 是什么意思?
+### `5h{1h 6m}: 1%` 是什么意思?
 
-表示你已经用掉了 5 小时窗口的 1%,而 `{1.1h}` 是一个实时倒计时 —— 该窗口将在 1.1 小时后重置(`7d{1.1d}`:每周窗口将在 1.1 天后重置)。每次渲染时都会从 `rate_limits.*.resets_at` 读取。你的构建里没有重置时间戳?该仪表会回退为普通的 `5h: 1%`。
+表示你已经用掉了 5 小时窗口的 1%,而 `{1h 6m}` 是一个实时倒计时 —— 该窗口将在 1 小时 6 分钟后重置(`7d{1d 2h}`:每周窗口将在 1 天 2 小时后重置)。每次渲染时都会从 `rate_limits.*.resets_at` 读取。你的构建里没有重置时间戳?该仪表会回退为普通的 `5h: 1%`。
 
-### 状态行会自己更新吗?我的 {1.1h} 倒计时看起来冻住了。
+### 状态行会自己更新吗?我的 {1h 6m} 倒计时看起来冻住了。
 
 Claude Code 在事件发生时重新渲染 —— 新的助手消息、`/compact`、权限模式或 vim 模式变更(去抖 300 毫秒)—— 所以在两次事件之间状态行会冻住。在 `~/.claude/settings.json` 的 `statusLine` 块中添加 `"refreshInterval": 30`,它就会额外按固定的 30 秒计时器重新运行,让倒计时和时间跟踪在空闲时持续走动。一次渲染约耗时 0.1 秒,所以 30 秒可以忽略不计;在电池供电或超大仓库下用 60(每次渲染都会跑 git status);最小值为 1。
 

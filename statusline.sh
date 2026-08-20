@@ -16,7 +16,7 @@ if ! command -v jq >/dev/null 2>&1; then
   exit 0
 fi
 
-# Force C numeric formatting (decimal dot in 1.1h / 0.42$ / 87.5K) regardless
+# Force C numeric formatting (decimal dot in 0.42$ / 87.5K) regardless
 # of the user's locale, while keeping UTF-8 character handling for glyphs.
 # LC_ALL would override LC_NUMERIC, so it must be unset first.
 unset LC_ALL
@@ -118,19 +118,26 @@ bar() {
 
 j() { jq -r "$1 // empty" 2>/dev/null <<<"$input"; }
 
-# Reset-window countdown — turns a resets_at epoch into "1.1h" / "1.1d".
+# Reset-window countdown — turns a resets_at epoch into a compound duration
+# that steps down to the next-smaller unit: "1d 2h" / "1h 6m" / "45m".
 #   $1 = resets_at (unix epoch seconds, possibly empty/null/0/fractional)
-#   $2 = unit: h → decimal hours (rem/3600), d → decimal days (rem/86400)
+# A zero second component is dropped ("2d", "3h"); under a minute → "<1m".
 # Prints nothing when there's no usable resets_at (back-compat: no {} shown).
 _lim_eta() {
   local r="${1%.*}"
   [[ -z "$r" || "$r" == "null" || "$r" == 0 ]] && return
   local rem=$(( r - $(date +%s) ))
   (( rem < 0 )) && rem=0
-  case "$2" in
-    h) LC_ALL=C awk -v s="$rem" 'BEGIN { printf "%.1fh", s/3600 }' ;;
-    d) LC_ALL=C awk -v s="$rem" 'BEGIN { printf "%.1fd", s/86400 }' ;;
-  esac
+  local d=$(( rem / 86400 )) h=$(( rem % 86400 / 3600 )) m=$(( rem % 3600 / 60 ))
+  if (( d > 0 )); then
+    if (( h > 0 )); then printf '%dd %dh' "$d" "$h"; else printf '%dd' "$d"; fi
+  elif (( h > 0 )); then
+    if (( m > 0 )); then printf '%dh %dm' "$h" "$m"; else printf '%dh' "$h"; fi
+  elif (( m > 0 )); then
+    printf '%dm' "$m"
+  else
+    printf '<1m'
+  fi
 }
 
 model_disp=$(j '.model.display_name')
@@ -254,8 +261,8 @@ if [[ -z "$lim5h" && -z "$lim7d" ]]; then
   sess_fmt=$(fmt_thin "$sess_k")
   limits_part="${GRD}tokens: ${C}${sess_fmt}${CD}K${N}"
 else
-  t5=$(_lim_eta "$lim5h_reset" h); b5=""; [[ -n "$t5" ]] && b5="{$t5}"
-  t7=$(_lim_eta "$lim7d_reset" d); b7=""; [[ -n "$t7" ]] && b7="{$t7}"
+  t5=$(_lim_eta "$lim5h_reset"); b5=""; [[ -n "$t5" ]] && b5="{$t5}"
+  t7=$(_lim_eta "$lim7d_reset"); b7=""; [[ -n "$t7" ]] && b7="{$t7}"
   if [[ -n "$lim5h" ]]; then
     l5=${lim5h%.*}
     warn5=""; (( l5 > 50 )) && warn5="⚠️ "

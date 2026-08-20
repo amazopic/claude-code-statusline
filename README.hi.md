@@ -11,17 +11,17 @@
 **Languages:** [English](README.md) · [Русский](README.ru.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Українська](README.uk.md) · [Slovenščina](README.sl.md) · [Italiano](README.it.md) · [Español](README.es.md) · [中文](README.zh.md) · [日本語](README.ja.md) · [한국어](README.ko.md) · [العربية](README.ar.md) · [Português](README.pt.md) · [Türkçe](README.tr.md) · [Bahasa Indonesia](README.id.md) · [Tiếng Việt](README.vi.md) · हिन्दी · [繁體中文](README.zh-tw.md) · [Polski](README.pl.md) · [ไทย](README.th.md) · [עברית](README.he.md) · [বাংলা](README.bn.md) · [اردو](README.ur.md)
 
 ```text
-Opus 4.7 (1M) │ 🚀 12% █▌░░░░░░░░ 121.4K/1000K │ 0.42$ │ ↑0.5K ↓1.2K │ project │ ⎇ main │ 5h{1.1h}: 15% 7d{1.1d}: 4% │ 🤖 xhigh
+Opus 4.7 (1M) │ 🚀 12% █▌░░░░░░░░ 121.4K/1000K │ 0.42$ │ ↑0.5K ↓1.2K │ project │ ⎇ main │ 5h{1h 6m}: 15% 7d{1d 2h}: 4% │ 🤖 xhigh
 ```
 
 > 💡 **प्रो टिप — Context नियंत्रण**: आपका context window जितना भरा होगा, Claude के साथ आपकी बातचीत उतनी ही **कम प्रभावी** होगी — और आपकी 5h/7d सीमाएँ उतनी ही **तेज़ी से** खत्म होंगी। कुशलता से काम करते रहने के लिए जब भी आप **60%** पार करें, तब clear करें या `/compact` चलाएँ।
 
 ### ⏳ Reset countdown — अपनी सीमाओं के इर्द-गिर्द योजना बनाएँ
 
-5h / 7d मीटर में एक लाइव countdown शामिल है जो बताता है कि प्रत्येक window कब रीसेट होगी: `5h{1.1h}: 1%` — 5-घंटे की window 1.1 घंटे में रीसेट होती है; `7d{1.1d}: 0%` — साप्ताहिक window 1.1 दिन में रीसेट होती है। आपको हमेशा पता रहता है कि आप कब वापस 0% पर पहुँचेंगे, इसलिए आप भारी काम को रीसेट के ठीक बाद शेड्यूल कर सकते हैं और काम के बीच में ही सीमा से टकराने के बजाय अपनी उत्पादकता को वितरित कर सकते हैं। यह Claude Code द्वारा भेजे गए `rate_limits.*.resets_at` से संचालित होता है; अगर आपका build reset timestamps नहीं भेजता, तो मीटर सहजता से सादे `5h: 1%` पर वापस आ जाते हैं।
+5h / 7d मीटर में एक लाइव countdown शामिल है जो बताता है कि प्रत्येक window कब रीसेट होगी: `5h{1h 6m}: 1%` — 5-घंटे की window 1 घंटे 6 मिनट में रीसेट होती है; `7d{1d 2h}: 0%` — साप्ताहिक window 1 दिन 2 घंटे में रीसेट होती है। आपको हमेशा पता रहता है कि आप कब वापस 0% पर पहुँचेंगे, इसलिए आप भारी काम को रीसेट के ठीक बाद शेड्यूल कर सकते हैं और काम के बीच में ही सीमा से टकराने के बजाय अपनी उत्पादकता को वितरित कर सकते हैं। यह Claude Code द्वारा भेजे गए `rate_limits.*.resets_at` से संचालित होता है; अगर आपका build reset timestamps नहीं भेजता, तो मीटर सहजता से सादे `5h: 1%` पर वापस आ जाते हैं।
 
 ```text
-… ⎇ main │ 5h{1.1h}: 1% 7d{1.1d}: 0% │ 🤖 xhigh
+… ⎇ main │ 5h{1h 6m}: 1% 7d{1d 2h}: 0% │ 🤖 xhigh
 ```
 
 **डिज़ाइन से ही पूर्वानुमेय** — हर मीटर अपने रीसेट तक countdown करता है, ताकि आप दीवार से टकराने के बजाय अपने काम की गति तय करें।
@@ -45,7 +45,7 @@ chmod +x ~/.claude/status-line.sh
   "refreshInterval": 30 } }
 ```
 
-> 💡 `refreshInterval: 30` लाइन को हर 30 सेकंड में फिर से चलाता है, तब भी जब सेशन निष्क्रिय हो — इससे reset countdown (5h{1.1h}), time tracker और post-reset flips लाइव बने रहते हैं। 30 एक उचित डिफ़ॉल्ट है; 60 बैटरी के लिए किफ़ायती है; इसे छोड़ दें तो लाइन केवल इवेंट्स पर रिफ़्रेश होगी (नया assistant संदेश, /compact, vim toggle)।
+> 💡 `refreshInterval: 30` लाइन को हर 30 सेकंड में फिर से चलाता है, तब भी जब सेशन निष्क्रिय हो — इससे reset countdown (5h{1h 6m}), time tracker और post-reset flips लाइव बने रहते हैं। 30 एक उचित डिफ़ॉल्ट है; 60 बैटरी के लिए किफ़ायती है; इसे छोड़ दें तो लाइन केवल इवेंट्स पर रिफ़्रेश होगी (नया assistant संदेश, /compact, vim toggle)।
 
 Claude Code को रीस्टार्ट करें (या `/config` reload चलाएँ)। हो गया।
 
@@ -328,7 +328,7 @@ chmod +x ~/.claude/status-line.sh
 }
 ```
 
-> 💡 `refreshInterval: 30` लाइन को हर 30 सेकंड में फिर से चलाता है, तब भी जब सेशन निष्क्रिय हो — इससे reset countdown (5h{1.1h}), time tracker और post-reset flips लाइव बने रहते हैं। 30 एक उचित डिफ़ॉल्ट है; 60 बैटरी के लिए किफ़ायती है; इसे छोड़ दें तो लाइन केवल इवेंट्स पर रिफ़्रेश होगी (नया assistant संदेश, /compact, vim toggle)।
+> 💡 `refreshInterval: 30` लाइन को हर 30 सेकंड में फिर से चलाता है, तब भी जब सेशन निष्क्रिय हो — इससे reset countdown (5h{1h 6m}), time tracker और post-reset flips लाइव बने रहते हैं। 30 एक उचित डिफ़ॉल्ट है; 60 बैटरी के लिए किफ़ायती है; इसे छोड़ दें तो लाइन केवल इवेंट्स पर रिफ़्रेश होगी (नया assistant संदेश, /compact, vim toggle)।
 
 Claude Code को रीस्टार्ट करें (या `/config` reload चलाएँ)।
 
@@ -391,7 +391,7 @@ GitHub से नवीनतम बंडल लाता है, एक timest
 | **प्रति-संदेश** input/output token काउंटर | ❌ | ✅ |
 | **कुल session tokens** (API mode fallback) | ❌ | ✅ |
 | **5h / 7d rate-limit** इंडिकेटर, > 50 % पर ⚠️ के साथ | ❌ | ✅ |
-| limit मीटर में Reset countdown (`5h{1.1h}`) | ❌ | ✅ |
+| limit मीटर में Reset countdown (`5h{1h 6m}`) | ❌ | ✅ |
 | **Git branch** + dirty + ahead/behind | ❌ | ✅ |
 | **Time-on-task** (active बनाम wall clock) | ❌ | ✅ |
 | **Thinking / effort level** डिस्प्ले | ❌ | ✅ |
@@ -421,11 +421,11 @@ GitHub से नवीनतम बंडल लाता है, एक timest
 
 [Claude Code](https://claude.com/claude-code) (Anthropic की CLI) में डिफ़ॉल्ट status line का एक bash-आधारित रिप्लेसमेंट। यह स्क्रीन के नीचे की लाइन को एक असली dashboard में बदल देता है: model, context %, progress bar, session cost, rate limits, git status, time-on-task, और भी बहुत कुछ।
 
-### `5h{1.1h}: 1%` का क्या मतलब है?
+### `5h{1h 6m}: 1%` का क्या मतलब है?
 
-आपने 5-घंटे की window का 1% इस्तेमाल कर लिया है, और `{1.1h}` एक लाइव countdown है — window 1.1 घंटे में रीसेट होती है (`7d{1.1d}`: साप्ताहिक window 1.1 दिन में रीसेट होती है)। हर render पर `rate_limits.*.resets_at` से पढ़ा जाता है। आपके build में कोई reset timestamp नहीं है? मीटर सादे `5h: 1%` पर वापस आ जाता है।
+आपने 5-घंटे की window का 1% इस्तेमाल कर लिया है, और `{1h 6m}` एक लाइव countdown है — window 1 घंटे 6 मिनट में रीसेट होती है (`7d{1d 2h}`: साप्ताहिक window 1 दिन 2 घंटे में रीसेट होती है)। हर render पर `rate_limits.*.resets_at` से पढ़ा जाता है। आपके build में कोई reset timestamp नहीं है? मीटर सादे `5h: 1%` पर वापस आ जाता है।
 
-### क्या status line खुद-ब-खुद अपडेट होती है? मेरा {1.1h} countdown जमा हुआ दिखता है।
+### क्या status line खुद-ब-खुद अपडेट होती है? मेरा {1h 6m} countdown जमा हुआ दिखता है।
 
 Claude Code इवेंट्स पर फिर से रेंडर करता है — नया assistant संदेश, /compact, permission-mode या vim-mode बदलाव (300 ms पर debounced) — इसलिए इवेंट्स के बीच लाइन जम जाती है। `~/.claude/settings.json` के statusLine ब्लॉक में `"refreshInterval": 30` जोड़ें, और तब यह एक निश्चित 30-सेकंड टाइमर पर भी फिर से चलता है, जिससे निष्क्रिय रहते हुए भी countdown और time tracker टिकते रहते हैं। एक render की लागत ~0.1 s है, इसलिए 30 s नगण्य है; बैटरी पर या विशाल repos में 60 इस्तेमाल करें (हर render पर git status चलता है); न्यूनतम 1 है।
 

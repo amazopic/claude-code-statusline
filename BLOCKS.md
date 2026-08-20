@@ -109,7 +109,7 @@ N=""
 
 Paste this once, near the top of your script (after the style pack).
 Every block below relies on the variables it sets. The locale guard keeps
-every number (`0.42$`, `87.5K`, `{1.1h}`) formatted with a decimal **dot**
+every number (`0.42$`, `87.5K`, `{1h 6m}`) formatted with a decimal **dot**
 even when the shell runs under a comma-decimal locale (de_DE, ru_RU, …).
 
 The context-window setup is **payload-first**: when Claude Code supplies a
@@ -357,9 +357,9 @@ fi
 
 ### `limits` — 5h / 7d rate limits with ⚠️ at > 50 % and reset countdown
 
-Renders `5h{1.1h}: 1% 7d{1.1d}: 0%` — each meter carries a live countdown to
-the moment its window resets (`{1.1h}` = 5-hour window resets in 1.1 hours,
-`{1.1d}` = weekly window resets in 1.1 days). The countdown is read from
+Renders `5h{1h 6m}: 1% 7d{1d 2h}: 0%` — each meter carries a live countdown to
+the moment its window resets (`{1h 6m}` = 5-hour window resets in 1 hour 6 minutes,
+`{1d 2h}` = weekly window resets in 1 day 2 hours). The countdown is read from
 `rate_limits.*.resets_at` (unix epoch seconds) on every render — **predictability
 of work: distribute your productivity** by scheduling heavy work right after a
 reset. If `resets_at` is missing/null/0, the block **gracefully falls back** to
@@ -371,7 +371,7 @@ lim5h=$(j '.rate_limits.five_hour.used_percentage // .rate_limits.session.percen
 lim7d=$(j '.rate_limits.seven_day.used_percentage // .rate_limits.weekly.percent_used')
 rst5h=$(j '.rate_limits.five_hour.resets_at')
 rst7d=$(j '.rate_limits.seven_day.resets_at')
-# helper: seconds-until-reset → "{1.1h}" / "{1.1d}" (dim), or "" if no/elapsed reset
+# helper: seconds-until-reset → "{1h 6m}" / "{1d 2h}" (dim), or "" if no/elapsed reset
 fmt_reset() {  # $1 = resets_at epoch, $2 = unit (h|d)
   local at="$1" unit="$2" now rem div
   [[ -z "$at" || "$at" == "null" || "$at" == "0" ]] && { printf ''; return; }

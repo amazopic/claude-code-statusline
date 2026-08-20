@@ -14,7 +14,7 @@ set -uo pipefail
 unset LC_ALL
 export LC_NUMERIC=C
 input=$(cat)
-LIM=$'  \e[38;5;245m· 5h{1.1h}: 15% · 7d{1.1d}: 5%\e[0m'
+LIM=$'  \e[38;5;245m· 5h{1h 6m}: 15% · 7d{1d 2h}: 5%\e[0m'
 N=$'\e[0m'
 j() { jq -r "$1 // empty" 2>/dev/null <<<"$input"; }
 model_disp=$(j '.model.display_name'); model_id=$(j '.model.id')

@@ -94,7 +94,7 @@ export default {
   "install.claude.prompt2_label": "Potem preizkusi:",
   "install.codelabel.main": "macOS / Linux / WSL",
   "install.codelabel.slash": "Neobvezno: ukaz <code class=\"mono\">/statusline</code>",
-  "install.refreshTip": "refreshInterval: 30 znova zažene vrstico vsakih 30 sekund tudi med mirovanjem seje — odštevanje do ponastavitve (5h{1.1h}), sledilnik časa in preklope po ponastavitvi ohranja žive. 30 je smiselna privzeta vrednost; 60 varčuje z baterijo; izpustite, da se osveži le ob dogodkih (novo sporočilo pomočnika, /compact, preklop vim).",
+  "install.refreshTip": "refreshInterval: 30 znova zažene vrstico vsakih 30 sekund tudi med mirovanjem seje — odštevanje do ponastavitve (5h{1h 6m}), sledilnik časa in preklope po ponastavitvi ohranja žive. 30 je smiselna privzeta vrednost; 60 varčuje z baterijo; izpustite, da se osveži le ob dogodkih (novo sporočilo pomočnika, /compact, preklop vim).",
   "faq.sub": "V &amp; O",
   "faq.title": "Pogosta<br/>vprašanja",
   "faq.q.limits": "Zakaj je prikaz 5h / 7d omejitev glavna funkcija?",
@@ -125,9 +125,9 @@ export default {
   "faq.a.time": "Tema <strong>time</strong> bere časovne žige iz JSONL: <strong>active</strong> (vrzeli < 5 min) in <strong>wall</strong> (celoten razpon).",
   "faq.q.revert": "Kako se vrnem na privzeto vrstico?",
   "faq.a.revert": "Odstranite blok <code>statusLine</code> iz <code>~/.claude/settings.json</code>.",
-  "faq.q.reset": "Kaj pomeni 5h{1.1h}: 1%?",
-  "faq.a.reset": "Porabili ste 1 % 5-urnega okna, <code>{1.1h}</code> pa je živo odštevanje — okno se ponastavi čez 1,1 ure (<code>7d{1.1d}</code>: tedensko okno se ponastavi čez 1,1 dneva). Prebrano iz <code>rate_limits.*.resets_at</code> ob vsakem izrisu. V vaši gradnji ni časovnega žiga ponastavitve? Merilnik se povrne na preprosto <code>5h: 1%</code>.",
-  "faq.q.refresh": "Ali se statusna vrstica posodablja sama? Moje odštevanje {1.1h} je videti zamrznjeno.",
+  "faq.q.reset": "Kaj pomeni 5h{1h 6m}: 1%?",
+  "faq.a.reset": "Porabili ste 1 % 5-urnega okna, <code>{1h 6m}</code> pa je živo odštevanje — okno se ponastavi čez 1 uro 6 minut (<code>7d{1d 2h}</code>: tedensko okno se ponastavi čez 1 dan 2 uri). Prebrano iz <code>rate_limits.*.resets_at</code> ob vsakem izrisu. V vaši gradnji ni časovnega žiga ponastavitve? Merilnik se povrne na preprosto <code>5h: 1%</code>.",
+  "faq.q.refresh": "Ali se statusna vrstica posodablja sama? Moje odštevanje {1h 6m} je videti zamrznjeno.",
   "faq.a.refresh": "Claude Code se ponovno izriše ob dogodkih — novo sporočilo pomočnika, /compact, sprememba načina dovoljenj ali načina vim (z razbremenitvijo pri 300 ms) — zato med dogodki vrstica zamrzne. V blok statusLine v <code>~/.claude/settings.json</code> dodajte <code>\"refreshInterval\": 30</code> in znova se bo zagnala tudi na fiksnem 30-sekundnem časovniku ter ohranjala odštevanje in sledilnik časa dejavna med mirovanjem. Izris stane ~0,1 s, zato je 30 s zanemarljivo; uporabite <code>60</code> pri baterijskem napajanju ali v ogromnih repozitorijih (<code>git status</code> se izvede ob vsakem izrisu); najmanjša vrednost je <code>1</code>.",
   "colo.title": "Amazopic",
   "colo.h.author": "Avtor",
@@ -163,5 +163,5 @@ export default {
   "cmp.f.cli": "Vgrajen CLI konfigurator",
   "cmp.f.slash": "Ukaz /statusline",
   "cmp.f.deps": "Odvisnosti",
-  "cmp.f.reset": "Odštevanje do ponastavitve v merilnikih omejitev (5h{1.1h})"
+  "cmp.f.reset": "Odštevanje do ponastavitve v merilnikih omejitev (5h{1h 6m})"
 };

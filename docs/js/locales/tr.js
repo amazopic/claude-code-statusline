@@ -94,7 +94,7 @@ export default {
   "install.claude.prompt2_label": "Sonra test edin:",
   "install.codelabel.main": "macOS / Linux / WSL",
   "install.codelabel.slash": "İsteğe bağlı: <code class=\"mono\">/statusline</code> slash komutu",
-  "install.refreshTip": "refreshInterval: 30, oturum boştayken bile satırı her 30 saniyede bir yeniden çalıştırır — sıfırlama geri sayımını (5h{1.1h}), zaman izleyiciyi ve sıfırlama sonrası geçişleri canlı tutar. 30 makul bir varsayılandır; 60 pil dostudur; yalnızca olaylarda yenilemek için atlayın (yeni asistan mesajı, /compact, vim geçişi).",
+  "install.refreshTip": "refreshInterval: 30, oturum boştayken bile satırı her 30 saniyede bir yeniden çalıştırır — sıfırlama geri sayımını (5h{1h 6m}), zaman izleyiciyi ve sıfırlama sonrası geçişleri canlı tutar. 30 makul bir varsayılandır; 60 pil dostudur; yalnızca olaylarda yenilemek için atlayın (yeni asistan mesajı, /compact, vim geçişi).",
   "faq.sub": "S &amp; C",
   "faq.title": "Sıkça<br/>Sorulanlar",
   "faq.q.limits": "5sa / 7g limit göstergesi neden öne çıkan özellik?",
@@ -125,9 +125,9 @@ export default {
   "faq.a.time": "<strong>time</strong> teması, JSONL transkriptindeki zaman damgalarını okur ve iki süre bildirir: <strong>active</strong> (5 dakikadan kısa mesajlar arası boşlukların toplamı) ve <strong>wall</strong> (ilk mesajdan son mesaja kadar olan toplam aralık). 5 dakikalık boşta kalma eşiği yapılandırılabilir.",
   "faq.q.revert": "Varsayılan Claude Code durum satırına nasıl geri dönerim?",
   "faq.a.revert": "Ya <code>~/.claude/settings.json</code> dosyasındaki <code>statusLine</code> bloğunu kaldırın ya da <code>~/.claude/status-line.sh reset</code> çalıştırıp varsayılana çok yakın olan <code>minimal</code> temasına geçin.",
-  "faq.q.reset": "5h{1.1h}: 1% ne anlama gelir?",
-  "faq.a.reset": "5 saatlik pencerenin %1'ini kullandınız ve <code>{1.1h}</code> canlı bir geri sayımdır — pencere 1,1 saat içinde sıfırlanır (<code>7d{1.1d}</code>: haftalık pencere 1,1 gün içinde sıfırlanır). Her çizimde <code>rate_limits.*.resets_at</code> değerinden okunur. Yapınızda sıfırlama zaman damgası yok mu? Gösterge, düz <code>5h: 1%</code> biçimine geri döner.",
-  "faq.q.refresh": "Durum satırı kendiliğinden güncellenir mi? {1.1h} geri sayımım donmuş görünüyor.",
+  "faq.q.reset": "5h{1h 6m}: 1% ne anlama gelir?",
+  "faq.a.reset": "5 saatlik pencerenin %1'ini kullandınız ve <code>{1h 6m}</code> canlı bir geri sayımdır — pencere 1 saat 6 dakika içinde sıfırlanır (<code>7d{1d 2h}</code>: haftalık pencere 1 gün 2 saat içinde sıfırlanır). Her çizimde <code>rate_limits.*.resets_at</code> değerinden okunur. Yapınızda sıfırlama zaman damgası yok mu? Gösterge, düz <code>5h: 1%</code> biçimine geri döner.",
+  "faq.q.refresh": "Durum satırı kendiliğinden güncellenir mi? {1h 6m} geri sayımım donmuş görünüyor.",
   "faq.a.refresh": "Claude Code olaylarda yeniden çizer — yeni asistan mesajı, /compact, izin modu veya vim modu değişikliği (300 ms'de geciktirilir) — bu yüzden olaylar arasında satır donar. <code>~/.claude/settings.json</code> içindeki statusLine bloğuna <code>\"refreshInterval\": 30</code> ekleyin; böylece sabit 30 saniyelik bir zamanlayıcıyla da yeniden çalışır ve boştayken geri sayımı ve zaman izleyiciyi çalışır tutar. Bir çizim ~0,1 s sürer, dolayısıyla 30 s ihmal edilebilir; pilde veya devasa depolarda <code>60</code> kullanın (<code>git status</code> her çizimde çalışır); en düşük değer <code>1</code>.",
   "colo.title": "Amazopic",
   "colo.h.author": "Yazar",
@@ -163,5 +163,5 @@ export default {
   "cmp.f.cli": "Yerleşik CLI yapılandırıcısı",
   "cmp.f.slash": "/statusline slash komutu",
   "cmp.f.deps": "Bağımlılıklar",
-  "cmp.f.reset": "Limit göstergelerinde sıfırlama geri sayımı (5h{1.1h})"
+  "cmp.f.reset": "Limit göstergelerinde sıfırlama geri sayımı (5h{1h 6m})"
 };

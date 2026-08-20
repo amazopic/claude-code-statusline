@@ -11,17 +11,17 @@
 **Languages:** [English](README.md) · [Русский](README.ru.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Українська](README.uk.md) · [Slovenščina](README.sl.md) · [Italiano](README.it.md) · [Español](README.es.md) · [中文](README.zh.md) · [日本語](README.ja.md) · [한국어](README.ko.md) · [العربية](README.ar.md) · [Português](README.pt.md) · [Türkçe](README.tr.md) · [Bahasa Indonesia](README.id.md) · Tiếng Việt · [हिन्दी](README.hi.md) · [繁體中文](README.zh-tw.md) · [Polski](README.pl.md) · [ไทย](README.th.md) · [עברית](README.he.md) · [বাংলা](README.bn.md) · [اردو](README.ur.md)
 
 ```text
-Opus 4.7 (1M) │ 🚀 12% █▌░░░░░░░░ 121.4K/1000K │ 0.42$ │ ↑0.5K ↓1.2K │ project │ ⎇ main │ 5h{1.1h}: 15% 7d{1.1d}: 4% │ 🤖 xhigh
+Opus 4.7 (1M) │ 🚀 12% █▌░░░░░░░░ 121.4K/1000K │ 0.42$ │ ↑0.5K ↓1.2K │ project │ ⎇ main │ 5h{1h 6m}: 15% 7d{1d 2h}: 4% │ 🤖 xhigh
 ```
 
 > 💡 **Mẹo hay — Kiểm soát ngữ cảnh**: cửa sổ ngữ cảnh càng đầy thì cuộc trò chuyện với Claude càng **kém hiệu quả** — và bạn **đốt** giới hạn 5h/7d càng **nhanh**. Hãy xóa hoặc `/compact` mỗi khi vượt **60%** để tiếp tục làm việc hiệu quả.
 
 ### ⏳ Đếm ngược đến lúc reset — lên kế hoạch quanh giới hạn của bạn
 
-Các đồng hồ đo 5h / 7d bao gồm bộ đếm ngược trực tiếp đến thời điểm mỗi cửa sổ được reset: `5h{1.1h}: 1%` — cửa sổ 5 giờ sẽ reset sau 1,1 giờ; `7d{1.1d}: 0%` — cửa sổ hàng tuần sẽ reset sau 1,1 ngày. Bạn luôn biết khi nào mình quay về 0%, nhờ vậy có thể sắp xếp các tác vụ nặng ngay sau khi reset và phân bổ năng suất thay vì đâm sầm vào giới hạn giữa chừng. Hoạt động nhờ `rate_limits.*.resets_at` do Claude Code gửi; nếu bản dựng của bạn không gửi dấu thời gian reset, các đồng hồ đo sẽ tự động chuyển về dạng đơn giản `5h: 1%`.
+Các đồng hồ đo 5h / 7d bao gồm bộ đếm ngược trực tiếp đến thời điểm mỗi cửa sổ được reset: `5h{1h 6m}: 1%` — cửa sổ 5 giờ sẽ reset sau 1 giờ 6 phút; `7d{1d 2h}: 0%` — cửa sổ hàng tuần sẽ reset sau 1 ngày 2 giờ. Bạn luôn biết khi nào mình quay về 0%, nhờ vậy có thể sắp xếp các tác vụ nặng ngay sau khi reset và phân bổ năng suất thay vì đâm sầm vào giới hạn giữa chừng. Hoạt động nhờ `rate_limits.*.resets_at` do Claude Code gửi; nếu bản dựng của bạn không gửi dấu thời gian reset, các đồng hồ đo sẽ tự động chuyển về dạng đơn giản `5h: 1%`.
 
 ```text
-… ⎇ main │ 5h{1.1h}: 1% 7d{1.1d}: 0% │ 🤖 xhigh
+… ⎇ main │ 5h{1h 6m}: 1% 7d{1d 2h}: 0% │ 🤖 xhigh
 ```
 
 **Dễ đoán theo thiết kế** — mỗi đồng hồ đo đều đếm ngược đến lúc reset, nên bạn điều tiết được nhịp làm việc thay vì đụng phải bức tường giới hạn.
@@ -45,7 +45,7 @@ Sau đó thêm vào `~/.claude/settings.json`:
   "refreshInterval": 30 } }
 ```
 
-> 💡 `refreshInterval: 30` chạy lại dòng trạng thái mỗi 30 giây ngay cả khi phiên đang nhàn rỗi — giữ cho đếm ngược reset (5h{1.1h}), bộ theo dõi thời gian và các bước lật sau reset luôn cập nhật trực tiếp. 30 là giá trị mặc định hợp lý; 60 tiết kiệm pin; bỏ qua để chỉ làm mới theo sự kiện (tin nhắn mới của trợ lý, /compact, bật/tắt vim).
+> 💡 `refreshInterval: 30` chạy lại dòng trạng thái mỗi 30 giây ngay cả khi phiên đang nhàn rỗi — giữ cho đếm ngược reset (5h{1h 6m}), bộ theo dõi thời gian và các bước lật sau reset luôn cập nhật trực tiếp. 30 là giá trị mặc định hợp lý; 60 tiết kiệm pin; bỏ qua để chỉ làm mới theo sự kiện (tin nhắn mới của trợ lý, /compact, bật/tắt vim).
 
 Khởi động lại Claude Code (hoặc chạy `/config` để tải lại). Xong.
 
@@ -328,7 +328,7 @@ Sau đó thêm vào `~/.claude/settings.json`:
 }
 ```
 
-> 💡 `refreshInterval: 30` chạy lại dòng trạng thái mỗi 30 giây ngay cả khi phiên đang nhàn rỗi — giữ cho đếm ngược reset (5h{1.1h}), bộ theo dõi thời gian và các bước lật sau reset luôn cập nhật trực tiếp. 30 là giá trị mặc định hợp lý; 60 tiết kiệm pin; bỏ qua để chỉ làm mới theo sự kiện (tin nhắn mới của trợ lý, /compact, bật/tắt vim).
+> 💡 `refreshInterval: 30` chạy lại dòng trạng thái mỗi 30 giây ngay cả khi phiên đang nhàn rỗi — giữ cho đếm ngược reset (5h{1h 6m}), bộ theo dõi thời gian và các bước lật sau reset luôn cập nhật trực tiếp. 30 là giá trị mặc định hợp lý; 60 tiết kiệm pin; bỏ qua để chỉ làm mới theo sự kiện (tin nhắn mới của trợ lý, /compact, bật/tắt vim).
 
 Khởi động lại Claude Code (hoặc chạy `/config` để tải lại).
 
@@ -391,7 +391,7 @@ Chỉnh sửa các hằng số gần đầu tệp `statusline.sh`:
 | Bộ đếm token vào/ra **theo từng tin nhắn** | ❌ | ✅ |
 | **Tổng token của phiên** (dự phòng chế độ API) | ❌ | ✅ |
 | Chỉ báo **giới hạn tốc độ 5h / 7d** kèm ⚠️ ở mức > 50% | ❌ | ✅ |
-| Đếm ngược reset trong đồng hồ giới hạn (`5h{1.1h}`) | ❌ | ✅ |
+| Đếm ngược reset trong đồng hồ giới hạn (`5h{1h 6m}`) | ❌ | ✅ |
 | **Nhánh git** + dirty + ahead/behind | ❌ | ✅ |
 | **Thời gian làm việc** (active so với đồng hồ thực) | ❌ | ✅ |
 | Hiển thị mức **thinking / effort** | ❌ | ✅ |
@@ -421,11 +421,11 @@ Các kịch bản cụ thể mà dự án này tự chứng minh giá trị củ
 
 Một bản thay thế dựa trên bash cho thanh trạng thái mặc định trong [Claude Code](https://claude.com/claude-code) (CLI của Anthropic). Nó biến dòng dưới cùng màn hình thành một bảng điều khiển thực thụ: mô hình, % ngữ cảnh, thanh tiến trình, chi phí phiên, giới hạn tốc độ, trạng thái git, thời gian làm việc, và nhiều hơn nữa.
 
-### `5h{1.1h}: 1%` nghĩa là gì?
+### `5h{1h 6m}: 1%` nghĩa là gì?
 
-Bạn đã dùng 1% của cửa sổ 5 giờ, và `{1.1h}` là bộ đếm ngược trực tiếp — cửa sổ sẽ reset sau 1,1 giờ (`7d{1.1d}`: cửa sổ hàng tuần reset sau 1,1 ngày). Được đọc từ `rate_limits.*.resets_at` ở mỗi lần render. Bản dựng của bạn không có dấu thời gian reset? Đồng hồ đo sẽ chuyển về dạng đơn giản `5h: 1%`.
+Bạn đã dùng 1% của cửa sổ 5 giờ, và `{1h 6m}` là bộ đếm ngược trực tiếp — cửa sổ sẽ reset sau 1 giờ 6 phút (`7d{1d 2h}`: cửa sổ hàng tuần reset sau 1 ngày 2 giờ). Được đọc từ `rate_limits.*.resets_at` ở mỗi lần render. Bản dựng của bạn không có dấu thời gian reset? Đồng hồ đo sẽ chuyển về dạng đơn giản `5h: 1%`.
 
-### Dòng trạng thái có tự cập nhật không? Bộ đếm ngược `{1.1h}` của tôi trông như bị đóng băng.
+### Dòng trạng thái có tự cập nhật không? Bộ đếm ngược `{1h 6m}` của tôi trông như bị đóng băng.
 
 Claude Code render lại theo sự kiện — tin nhắn mới của trợ lý, `/compact`, thay đổi chế độ quyền hoặc chế độ vim (chống dội ở 300 ms) — nên giữa các sự kiện thì dòng bị đóng băng. Thêm `"refreshInterval": 30` vào khối `statusLine` trong `~/.claude/settings.json` và nó cũng sẽ chạy lại theo bộ hẹn giờ cố định 30 giây, giữ cho bộ đếm ngược và bộ theo dõi thời gian luôn nhích đều khi nhàn rỗi. Một lần render tốn ~0,1 s, nên 30 s là không đáng kể; dùng 60 khi chạy pin hoặc trong repo khổng lồ (git status chạy ở mỗi lần render); tối thiểu là 1.
 

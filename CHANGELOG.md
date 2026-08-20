@@ -11,6 +11,17 @@ tag `vYYYY.MM.DD` and a [GitHub Release](https://github.com/amazopic/claude-code
 
 ---
 
+## [2026.07.26.2] — 2026-07-26
+
+### Changed
+- **Reset countdown now steps down to smaller units.** Instead of one decimal
+  unit (`5h{1.1h}` / `7d{1.1d}`) each window shows a compound duration —
+  `5h{1h 6m}` / `7d{1d 2h}`: days+hours under a week, hours+minutes under a
+  day, plain minutes under an hour (`45m`), `<1m` at the very end. A zero
+  second component is dropped (`2d`, `5h`). No decimals, no mental math.
+- The countdown is now computed with plain shell arithmetic instead of `awk`,
+  so it is also immune to comma-decimal locales by construction.
+
 ## [2026.07.26.1] — 2026-07-26
 
 ### Changed
@@ -131,6 +142,7 @@ tag `vYYYY.MM.DD` and a [GitHub Release](https://github.com/amazopic/claude-code
   standalone example scripts + pre-rendered ANSI previews.
 - Editorial-style landing page (GitHub Pages) in 11 languages with live specimens.
 
+[2026.07.26.2]: https://github.com/amazopic/claude-code-statusline/compare/v2026.07.26.1...v2026.07.26.2
 [2026.07.26.1]: https://github.com/amazopic/claude-code-statusline/compare/v2026.07.26...v2026.07.26.1
 [2026.07.26]: https://github.com/amazopic/claude-code-statusline/compare/v2026.07.21...v2026.07.26
 [2026.07.21]: https://github.com/amazopic/claude-code-statusline/compare/v2026.06.14...v2026.07.21

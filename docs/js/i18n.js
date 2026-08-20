@@ -3,7 +3,7 @@
 // All other locales are lazy-loaded per-code chunks from ./locales/<code>.js
 // ─────────────────────────────────────────────────────────────────────
 
-export const ASSET_V = '26';
+export const ASSET_V = '27';
 
 export const supportedLocales = [
   { code: 'en',   label: 'English',     native: 'English'    },
@@ -130,7 +130,7 @@ const en = {
     "install.claude.prompt2_label": "Then test it:",
     "install.codelabel.main": "macOS / Linux / WSL",
     "install.codelabel.slash": "Optional: <code class=\"mono\">/statusline</code> slash command",
-    "install.refreshTip": "refreshInterval: 30 re-runs the line every 30 seconds even while the session is idle — keeps the reset countdown (5h{1.1h}), the time tracker and post-reset flips live. 30 is a sensible default; 60 is battery-frugal; omit to refresh on events only (new assistant message, /compact, vim toggle).",
+    "install.refreshTip": "refreshInterval: 30 re-runs the line every 30 seconds even while the session is idle — keeps the reset countdown (5h{1h 6m}), the time tracker and post-reset flips live. 30 is a sensible default; 60 is battery-frugal; omit to refresh on events only (new assistant message, /compact, vim toggle).",
     "faq.sub": "Q &amp; A",
     "faq.title": "Frequently<br/>Asked",
     "faq.q.limits": "Why is the 5h / 7d limit display the headline feature?",
@@ -161,9 +161,9 @@ const en = {
     "faq.a.time": "The <strong>time</strong> theme reads timestamps from the JSONL transcript and reports two durations: <strong>active</strong> (sum of inter-message gaps shorter than 5 minutes) and <strong>wall</strong> (total span from first to last message). The 5-minute idle threshold is configurable.",
     "faq.q.revert": "How do I revert to the default Claude Code status line?",
     "faq.a.revert": "Either remove the <code>statusLine</code> block from <code>~/.claude/settings.json</code>, or run <code>~/.claude/status-line.sh reset</code> and switch to the <code>minimal</code> theme that closely matches the default.",
-    "faq.q.reset": "What does 5h{1.1h}: 1% mean?",
-    "faq.a.reset": "You've used 1% of the 5-hour window, and <code>{1.1h}</code> is a live countdown — the window resets in 1.1 hours (<code>7d{1.1d}</code>: the weekly window resets in 1.1 days). Read from <code>rate_limits.*.resets_at</code> on every render. No reset timestamp in your build? The meter falls back to plain <code>5h: 1%</code>.",
-    "faq.q.refresh": "Does the status line update by itself? My {1.1h} countdown looks frozen.",
+    "faq.q.reset": "What does 5h{1h 6m}: 1% mean?",
+    "faq.a.reset": "You've used 1% of the 5-hour window, and <code>{1h 6m}</code> is a live countdown — the window resets in 1 hour 6 minutes (<code>7d{1d 2h}</code>: the weekly window resets in 1 day 2 hours). Read from <code>rate_limits.*.resets_at</code> on every render. No reset timestamp in your build? The meter falls back to plain <code>5h: 1%</code>.",
+    "faq.q.refresh": "Does the status line update by itself? My {1h 6m} countdown looks frozen.",
     "faq.a.refresh": "Claude Code re-renders on events — new assistant message, /compact, permission-mode or vim-mode change (debounced at 300 ms) — so between events the line freezes. Add <code>\"refreshInterval\": 30</code> to the statusLine block in <code>~/.claude/settings.json</code> and it also re-runs on a fixed 30-second timer, keeping the countdown and time tracker ticking while idle. A render costs ~0.1 s, so 30 s is negligible; use <code>60</code> on battery or in huge repos (<code>git status</code> runs each render); minimum is <code>1</code>.",
     "colo.title": "Amazopic",
     "colo.h.author": "Author",
@@ -199,7 +199,7 @@ const en = {
     "cmp.f.cli": "Built-in CLI configurator",
     "cmp.f.slash": "/statusline slash command",
     "cmp.f.deps": "Dependencies",
-    "cmp.f.reset": "Reset countdown in limit meters (5h{1.1h})"
+    "cmp.f.reset": "Reset countdown in limit meters (5h{1h 6m})"
   };
 
 // Locale registry. 'en' is always present; others fill in lazily.

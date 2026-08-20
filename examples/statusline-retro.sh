@@ -13,7 +13,7 @@ set -uo pipefail
 unset LC_ALL
 export LC_NUMERIC=C
 input=$(cat)
-LIM=$' \e[38;5;46m█\e[0m \e[38;5;46m5h{1.1h}:\e[0m \e[1;38;5;226m15%\e[0m \e[38;5;46m█\e[0m \e[38;5;46m7d{1.1d}:\e[0m \e[1;38;5;226m5%\e[0m'
+LIM=$' \e[38;5;46m█\e[0m \e[38;5;46m5h{1h 6m}:\e[0m \e[1;38;5;226m15%\e[0m \e[38;5;46m█\e[0m \e[38;5;46m7d{1d 2h}:\e[0m \e[1;38;5;226m5%\e[0m'
 
 GR=$'\e[1;38;5;46m'    # phosphor green
 GRD=$'\e[38;5;28m'

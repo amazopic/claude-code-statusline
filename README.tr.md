@@ -11,17 +11,17 @@
 **Languages:** [English](README.md) · [Русский](README.ru.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Українська](README.uk.md) · [Slovenščina](README.sl.md) · [Italiano](README.it.md) · [Español](README.es.md) · [中文](README.zh.md) · [日本語](README.ja.md) · [한국어](README.ko.md) · [العربية](README.ar.md) · [Português](README.pt.md) · Türkçe · [Bahasa Indonesia](README.id.md) · [Tiếng Việt](README.vi.md) · [हिन्दी](README.hi.md) · [繁體中文](README.zh-tw.md) · [Polski](README.pl.md) · [ไทย](README.th.md) · [עברית](README.he.md) · [বাংলা](README.bn.md) · [اردو](README.ur.md)
 
 ```text
-Opus 4.7 (1M) │ 🚀 12% █▌░░░░░░░░ 121.4K/1000K │ 0.42$ │ ↑0.5K ↓1.2K │ project │ ⎇ main │ 5h{1.1h}: 15% 7d{1.1d}: 4% │ 🤖 xhigh
+Opus 4.7 (1M) │ 🚀 12% █▌░░░░░░░░ 121.4K/1000K │ 0.42$ │ ↑0.5K ↓1.2K │ project │ ⎇ main │ 5h{1h 6m}: 15% 7d{1d 2h}: 4% │ 🤖 xhigh
 ```
 
 > 💡 **Profesyonel ipucu — Bağlam kontrolü**: Bağlam pencereniz ne kadar dolarsa, Claude ile sohbetiniz o kadar **etkisiz** hâle gelir — ve 5sa/7g limitlerinizi o kadar **hızlı** tüketirsiniz. Verimli çalışmaya devam etmek için **%60**'ı geçtiğinizde her seferinde temizleyin veya `/compact` yapın.
 
 ### ⏳ Sıfırlanma geri sayımı — limitlerinize göre plan yapın
 
-5sa / 7g ölçerleri, her pencerenin sıfırlandığı ana kadar canlı bir geri sayım içerir: `5h{1.1h}: 1%` — 5 saatlik pencere 1,1 saat içinde sıfırlanır; `7d{1.1d}: 0%` — haftalık pencere 1,1 gün içinde sıfırlanır. Tekrar %0'a ne zaman döneceğinizi her zaman bildiğiniz için, ağır işleri sıfırlanmanın hemen ardından planlayabilir ve görevin ortasında limite toslamak yerine üretkenliğinizi dağıtabilirsiniz. Claude Code tarafından gönderilen `rate_limits.*.resets_at` ile çalışır; sürümünüz sıfırlanma zaman damgaları göndermiyorsa, ölçerler zarif bir şekilde sade `5h: 1%` biçimine geri döner.
+5sa / 7g ölçerleri, her pencerenin sıfırlandığı ana kadar canlı bir geri sayım içerir: `5h{1h 6m}: 1%` — 5 saatlik pencere 1 saat 6 dakika içinde sıfırlanır; `7d{1d 2h}: 0%` — haftalık pencere 1 gün 2 saat içinde sıfırlanır. Tekrar %0'a ne zaman döneceğinizi her zaman bildiğiniz için, ağır işleri sıfırlanmanın hemen ardından planlayabilir ve görevin ortasında limite toslamak yerine üretkenliğinizi dağıtabilirsiniz. Claude Code tarafından gönderilen `rate_limits.*.resets_at` ile çalışır; sürümünüz sıfırlanma zaman damgaları göndermiyorsa, ölçerler zarif bir şekilde sade `5h: 1%` biçimine geri döner.
 
 ```text
-… ⎇ main │ 5h{1.1h}: 1% 7d{1.1d}: 0% │ 🤖 xhigh
+… ⎇ main │ 5h{1h 6m}: 1% 7d{1d 2h}: 0% │ 🤖 xhigh
 ```
 
 **Tasarım gereği öngörülebilir** — her ölçer kendi sıfırlanmasına kadar geri sayar, böylece duvara toslamak yerine işinizi temponuza göre yürütürsünüz.
@@ -45,7 +45,7 @@ Ardından `~/.claude/settings.json` dosyasına ekleyin:
   "refreshInterval": 30 } }
 ```
 
-> 💡 `refreshInterval: 30`, oturum boştayken bile satırı her 30 saniyede bir yeniden çalıştırır — sıfırlanma geri sayımını (5h{1.1h}), süre takipçisini ve sıfırlanma sonrası geçişleri canlı tutar. 30 makul bir varsayılandır; 60 pile dosttur; etkinliklere (yeni asistan mesajı, `/compact`, vim geçişi) göre yenilemek için bu alanı atlayın.
+> 💡 `refreshInterval: 30`, oturum boştayken bile satırı her 30 saniyede bir yeniden çalıştırır — sıfırlanma geri sayımını (5h{1h 6m}), süre takipçisini ve sıfırlanma sonrası geçişleri canlı tutar. 30 makul bir varsayılandır; 60 pile dosttur; etkinliklere (yeni asistan mesajı, `/compact`, vim geçişi) göre yenilemek için bu alanı atlayın.
 
 Claude Code'u yeniden başlatın (veya `/config` reload çalıştırın). Tamamdır.
 
@@ -325,7 +325,7 @@ Ardından `~/.claude/settings.json` dosyasına ekleyin:
 }
 ```
 
-> 💡 `refreshInterval: 30`, oturum boştayken bile satırı her 30 saniyede bir yeniden çalıştırır — sıfırlanma geri sayımını (5h{1.1h}), süre takipçisini ve sıfırlanma sonrası geçişleri canlı tutar. 30 makul bir varsayılandır; 60 pile dosttur; etkinliklere (yeni asistan mesajı, `/compact`, vim geçişi) göre yenilemek için bu alanı atlayın.
+> 💡 `refreshInterval: 30`, oturum boştayken bile satırı her 30 saniyede bir yeniden çalıştırır — sıfırlanma geri sayımını (5h{1h 6m}), süre takipçisini ve sıfırlanma sonrası geçişleri canlı tutar. 30 makul bir varsayılandır; 60 pile dosttur; etkinliklere (yeni asistan mesajı, `/compact`, vim geçişi) göre yenilemek için bu alanı atlayın.
 
 Claude Code'u yeniden başlatın (veya `/config` reload çalıştırın).
 
@@ -387,7 +387,7 @@ Neyin kurulu olduğunu kontrol edin: `~/.claude/status-line.sh version`.
 | **Mesaj başına** giriş/çıkış token sayaçları | ❌ | ✅ |
 | **Toplam oturum token'ları** (API modu yedeği) | ❌ | ✅ |
 | > %50'de ⚠️ ile **5sa / 7g hız limiti** göstergeleri | ❌ | ✅ |
-| Limit ölçerlerinde sıfırlanma geri sayımı (`5h{1.1h}`) | ❌ | ✅ |
+| Limit ölçerlerinde sıfırlanma geri sayımı (`5h{1h 6m}`) | ❌ | ✅ |
 | **Git dalı** + kirli + önde/geride | ❌ | ✅ |
 | **Göreve harcanan süre** (etkin vs duvar saati) | ❌ | ✅ |
 | **Düşünme / çaba seviyesi** gösterimi | ❌ | ✅ |
@@ -417,11 +417,11 @@ Bu projenin kendini amorti ettiği somut senaryolar:
 
 [Claude Code](https://claude.com/claude-code) (Anthropic'in CLI'si) içindeki varsayılan durum satırının bash tabanlı bir alternatifidir. Ekranın altındaki satırı gerçek bir panoya dönüştürür: model, bağlam %, ilerleme çubuğu, oturum maliyeti, hız limitleri, git durumu, göreve harcanan süre ve daha fazlası.
 
-### `5h{1.1h}: 1%` ne anlama gelir?
+### `5h{1h 6m}: 1%` ne anlama gelir?
 
-5 saatlik pencerenin %1'ini kullandınız ve `{1.1h}` canlı bir geri sayımdır — pencere 1,1 saat içinde sıfırlanır (`7d{1.1d}`: haftalık pencere 1,1 gün içinde sıfırlanır). Her render'da `rate_limits.*.resets_at` değerinden okunur. Sürümünüzde sıfırlanma zaman damgası yok mu? Ölçer sade `5h: 1%` biçimine geri döner.
+5 saatlik pencerenin %1'ini kullandınız ve `{1h 6m}` canlı bir geri sayımdır — pencere 1 saat 6 dakika içinde sıfırlanır (`7d{1d 2h}`: haftalık pencere 1 gün 2 saat içinde sıfırlanır). Her render'da `rate_limits.*.resets_at` değerinden okunur. Sürümünüzde sıfırlanma zaman damgası yok mu? Ölçer sade `5h: 1%` biçimine geri döner.
 
-### Durum satırı kendiliğinden güncellenir mi? `{1.1h}` geri sayımım donmuş görünüyor.
+### Durum satırı kendiliğinden güncellenir mi? `{1h 6m}` geri sayımım donmuş görünüyor.
 
 Claude Code, etkinliklere göre yeniden render eder — yeni asistan mesajı, `/compact`, izin modu veya vim modu değişikliği (300 ms gecikmeyle) — bu yüzden etkinlikler arasında satır donar. `~/.claude/settings.json` içindeki `statusLine` bloğuna `"refreshInterval": 30` ekleyin; o zaman sabit 30 saniyelik bir zamanlayıcıyla da yeniden çalışır ve boştayken bile geri sayımı ve süre takipçisini canlı tutar. Bir render ~0,1 s sürer, bu yüzden 30 s ihmal edilebilir; pilde veya büyük depolarda 60 kullanın (her render'da `git status` çalışır); minimum değer 1'dir.
 

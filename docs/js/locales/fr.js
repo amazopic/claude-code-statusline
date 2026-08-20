@@ -94,7 +94,7 @@ export default {
   "install.claude.prompt2_label": "Puis teste :",
   "install.codelabel.main": "macOS / Linux / WSL",
   "install.codelabel.slash": "Optionnel : commande slash <code class=\"mono\">/statusline</code>",
-  "install.refreshTip": "refreshInterval: 30 relance la ligne toutes les 30 secondes même quand la session est inactive — garde le compte à rebours de réinitialisation (5h{1.1h}), le suivi du temps et les bascules post-réinitialisation à jour. 30 est une valeur par défaut raisonnable ; 60 économise la batterie ; omettez pour ne rafraîchir que sur événements (nouveau message de l'assistant, /compact, bascule vim).",
+  "install.refreshTip": "refreshInterval: 30 relance la ligne toutes les 30 secondes même quand la session est inactive — garde le compte à rebours de réinitialisation (5h{1h 6m}), le suivi du temps et les bascules post-réinitialisation à jour. 30 est une valeur par défaut raisonnable ; 60 économise la batterie ; omettez pour ne rafraîchir que sur événements (nouveau message de l'assistant, /compact, bascule vim).",
   "faq.sub": "Q &amp; R",
   "faq.title": "Questions<br/>fréquentes",
   "faq.q.limits": "Pourquoi l'affichage des limites 5h / 7j est-il la fonctionnalité phare ?",
@@ -125,9 +125,9 @@ export default {
   "faq.a.time": "Le thème <strong>time</strong> lit les timestamps du transcript JSONL et reporte deux durées : <strong>active</strong> (somme des écarts inter-messages < 5 min) et <strong>wall</strong> (durée totale du premier au dernier message). Le seuil de 5 min est configurable.",
   "faq.q.revert": "Comment revenir à la barre par défaut ?",
   "faq.a.revert": "Soit retirer le bloc <code>statusLine</code> de <code>~/.claude/settings.json</code>, soit lancer <code>~/.claude/status-line.sh reset</code> et passer au thème <code>minimal</code>, proche du défaut.",
-  "faq.q.reset": "Que signifie 5h{1.1h}: 1% ?",
-  "faq.a.reset": "Vous avez utilisé 1 % de la fenêtre de 5 heures, et <code>{1.1h}</code> est un compte à rebours en direct — la fenêtre se réinitialise dans 1,1 heure (<code>7d{1.1d}</code> : la fenêtre hebdomadaire se réinitialise dans 1,1 jour). Lu depuis <code>rate_limits.*.resets_at</code> à chaque rendu. Pas d'horodatage de réinitialisation dans votre build ? La jauge revient au simple <code>5h: 1%</code>.",
-  "faq.q.refresh": "La barre de statut se met-elle à jour toute seule ? Mon compte à rebours {1.1h} semble figé.",
+  "faq.q.reset": "Que signifie 5h{1h 6m}: 1% ?",
+  "faq.a.reset": "Vous avez utilisé 1 % de la fenêtre de 5 heures, et <code>{1h 6m}</code> est un compte à rebours en direct — la fenêtre se réinitialise dans 1 heure 6 minutes (<code>7d{1d 2h}</code> : la fenêtre hebdomadaire se réinitialise dans 1 jour 2 heures). Lu depuis <code>rate_limits.*.resets_at</code> à chaque rendu. Pas d'horodatage de réinitialisation dans votre build ? La jauge revient au simple <code>5h: 1%</code>.",
+  "faq.q.refresh": "La barre de statut se met-elle à jour toute seule ? Mon compte à rebours {1h 6m} semble figé.",
   "faq.a.refresh": "Claude Code se redessine sur événements — nouveau message de l'assistant, /compact, changement de mode d'autorisation ou de mode vim (débruité à 300 ms) — donc entre les événements la ligne se fige. Ajoutez <code>\"refreshInterval\": 30</code> au bloc statusLine dans <code>~/.claude/settings.json</code> et elle se relance aussi sur un minuteur fixe de 30 secondes, gardant le compte à rebours et le suivi du temps actifs au repos. Un rendu coûte ~0,1 s, donc 30 s est négligeable ; utilisez <code>60</code> sur batterie ou dans d'énormes dépôts (<code>git status</code> s'exécute à chaque rendu) ; le minimum est <code>1</code>.",
   "colo.title": "Amazopic",
   "colo.h.author": "Auteur",
@@ -163,5 +163,5 @@ export default {
   "cmp.f.cli": "Configurateur CLI intégré",
   "cmp.f.slash": "Commande slash /statusline",
   "cmp.f.deps": "Dépendances",
-  "cmp.f.reset": "Compte à rebours de réinitialisation dans les jauges de limite (5h{1.1h})"
+  "cmp.f.reset": "Compte à rebours de réinitialisation dans les jauges de limite (5h{1h 6m})"
 };

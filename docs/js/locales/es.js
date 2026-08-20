@@ -94,7 +94,7 @@ export default {
   "install.claude.prompt2_label": "Luego prueba:",
   "install.codelabel.main": "macOS / Linux / WSL",
   "install.codelabel.slash": "Opcional: comando slash <code class=\"mono\">/statusline</code>",
-  "install.refreshTip": "refreshInterval: 30 vuelve a ejecutar la línea cada 30 segundos incluso con la sesión inactiva — mantiene en vivo la cuenta atrás del reinicio (5h{1.1h}), el rastreador de tiempo y los cambios tras el reinicio. 30 es un valor por defecto razonable; 60 ahorra batería; omítelo para refrescar solo en eventos (nuevo mensaje del asistente, /compact, alternar vim).",
+  "install.refreshTip": "refreshInterval: 30 vuelve a ejecutar la línea cada 30 segundos incluso con la sesión inactiva — mantiene en vivo la cuenta atrás del reinicio (5h{1h 6m}), el rastreador de tiempo y los cambios tras el reinicio. 30 es un valor por defecto razonable; 60 ahorra batería; omítelo para refrescar solo en eventos (nuevo mensaje del asistente, /compact, alternar vim).",
   "faq.sub": "P &amp; R",
   "faq.title": "Preguntas<br/>frecuentes",
   "faq.q.limits": "¿Por qué el display de límites 5h / 7d es la característica estrella?",
@@ -125,9 +125,9 @@ export default {
   "faq.a.time": "El tema <strong>time</strong> lee timestamps del JSONL: <strong>active</strong> (gaps < 5 min) y <strong>wall</strong> (rango total).",
   "faq.q.revert": "¿Cómo vuelvo a la línea predeterminada?",
   "faq.a.revert": "Quita el bloque <code>statusLine</code> de <code>~/.claude/settings.json</code>.",
-  "faq.q.reset": "¿Qué significa 5h{1.1h}: 1%?",
-  "faq.a.reset": "Has usado el 1 % de la ventana de 5 horas, y <code>{1.1h}</code> es una cuenta atrás en vivo — la ventana se reinicia en 1,1 horas (<code>7d{1.1d}</code>: la ventana semanal se reinicia en 1,1 días). Se lee de <code>rate_limits.*.resets_at</code> en cada render. ¿Tu build no envía marca de reinicio? El medidor recurre al simple <code>5h: 1%</code>.",
-  "faq.q.refresh": "¿La línea de estado se actualiza sola? Mi cuenta atrás {1.1h} parece congelada.",
+  "faq.q.reset": "¿Qué significa 5h{1h 6m}: 1%?",
+  "faq.a.reset": "Has usado el 1 % de la ventana de 5 horas, y <code>{1h 6m}</code> es una cuenta atrás en vivo — la ventana se reinicia en 1 hora 6 minutos (<code>7d{1d 2h}</code>: la ventana semanal se reinicia en 1 día 2 horas). Se lee de <code>rate_limits.*.resets_at</code> en cada render. ¿Tu build no envía marca de reinicio? El medidor recurre al simple <code>5h: 1%</code>.",
+  "faq.q.refresh": "¿La línea de estado se actualiza sola? Mi cuenta atrás {1h 6m} parece congelada.",
   "faq.a.refresh": "Claude Code se vuelve a renderizar en eventos — nuevo mensaje del asistente, /compact, cambio de modo de permisos o de modo vim (con debounce a 300 ms) — así que entre eventos la línea se congela. Añade <code>\"refreshInterval\": 30</code> al bloque statusLine en <code>~/.claude/settings.json</code> y también se reejecutará con un temporizador fijo de 30 segundos, manteniendo la cuenta atrás y el rastreador de tiempo en marcha durante la inactividad. Un render cuesta ~0,1 s, así que 30 s es insignificante; usa <code>60</code> con batería o en repos enormes (<code>git status</code> se ejecuta en cada render); el mínimo es <code>1</code>.",
   "colo.title": "Amazopic",
   "colo.h.author": "Autor",
@@ -163,5 +163,5 @@ export default {
   "cmp.f.cli": "Configurador CLI integrado",
   "cmp.f.slash": "Comando slash /statusline",
   "cmp.f.deps": "Dependencias",
-  "cmp.f.reset": "Cuenta atrás de reinicio en los medidores de límite (5h{1.1h})"
+  "cmp.f.reset": "Cuenta atrás de reinicio en los medidores de límite (5h{1h 6m})"
 };

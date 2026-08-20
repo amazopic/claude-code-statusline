@@ -11,17 +11,17 @@
 **Languages:** [English](README.md) · [Русский](README.ru.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Українська](README.uk.md) · [Slovenščina](README.sl.md) · [Italiano](README.it.md) · [Español](README.es.md) · [中文](README.zh.md) · [日本語](README.ja.md) · [한국어](README.ko.md) · [العربية](README.ar.md) · [Português](README.pt.md) · [Türkçe](README.tr.md) · [Bahasa Indonesia](README.id.md) · [Tiếng Việt](README.vi.md) · [हिन्दी](README.hi.md) · 繁體中文 · [Polski](README.pl.md) · [ไทย](README.th.md) · [עברית](README.he.md) · [বাংলা](README.bn.md) · [اردو](README.ur.md)
 
 ```text
-Opus 4.7 (1M) │ 🚀 12% █▌░░░░░░░░ 121.4K/1000K │ 0.42$ │ ↑0.5K ↓1.2K │ project │ ⎇ main │ 5h{1.1h}: 15% 7d{1.1d}: 4% │ 🤖 xhigh
+Opus 4.7 (1M) │ 🚀 12% █▌░░░░░░░░ 121.4K/1000K │ 0.42$ │ ↑0.5K ↓1.2K │ project │ ⎇ main │ 5h{1h 6m}: 15% 7d{1d 2h}: 4% │ 🤖 xhigh
 ```
 
 > 💡 **專業提示 — 控制 context**：context window 越滿，你與 Claude 的對話就**越沒效率**，5h / 7d 限額也**消耗得越快**。每當越過 **60%** 就清空或 `/compact`，維持高效運作。
 
 ### ⏳ 重置倒數 — 圍繞你的限額來安排工作
 
-5h / 7d 計量器內建一個即時倒數，精確到每個時間窗重置的那一刻：`5h{1.1h}: 1%` —— 5 小時窗口將在 1.1 小時後重置；`7d{1.1d}: 0%` —— 每週窗口將在 1.1 天後重置。你隨時都清楚自己什麼時候會回到 0%，因此可以把繁重的工作排在剛重置之後，把產能分散開來，而不是在任務做到一半時撞上上限。由 Claude Code 送出的 `rate_limits.*.resets_at` 驅動；如果你的版本沒有送出重置時間戳記，計量器會優雅地回退成單純的 `5h: 1%`。
+5h / 7d 計量器內建一個即時倒數，精確到每個時間窗重置的那一刻：`5h{1h 6m}: 1%` —— 5 小時窗口將在 1 小時 6 分鐘後重置；`7d{1d 2h}: 0%` —— 每週窗口將在 1 天 2 小時後重置。你隨時都清楚自己什麼時候會回到 0%，因此可以把繁重的工作排在剛重置之後，把產能分散開來，而不是在任務做到一半時撞上上限。由 Claude Code 送出的 `rate_limits.*.resets_at` 驅動；如果你的版本沒有送出重置時間戳記，計量器會優雅地回退成單純的 `5h: 1%`。
 
 ```text
-… ⎇ main │ 5h{1.1h}: 1% 7d{1.1d}: 0% │ 🤖 xhigh
+… ⎇ main │ 5h{1h 6m}: 1% 7d{1d 2h}: 0% │ 🤖 xhigh
 ```
 
 **生來就可預測** —— 每個計量器都會倒數到它的重置時刻，讓你按節奏分配工作，而不是迎頭撞牆。
@@ -45,7 +45,7 @@ chmod +x ~/.claude/status-line.sh
   "refreshInterval": 30 } }
 ```
 
-> 💡 **`refreshInterval`** ：`refreshInterval: 30` 會每隔 30 秒重跑一次狀態列，即使工作階段處於閒置狀態也一樣 —— 這能讓重置倒數（`5h{1.1h}`）、時間追蹤器以及重置後的翻轉保持即時更新。30 是個合理的預設值；60 較省電；省略則只在事件發生時更新（新的助理訊息、`/compact`、vim 切換）。
+> 💡 **`refreshInterval`** ：`refreshInterval: 30` 會每隔 30 秒重跑一次狀態列，即使工作階段處於閒置狀態也一樣 —— 這能讓重置倒數（`5h{1h 6m}`）、時間追蹤器以及重置後的翻轉保持即時更新。30 是個合理的預設值；60 較省電；省略則只在事件發生時更新（新的助理訊息、`/compact`、vim 切換）。
 
 重新啟動 Claude Code（或執行 `/config` 重新載入）。完成。
 
@@ -325,7 +325,7 @@ chmod +x ~/.claude/status-line.sh
 }
 ```
 
-> 💡 **`refreshInterval`** ：`refreshInterval: 30` 會每隔 30 秒重跑一次狀態列，即使工作階段處於閒置狀態也一樣 —— 這能讓重置倒數（`5h{1.1h}`）、時間追蹤器以及重置後的翻轉保持即時更新。30 是個合理的預設值；60 較省電；省略則只在事件發生時更新（新的助理訊息、`/compact`、vim 切換）。
+> 💡 **`refreshInterval`** ：`refreshInterval: 30` 會每隔 30 秒重跑一次狀態列，即使工作階段處於閒置狀態也一樣 —— 這能讓重置倒數（`5h{1h 6m}`）、時間追蹤器以及重置後的翻轉保持即時更新。30 是個合理的預設值；60 較省電；省略則只在事件發生時更新（新的助理訊息、`/compact`、vim 切換）。
 
 重新啟動 Claude Code（或執行 `/config` 重新載入）。
 
@@ -387,7 +387,7 @@ chmod +x ~/.claude/status-line.sh
 | **每則訊息** 的輸入／輸出 token 計數 | ❌ | ✅ |
 | **工作階段 token 總量**（API 模式回退） | ❌ | ✅ |
 | **5h / 7d 速率限制** 指示器，> 50 % 時顯示 ⚠️ | ❌ | ✅ |
-| 限額計量器裡的重置倒數（`5h{1.1h}`） | ❌ | ✅ |
+| 限額計量器裡的重置倒數（`5h{1h 6m}`） | ❌ | ✅ |
 | **Git 分支** + dirty + ahead/behind | ❌ | ✅ |
 | **任務耗時**（active 對 wall clock） | ❌ | ✅ |
 | **Thinking / effort 等級** 顯示 | ❌ | ✅ |
@@ -417,11 +417,11 @@ chmod +x ~/.claude/status-line.sh
 
 一個以 bash 寫成、用來取代 [Claude Code](https://claude.com/claude-code)（Anthropic 的 CLI）預設狀態列的方案。它把螢幕底部那一行變成真正的儀表板：模型、context %、進度條、工作階段花費、速率限制、git 狀態、任務耗時，以及更多。
 
-### `5h{1.1h}: 1%` 是什麼意思？
+### `5h{1h 6m}: 1%` 是什麼意思？
 
-你已經用掉了 5 小時窗口的 1%，而 `{1.1h}` 是一個即時倒數 —— 該窗口將在 1.1 小時後重置（`7d{1.1d}`：每週窗口將在 1.1 天後重置）。每次重繪時都會從 `rate_limits.*.resets_at` 讀取。你的版本沒有重置時間戳記？計量器會回退成單純的 `5h: 1%`。
+你已經用掉了 5 小時窗口的 1%，而 `{1h 6m}` 是一個即時倒數 —— 該窗口將在 1 小時 6 分鐘後重置（`7d{1d 2h}`：每週窗口將在 1 天 2 小時後重置）。每次重繪時都會從 `rate_limits.*.resets_at` 讀取。你的版本沒有重置時間戳記？計量器會回退成單純的 `5h: 1%`。
 
-### 狀態列會自己更新嗎？我的 `{1.1h}` 倒數看起來凍住了。
+### 狀態列會自己更新嗎？我的 `{1h 6m}` 倒數看起來凍住了。
 
 Claude Code 會在事件發生時重新算繪 —— 新的助理訊息、`/compact`、權限模式或 vim 模式切換（debounce 在 300 ms）—— 所以在事件之間狀態列會凍住。把 `"refreshInterval": 30` 加到 `~/.claude/settings.json` 的 `statusLine` 區塊，它就會額外按照固定的 30 秒計時器重跑，讓倒數與時間追蹤器在閒置時也持續跳動。一次算繪約耗 0.1 秒，所以 30 秒可以忽略不計；在電池供電或超大型 repo 裡用 60（每次算繪都會跑 git status）；最小值為 1。
 

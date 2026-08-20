@@ -11,17 +11,17 @@
 **Languages:** [English](README.md) · [Русский](README.ru.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Українська](README.uk.md) · [Slovenščina](README.sl.md) · [Italiano](README.it.md) · [Español](README.es.md) · [中文](README.zh.md) · [日本語](README.ja.md) · [한국어](README.ko.md) · [العربية](README.ar.md) · [Português](README.pt.md) · [Türkçe](README.tr.md) · Bahasa Indonesia · [Tiếng Việt](README.vi.md) · [हिन्दी](README.hi.md) · [繁體中文](README.zh-tw.md) · [Polski](README.pl.md) · [ไทย](README.th.md) · [עברית](README.he.md) · [বাংলা](README.bn.md) · [اردو](README.ur.md)
 
 ```text
-Opus 4.7 (1M) │ 🚀 12% █▌░░░░░░░░ 121.4K/1000K │ 0.42$ │ ↑0.5K ↓1.2K │ project │ ⎇ main │ 5h{1.1h}: 15% 7d{1.1d}: 4% │ 🤖 xhigh
+Opus 4.7 (1M) │ 🚀 12% █▌░░░░░░░░ 121.4K/1000K │ 0.42$ │ ↑0.5K ↓1.2K │ project │ ⎇ main │ 5h{1h 6m}: 15% 7d{1d 2h}: 4% │ 🤖 xhigh
 ```
 
 > 💡 **Tips pro — Kontrol konteks**: Semakin penuh jendela konteks Anda, semakin **kurang efektif** percakapan Anda dengan Claude — dan semakin **cepat** Anda menghabiskan batas 5 jam / 7 hari Anda. Bersihkan atau `/compact` setiap kali Anda melewati **60%** agar tetap bekerja secara efisien.
 
 ### ⏳ Hitung mundur reset — rencanakan di seputar batas Anda
 
-Meter 5 jam / 7 hari menyertakan hitung mundur langsung hingga momen setiap jendela di-reset: `5h{1.1h}: 1%` — jendela 5 jam di-reset dalam 1,1 jam; `7d{1.1d}: 0%` — jendela mingguan di-reset dalam 1,1 hari. Anda selalu tahu kapan kembali ke 0%, sehingga Anda dapat menjadwalkan pekerjaan berat tepat setelah reset dan mendistribusikan produktivitas Anda alih-alih menabrak batas di tengah tugas. Ditenagai oleh `rate_limits.*.resets_at` yang dikirim oleh Claude Code; jika build Anda tidak mengirim timestamp reset, meter dengan mulus beralih ke `5h: 1%` biasa.
+Meter 5 jam / 7 hari menyertakan hitung mundur langsung hingga momen setiap jendela di-reset: `5h{1h 6m}: 1%` — jendela 5 jam di-reset dalam 1 jam 6 menit; `7d{1d 2h}: 0%` — jendela mingguan di-reset dalam 1 hari 2 jam. Anda selalu tahu kapan kembali ke 0%, sehingga Anda dapat menjadwalkan pekerjaan berat tepat setelah reset dan mendistribusikan produktivitas Anda alih-alih menabrak batas di tengah tugas. Ditenagai oleh `rate_limits.*.resets_at` yang dikirim oleh Claude Code; jika build Anda tidak mengirim timestamp reset, meter dengan mulus beralih ke `5h: 1%` biasa.
 
 ```text
-… ⎇ main │ 5h{1.1h}: 1% 7d{1.1d}: 0% │ 🤖 xhigh
+… ⎇ main │ 5h{1h 6m}: 1% 7d{1d 2h}: 0% │ 🤖 xhigh
 ```
 
 **Dapat diprediksi secara desain** — setiap meter menghitung mundur hingga reset-nya, sehingga Anda mengatur ritme kerja alih-alih menabrak tembok.
@@ -45,7 +45,7 @@ Lalu tambahkan ke `~/.claude/settings.json`:
   "refreshInterval": 30 } }
 ```
 
-> 💡 `refreshInterval: 30` menjalankan ulang baris setiap 30 detik bahkan saat sesi sedang idle — menjaga hitung mundur reset (5h{1.1h}), pelacak waktu, dan flip pasca-reset tetap langsung. 30 adalah default yang masuk akal; 60 lebih hemat baterai; hilangkan agar hanya menyegarkan saat ada event (pesan asisten baru, /compact, toggle vim).
+> 💡 `refreshInterval: 30` menjalankan ulang baris setiap 30 detik bahkan saat sesi sedang idle — menjaga hitung mundur reset (5h{1h 6m}), pelacak waktu, dan flip pasca-reset tetap langsung. 30 adalah default yang masuk akal; 60 lebih hemat baterai; hilangkan agar hanya menyegarkan saat ada event (pesan asisten baru, /compact, toggle vim).
 
 Mulai ulang Claude Code (atau jalankan reload `/config`). Selesai.
 
@@ -328,7 +328,7 @@ Lalu tambahkan ke `~/.claude/settings.json`:
 }
 ```
 
-> 💡 `refreshInterval: 30` menjalankan ulang baris setiap 30 detik bahkan saat sesi sedang idle — menjaga hitung mundur reset (5h{1.1h}), pelacak waktu, dan flip pasca-reset tetap langsung. 30 adalah default yang masuk akal; 60 lebih hemat baterai; hilangkan agar hanya menyegarkan saat ada event (pesan asisten baru, /compact, toggle vim).
+> 💡 `refreshInterval: 30` menjalankan ulang baris setiap 30 detik bahkan saat sesi sedang idle — menjaga hitung mundur reset (5h{1h 6m}), pelacak waktu, dan flip pasca-reset tetap langsung. 30 adalah default yang masuk akal; 60 lebih hemat baterai; hilangkan agar hanya menyegarkan saat ada event (pesan asisten baru, /compact, toggle vim).
 
 Mulai ulang Claude Code (atau jalankan reload `/config`).
 
@@ -391,7 +391,7 @@ Sunting konstanta di dekat bagian atas `statusline.sh`:
 | Penghitung token input/output **per pesan** | ❌ | ✅ |
 | **Total token sesi** (fallback mode API) | ❌ | ✅ |
 | Indikator **batas penggunaan 5 jam / 7 hari** dengan ⚠️ saat > 50% | ❌ | ✅ |
-| Hitung mundur reset di meter batas (`5h{1.1h}`) | ❌ | ✅ |
+| Hitung mundur reset di meter batas (`5h{1h 6m}`) | ❌ | ✅ |
 | **Branch git** + dirty + ahead/behind | ❌ | ✅ |
 | **Waktu pengerjaan** (active vs jam dinding) | ❌ | ✅ |
 | Tampilan level **thinking / effort** | ❌ | ✅ |
@@ -421,11 +421,11 @@ Skenario konkret di mana proyek ini sepadan dengan dirinya sendiri:
 
 Pengganti berbasis bash untuk status line bawaan di [Claude Code](https://claude.com/claude-code) (CLI dari Anthropic). Ia mengubah baris di bagian bawah layar menjadi dashboard sungguhan: model, konteks %, progress bar, biaya sesi, batas penggunaan, status git, waktu pengerjaan, dan lainnya.
 
-### Apa arti `5h{1.1h}: 1%`?
+### Apa arti `5h{1h 6m}: 1%`?
 
-Anda telah memakai 1% dari jendela 5 jam, dan `{1.1h}` adalah hitung mundur langsung — jendela di-reset dalam 1,1 jam (`7d{1.1d}`: jendela mingguan di-reset dalam 1,1 hari). Dibaca dari `rate_limits.*.resets_at` pada setiap render. Tidak ada timestamp reset di build Anda? Meter beralih ke `5h: 1%` biasa.
+Anda telah memakai 1% dari jendela 5 jam, dan `{1h 6m}` adalah hitung mundur langsung — jendela di-reset dalam 1 jam 6 menit (`7d{1d 2h}`: jendela mingguan di-reset dalam 1 hari 2 jam). Dibaca dari `rate_limits.*.resets_at` pada setiap render. Tidak ada timestamp reset di build Anda? Meter beralih ke `5h: 1%` biasa.
 
-### Apakah status line memperbarui dirinya sendiri? Hitung mundur {1.1h} saya terlihat membeku.
+### Apakah status line memperbarui dirinya sendiri? Hitung mundur {1h 6m} saya terlihat membeku.
 
 Claude Code merender ulang saat ada event — pesan asisten baru, `/compact`, perubahan mode izin atau mode vim (di-debounce pada 300 ms) — jadi di antara event, baris membeku. Tambahkan `"refreshInterval": 30` ke blok `statusLine` di `~/.claude/settings.json` dan baris juga akan dijalankan ulang pada timer tetap 30 detik, menjaga hitung mundur dan pelacak waktu tetap berdetak saat idle. Satu render menghabiskan ~0,1 detik, jadi 30 detik dapat diabaikan; gunakan 60 saat memakai baterai atau di repo besar (`git status` berjalan setiap render); minimum adalah 1.
 

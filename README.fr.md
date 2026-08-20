@@ -11,7 +11,7 @@
 **Langues :** [English](README.md) · [Русский](README.ru.md) · Français · [Deutsch](README.de.md) · [Українська](README.uk.md) · [Slovenščina](README.sl.md) · [Italiano](README.it.md) · [Español](README.es.md) · [中文](README.zh.md) · [日本語](README.ja.md) · [한국어](README.ko.md) · [العربية](README.ar.md) · [Português](README.pt.md) · [Türkçe](README.tr.md) · [Bahasa Indonesia](README.id.md) · [Tiếng Việt](README.vi.md) · [हिन्दी](README.hi.md) · [繁體中文](README.zh-tw.md) · [Polski](README.pl.md) · [ไทย](README.th.md) · [עברית](README.he.md) · [বাংলা](README.bn.md) · [اردو](README.ur.md)
 
 ```text
-Opus 4.7 (1M) │ 🚀 12% █▌░░░░░░░░ 121.4K/1000K │ 0.42$ │ ↑0.5K ↓1.2K │ project │ ⎇ main │ 5h{1.1h}: 15% 7d{1.1d}: 4% │ 🤖 xhigh
+Opus 4.7 (1M) │ 🚀 12% █▌░░░░░░░░ 121.4K/1000K │ 0.42$ │ ↑0.5K ↓1.2K │ project │ ⎇ main │ 5h{1h 6m}: 15% 7d{1d 2h}: 4% │ 🤖 xhigh
 ```
 
 ### ⏳ Compte à rebours de réinitialisation — planifiez autour de vos limites
@@ -21,14 +21,15 @@ conception : chaque jauge décompte jusqu'à sa réinitialisation, pour que vous
 rythmiez votre travail au lieu de foncer dans le mur.
 
 Les jauges 5h / 7d intègrent un compte à rebours en direct jusqu'au moment où
-chaque fenêtre se réinitialise : `5h{1.1h}: 1%` — la fenêtre de 5 heures se
-réinitialise dans 1,1 heure ; `7d{1.1d}: 0%` — la fenêtre hebdomadaire se
-réinitialise dans 1,1 jour. Vous savez toujours quand vous repassez à 0 %, ce
-qui vous permet de planifier les tâches lourdes juste après une
-réinitialisation et de répartir votre productivité au lieu de heurter le
-plafond en plein milieu d'une tâche. Alimenté par `rate_limits.*.resets_at`
-envoyé par Claude Code ; si votre build n'envoie pas d'horodatages de
-réinitialisation, les jauges retombent élégamment sur le simple `5h: 1%`.
+chaque fenêtre se réinitialise : `5h{1h 6m}: 1%` — la fenêtre de 5 heures se
+réinitialise dans 1 heure 6 minutes ; `7d{1d 2h}: 0%` — la fenêtre
+hebdomadaire se réinitialise dans 1 jour 2 heures. Vous savez toujours quand
+vous repassez à 0 %, ce qui vous permet de planifier les tâches lourdes
+juste après une réinitialisation et de répartir votre productivité au lieu
+de heurter le plafond en plein milieu d'une tâche. Alimenté par
+`rate_limits.*.resets_at` envoyé par Claude Code ; si votre build n'envoie
+pas d'horodatages de réinitialisation, les jauges retombent élégamment sur
+le simple `5h: 1%`.
 
 ## Pourquoi ?
 
@@ -122,7 +123,7 @@ Puis ajoutez à `~/.claude/settings.json` :
 }
 ```
 
-> 💡 `refreshInterval: 30` relance la ligne toutes les 30 secondes même quand la session est inactive — ce qui garde vivants le compte à rebours de réinitialisation (5h{1.1h}), le tracker de temps et les bascules post-réinitialisation. 30 est une valeur par défaut sensée ; 60 économise la batterie ; omettez-le pour ne rafraîchir que sur événements (nouveau message de l'assistant, /compact, bascule vim).
+> 💡 `refreshInterval: 30` relance la ligne toutes les 30 secondes même quand la session est inactive — ce qui garde vivants le compte à rebours de réinitialisation (5h{1h 6m}), le tracker de temps et les bascules post-réinitialisation. 30 est une valeur par défaut sensée ; 60 économise la batterie ; omettez-le pour ne rafraîchir que sur événements (nouveau message de l'assistant, /compact, bascule vim).
 
 Redémarrez Claude Code (ou exécutez `/config` pour recharger).
 
@@ -352,7 +353,7 @@ Puis ajoutez à `~/.claude/settings.json` :
   "refreshInterval": 30 } }
 ```
 
-> 💡 `refreshInterval: 30` relance la ligne toutes les 30 secondes même quand la session est inactive — ce qui garde vivants le compte à rebours de réinitialisation (5h{1.1h}), le tracker de temps et les bascules post-réinitialisation. 30 est une valeur par défaut sensée ; 60 économise la batterie ; omettez-le pour ne rafraîchir que sur événements (nouveau message de l'assistant, /compact, bascule vim).
+> 💡 `refreshInterval: 30` relance la ligne toutes les 30 secondes même quand la session est inactive — ce qui garde vivants le compte à rebours de réinitialisation (5h{1h 6m}), le tracker de temps et les bascules post-réinitialisation. 30 est une valeur par défaut sensée ; 60 économise la batterie ; omettez-le pour ne rafraîchir que sur événements (nouveau message de l'assistant, /compact, bascule vim).
 
 Redémarrez Claude Code (ou `/config` reload). Terminé.
 
@@ -367,7 +368,7 @@ Redémarrez Claude Code (ou `/config` reload). Terminé.
 | Compteurs de tokens entrée/sortie | ❌ | ✅ |
 | Total de tokens de session (fallback mode API) | ❌ | ✅ |
 | Indicateurs de limites 5h / 7j avec ⚠️ à > 50 % | ❌ | ✅ |
-| Compte à rebours de réinitialisation dans les jauges de limites (5h{1.1h}) | ❌ | ✅ |
+| Compte à rebours de réinitialisation dans les jauges de limites (5h{1h 6m}) | ❌ | ✅ |
 | Branche git + dirty + ahead/behind | ❌ | ✅ |
 | Temps sur tâche (actif vs wall) | ❌ | ✅ |
 | Niveau de thinking / effort | ❌ | ✅ |
@@ -393,11 +394,11 @@ Redémarrez Claude Code (ou `/config` reload). Terminé.
 
 Un remplacement bash de la ligne d'état par défaut de [Claude Code](https://claude.com/claude-code) (CLI d'Anthropic). Transforme la ligne du bas en un véritable dashboard : modèle, contexte %, barre de progression, coût de session, limites, git, temps et plus.
 
-### Que signifie `5h{1.1h}: 1%` ?
+### Que signifie `5h{1h 6m}: 1%` ?
 
-Vous avez utilisé 1 % de la fenêtre de 5 heures, et `{1.1h}` est un compte à rebours en direct — la fenêtre se réinitialise dans 1,1 heure (`7d{1.1d}` : la fenêtre hebdomadaire se réinitialise dans 1,1 jour). Lu depuis `rate_limits.*.resets_at` à chaque rendu. Pas d'horodatage de réinitialisation dans votre build ? La jauge retombe sur le simple `5h: 1%`.
+Vous avez utilisé 1 % de la fenêtre de 5 heures, et `{1h 6m}` est un compte à rebours en direct — la fenêtre se réinitialise dans 1 heure 6 minutes (`7d{1d 2h}` : la fenêtre hebdomadaire se réinitialise dans 1 jour 2 heures). Lu depuis `rate_limits.*.resets_at` à chaque rendu. Pas d'horodatage de réinitialisation dans votre build ? La jauge retombe sur le simple `5h: 1%`.
 
-### La ligne d'état se met-elle à jour toute seule ? Mon compte à rebours {1.1h} semble figé.
+### La ligne d'état se met-elle à jour toute seule ? Mon compte à rebours {1h 6m} semble figé.
 
 Claude Code refait le rendu sur événements — nouveau message de l'assistant, /compact, changement de mode de permission ou de mode vim (anti-rebond à 300 ms) — donc entre deux événements la ligne reste figée. Ajoutez `"refreshInterval": 30` au bloc `statusLine` dans `~/.claude/settings.json` et elle se relancera aussi sur un minuteur fixe de 30 secondes, gardant le compte à rebours et le tracker de temps en mouvement pendant l'inactivité. Un rendu coûte ~0,1 s, donc 30 s est négligeable ; utilisez 60 sur batterie ou dans d'énormes dépôts (`git status` s'exécute à chaque rendu) ; le minimum est 1.
 

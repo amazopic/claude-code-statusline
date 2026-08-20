@@ -94,7 +94,7 @@ export default {
   "install.claude.prompt2_label": "Lalu uji:",
   "install.codelabel.main": "macOS / Linux / WSL",
   "install.codelabel.slash": "Opsional: perintah slash <code class=\"mono\">/statusline</code>",
-  "install.refreshTip": "refreshInterval: 30 menjalankan ulang baris setiap 30 detik bahkan saat sesi sedang idle — menjaga hitung mundur reset (5h{1.1h}), pelacak waktu, dan pergantian pasca-reset tetap hidup. 30 adalah default yang masuk akal; 60 lebih hemat baterai; hilangkan untuk menyegarkan hanya saat ada peristiwa (pesan asisten baru, /compact, toggle vim).",
+  "install.refreshTip": "refreshInterval: 30 menjalankan ulang baris setiap 30 detik bahkan saat sesi sedang idle — menjaga hitung mundur reset (5h{1h 6m}), pelacak waktu, dan pergantian pasca-reset tetap hidup. 30 adalah default yang masuk akal; 60 lebih hemat baterai; hilangkan untuk menyegarkan hanya saat ada peristiwa (pesan asisten baru, /compact, toggle vim).",
   "faq.sub": "T &amp; J",
   "faq.title": "Sering<br/>Ditanyakan",
   "faq.q.limits": "Mengapa tampilan limit 5h / 7d jadi fitur unggulan?",
@@ -125,9 +125,9 @@ export default {
   "faq.a.time": "Tema <strong>time</strong> membaca timestamp dari transkrip JSONL dan melaporkan dua durasi: <strong>active</strong> (jumlah jeda antar-pesan yang lebih pendek dari 5 menit) dan <strong>wall</strong> (rentang total dari pesan pertama ke terakhir). Ambang diam 5 menit bisa dikonfigurasi.",
   "faq.q.revert": "Bagaimana cara kembali ke status line bawaan Claude Code?",
   "faq.a.revert": "Hapus blok <code>statusLine</code> dari <code>~/.claude/settings.json</code>, atau jalankan <code>~/.claude/status-line.sh reset</code> dan beralih ke tema <code>minimal</code> yang mirip dengan bawaan.",
-  "faq.q.reset": "Apa arti 5h{1.1h}: 1%?",
-  "faq.a.reset": "Kamu sudah memakai 1% dari jendela 5 jam, dan <code>{1.1h}</code> adalah hitung mundur langsung — jendelanya reset dalam 1,1 jam (<code>7d{1.1d}</code>: jendela mingguan reset dalam 1,1 hari). Dibaca dari <code>rate_limits.*.resets_at</code> pada setiap render. Tidak ada timestamp reset di build-mu? Meter kembali ke <code>5h: 1%</code> sederhana.",
-  "faq.q.refresh": "Apakah status line memperbarui dirinya sendiri? Hitung mundur {1.1h} saya tampak beku.",
+  "faq.q.reset": "Apa arti 5h{1h 6m}: 1%?",
+  "faq.a.reset": "Kamu sudah memakai 1% dari jendela 5 jam, dan <code>{1h 6m}</code> adalah hitung mundur langsung — jendelanya reset dalam 1 jam 6 menit (<code>7d{1d 2h}</code>: jendela mingguan reset dalam 1 hari 2 jam). Dibaca dari <code>rate_limits.*.resets_at</code> pada setiap render. Tidak ada timestamp reset di build-mu? Meter kembali ke <code>5h: 1%</code> sederhana.",
+  "faq.q.refresh": "Apakah status line memperbarui dirinya sendiri? Hitung mundur {1h 6m} saya tampak beku.",
   "faq.a.refresh": "Claude Code merender ulang saat ada peristiwa — pesan asisten baru, /compact, perubahan mode izin atau mode vim (di-debounce pada 300 ms) — jadi di antara peristiwa baris membeku. Tambahkan <code>\"refreshInterval\": 30</code> ke blok statusLine di <code>~/.claude/settings.json</code> dan baris juga dijalankan ulang pada timer tetap 30 detik, menjaga hitung mundur dan pelacak waktu tetap berdetak saat idle. Sekali render butuh ~0,1 d, jadi 30 d dapat diabaikan; gunakan <code>60</code> saat memakai baterai atau di repo besar (<code>git status</code> berjalan setiap render); minimumnya <code>1</code>.",
   "colo.title": "Amazopic",
   "colo.h.author": "Penulis",
@@ -163,5 +163,5 @@ export default {
   "cmp.f.cli": "Konfigurator CLI bawaan",
   "cmp.f.slash": "Perintah slash /statusline",
   "cmp.f.deps": "Dependensi",
-  "cmp.f.reset": "Hitung mundur reset di meter limit (5h{1.1h})"
+  "cmp.f.reset": "Hitung mundur reset di meter limit (5h{1h 6m})"
 };

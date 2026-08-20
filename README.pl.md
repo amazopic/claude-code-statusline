@@ -11,17 +11,17 @@
 **Languages:** [English](README.md) · [Русский](README.ru.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Українська](README.uk.md) · [Slovenščina](README.sl.md) · [Italiano](README.it.md) · [Español](README.es.md) · [中文](README.zh.md) · [日本語](README.ja.md) · [한국어](README.ko.md) · [العربية](README.ar.md) · [Português](README.pt.md) · [Türkçe](README.tr.md) · [Bahasa Indonesia](README.id.md) · [Tiếng Việt](README.vi.md) · [हिन्दी](README.hi.md) · [繁體中文](README.zh-tw.md) · Polski · [ไทย](README.th.md) · [עברית](README.he.md) · [বাংলা](README.bn.md) · [اردو](README.ur.md)
 
 ```text
-Opus 4.7 (1M) │ 🚀 12% █▌░░░░░░░░ 121.4K/1000K │ 0.42$ │ ↑0.5K ↓1.2K │ project │ ⎇ main │ 5h{1.1h}: 15% 7d{1.1d}: 4% │ 🤖 xhigh
+Opus 4.7 (1M) │ 🚀 12% █▌░░░░░░░░ 121.4K/1000K │ 0.42$ │ ↑0.5K ↓1.2K │ project │ ⎇ main │ 5h{1h 6m}: 15% 7d{1d 2h}: 4% │ 🤖 xhigh
 ```
 
 > 💡 **Wskazówka pro — kontrola kontekstu**: im pełniejsze jest okno kontekstu, tym **mniej skuteczna** staje się twoja rozmowa z Claude — i tym **szybciej** wyczerpujesz swoje limity 5h/7d. Czyść kontekst lub używaj `/compact` zawsze, gdy przekroczysz **60%**, aby pracować efektywnie.
 
 ### ⏳ Odliczanie do resetu — planuj wokół swoich limitów
 
-Mierniki 5h / 7d zawierają odliczanie na żywo do momentu, w którym każde okno się zresetuje: `5h{1.1h}: 1%` — okno 5-godzinne zresetuje się za 1,1 godziny; `7d{1.1d}: 0%` — okno tygodniowe zresetuje się za 1,1 dnia. Zawsze wiesz, kiedy wrócisz do 0%, więc możesz zaplanować ciężką pracę tuż po resecie i rozłożyć swoją produktywność, zamiast uderzać w limit w połowie zadania. Działa dzięki `rate_limits.*.resets_at` wysyłanemu przez Claude Code; jeśli twoja kompilacja nie wysyła znaczników czasu resetu, mierniki płynnie przechodzą na zwykłe `5h: 1%`.
+Mierniki 5h / 7d zawierają odliczanie na żywo do momentu, w którym każde okno się zresetuje: `5h{1h 6m}: 1%` — okno 5-godzinne zresetuje się za 1 godzinę 6 minut; `7d{1d 2h}: 0%` — okno tygodniowe zresetuje się za 1 dzień 2 godziny. Zawsze wiesz, kiedy wrócisz do 0%, więc możesz zaplanować ciężką pracę tuż po resecie i rozłożyć swoją produktywność, zamiast uderzać w limit w połowie zadania. Działa dzięki `rate_limits.*.resets_at` wysyłanemu przez Claude Code; jeśli twoja kompilacja nie wysyła znaczników czasu resetu, mierniki płynnie przechodzą na zwykłe `5h: 1%`.
 
 ```text
-… ⎇ main │ 5h{1.1h}: 1% 7d{1.1d}: 0% │ 🤖 xhigh
+… ⎇ main │ 5h{1h 6m}: 1% 7d{1d 2h}: 0% │ 🤖 xhigh
 ```
 
 **Przewidywalność z założenia** — każdy miernik odlicza do swojego resetu, więc dawkujesz pracę zamiast uderzać w ścianę.
@@ -45,7 +45,7 @@ Następnie dodaj do `~/.claude/settings.json`:
   "refreshInterval": 30 } }
 ```
 
-> 💡 `refreshInterval: 30` ponownie uruchamia linię co 30 sekund, nawet gdy sesja jest bezczynna — utrzymuje na żywo odliczanie do resetu (5h{1.1h}), tracker czasu oraz przeskoki po resecie. 30 to rozsądna wartość domyślna; 60 oszczędza baterię; pomiń, aby odświeżać tylko przy zdarzeniach (nowa wiadomość asystenta, /compact, przełączenie vim).
+> 💡 `refreshInterval: 30` ponownie uruchamia linię co 30 sekund, nawet gdy sesja jest bezczynna — utrzymuje na żywo odliczanie do resetu (5h{1h 6m}), tracker czasu oraz przeskoki po resecie. 30 to rozsądna wartość domyślna; 60 oszczędza baterię; pomiń, aby odświeżać tylko przy zdarzeniach (nowa wiadomość asystenta, /compact, przełączenie vim).
 
 Zrestartuj Claude Code (lub wykonaj `/config` reload). Gotowe.
 
@@ -328,7 +328,7 @@ Następnie dodaj do `~/.claude/settings.json`:
 }
 ```
 
-> 💡 `refreshInterval: 30` ponownie uruchamia linię co 30 sekund, nawet gdy sesja jest bezczynna — utrzymuje na żywo odliczanie do resetu (5h{1.1h}), tracker czasu oraz przeskoki po resecie. 30 to rozsądna wartość domyślna; 60 oszczędza baterię; pomiń, aby odświeżać tylko przy zdarzeniach (nowa wiadomość asystenta, /compact, przełączenie vim).
+> 💡 `refreshInterval: 30` ponownie uruchamia linię co 30 sekund, nawet gdy sesja jest bezczynna — utrzymuje na żywo odliczanie do resetu (5h{1h 6m}), tracker czasu oraz przeskoki po resecie. 30 to rozsądna wartość domyślna; 60 oszczędza baterię; pomiń, aby odświeżać tylko przy zdarzeniach (nowa wiadomość asystenta, /compact, przełączenie vim).
 
 Zrestartuj Claude Code (lub wykonaj `/config` reload).
 
@@ -391,7 +391,7 @@ Edytuj stałe na początku `statusline.sh`:
 | **Liczniki tokenów** wejścia/wyjścia na wiadomość | ❌ | ✅ |
 | **Całkowita liczba tokenów sesji** (awaryjny tryb API) | ❌ | ✅ |
 | Wskaźniki **limitów 5h / 7d** z ⚠️ przy > 50% | ❌ | ✅ |
-| Odliczanie do resetu w miernikach limitów (`5h{1.1h}`) | ❌ | ✅ |
+| Odliczanie do resetu w miernikach limitów (`5h{1h 6m}`) | ❌ | ✅ |
 | **Gałąź git** + dirty + ahead/behind | ❌ | ✅ |
 | **Czas pracy** (aktywny vs zegar ścienny) | ❌ | ✅ |
 | Wyświetlanie poziomu **myślenia / wysiłku** | ❌ | ✅ |
@@ -421,11 +421,11 @@ Konkretne scenariusze, w których ten projekt sam na siebie zarabia:
 
 Zamiennik domyślnego paska stanu w [Claude Code](https://claude.com/claude-code) (CLI Anthropic) oparty na bashu. Zamienia linię na dole ekranu w prawdziwy pulpit: model, kontekst %, pasek postępu, koszt sesji, limity użycia, status git, czas pracy i więcej.
 
-### Co oznacza `5h{1.1h}: 1%`?
+### Co oznacza `5h{1h 6m}: 1%`?
 
-Wykorzystałeś 1% okna 5-godzinnego, a `{1.1h}` to odliczanie na żywo — okno zresetuje się za 1,1 godziny (`7d{1.1d}`: okno tygodniowe zresetuje się za 1,1 dnia). Odczytywane z `rate_limits.*.resets_at` przy każdym renderze. Brak znacznika czasu resetu w twojej kompilacji? Miernik przechodzi na zwykłe `5h: 1%`.
+Wykorzystałeś 1% okna 5-godzinnego, a `{1h 6m}` to odliczanie na żywo — okno zresetuje się za 1 godzinę 6 minut (`7d{1d 2h}`: okno tygodniowe zresetuje się za 1 dzień 2 godziny). Odczytywane z `rate_limits.*.resets_at` przy każdym renderze. Brak znacznika czasu resetu w twojej kompilacji? Miernik przechodzi na zwykłe `5h: 1%`.
 
-### Czy pasek stanu aktualizuje się sam? Moje odliczanie `{1.1h}` wygląda na zamrożone.
+### Czy pasek stanu aktualizuje się sam? Moje odliczanie `{1h 6m}` wygląda na zamrożone.
 
 Claude Code renderuje ponownie przy zdarzeniach — nowa wiadomość asystenta, `/compact`, zmiana trybu uprawnień lub trybu vim (z debounce 300 ms) — więc między zdarzeniami linia zamarza. Dodaj `"refreshInterval": 30` do bloku `statusLine` w `~/.claude/settings.json`, a będzie się ona również uruchamiać ponownie na stałym 30-sekundowym zegarze, utrzymując odliczanie i tracker czasu w ruchu, gdy sesja jest bezczynna. Render kosztuje ~0,1 s, więc 30 s jest pomijalne; użyj 60 na baterii lub w ogromnych repozytoriach (`git status` uruchamia się przy każdym renderze); minimum to 1.
 

@@ -11,14 +11,14 @@
 **Sprachen:** [English](README.md) · [Русский](README.ru.md) · [Français](README.fr.md) · Deutsch · [Українська](README.uk.md) · [Slovenščina](README.sl.md) · [Italiano](README.it.md) · [Español](README.es.md) · [中文](README.zh.md) · [日本語](README.ja.md) · [한국어](README.ko.md) · [العربية](README.ar.md) · [Português](README.pt.md) · [Türkçe](README.tr.md) · [Bahasa Indonesia](README.id.md) · [Tiếng Việt](README.vi.md) · [हिन्दी](README.hi.md) · [繁體中文](README.zh-tw.md) · [Polski](README.pl.md) · [ไทย](README.th.md) · [עברית](README.he.md) · [বাংলা](README.bn.md) · [اردو](README.ur.md)
 
 ```text
-Opus 4.7 (1M) │ 🚀 12% █▌░░░░░░░░ 121.4K/1000K │ 0.42$ │ ↑0.5K ↓1.2K │ project │ ⎇ main │ 5h{1.1h}: 15% 7d{1.1d}: 4% │ 🤖 xhigh
+Opus 4.7 (1M) │ 🚀 12% █▌░░░░░░░░ 121.4K/1000K │ 0.42$ │ ↑0.5K ↓1.2K │ project │ ⎇ main │ 5h{1h 6m}: 15% 7d{1d 2h}: 4% │ 🤖 xhigh
 ```
 
 ### ⏳ Reset countdown — plan rund um deine Limits
 
 **Vorhersehbarkeit der Arbeit — verteile deine Produktivität.** Vorhersehbar by design — jede Anzeige zählt bis zu ihrem Reset herunter, sodass du dein Arbeitstempo bestimmst, statt gegen die Wand zu fahren.
 
-Die 5h- / 7d-Anzeigen enthalten einen Live-Countdown bis zu dem Moment, in dem jedes Fenster zurückgesetzt wird: `5h{1.1h}: 1%` — das 5-Stunden-Fenster wird in 1,1 Stunden zurückgesetzt; `7d{1.1d}: 0%` — das Wochenfenster wird in 1,1 Tagen zurückgesetzt. Du weißt jederzeit, wann du wieder bei 0 % bist, kannst also schwere Aufgaben direkt nach einem Reset einplanen und deine Produktivität verteilen, statt mitten in der Aufgabe gegen das Limit zu prallen. Angetrieben von `rate_limits.*.resets_at`, das Claude Code mitsendet; wenn dein Build keine Reset-Zeitstempel sendet, fallen die Anzeigen elegant auf das schlichte `5h: 1%` zurück.
+Die 5h- / 7d-Anzeigen enthalten einen Live-Countdown bis zu dem Moment, in dem jedes Fenster zurückgesetzt wird: `5h{1h 6m}: 1%` — das 5-Stunden-Fenster wird in 1 Stunde 6 Minuten zurückgesetzt; `7d{1d 2h}: 0%` — das Wochenfenster wird in 1 Tag 2 Stunden zurückgesetzt. Du weißt jederzeit, wann du wieder bei 0 % bist, kannst also schwere Aufgaben direkt nach einem Reset einplanen und deine Produktivität verteilen, statt mitten in der Aufgabe gegen das Limit zu prallen. Angetrieben von `rate_limits.*.resets_at`, das Claude Code mitsendet; wenn dein Build keine Reset-Zeitstempel sendet, fallen die Anzeigen elegant auf das schlichte `5h: 1%` zurück.
 
 ## 🎨 164 fertige Varianten — wählen und anwenden
 
@@ -112,7 +112,7 @@ Dann zu `~/.claude/settings.json` hinzufügen:
 }
 ```
 
-> 💡 `refreshInterval: 30` führt die Zeile alle 30 Sekunden neu aus, auch wenn die Sitzung untätig ist — so bleiben der Reset-Countdown (`5h{1.1h}`), der Zeittracker und die Post-Reset-Umschaltungen live. 30 ist ein sinnvoller Standard; 60 ist akkuschonend; weglassen, um nur bei Ereignissen zu aktualisieren (neue Assistenten-Nachricht, `/compact`, Vim-Umschaltung).
+> 💡 `refreshInterval: 30` führt die Zeile alle 30 Sekunden neu aus, auch wenn die Sitzung untätig ist — so bleiben der Reset-Countdown (`5h{1h 6m}`), der Zeittracker und die Post-Reset-Umschaltungen live. 30 ist ein sinnvoller Standard; 60 ist akkuschonend; weglassen, um nur bei Ereignissen zu aktualisieren (neue Assistenten-Nachricht, `/compact`, Vim-Umschaltung).
 
 Claude Code neu starten (oder `/config` reload).
 
@@ -343,7 +343,7 @@ Dann zu `~/.claude/settings.json` hinzufügen:
   "refreshInterval": 30 } }
 ```
 
-> 💡 `refreshInterval: 30` führt die Zeile alle 30 Sekunden neu aus, auch wenn die Sitzung untätig ist — so bleiben der Reset-Countdown (`5h{1.1h}`), der Zeittracker und die Post-Reset-Umschaltungen live. 30 ist ein sinnvoller Standard; 60 ist akkuschonend; weglassen, um nur bei Ereignissen zu aktualisieren (neue Assistenten-Nachricht, `/compact`, Vim-Umschaltung).
+> 💡 `refreshInterval: 30` führt die Zeile alle 30 Sekunden neu aus, auch wenn die Sitzung untätig ist — so bleiben der Reset-Countdown (`5h{1h 6m}`), der Zeittracker und die Post-Reset-Umschaltungen live. 30 ist ein sinnvoller Standard; 60 ist akkuschonend; weglassen, um nur bei Ereignissen zu aktualisieren (neue Assistenten-Nachricht, `/compact`, Vim-Umschaltung).
 
 Claude Code neu starten (oder `/config` reload). Fertig.
 
@@ -358,7 +358,7 @@ Claude Code neu starten (oder `/config` reload). Fertig.
 | Token-Zähler Eingabe/Ausgabe | ❌ | ✅ |
 | Gesamt-Session-Tokens (API-Modus-Fallback) | ❌ | ✅ |
 | Rate-Limit-Indikatoren 5h / 7d mit ⚠️ bei > 50 % | ❌ | ✅ |
-| Reset-Countdown in den Limit-Anzeigen (`5h{1.1h}`) | ❌ | ✅ |
+| Reset-Countdown in den Limit-Anzeigen (`5h{1h 6m}`) | ❌ | ✅ |
 | Git-Branch + dirty + ahead/behind | ❌ | ✅ |
 | Zeit-am-Task (active vs wall) | ❌ | ✅ |
 | Thinking / Effort-Level | ❌ | ✅ |
@@ -384,11 +384,11 @@ Claude Code neu starten (oder `/config` reload). Fertig.
 
 Ein bash-basierter Ersatz für die Standard-Statuszeile in [Claude Code](https://claude.com/claude-code) (Anthropics CLI). Macht aus der unteren Zeile ein echtes Dashboard: Modell, Kontext %, Fortschrittsbalken, Session-Kosten, Limits, Git, Zeit und mehr.
 
-### Was bedeutet `5h{1.1h}: 1%`?
+### Was bedeutet `5h{1h 6m}: 1%`?
 
-Du hast 1 % des 5-Stunden-Fensters verbraucht, und `{1.1h}` ist ein Live-Countdown — das Fenster wird in 1,1 Stunden zurückgesetzt (`7d{1.1d}`: das Wochenfenster wird in 1,1 Tagen zurückgesetzt). Bei jedem Render aus `rate_limits.*.resets_at` gelesen. Kein Reset-Zeitstempel in deinem Build? Die Anzeige fällt auf das schlichte `5h: 1%` zurück.
+Du hast 1 % des 5-Stunden-Fensters verbraucht, und `{1h 6m}` ist ein Live-Countdown — das Fenster wird in 1 Stunde 6 Minuten zurückgesetzt (`7d{1d 2h}`: das Wochenfenster wird in 1 Tag 2 Stunden zurückgesetzt). Bei jedem Render aus `rate_limits.*.resets_at` gelesen. Kein Reset-Zeitstempel in deinem Build? Die Anzeige fällt auf das schlichte `5h: 1%` zurück.
 
-### Aktualisiert sich die Statuszeile von selbst? Mein `{1.1h}`-Countdown sieht eingefroren aus.
+### Aktualisiert sich die Statuszeile von selbst? Mein `{1h 6m}`-Countdown sieht eingefroren aus.
 
 Claude Code rendert bei Ereignissen neu — neue Assistenten-Nachricht, `/compact`, Wechsel des Permission- oder Vim-Modus (mit 300 ms entprellt) — zwischen den Ereignissen friert die Zeile also ein. Füge `"refreshInterval": 30` zum `statusLine`-Block in `~/.claude/settings.json` hinzu, dann wird sie zusätzlich über einen festen 30-Sekunden-Timer neu ausgeführt, sodass Countdown und Zeittracker auch im Leerlauf weiterlaufen. Ein Render kostet ~0,1 s, 30 s sind also vernachlässigbar; nutze 60 im Akkubetrieb oder in riesigen Repos (`git status` läuft bei jedem Render); das Minimum ist 1.
 

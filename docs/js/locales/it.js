@@ -94,7 +94,7 @@ export default {
   "install.claude.prompt2_label": "Poi prova:",
   "install.codelabel.main": "macOS / Linux / WSL",
   "install.codelabel.slash": "Opzionale: comando slash <code class=\"mono\">/statusline</code>",
-  "install.refreshTip": "refreshInterval: 30 riesegue la riga ogni 30 secondi anche quando la sessione è inattiva — mantiene aggiornati il conto alla rovescia del reset (5h{1.1h}), il tracker del tempo e i cambi post-reset. 30 è un valore predefinito ragionevole; 60 risparmia batteria; ometti per aggiornare solo sugli eventi (nuovo messaggio dell'assistente, /compact, toggle vim).",
+  "install.refreshTip": "refreshInterval: 30 riesegue la riga ogni 30 secondi anche quando la sessione è inattiva — mantiene aggiornati il conto alla rovescia del reset (5h{1h 6m}), il tracker del tempo e i cambi post-reset. 30 è un valore predefinito ragionevole; 60 risparmia batteria; ometti per aggiornare solo sugli eventi (nuovo messaggio dell'assistente, /compact, toggle vim).",
   "faq.sub": "D &amp; R",
   "faq.title": "Domande<br/>frequenti",
   "faq.q.limits": "Perché il display dei limiti 5h / 7g è la funzionalità principale?",
@@ -125,9 +125,9 @@ export default {
   "faq.a.time": "Il tema <strong>time</strong> legge i timestamp dal JSONL: <strong>active</strong> (gap < 5 min) e <strong>wall</strong> (intervallo totale).",
   "faq.q.revert": "Come torno alla status line predefinita?",
   "faq.a.revert": "Rimuovi il blocco <code>statusLine</code> da <code>~/.claude/settings.json</code>.",
-  "faq.q.reset": "Cosa significa 5h{1.1h}: 1%?",
-  "faq.a.reset": "Hai usato l'1% della finestra di 5 ore, e <code>{1.1h}</code> è un conto alla rovescia in tempo reale — la finestra si resetta tra 1,1 ore (<code>7d{1.1d}</code>: la finestra settimanale si resetta tra 1,1 giorni). Letto da <code>rate_limits.*.resets_at</code> a ogni render. Nessun timestamp di reset nella tua build? L'indicatore torna al semplice <code>5h: 1%</code>.",
-  "faq.q.refresh": "La barra di stato si aggiorna da sola? Il mio conto alla rovescia {1.1h} sembra bloccato.",
+  "faq.q.reset": "Cosa significa 5h{1h 6m}: 1%?",
+  "faq.a.reset": "Hai usato l'1% della finestra di 5 ore, e <code>{1h 6m}</code> è un conto alla rovescia in tempo reale — la finestra si resetta tra 1 ora 6 minuti (<code>7d{1d 2h}</code>: la finestra settimanale si resetta tra 1 giorno 2 ore). Letto da <code>rate_limits.*.resets_at</code> a ogni render. Nessun timestamp di reset nella tua build? L'indicatore torna al semplice <code>5h: 1%</code>.",
+  "faq.q.refresh": "La barra di stato si aggiorna da sola? Il mio conto alla rovescia {1h 6m} sembra bloccato.",
   "faq.a.refresh": "Claude Code si ri-renderizza sugli eventi — nuovo messaggio dell'assistente, /compact, cambio di modalità permessi o modalità vim (con debounce a 300 ms) — quindi tra un evento e l'altro la riga si blocca. Aggiungi <code>\"refreshInterval\": 30</code> al blocco statusLine in <code>~/.claude/settings.json</code> e verrà rieseguita anche su un timer fisso di 30 secondi, mantenendo attivi il conto alla rovescia e il tracker del tempo a riposo. Un render costa ~0,1 s, quindi 30 s è trascurabile; usa <code>60</code> a batteria o in repo enormi (<code>git status</code> gira a ogni render); il minimo è <code>1</code>.",
   "colo.title": "Amazopic",
   "colo.h.author": "Autore",
@@ -163,5 +163,5 @@ export default {
   "cmp.f.cli": "Configuratore CLI integrato",
   "cmp.f.slash": "Comando slash /statusline",
   "cmp.f.deps": "Dipendenze",
-  "cmp.f.reset": "Conto alla rovescia del reset negli indicatori di limite (5h{1.1h})"
+  "cmp.f.reset": "Conto alla rovescia del reset negli indicatori di limite (5h{1h 6m})"
 };

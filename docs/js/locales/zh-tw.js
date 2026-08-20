@@ -94,7 +94,7 @@ export default {
   "install.claude.prompt2_label": "接著測試它：",
   "install.codelabel.main": "macOS / Linux / WSL",
   "install.codelabel.slash": "選用：<code class=\"mono\">/statusline</code> 斜線指令",
-  "install.refreshTip": "refreshInterval: 30 即使在工作階段閒置時，也會每 30 秒重新執行狀態列 —— 讓重置倒數（5h{1.1h}）、時間追蹤器和重置後的切換保持即時更新。30 是合理的預設值；60 較省電；省略則僅在事件時重新整理（新的助手訊息、/compact、vim 切換）。",
+  "install.refreshTip": "refreshInterval: 30 即使在工作階段閒置時，也會每 30 秒重新執行狀態列 —— 讓重置倒數（5h{1h 6m}）、時間追蹤器和重置後的切換保持即時更新。30 是合理的預設值；60 較省電；省略則僅在事件時重新整理（新的助手訊息、/compact、vim 切換）。",
   "faq.sub": "問 &amp; 答",
   "faq.title": "常見<br/>問題",
   "faq.q.limits": "為什麼 5h / 7d 限制顯示是頭號功能？",
@@ -125,9 +125,9 @@ export default {
   "faq.a.time": "<strong>time</strong> 佈景主題會讀取 JSONL 紀錄檔的時間戳記，並回報兩種時長：<strong>active</strong>（所有短於 5 分鐘的訊息間隔之總和）與 <strong>wall</strong>（從第一則到最後一則訊息的整段跨度）。5 分鐘的閒置門檻可自訂。",
   "faq.q.revert": "我要怎麼還原成預設的 Claude Code 狀態列？",
   "faq.a.revert": "可以從 <code>~/.claude/settings.json</code> 移除 <code>statusLine</code> 區塊，或執行 <code>~/.claude/status-line.sh reset</code> 並切換到與預設高度相近的 <code>minimal</code> 佈景主題。",
-  "faq.q.reset": "5h{1.1h}: 1% 是什麼意思？",
-  "faq.a.reset": "你已用掉 5 小時視窗的 1%，而 <code>{1.1h}</code> 是即時倒數 — 該視窗會在 1.1 小時後重置（<code>7d{1.1d}</code>：每週視窗會在 1.1 天後重置）。每次算繪都會從 <code>rate_limits.*.resets_at</code> 讀取。你的版本沒有重置時間戳記嗎？量表會退回顯示單純的 <code>5h: 1%</code>。",
-  "faq.q.refresh": "狀態列會自己更新嗎？我的 {1.1h} 倒數看起來卡住了。",
+  "faq.q.reset": "5h{1h 6m}: 1% 是什麼意思？",
+  "faq.a.reset": "你已用掉 5 小時視窗的 1%，而 <code>{1h 6m}</code> 是即時倒數 — 該視窗會在 1 小時 6 分鐘後重置（<code>7d{1d 2h}</code>：每週視窗會在 1 天 2 小時後重置）。每次算繪都會從 <code>rate_limits.*.resets_at</code> 讀取。你的版本沒有重置時間戳記嗎？量表會退回顯示單純的 <code>5h: 1%</code>。",
+  "faq.q.refresh": "狀態列會自己更新嗎？我的 {1h 6m} 倒數看起來卡住了。",
   "faq.a.refresh": "Claude Code 在事件時重新算繪 —— 新的助手訊息、/compact、權限模式或 vim 模式變更（去抖 300 毫秒）—— 因此在事件之間狀態列會凍結。在 <code>~/.claude/settings.json</code> 的 statusLine 區塊中加入 <code>\"refreshInterval\": 30</code>，它還會依固定的 30 秒計時器重新執行，讓倒數和時間追蹤器在閒置時持續跳動。一次算繪約 0.1 秒，所以 30 秒可忽略；在使用電池或超大儲存庫時用 <code>60</code>（每次算繪都會執行 <code>git status</code>）；最小值為 <code>1</code>。",
   "colo.title": "Amazopic",
   "colo.h.author": "作者",
@@ -163,5 +163,5 @@ export default {
   "cmp.f.cli": "內建 CLI 設定工具",
   "cmp.f.slash": "/statusline 斜線指令",
   "cmp.f.deps": "相依套件",
-  "cmp.f.reset": "限額量表中的重置倒數 (5h{1.1h})"
+  "cmp.f.reset": "限額量表中的重置倒數 (5h{1h 6m})"
 };

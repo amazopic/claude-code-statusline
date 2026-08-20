@@ -13,7 +13,7 @@ set -uo pipefail
 unset LC_ALL
 export LC_NUMERIC=C
 input=$(cat)
-LIM=$' 🔥 \e[1;38;5;220m5h{1.1h}:\e[0m \e[1;38;5;196m15%\e[0m \e[38;5;220m·\e[0m \e[1;38;5;220m7d{1.1d}:\e[0m \e[1;38;5;196m5%\e[0m'
+LIM=$' 🔥 \e[1;38;5;220m5h{1h 6m}:\e[0m \e[1;38;5;196m15%\e[0m \e[38;5;220m·\e[0m \e[1;38;5;220m7d{1d 2h}:\e[0m \e[1;38;5;196m5%\e[0m'
 
 R=$'\e[1;38;5;196m'
 O=$'\e[1;38;5;208m'

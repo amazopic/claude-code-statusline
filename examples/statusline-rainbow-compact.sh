@@ -15,7 +15,7 @@ set -uo pipefail
 unset LC_ALL
 export LC_NUMERIC=C
 input=$(cat)
-LIM=$' \e[1;38;5;196m5\e[1;38;5;208mh{1.1h}\e[1;38;5;226m:\e[0m \e[1;38;5;46m1\e[1;38;5;51m5\e[1;38;5;201m%\e[0m \e[38;5;240m·\e[0m \e[1;38;5;226m7\e[1;38;5;46md{1.1d}\e[1;38;5;51m:\e[0m \e[1;38;5;201m5\e[1;38;5;196m%\e[0m'
+LIM=$' \e[1;38;5;196m5\e[1;38;5;208mh{1h 6m}\e[1;38;5;226m:\e[0m \e[1;38;5;46m1\e[1;38;5;51m5\e[1;38;5;201m%\e[0m \e[38;5;240m·\e[0m \e[1;38;5;226m7\e[1;38;5;46md{1d 2h}\e[1;38;5;51m:\e[0m \e[1;38;5;201m5\e[1;38;5;196m%\e[0m'
 N=$'\e[0m'
 j() { jq -r "$1 // empty" 2>/dev/null <<<"$input"; }
 model_disp=$(j '.model.display_name'); model_id=$(j '.model.id')
